@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.art.sct.service.role.RoleRepository">
+
+  <resultMap id="BaseResultMap" type="com.djb.art.sct.model.Role">
+    <id column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="STATU" jdbcType="BIT" property="statu" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <select id="selectStringRolesByUserLoginCode" parameterType="java.lang.String" resultType="java.lang.String">
+	select distinct role.ROLE_NAME from
+	(
+	  select 
+		 BACK_USER_ID,LOGIN_CODE
+	  from
+		sys_back_user
+	  where 
+		LOGIN_CODE=#{loginCode} and STATUS=1
+	) user 
+	inner join
+	  sys_back_responsibility sbrp
+	on 
+	  user.BACK_USER_ID= sbrp.USER_ID
+	inner join
+	  sys_back_role role
+	on 
+	  sbrp.ROLE_ID=role.ROLE_ID
+	where
+	 role.STATUS=1
+  </select>
+  
+</mapper>

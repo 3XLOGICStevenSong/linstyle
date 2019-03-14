@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.art.repository.TestResourceRepository">
+
+  <resultMap id="BaseResultMap" type="com.djb.art.model.TestResource">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="TEST" jdbcType="VARCHAR" property="test" />
+    <result column="RESULT" jdbcType="VARCHAR" property="result" />
+    <result column="STATUS" jdbcType="BIT" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, NAME, DESCRIPTION, TEST, RESULT, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+
+  <select id="selectTestResourceById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from sys_test_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectTestResources" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+	<include refid="Base_Column_List"/>
+    from sys_test_resource
+	<where>
+	<if test="partName != null">
+		AND NAME LIKE '%'||#{partName}||'%'
+	</if>
+	</where>
+	<if test="start != null and limit != null">
+    		LIMIT #{start},#{limit};
+   </if>
+  </select>
+
+  <delete id="deleteTestResourceById" parameterType="java.lang.Integer">
+    delete from sys_test_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertTestResource" parameterType="com.djb.art.model.TestResource" 
+  useGeneratedKeys="true" keyProperty="id">
+    insert into sys_test_resource (ID, NAME, DESCRIPTION, 
+      TEST, RESULT, STATUS, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{test,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateTestResource" parameterType="com.djb.art.model.TestResource">
+    update sys_test_resource
+    set NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TEST = #{test,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=BIT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
