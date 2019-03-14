@@ -1,0 +1,22 @@
+#wrap{bacgkround:#ebebeb}
+.contents .Bn{position:relative;min-height:12rem;margin:0 0 0.5rem;padding:0.2rem 0 0}
+.contents h2{position:relative;float:left;height:1rem;margin:0.7rem 0 0;padding:0 0.4rem 0 0.2rem;line-height:1rem;background:#dedede;border-top-right-radius:1rem;border-bottom-right-radius:1rem;font-size:0.4rem;color:#363636}
+.contents p{position:absolute;bottom:0.3rem;padding:0 0.3rem;line-height:0.5rem;text-align:left;font-size:0.4rem;color:#fff;word-break:break-all}
+
+.banner1{background:#fff url("../img/bg1.png") no-repeat center bottom;background-size:100%;}
+.banner1 h2 span{color:#245795}
+.banner1 .icon_flower img{width:1rem;}
+.banner1 .icon_flower{position:absolute;top:-0.3rem;right:-0.5rem;}
+
+
+.contents .banner2 p{position:absolute;bottom:1.2rem;}
+.banner2{background:#fff url("../img/bg2.png") no-repeat center 2.5rem;background-size:100%;}
+.banner2 h2 span{color:#e12d7e}
+.banner2 .icon_butterfly img{width:1rem;}
+.banner2 .icon_butterfly{position:absolute;top:-0.7rem;right:0.2rem;}
+
+.contents .banner3{min-height:13.5rem;background:#fff url("../img/bg3.png") no-repeat center bottom;background-size:100%;}
+.contents .banner3 p{position:absolute;bottom:1.3rem;}
+.banner3 h2 span{color:#69a745}
+.banner3 .icon_wave img{width:2rem;}
+.banner3 .icon_wave{position:absolute;top:0.2rem;right:-2rem;}

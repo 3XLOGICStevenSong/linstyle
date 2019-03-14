@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/InquiryDetail.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatMyReservationDetail.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>问诊详情</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="InquiryDetail">
+					<ul id="List">
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="{$headPic}"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">{$name}</strong><span>{$positional}</span>
+									</li>
+									<li>
+										<strong class="docTitle"><span>{$dcName}</span><span>{$departmentName}</span></strong>
+										<strong class="docTitle"><span>{$healDisease}</span></strong>
+										<strong class="docTitle"><span>{$hospitalName}</span></strong>
+									</li>
+								</ul>
+								<div class="Grad">
+									{$Grad}
+								</div>
+							</div>
+							<div class="TimeList">
+								<div class="state clearfix">
+									<strong class="timer">预约时间: <span class="datetime">{$Time}</span></strong>
+									{$InqDiv}
+									<!--p class="Emp displaynone" >未填写诊断结果</p>
+									<p class="Over " >问诊结束</p>
+									<p class="Cam displaynone">
+										<span class="state_icon"></span>
+										<span><a href="#none">开始就诊</a></span>
+									</p>
+									<p class="Start displaynone">
+										<span><a href="#none">确认就诊</a></span>
+										<span class="sorry"><a href="#none">残忍拒绝</a></span>
+									</p>
+									<p class="Count displaynone">
+										<span class="state_icon"></span>
+										<span>距就诊时间还有1小时10分钟</span>
+									</p-->
+								</div>
+								<div class="Detail ">
+									<div class="clearfix">
+										<span class="chart_icon"></span>症状 : <strong>{$symptomName}</strong>
+									</div>
+									<div class="DetailInfo">
+										<p name="DetailInfo" class="DetailInfoTXT">{$symptonDescribe}</p>
+									</div>
+								</div>
+								<div class="Result">
+									<div class="clearfix">
+										<span class="Result_icon"></span>问诊结果 :
+									</div>
+									<div class="analysis">
+										{$analysis}
+									</div>
+									<div class="guidance">
+										{$guidance}
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					
+					<div class="subMit_btn">
+						<span class="btnGrad">我要评价</span>
+						<span class="btnCancel">取消预约</span>
+					</div>
+					
+					<div id="aside"></div>
+					<div id="buttonArea">
+						<button type="button" id="confirm" >确认取消</button>
+						<button type="button" id="cancel" >取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Reseveration.css" />
+	<link rel="stylesheet" href="css/selectForm.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/ajaxPatReservation.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:location.reload()">&lt;</a></span>
+			<h2 id="depName">预约医生</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<!--div id="container" class="displaynone">
+			<div class="contents">
+				<div class="condition">
+					<ul class="sortForm clearfix">
+						<li id="0" class="down">级别
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+						<li id="1">价格
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+						<li id="2">评价
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="SelectDoc">
+					<div class="NavGuige">
+						<ul>
+							<li class="on"><span></span>选择症状/科室</li>
+							<li class="on"><span></span>选择医生</li>
+							<li><span></span>问诊方式</li>
+							<li><span></span>预约时间</li>
+							<li><span></span>问诊票</li>
+							<li><span></span>支付</li>
+						</ul>
+					</div>
+					<ul class="List"></ul>
+					<button type="button" id="MoreBtn">查看更多</button>
+				</div>
+			</div>
+		</div-->
+		
+		<div class="SelFm">
+			<div class="titleArea" style="position:fixed;top:0;width:100%;height:1.4ren;z-index:9999">
+				<span class="prev"><a href="javascript:history.go(-1)" id="cancel">&lt;</a></span>
+				<!--span class="next"><a href="#none" id="saveFm">保存</a></span-->
+				<h2>选择科室和症状</h2>
+			</div>
+
+			<div class="NavGuige">
+				<ul>
+					<li class="on"><span></span>选择症状/科室</li>
+					<li><span></span>选择医生</li>
+					<li><span></span>问诊方式</li>
+					<li><span></span>预约时间</li>
+					<li><span></span>问诊票</li>
+					<li><span></span>支付</li>
+				</ul>
+			</div>
+			<div class="checkForm">
+				<form action="" method="post">
+					<ul id="CateGory"></ul>
+				</form>
+			</div>
+		</div>
+		
+		<div class="MenuChangeTap"><span>+</span></div>
+		
+		<div class="ChangeTap">
+			<span class="bg"></span>
+			<span class="menu1">症状</span>
+			<span class="menu2">科室</span>
+			<!--span class="menu3">首页</span>
+			<span class="menu4">信息</span-->
+		</div>
+		<script type="text/javascript">
+
+		$(".MenuChangeTap").click(function(){
+		
+			if($(this).attr("id") == "" || $(this).attr("id") == null){
+				$(this).attr("id","on");
+				$(".ChangeTap").attr("id","changeOn")
+			}else if($(this).attr("id") == "on"){
+				$(this).attr("id","off");
+				$(".ChangeTap").attr("id","changeOff")
+			}else if($(this).attr("id") == "off"){
+				$(this).attr("id","on")
+				$(".ChangeTap").attr("id","changeOn")
+			}
+			
+		})
+		</script>
+	</div>
+</body>
+</html>

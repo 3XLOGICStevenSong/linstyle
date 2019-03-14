@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.health.entity.SymptomEntity">
+  <resultMap id="BaseResultMap" type="com.djb.ylt.health.entity.SymptomEntity">
+    <id column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+    <result column="SYMPTOM_NAME" jdbcType="VARCHAR" property="symptomName" />
+    <result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="SYMPTOM_TYPE" jdbcType="VARCHAR" property="symptomType" />
+    <result column="PATIENT_SEX" jdbcType="CHAR" property="patientSex" />
+    <result column="PATIENT_AGE" jdbcType="VARCHAR" property="patientAge" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+     <result column="ST_ID" jdbcType="INTEGER" property="stId" />
+    
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    SYMPTOM_ID, SYMPTOM_NAME, STATUS_FLG, MEMO, SYMPTOM_TYPE, PATIENT_SEX, PATIENT_AGE, 
+    CREATE_TIME, UPDATE_TIME,ST_ID
+  </sql>
+
+<sql id="SymptomWhereClause">
+		<if test="symptomId!=null">and SYMPTOM_ID=#{symptomId} </if>
+		<if test="symptomName!=null">and SYMPTOM_NAME=#{symptomName} </if>
+		<if test="statusFlg!=null">and STATUS_FLG=#{statusFlg} </if>
+		<if test="memo!=null">and MEMO=#{memo} </if>
+		<if test="symptomType!=null">and SYMPTOM_TYPE=#{symptomType} </if>
+	</sql>
+		<select id="getObject" parameterType="com.djb.ylt.health.entity.SymptomEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from symptom
+		where 1=1 
+		<include refid="SymptomWhereClause" />
+		
+	</select>
+
+</mapper>

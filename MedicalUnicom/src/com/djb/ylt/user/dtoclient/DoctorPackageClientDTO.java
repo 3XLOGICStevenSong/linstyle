@@ -1,0 +1,467 @@
+package com.djb.ylt.user.dtoclient;
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+public class DoctorPackageClientDTO extends BaseClientDTO {
+
+	/**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+
+	private Integer doctorId;
+
+	private String name;
+
+	private String positional;
+
+	private String headPic;
+
+	private String healDisease;
+
+	private Integer serviceCount;
+
+	private String grade;
+
+	private List<DoctorPackageInfoClientDTO> packageInfoList;
+
+	private Integer commentNum;
+
+	private Float commentGrade;
+
+	private Integer departmentId;
+
+	private Integer symptomId;
+
+	private String hospitalName;
+
+	private String dcName;
+
+	private String departmentName;
+
+	private String followFlag;
+
+	private String maxTotal;
+
+	private String minTotal;
+	
+
+	private List<TypicalCaseClient> typicalCaseList;
+	//private String type;
+
+	
+	private String doctorTel;
+	
+	private String freeStatus;
+	
+	private Integer supTotal;
+
+	/**
+	 * 返回doctorId的值
+	 * 
+	 * @return Integer doctorId的值
+	 */
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	/**
+	 * 设置doctorId的值
+	 * 
+	 * @param doctorId
+	 *            doctorId的值
+	 */
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	/**
+	 * 返回name的值
+	 * 
+	 * @return String name的值
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 设置name的值
+	 * 
+	 * @param name
+	 *            name的值
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * 返回positional的值
+	 * 
+	 * @return String positional的值
+	 */
+	public String getPositional() {
+		return positional;
+	}
+
+	/**
+	 * 设置positional的值
+	 * 
+	 * @param positional
+	 *            positional的值
+	 */
+	public void setPositional(String positional) {
+		this.positional = positional;
+	}
+
+	/**
+	 * 返回headPic的值
+	 * 
+	 * @return String headPic的值
+	 */
+	public String getHeadPic() {
+		return headPic;
+	}
+
+	/**
+	 * 设置headPic的值
+	 * 
+	 * @param headPic
+	 *            headPic的值
+	 */
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
+	}
+
+	/**
+	 * 返回healDisease的值
+	 * 
+	 * @return String healDisease的值
+	 */
+	public String getHealDisease() {
+		return healDisease;
+	}
+
+	/**
+	 * 设置healDisease的值
+	 * 
+	 * @param healDisease
+	 *            healDisease的值
+	 */
+	public void setHealDisease(String healDisease) {
+		this.healDisease = healDisease;
+	}
+
+	/**
+	 * 返回serviceCount的值
+	 * 
+	 * @return Integer serviceCount的值
+	 */
+	public Integer getServiceCount() {
+		return serviceCount;
+	}
+
+	/**
+	 * 设置serviceCount的值
+	 * 
+	 * @param serviceCount
+	 *            serviceCount的值
+	 */
+	public void setServiceCount(Integer serviceCount) {
+		this.serviceCount = serviceCount;
+	}
+
+	/**
+	 * 返回grade的值
+	 * 
+	 * @return String grade的值
+	 */
+	public String getGrade() {
+		return grade;
+	}
+
+	/**
+	 * 设置grade的值
+	 * 
+	 * @param grade
+	 *            grade的值
+	 */
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	
+
+	/**
+	 * 返回commentNum的值
+	 * 
+	 * @return Integer commentNum的值
+	 */
+	public Integer getCommentNum() {
+		return commentNum;
+	}
+
+	/**
+	 * 设置commentNum的值
+	 * 
+	 * @param commentNum
+	 *            commentNum的值
+	 */
+	public void setCommentNum(Integer commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	/**
+	 * 返回commentGrade的值
+	 * 
+	 * @return Float commentGrade的值
+	 */
+	public Float getCommentGrade() {
+		return commentGrade;
+	}
+
+	/**
+	 * 设置commentGrade的值
+	 * 
+	 * @param commentGrade
+	 *            commentGrade的值
+	 */
+	public void setCommentGrade(Float commentGrade) {
+		this.commentGrade = commentGrade;
+	}
+
+	/**
+	 * 返回departmentId的值
+	 * 
+	 * @return Integer departmentId的值
+	 */
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	/**
+	 * 设置departmentId的值
+	 * 
+	 * @param departmentId
+	 *            departmentId的值
+	 */
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	/**
+	 * 返回symptonId的值
+	 * 
+	 * @return Integer symptonId的值
+	 */
+	public Integer getSymptomId() {
+		return symptomId;
+	}
+
+	/**
+	 * 设置symptonId的值
+	 * 
+	 * @param symptonId
+	 *            symptonId的值
+	 */
+	public void setSymptomId(Integer symptomId) {
+		this.symptomId = symptomId;
+	}
+
+	/**
+	 * 返回hospitalName的值
+	 * 
+	 * @return String hospitalName的值
+	 */
+	public String getHospitalName() {
+		return hospitalName;
+	}
+
+	/**
+	 * 设置hospitalName的值
+	 * 
+	 * @param hospitalName
+	 *            hospitalName的值
+	 */
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
+	}
+
+	/**
+	 * 返回dcName的值
+	 * 
+	 * @return String dcName的值
+	 */
+	public String getDcName() {
+		return dcName;
+	}
+
+	/**
+	 * 设置dcName的值
+	 * 
+	 * @param dcName
+	 *            dcName的值
+	 */
+	public void setDcName(String dcName) {
+		this.dcName = dcName;
+	}
+
+	/**
+	 * 返回departmentName的值
+	 * 
+	 * @return String departmentName的值
+	 */
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	/**
+	 * 设置departmentName的值
+	 * 
+	 * @param departmentName
+	 *            departmentName的值
+	 */
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	/**
+	 * 返回followFlag的值
+	 * 
+	 * @return String followFlag的值
+	 */
+	public String getFollowFlag() {
+		return followFlag;
+	}
+
+	/**
+	 * 设置followFlag的值
+	 * 
+	 * @param followFlag
+	 *            followFlag的值
+	 */
+	public void setFollowFlag(String followFlag) {
+		this.followFlag = followFlag;
+	}
+
+	/**
+	 * 返回maxTotal的值
+	 * 
+	 * @return String maxTotal的值
+	 */
+	public String getMaxTotal() {
+		return maxTotal;
+	}
+
+	/**
+	 * 设置maxTotal的值
+	 * 
+	 * @param maxTotal
+	 *            maxTotal的值
+	 */
+	public void setMaxTotal(String maxTotal) {
+		this.maxTotal = maxTotal;
+	}
+
+	/**
+	 * 返回minTotal的值
+	 * 
+	 * @return String minTotal的值
+	 */
+	public String getMinTotal() {
+		return minTotal;
+	}
+
+	/**
+	 * 设置minTotal的值
+	 * 
+	 * @param minTotal
+	 *            minTotal的值
+	 */
+	public void setMinTotal(String minTotal) {
+		this.minTotal = minTotal;
+	}
+
+	
+
+	/**
+	 * 返回packageInfoList的值
+	 * @return List<DoctorPackageInfoClientDTO> packageInfoList的值
+	 */
+	public List<DoctorPackageInfoClientDTO> getPackageInfoList() {
+		return packageInfoList;
+	}
+
+	/**
+	 * 设置packageInfoList的值
+	 * @param  packageInfoList packageInfoList的值
+	 */
+	public void setPackageInfoList(List<DoctorPackageInfoClientDTO> packageInfoList) {
+		this.packageInfoList = packageInfoList;
+	}
+
+	/**
+	 * 返回typicalCaseList的值
+	 * @return List<TypicalCaseClient> typicalCaseList的值
+	 */
+	public List<TypicalCaseClient> getTypicalCaseList() {
+		return typicalCaseList;
+	}
+
+	/**
+	 * 设置typicalCaseList的值
+	 * @param  typicalCaseList typicalCaseList的值
+	 */
+	public void setTypicalCaseList(List<TypicalCaseClient> typicalCaseList) {
+		this.typicalCaseList = typicalCaseList;
+	}
+
+	/**
+	 * 返回doctorTel的值
+	 * @return String doctorTel的值
+	 */
+	public String getDoctorTel() {
+		return doctorTel;
+	}
+
+	/**
+	 * 设置doctorTel的值
+	 * @param  doctorTel doctorTel的值
+	 */
+	public void setDoctorTel(String doctorTel) {
+		this.doctorTel = doctorTel;
+	}
+
+	/**
+	 * 返回freeStatus的值
+	 * @return String freeStatus的值
+	 */
+	public String getFreeStatus() {
+		return freeStatus;
+	}
+
+	/**
+	 * 设置freeStatus的值
+	 * @param  freeStatus freeStatus的值
+	 */
+	public void setFreeStatus(String freeStatus) {
+		this.freeStatus = freeStatus;
+	}
+
+	/**
+	 * 返回supTotal的值
+	 * @return Integer supTotal的值
+	 */
+	public Integer getSupTotal() {
+		return supTotal;
+	}
+
+	/**
+	 * 设置supTotal的值
+	 * @param  supTotal supTotal的值
+	 */
+	public void setSupTotal(Integer supTotal) {
+		this.supTotal = supTotal;
+	}
+
+}

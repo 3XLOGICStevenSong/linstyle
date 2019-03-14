@@ -1,0 +1,400 @@
+package com.djb.ylt.user.dtoclient;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+public class GradePriceClientDTO extends BaseClientDTO {
+
+	private Integer gpId;
+
+	private String positional;
+
+	private String grade;
+
+	private String vaPrice;
+
+	private String tiPrice;
+
+	private String viPrice;
+
+	private String taPrice;
+
+	private String paPrice;
+
+	private String piPrice;
+
+	private Integer vCount;
+
+	private Integer tCount;
+
+	private String pvPrice;
+
+	private String ptPrice;
+
+	private String price;
+	private String effectTime;
+
+	private String workType;
+
+	private String earlyTime;
+
+	private String dayTotal;
+
+	private String nightTotal;
+
+	/**
+	 * 返回gpId的值
+	 * 
+	 * @return Integer gpId的值
+	 */
+	public Integer getGpId() {
+		return gpId;
+	}
+
+	/**
+	 * 设置gpId的值
+	 * 
+	 * @param gpId
+	 *            gpId的值
+	 */
+	public void setGpId(Integer gpId) {
+		this.gpId = gpId;
+	}
+
+	/**
+	 * 返回positional的值
+	 * 
+	 * @return String positional的值
+	 */
+	public String getPositional() {
+		return positional;
+	}
+
+	/**
+	 * 设置positional的值
+	 * 
+	 * @param positional
+	 *            positional的值
+	 */
+	public void setPositional(String positional) {
+		this.positional = positional;
+	}
+
+	/**
+	 * 返回grade的值
+	 * 
+	 * @return String grade的值
+	 */
+	public String getGrade() {
+		return grade;
+	}
+
+	/**
+	 * 设置grade的值
+	 * 
+	 * @param grade
+	 *            grade的值
+	 */
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	/**
+	 * 返回vaPrice的值
+	 * 
+	 * @return String vaPrice的值
+	 */
+	public String getVaPrice() {
+		return vaPrice;
+	}
+
+	/**
+	 * 设置vaPrice的值
+	 * 
+	 * @param vaPrice
+	 *            vaPrice的值
+	 */
+	public void setVaPrice(String vaPrice) {
+		this.vaPrice = vaPrice;
+	}
+
+	/**
+	 * 返回tiPrice的值
+	 * 
+	 * @return String tiPrice的值
+	 */
+	public String getTiPrice() {
+		return tiPrice;
+	}
+
+	/**
+	 * 设置tiPrice的值
+	 * 
+	 * @param tiPrice
+	 *            tiPrice的值
+	 */
+	public void setTiPrice(String tiPrice) {
+		this.tiPrice = tiPrice;
+	}
+
+	/**
+	 * 返回viPrice的值
+	 * 
+	 * @return String viPrice的值
+	 */
+	public String getViPrice() {
+		return viPrice;
+	}
+
+	/**
+	 * 设置viPrice的值
+	 * 
+	 * @param viPrice
+	 *            viPrice的值
+	 */
+	public void setViPrice(String viPrice) {
+		this.viPrice = viPrice;
+	}
+
+	/**
+	 * 返回taPrice的值
+	 * 
+	 * @return String taPrice的值
+	 */
+	public String getTaPrice() {
+		return taPrice;
+	}
+
+	/**
+	 * 设置taPrice的值
+	 * 
+	 * @param taPrice
+	 *            taPrice的值
+	 */
+	public void setTaPrice(String taPrice) {
+		this.taPrice = taPrice;
+	}
+
+	/**
+	 * 返回paPrice的值
+	 * 
+	 * @return String paPrice的值
+	 */
+	public String getPaPrice() {
+		return paPrice;
+	}
+
+	/**
+	 * 设置paPrice的值
+	 * 
+	 * @param paPrice
+	 *            paPrice的值
+	 */
+	public void setPaPrice(String paPrice) {
+		this.paPrice = paPrice;
+	}
+
+	/**
+	 * 返回piPrice的值
+	 * 
+	 * @return String piPrice的值
+	 */
+	public String getPiPrice() {
+		return piPrice;
+	}
+
+	/**
+	 * 设置piPrice的值
+	 * 
+	 * @param piPrice
+	 *            piPrice的值
+	 */
+	public void setPiPrice(String piPrice) {
+		this.piPrice = piPrice;
+	}
+
+	/**
+	 * 返回vCount的值
+	 * 
+	 * @return Integer vCount的值
+	 */
+	public Integer getvCount() {
+		return vCount;
+	}
+
+	/**
+	 * 设置vCount的值
+	 * 
+	 * @param vCount
+	 *            vCount的值
+	 */
+	public void setvCount(Integer vCount) {
+		this.vCount = vCount;
+	}
+
+	/**
+	 * 返回tCount的值
+	 * 
+	 * @return Integer tCount的值
+	 */
+	public Integer gettCount() {
+		return tCount;
+	}
+
+	/**
+	 * 设置tCount的值
+	 * 
+	 * @param tCount
+	 *            tCount的值
+	 */
+	public void settCount(Integer tCount) {
+		this.tCount = tCount;
+	}
+
+	/**
+	 * 返回pvPrice的值
+	 * 
+	 * @return String pvPrice的值
+	 */
+	public String getPvPrice() {
+		return pvPrice;
+	}
+
+	/**
+	 * 设置pvPrice的值
+	 * 
+	 * @param pvPrice
+	 *            pvPrice的值
+	 */
+	public void setPvPrice(String pvPrice) {
+		this.pvPrice = pvPrice;
+	}
+
+	/**
+	 * 返回ptPrice的值
+	 * 
+	 * @return String ptPrice的值
+	 */
+	public String getPtPrice() {
+		return ptPrice;
+	}
+
+	/**
+	 * 设置ptPrice的值
+	 * 
+	 * @param ptPrice
+	 *            ptPrice的值
+	 */
+	public void setPtPrice(String ptPrice) {
+		this.ptPrice = ptPrice;
+	}
+
+	/**
+	 * 返回price的值
+	 * 
+	 * @return String price的值
+	 */
+	public String getPrice() {
+		return price;
+	}
+
+	/**
+	 * 设置price的值
+	 * 
+	 * @param price
+	 *            price的值
+	 */
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	/**
+	 * 返回effectTime的值
+	 * 
+	 * @return String effectTime的值
+	 */
+	public String getEffectTime() {
+		return effectTime;
+	}
+
+	/**
+	 * 设置effectTime的值
+	 * 
+	 * @param effectTime
+	 *            effectTime的值
+	 */
+	public void setEffectTime(String effectTime) {
+		this.effectTime = effectTime;
+	}
+
+	/**
+	 * 返回workType的值
+	 * 
+	 * @return String workType的值
+	 */
+	public String getWorkType() {
+		return workType;
+	}
+
+	/**
+	 * 设置workType的值
+	 * 
+	 * @param workType
+	 *            workType的值
+	 */
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
+
+	/**
+	 * 返回earlyTime的值
+	 * 
+	 * @return String earlyTime的值
+	 */
+	public String getEarlyTime() {
+		return earlyTime;
+	}
+
+	/**
+	 * 设置earlyTime的值
+	 * 
+	 * @param earlyTime
+	 *            earlyTime的值
+	 */
+	public void setEarlyTime(String earlyTime) {
+		this.earlyTime = earlyTime;
+	}
+
+	/**
+	 * 返回dayTotal的值
+	 * @return String dayTotal的值
+	 */
+	public String getDayTotal() {
+		return dayTotal;
+	}
+
+	/**
+	 * 设置dayTotal的值
+	 * @param  dayTotal dayTotal的值
+	 */
+	public void setDayTotal(String dayTotal) {
+		this.dayTotal = dayTotal;
+	}
+
+	/**
+	 * 返回nightTotal的值
+	 * @return String nightTotal的值
+	 */
+	public String getNightTotal() {
+		return nightTotal;
+	}
+
+	/**
+	 * 设置nightTotal的值
+	 * @param  nightTotal nightTotal的值
+	 */
+	public void setNightTotal(String nightTotal) {
+		this.nightTotal = nightTotal;
+	}
+
+	
+}

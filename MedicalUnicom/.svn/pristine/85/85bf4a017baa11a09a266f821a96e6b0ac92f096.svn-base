@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.DoctorCommentEntity">
+	<resultMap id="DoctorCommentMap" type="com.djb.ylt.user.entity.DoctorCommentEntity">
+		<id column="COMMENT_ID" property="commentId" jdbcType="INTEGER" />
+		<result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="RECORDS_ID" property="recordsId" jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="REAL" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="DELETE_FLG" property="deleteFlg" jdbcType="CHAR" />
+		<result column="EVALATION_TYPE" property="evalationType"
+			jdbcType="CHAR" />
+		<result column="EVALATION_TIME" property="evalationTime"
+			jdbcType="TIMESTAMP" />
+		<result column="ANONYMOUS_FLAG" property="anonymousFlag"
+			jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<association property="patientEntity"
+			javaType="com.djb.ylt.user.entity.PatientEntity" resultMap="PatientResultMap" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		dc.COMMENT_ID, dc.DOCTOR_ID, dc.PATIENT_ID, dc.RECORDS_ID, dc.GRADE,
+		dc.CONTENT, dc.DELETE_FLG,
+		dc.EVALATION_TYPE,
+		dc.EVALATION_TIME, dc.ANONYMOUS_FLAG,
+		dc.CREATE_TIME, dc.UPDATE_TIME
+	</sql>
+	<sql id="DoctorCommentWhereClause">
+		<if test="commentId!=null">and dc.COMMENT_ID=#{commentId} </if>
+		<if test="doctorId!=null">and dc.DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and dc.PATIENT_ID=#{patientId} </if>
+		<if test="recordsId!=null">and dc.RECORDS_ID=#{recordsId} </if>
+		<if test="grade!=null">and dc.GRADE=#{grade} </if>
+		<if test="content!=null">and dc.CONTENT=#{content} </if>
+		<if test="deleteFlg!=null">and dc.DELETE_FLG=#{deleteFlg} </if>
+		<if test="evalationType!=null">and dc.EVALATION_TYPE=#{evalationType} </if>
+		<if test="evalationTime!=null">and dc.EVALATION_TIME=#{evalationTime} </if>
+		<if test="anonymousFlag!=null">and dc.ANONYMOUS_FLAG=#{anonymousFlag} </if>
+		<if test="createTime!=null">and dc.CREATE_TIME=#{createTime} </if>
+		
+	</sql>
+	
+	<resultMap id="PatientResultMap" type="com.djb.ylt.user.entity.PatientEntity">
+		<id column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="BIRTH" property="birth" jdbcType="TIMESTAMP" />
+		<result column="AGE_UNIT" property="ageUnit" jdbcType="CHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="MARRY" property="marry" jdbcType="CHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BT" property="bt" jdbcType="CHAR" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="MEDICAL_EATEN_HISTORY" property="medicalEatenHistory"
+			jdbcType="VARCHAR" />
+		<result column="ALLERGY_HISTORY" property="allergyHistory"
+			jdbcType="VARCHAR" />
+		<result column="ILLNESS_HISTORY" property="illnessHistory"
+			jdbcType="VARCHAR" />
+		<result column="AMT" property="amt" jdbcType="VARCHAR" />
+		<result column="PATIENT_PIC" property="patientPic" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+		<result column="PATIENT_TEL" property="patientTel" jdbcType="VARCHAR" />
+		
+		
+	</resultMap>
+
+	<sql id="Patient_Column_List">
+		p.PATIENT_ID, p.NAME, p.BIRTH, p.AGE_UNIT, p.SEX, 
+		p.MEDICAL_EATEN_HISTORY,
+		p.ALLERGY_HISTORY, p.ILLNESS_HISTORY,
+		p.PATIENT_PIC,p.NICK_NAME,p.PATIENT_TEL
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity"
+		resultMap="DoctorCommentMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctor_comment dc
+		where 1=1
+		<include refid="DoctorCommentWhereClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity"
+		resultMap="DoctorCommentMap">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Patient_Column_List" />
+		from doctor_comment dc ,patient p
+		where 1=1 and dc.PATIENT_ID=p.PATIENT_ID
+		<include refid="DoctorCommentWhereClause" />
+		order by  dc.CREATE_TIME DESC,dc.COMMENT_ID
+	</select>
+
+	<select id="findList" resultMap="DoctorCommentMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctor_comment dc
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity">
+		delete from doctor_comment dc
+		where dc.COMMENT_ID = #{commentId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity">
+		insert into doctor_comment
+		(COMMENT_ID, DOCTOR_ID, PATIENT_ID,
+		RECORDS_ID, GRADE, CONTENT,
+		DELETE_FLG, EVALATION_TYPE, EVALATION_TIME,
+		ANONYMOUS_FLAG,
+		CREATE_TIME, UPDATE_TIME
+		)
+		values (#{commentId,jdbcType=INTEGER},
+		#{doctorId,jdbcType=INTEGER},
+		#{patientId,jdbcType=INTEGER},
+		#{recordsId,jdbcType=INTEGER}, #{grade,jdbcType=REAL},
+		#{content,jdbcType=VARCHAR},
+		#{deleteFlg,jdbcType=CHAR},
+		#{evalationType,jdbcType=CHAR},
+		#{evalationTime,jdbcType=TIMESTAMP},
+		#{anonymousFlag,jdbcType=CHAR}, now(),
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+<select id="getAverageGrade" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity"
+		resultMap="DoctorCommentMap">
+		SELECT AVG(GRADE) AS grade
+		FROM doctor_comment  dc
+		WHERE 1=1
+		<include refid="DoctorCommentWhereClause" />
+	
+	</select>
+ <select id="getCount" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity" resultType="java.lang.Integer" >
+    select count(*) from doctor_comment dc
+    where 1=1
+   	<if test="doctorId!=null">and dc.DOCTOR_ID=#{doctorId} </if>
+  </select>
+
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.DoctorCommentEntity">
+		update doctor_comment
+		<set>
+			<if test="doctorId != null">
+				DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="recordsId != null">
+				RECORDS_ID = #{recordsId,jdbcType=INTEGER},
+			</if>
+			<if test="grade != null">
+				GRADE = #{grade,jdbcType=REAL},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlg != null">
+				DELETE_FLG = #{deleteFlg,jdbcType=CHAR},
+			</if>
+			<if test="evalationType != null">
+				EVALATION_TYPE = #{evalationType,jdbcType=CHAR},
+			</if>
+			<if test="evalationTime != null">
+				EVALATION_TIME = #{evalationTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="anonymousFlag != null">
+				ANONYMOUS_FLAG = #{anonymousFlag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where COMMENT_ID = #{commentId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

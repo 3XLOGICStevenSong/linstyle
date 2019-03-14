@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/PatTiket.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/uploadImg_tiket.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatTiketBuyed.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>问诊票-<span class="sym"></span></h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="NavGuige buyed">
+					<ul>
+						<li class="on"><span></span>我的医生</li>
+						<li class="on"><span></span>问诊方式</li>
+						<li class="on"><span></span>预约时间</li>
+						<li class="on"><span></span>问诊票</li>
+					</ul>
+				</div>
+				<div class="sym_img">
+					<label for="Photofile">
+						<span id="preview">+添加图片</span>
+					</label>
+					<div class="imgBox"></div>
+					<input type="file" id="Photofile" class="displaynone" onchange="previewImage(this)" name="Photofile"/>
+				</div>
+				
+				<div class="tiketform"></div>
+				
+				<div class="sym_text">
+					<textarea cols="30" rows="5" placeholder="请详细描述症状"></textarea>
+				</div>
+				
+				<div class="SubmitBtn">
+					<span>下一步</span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

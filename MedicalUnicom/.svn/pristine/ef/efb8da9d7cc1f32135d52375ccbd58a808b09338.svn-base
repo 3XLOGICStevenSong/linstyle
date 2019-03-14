@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.GradePriceEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.GradePriceEntity">
+		<id column="GP_ID" jdbcType="INTEGER" property="gpId" />
+		<result column="POSITIONAL" jdbcType="VARCHAR" property="positional" />
+		<result column="GRADE" jdbcType="CHAR" property="grade" />
+		<result column="VA_PRICE" jdbcType="DOUBLE" property="vaPrice" />
+		<result column="TI_PRICE" jdbcType="DOUBLE" property="tiPrice" />
+		<result column="VI_PRICE" jdbcType="DOUBLE" property="viPrice" />
+		<result column="TA_PRICE" jdbcType="DOUBLE" property="taPrice" />
+		<result column="PA_PRICE" jdbcType="DOUBLE" property="paPrice" />
+		<result column="PI_PRICE" jdbcType="DOUBLE" property="piPrice" />
+		<result column="V_COUNT" jdbcType="INTEGER" property="vCount" />
+		<result column="T_COUNT" jdbcType="INTEGER" property="tCount" />
+		<result column="PV_PRICE" jdbcType="DOUBLE" property="pvPrice" />
+		<result column="PT_PRICE" jdbcType="DOUBLE" property="ptPrice" />
+		<result column="EFFECT_TIME" jdbcType="VARCHAR" property="effectTime" />
+		<result column="GP_TYPE" jdbcType="CHAR" property="gpType" />
+		<result column="GP_PRICE" jdbcType="DOUBLE" property="gpPrice" />
+		<result column="WORK_TYPE" jdbcType="CHAR" property="workType" />
+		<result column="EARLY_TIME" jdbcType="VARCHAR" property="earlyTime" />
+		<result column="DAY_TOTOAL" jdbcType="DOUBLE" property="dayTotal" />
+		<result column="NIGHT_TOTAL" jdbcType="DOUBLE" property="nightTotal" />
+		<result column="PHOTO_PRICE" jdbcType="DOUBLE" property="photoPrice" />
+		<result column="FREE_TOTAL" jdbcType="INTEGER" property="freeTotal" />
+
+		
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		GP_ID, POSITIONAL, GRADE, VA_PRICE, TI_PRICE, VI_PRICE, TA_PRICE, PA_PRICE,
+		PI_PRICE,
+		V_COUNT,
+		T_COUNT,PV_PRICE,PT_PRICE,EFFECT_TIME,GP_TYPE,GP_PRICE,WORK_TYPE,EARLY_TIME,DAY_TOTOAL,
+		NIGHT_TOTAL,PHOTO_PRICE,FREE_TOTAL
+	</sql>
+	<select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from grade_price where GP_TYPE='0'
+	</select>
+
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.GradePriceEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from grade_price
+		where 1=1
+		<if test="gpType!=null">and GP_TYPE=#{gpType} </if>
+	</select>
+
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.GradePriceEntity">
+		insert into grade_price (GP_ID, POSITIONAL, GRADE,
+		VA_PRICE, TI_PRICE, VI_PRICE,
+		TA_PRICE, PA_PRICE, PI_PRICE,
+		V_COUNT,
+		T_COUNT,PV_PRICE,PT_PRICE,EFFECT_TIME,GP_TYPE,GP_PRICE,WORK_TYPE,EARLY_TIME,DAY_TOTOAL,NIGHT_TOTAL)
+		values (#{gpId,jdbcType=INTEGER}, #{positional,jdbcType=VARCHAR},
+		#{grade,jdbcType=CHAR},
+		#{vaPrice,jdbcType=DOUBLE}, #{tiPrice,jdbcType=DOUBLE}, #{viPrice,jdbcType=DOUBLE},
+		#{taPrice,jdbcType=DOUBLE}, #{paPrice,jdbcType=DOUBLE},
+		#{piPrice,jdbcType=DOUBLE},
+		#{vCount,jdbcType=INTEGER},
+		#{tCount,jdbcType=INTEGER},#{pvPrice,jdbcType=DOUBLE},#{ptPrice,jdbcType=DOUBLE},
+		#{effectTime,jdbcType=VARCHAR},
+		#{gpType,jdbcType=VARCHAR},#{gpPrice,jdbcType=DOUBLE},
+		#{workType,jdbcType=CHAR}, #{earlyTime,jdbcType=VARCHAR},
+		#{dayTotal,jdbcType=DOUBLE},#{nightTotal,jdbcType=DOUBLE})
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.GradePriceEntity">
+		update grade_price
+		<set>
+			<if test="positional != null">
+				POSITIONAL = #{positional,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null">
+				GRADE = #{grade,jdbcType=CHAR},
+			</if>
+			<if test="vaPrice != null">
+				VA_PRICE = #{vaPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="tiPrice != null">
+				TI_PRICE = #{tiPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="viPrice != null">
+				VI_PRICE = #{viPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="taPrice != null">
+				TA_PRICE = #{taPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="paPrice != null">
+				PA_PRICE = #{paPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="piPrice != null">
+				PI_PRICE = #{piPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="vCount != null">
+				V_COUNT = #{vCount,jdbcType=INTEGER},
+			</if>
+			<if test="tCount != null">
+				T_COUNT = #{tCount,jdbcType=INTEGER},
+			</if>
+			<if test="pvPrice != null">
+				PV_PRICE = #{pvPrice,jdbcType=INTEGER},
+			</if>
+			<if test="ptPrice != null">
+				PV_PRICE = #{ptPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="effectTime != null">
+				EFFECT_TIME = #{effectTime,jdbcType=DOUBLE},
+			</if>
+			<if test="gpType != null">
+				GP_TYPE = #{gpType,jdbcType=CHAR},
+			</if>
+			<if test="gpPrice != null">
+				GP_PRICE = #{gpPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="workType != null">
+				WORK_TYPE = #{workType,jdbcType=CHAR},
+			</if>
+			<if test="earlyTime != null">
+				EARLY_TIME = #{earlyTime,jdbcType=VARCHAR},
+			</if>
+			<if test="dayTotal != null">
+				DAY_TOTOAL = #{dayTotal,jdbcType=VARCHAR},
+			</if>
+			<if test="nightTotal != null">
+				NIGHT_TOTAL = #{nightTotal,jdbcType=VARCHAR} ,
+			</if>
+		</set>
+		where GP_ID = #{gpId,jdbcType=INTEGER}
+	</update>
+</mapper>

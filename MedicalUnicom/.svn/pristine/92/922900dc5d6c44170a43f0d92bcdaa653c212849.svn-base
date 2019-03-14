@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.gene.entity.ProductsPurchaseEntity">
+	<resultMap id="PurchaseResultMap"
+		type="com.djb.ylt.gene.entity.ProductsPurchaseEntity">
+		<id column="PR_ID" property="prId" jdbcType="BIGINT" />
+		<result column="GP_ID" property="gpId" jdbcType="INTEGER" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="RECEIVE_NAME" property="receiveName" jdbcType="VARCHAR" />
+		<result column="RECEIVE_TEL" property="receiveTel" jdbcType="VARCHAR" />
+		<result column="CHECK_NAME" property="checkName" jdbcType="VARCHAR" />
+		<result column="RECEIVE_ADDRESS" property="receiveAddress"
+			jdbcType="VARCHAR" />
+		<result column="PAY_TYPE" property="payType" jdbcType="CHAR" />
+		<result column="PAY_STATUS" property="payStatus" jdbcType="CHAR" />
+		<result column="ORDER_STATUS" property="orderStatus" jdbcType="CHAR" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+		<result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="PAY_PARAM" property="payParam" jdbcType="VARCHAR" />
+		<result column="REFUND_PARAM" property="refundParam" jdbcType="VARCHAR" />
+		<result column="BUY_TIME" property="buyTime" jdbcType="TIMESTAMP" />
+		<result column="MEMO" property="memo" jdbcType="VARCHAR" />
+		<result column="REFUND_REASON" property="refundReason"
+			jdbcType="VARCHAR" />
+		<result column="PAY_TOTAL" property="payTotal" jdbcType="DOUBLE" />
+		<result column="REFUND_TIME" property="refundTime" jdbcType="TIMESTAMP" />
+		<result column="REFUND_TOTAL" property="refundTotal" jdbcType="DOUBLE" />
+		<result column="PAY_INFO" property="payInfo" jdbcType="VARCHAR" />
+		<result column="REFUND_NUM" property="refundNum" jdbcType="VARCHAR" />
+		<result column="BUY_TYPE" property="buyType" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="INTEGER" />
+		<association property="geneProductsEntity"
+			javaType="com.djb.ylt.gene.entity.GeneProductsEntity" resultMap="GeneProductsResultMap" />
+	</resultMap>
+
+	<sql id="Purchase_Column_List">
+		pr.PR_ID, pr.GP_ID, pr.PATIENT_ID, pr.RECEIVE_NAME, pr.RECEIVE_TEL, pr.CHECK_NAME,
+		pr.RECEIVE_ADDRESS,
+		pr.PAY_TYPE, pr.PAY_STATUS, pr.ORDER_STATUS, pr.ORDER_NUM, pr.PAY_TIME, pr.PAY_PARAM,
+		pr.REFUND_PARAM,
+		pr.BUY_TIME, pr.MEMO, pr.REFUND_REASON, pr.PAY_TOTAL, pr.REFUND_TIME, pr.REFUND_TOTAL, pr.PAY_INFO,
+		pr.REFUND_NUM,pr.BUY_TYPE,pr.SEX,pr.AGE
+	</sql>
+	
+		<resultMap id="GeneProductsResultMap" type="com.djb.ylt.gene.entity.GeneProductsEntity">
+		<id column="GP_ID" jdbcType="INTEGER" property="gpId" />
+		<result column="GP_NAME" jdbcType="VARCHAR" property="gpName" />
+		<result column="CONTENT" jdbcType="VARCHAR" property="content" />
+		<result column="SIGNIFICANCE" jdbcType="VARCHAR" property="significance" />
+		<result column="SIMPLE_POINT" jdbcType="VARCHAR" property="simplePoint" />
+		<result column="SIMPLE_PRICE" jdbcType="DOUBLE" property="simplePrice" />
+		<result column="STANDARD_POINT" jdbcType="VARCHAR" property="standardPoint" />
+		<result column="STANDARD_PRICE" jdbcType="DOUBLE" property="standardPrice" />
+		<result column="PRODUCTS_TYPE" jdbcType="VARCHAR" property="productsType" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+
+	<sql id="GeneProducts_Column_List">
+		gp.GP_ID, gp.GP_NAME
+	</sql>
+	<sql id="PurchaseWhereClause">
+		<if test="prId !=null">and pr.PR_ID=#{prId} </if>
+		<if test="patientId !=null">and pr.PATIENT_ID=#{patientId} </if>
+		<if test="orderNum!=null">and pr.ORDER_NUM=#{orderNum} </if>
+		<if test="gpId!=null">and pr.GP_ID=#{gpId} </if>
+	</sql>
+	<sql id="orderByPurchaseClause">
+		ORDER BY pr.prId
+	</sql>
+	<select id="findList" resultMap="PurchaseResultMap">
+		select
+		<include refid="Purchase_Column_List" />
+		from gene_products_purchase
+	</select>
+	<!--  -->
+	<select id="getObject" parameterType="com.djb.ylt.gene.entity.ProductsPurchaseEntity"
+		resultMap="PurchaseResultMap">
+		select
+		<include refid="Purchase_Column_List" />
+		from gene_products_purchase pr
+		where 1=1
+		<include refid="PurchaseWhereClause" />
+
+	</select>
+<!-- 我购买的基因产品 -->
+	<select id="findListByCondition" parameterType="com.djb.ylt.gene.entity.ProductsPurchaseEntity"
+		resultMap="PurchaseResultMap">
+		select
+		<include refid="Purchase_Column_List" />,
+		<include refid="GeneProducts_Column_List" />
+		from gene_products_purchase pr LEFT JOIN  gene_products gp ON pr.GP_ID=gp.GP_ID
+		where 1=1 and pr.PAY_STATUS='1'
+		<include refid="PurchaseWhereClause" />
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.gene.entity.ProductsPurchaseEntity">
+		delete from gene_products_purchase
+		where PR_ID = #{prId,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.ylt.gene.entity.ProductsPurchaseEntity"
+		useGeneratedKeys="true" keyProperty="prId" keyColumn="GENERATED_KEY">
+		insert into gene_products_purchase (PR_ID, GP_ID, PATIENT_ID,
+		RECEIVE_NAME, RECEIVE_TEL, CHECK_NAME,
+		RECEIVE_ADDRESS, PAY_TYPE, PAY_STATUS,
+		ORDER_STATUS, ORDER_NUM, PAY_TIME,
+		PAY_PARAM, REFUND_PARAM, BUY_TIME,
+		MEMO, REFUND_REASON, PAY_TOTAL,
+		REFUND_TIME, REFUND_TOTAL, PAY_INFO,
+		REFUND_NUM,BUY_TYPE,SEX,AGE)
+		values (#{prId,jdbcType=BIGINT}, #{gpId,jdbcType=INTEGER},
+		#{patientId,jdbcType=INTEGER},
+		#{receiveName,jdbcType=VARCHAR}, #{receiveTel,jdbcType=VARCHAR}, #{checkName,jdbcType=VARCHAR},
+		#{receiveAddress,jdbcType=VARCHAR}, #{payType,jdbcType=CHAR},
+		#{payStatus,jdbcType=CHAR},
+		#{orderStatus,jdbcType=CHAR}, #{orderNum,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP},
+		#{payParam,jdbcType=VARCHAR}, #{refundParam,jdbcType=VARCHAR}, now(),
+		#{memo,jdbcType=VARCHAR}, #{refundReason,jdbcType=VARCHAR},
+		#{payTotal,jdbcType=DOUBLE},
+		#{refundTime,jdbcType=TIMESTAMP}, #{refundTotal,jdbcType=DOUBLE}, #{payInfo,jdbcType=VARCHAR},
+		#{refundNum,jdbcType=VARCHAR},#{buyType,jdbcType=CHAR},#{sex,jdbcType=CHAR},#{age,jdbcType=INTEGER})
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.gene.entity.ProductsPurchaseEntity">
+		update gene_products_purchase
+		<set>
+			<if test="gpId != null">
+				GP_ID = #{gpId,jdbcType=INTEGER},
+			</if>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="receiveName != null">
+				RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveTel != null">
+				RECEIVE_TEL = #{receiveTel,jdbcType=VARCHAR},
+			</if>
+			<if test="checkName != null">
+				CHECK_NAME = #{checkName,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveAddress != null">
+				RECEIVE_ADDRESS = #{receiveAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="payType != null">
+				PAY_TYPE = #{payType,jdbcType=CHAR},
+			</if>
+			<if test="payStatus != null">
+				PAY_STATUS = #{payStatus,jdbcType=CHAR},
+			</if>
+			<if test="orderStatus != null">
+				ORDER_STATUS = #{orderStatus,jdbcType=CHAR},
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+			</if>
+			<if test="payTime != null">
+				PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payParam != null">
+				PAY_PARAM = #{payParam,jdbcType=VARCHAR},
+			</if>
+			<if test="refundParam != null">
+				REFUND_PARAM = #{refundParam,jdbcType=VARCHAR},
+			</if>
+			<if test="buyTime != null">
+				BUY_TIME = #{buyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="refundReason != null">
+				REFUND_REASON = #{refundReason,jdbcType=VARCHAR},
+			</if>
+			<if test="payTotal != null">
+				PAY_TOTAL = #{payTotal,jdbcType=DOUBLE},
+			</if>
+			<if test="refundTime != null">
+				REFUND_TIME = #{refundTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="refundTotal != null">
+				REFUND_TOTAL = #{refundTotal,jdbcType=DOUBLE},
+			</if>
+			<if test="payInfo != null">
+				PAY_INFO = #{payInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="refundNum != null">
+				REFUND_NUM = #{refundNum,jdbcType=VARCHAR},
+			</if>
+			<if test="buyType != null">
+				BUY_TYPE = #{buyType,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=CHAR},
+			</if>
+				<if test="age != null">
+				AGE = #{age,jdbcType=INTEGER},
+			</if>
+		</set>
+		where 1=1
+		<if test="prId!=null"> AND PR_ID = #{prId,jdbcType=BIGINT}</if>
+		<if test="orderNum!=null"> AND ORDER_NUM = #{orderNum,jdbcType=VARCHAR}</if>
+	</update>
+
+</mapper>

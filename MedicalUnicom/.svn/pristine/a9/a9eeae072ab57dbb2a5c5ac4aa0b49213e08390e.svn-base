@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Dintro.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxDocIntro.js"></script>
+</head>
+<body>
+	
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<!--span class="next"><a href="#none">保存</a></span-->
+			<h2>个人介绍</h2>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div class="contents">
+			<div class="introText">
+				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
+			</div>
+			<div class="btnSave">
+				<span>保存</span>
+			</div>
+		</div>
+
+		
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>

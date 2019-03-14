@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.DepartmentClassEntity">
+	<resultMap id="BaseResultMap"
+		type="com.djb.ylt.health.entity.DepartmentClassEntity">
+		<id column="DC_ID" property="dcId" jdbcType="INTEGER" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="ICON_PIC" property="iconPic" jdbcType="VARCHAR" />
+		<result column="CELL_PIC" property="cellPic" jdbcType="VARCHAR" />
+		<result column="MEMO" property="memo" jdbcType="VARCHAR" />
+		   <collection property="departmentEntitys"
+			ofType="com.djb.ylt.health.entity.DepartmentEntity" resultMap="DepartmentResultMap" />
+	</resultMap>
+	<resultMap id="DepartmentResultMap" type="com.djb.ylt.health.entity.DepartmentEntity">
+		<id column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="DEP_NAME" jdbcType="VARCHAR" property="depName" />
+		<result column="DC_ID" jdbcType="INTEGER" property="dcId" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="ICON_PIC" jdbcType="VARCHAR" property="iconPic" />
+		<result column="CELL_PIC" jdbcType="VARCHAR" property="cellPic" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dc.DC_ID, dc.DC_NAME, dc.STATUS_FLG, dc.CREATE_TIME, dc.UPDATE_TIME,
+		dc.ICON_PIC, dc.CELL_PIC, dc.MEMO
+	</sql>
+	<sql id="Department_Column_List">
+		d.DEP_ID, d.DEP_NAME, d.DC_ID, d.STATUS_FLG, d.CREATE_TIME,
+		d.UPDATE_TIME,d.ICON_PIC,d.CELL_PIC,d.MEMO
+	</sql>
+	<select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Department_Column_List" />
+		from department_class dc ,department d
+		where  dc.DC_ID=d.DC_ID
+		ORDER BY dc.DC_ID,d.DEP_ID
+	</select>
+</mapper>

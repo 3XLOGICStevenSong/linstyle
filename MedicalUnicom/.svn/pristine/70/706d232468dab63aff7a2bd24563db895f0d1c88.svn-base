@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+.nav {background:#fff;border-bottom:1px solid #d3d3d3}
+.nav span {display:inline-block;width:49%;padding:0.3rem 0 0.2rem;text-align:center;border-bottom:2px solid transparent;}
+.nav span a{display:block;height:0.7rem;font-size:0.4rem;line-height:0.7rem;;color:#4a4a4a;}
+.nav span a.doctor {border-left:1px solid #ccc}
+.nav span.btnSelect{border-bottom:2px solid #50d071;}
+.nav span.btnSelect a{color:#50d071}
+
+#patient_form{margin:0.3rem 0 0 0;border-top:1px solid #d3d3d3;}
+#patient_form .pat_join{padding:0.2rem 0;background:#fff;border-bottom:1px solid #d3d3d3}
+#patient_form .pat_join .patFrom{width:8rem;margin:0 auto;height:0.9rem;line-height:0.9rem}
+#patient_form .pat_join .patFrom.phone{border-bottom:1px solid #d3d3d3}
+#patient_form .pat_join .patFrom strong{float:left;color:#4a4a4a;font-size:0.4rem;font-weight:normal}
+#patient_form .pat_join .patFrom .date {height:0.9rem;padding:0 0 0 1.7rem;line-height:0.9rem}
+#patient_form .pat_join .patFrom .date input{width:100%;height:0.7rem;border:0;font-size:0.35rem;line-height:0.7rem}
+
+#password_form{margin:0.3rem 0 0 0;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+#password_form .pw_reset{padding:0.2rem 0;background:#fff}
+#password_form .pw_reset .patFrom{width:8rem;margin:0 auto;height:0.9rem;line-height:0.9rem}
+#password_form .pw_reset .patFrom strong{float:left;color:#4a4a4a;font-size:0.5rem;font-weight:normal}
+#password_form .pw_reset .patFrom .date {height:0.9rem;padding:0 0 0 2.5rem;line-height:0.9rem}
+#password_form .pw_reset .patFrom .date input{width:80%;height:0.7rem;border:0;font-size:0.4rem;line-height:0.7rem}
+
+#patient_form  .btnArea {height:1rem;margin:0.5rem 0 0;padding:0 1rem;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;line-height:1rem;}
+#patient_form  .btnArea input{width:4rem;height:0.7rem;border:0;font-size:0.35rem}
+#patient_form  .btnArea button{float:right;margin:0.2rem 0 0 0;padding:0.02rem 0.5rem;border:1px solid #51d072;font-size:0.35rem;border-radius:15px;color:#51d072;background:#fff}
+
+#doctor_form{margin:0.3rem 0 0 0;border-top:1px solid #d3d3d3;}
+#doctor_form .doc_join{padding:0.2rem 0;background:#fff;border-bottom:1px solid #d3d3d3}
+#doctor_form .doc_join .docFrom{width:8rem;margin:0 auto;height:0.9rem;line-height:0.9rem}
+#doctor_form .doc_join .docFrom.phone{border-bottom:1px solid #d3d3d3}
+#doctor_form .doc_join .docFrom strong{float:left;color:#4a4a4a;font-size:0.4rem;font-weight:normal}
+#doctor_form .doc_join .docFrom .date {height:0.9rem;padding:0 0 0 1.7rem;line-height:0.9rem}
+#doctor_form .doc_join .docFrom .date input{width:100%;height:0.7rem;border:0;font-size:0.35rem;line-height:0.7rem}
+
+#doctor_form  .btnArea {height:1rem;margin:0.5rem 0 0;padding:0 1rem;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;line-height:1rem;}
+#doctor_form  .btnArea input{width:4rem;height:0.7rem;border:0;font-size:0.35rem}
+#doctor_form  .btnArea button{float:right;margin:0.2rem 0 0 0;padding:0.02rem 0.5rem;border:1px solid #51d072;font-size:0.35rem;border-radius:15px;color:#51d072;background:#fff}
+
+
+
+#footer .privacy{height:0.7rem;padding:0.5rem 0;font-size:0.4rem;text-align:center;line-height:0.7rem;}
+#footer .privacy a,
+#footer .privacy a:hover{color:#177deb;font-size:0.4rem;}
+#footer .privacy span{margin:0 0.3rem 0 0;width:0.5rem;font-size:0.4rem;}
+#footer .privacy span img{width:100%;max-width:25px;vertical-align:middle}

@@ -1,0 +1,43 @@
+package com.djb.ylt.cases.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.djb.ylt.cases.dao.ICasesDao;
+import com.djb.ylt.cases.entity.CasesEntity;
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.user.entity.DoctorEntity;
+
+@Service("iCasesService")
+public class CasesServiceImpl extends BaseService implements ICasesService {
+	
+	 @Autowired
+	 @Qualifier("casesDao")
+	 private ICasesDao casesDao;
+	 
+	public List<CasesEntity> getCasesList(CasesEntity casesEntity){
+		return casesDao.findListByCondition(casesEntity);
+	}
+	
+	@Override
+	public void updateViewTimes(CasesEntity casesEntity) {
+		
+		 try {
+			 casesDao.update(casesEntity);
+	        } catch (DataNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+	
+	@Override
+	public CasesEntity getObject(CasesEntity casesEntity) {
+		
+		  return casesDao.getObject(casesEntity);
+		
+	}
+}

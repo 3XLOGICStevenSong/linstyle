@@ -1,0 +1,552 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.user.action;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.common.util.GsonUtil;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.framework.dto.BaseClientDTO;
+import com.djb.ylt.user.dto.DoctorScheduleDTO;
+import com.djb.ylt.user.dto.ScheduleDateDTO;
+import com.djb.ylt.user.dtoclient.AppointTimeClientDTO;
+import com.djb.ylt.user.dtoclient.AppointTimeListDTO;
+import com.djb.ylt.user.dtoclient.DoctorPackageInfoClientDTO;
+import com.djb.ylt.user.entity.DoctorScheduleEntity;
+import com.djb.ylt.user.entity.InterrogationPackageEntity;
+import com.djb.ylt.user.service.IDoctorScheduleService;
+import com.djb.ylt.user.service.IInterrogationPackageService;
+
+import org.apache.commons.lang.StringUtils;
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2016年7月29日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/DoctorSchedule")
+public class DoctorScheduleAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iDoctorScheduleService")
+	private IDoctorScheduleService iDoctorScheduleService;
+	
+	@Autowired
+	@Qualifier("iInterrogationPackageService")
+	private IInterrogationPackageService iInterrogationPackageService;
+
+	public DoctorScheduleAction() {
+		super();
+	}
+
+	/**
+	 * 获取医生日程列表（该接口暂时不用）
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetDoctorScheduleList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		DoctorScheduleDTO paramDTO = (DoctorScheduleDTO) form;
+
+		// 参数Entity
+		DoctorScheduleEntity paramEntity = new DoctorScheduleEntity();
+
+		// 结果ClientDTO
+		AppointTimeListDTO resultClientDTO = new AppointTimeListDTO();
+		// 参数DTO->参数Entity
+		List<DoctorScheduleEntity> resultEntity = null;
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		// // 时间数组转换
+		// String[] startDate = null;
+		// if (paramDTO.getStartDateList() != null) {
+		// startDate = StringUtils.split(paramDTO.getStartDateList(), "|");
+		// }
+		// paramEntity.setStartDateArgs(startDate);
+		// }
+		if (paramDTO.getStartDate() != null) {
+			paramEntity.setStartDate(sdf1.parse(paramDTO.getStartDate()));
+		}
+		if (paramDTO.getEndDate() != null) {
+			paramEntity.setEndDate(sdf1.parse(paramDTO.getEndDate()));
+		}
+		List<AppointTimeClientDTO> appointTimeClientDTO = null;
+		List<ScheduleDateDTO> timeListDTO = null;
+		// DB查询
+		try {
+			resultEntity = iDoctorScheduleService.getDoctorScheduleList(paramEntity);
+			// 处理时间格式
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			// 处理时间格式
+
+			if (resultEntity != null && resultEntity.size() > 0) {
+				appointTimeClientDTO = new ArrayList<AppointTimeClientDTO>();
+				// 讲一个日期的时间段合并
+				String temp = "";
+				AppointTimeClientDTO appointParam = null;
+				for (DoctorScheduleEntity param : resultEntity) {
+					if (temp.equals(sdf1.format(param.getStartDate()))) {
+						ScheduleDateDTO schedule = new ScheduleDateDTO();
+						if (param.getEndTime() != null) {
+							schedule.setEndTime(sdf.format(param.getEndTime()));
+						}
+						if (param.getStartTime() != null) {
+							schedule.setStartTime(sdf.format(param.getStartTime()));
+						}
+						// schedule.setEndTime(sdf.format(param.getEndTime()));
+						// schedule.setStartTime(sdf.format(param.getStartTime()));
+						schedule.setScheduleId(param.getScheduleId());
+						schedule.setPatientNum(param.getPatientNum());
+						schedule.setAppointNum(param.getAppointNum());
+						timeListDTO.add(schedule);
+						// appointParam.setStartDate(sdf1.format(param.getStartDate()));
+						appointParam.setTimeList(timeListDTO);
+						// appointTimeClientDTO.add(appointParam);
+					} else {
+						appointParam = new AppointTimeClientDTO();
+						timeListDTO = new ArrayList<ScheduleDateDTO>();
+
+						ScheduleDateDTO schedule1 = new ScheduleDateDTO();
+						if (param.getEndTime() != null) {
+							schedule1.setEndTime(sdf.format(param.getEndTime()));
+						}
+						if (param.getStartTime() != null) {
+							schedule1.setStartTime(sdf.format(param.getStartTime()));
+						}
+						schedule1.setScheduleId(param.getScheduleId());
+						schedule1.setPatientNum(param.getPatientNum());
+						schedule1.setAppointNum(param.getAppointNum());
+						timeListDTO.add(schedule1);
+						appointParam.setStartDate(sdf1.format(param.getStartDate()));
+						appointParam.setTimeList(timeListDTO);
+						appointTimeClientDTO.add(appointParam);
+					}
+					temp = sdf1.format(param.getStartDate());
+				}
+				// 去掉相同日期的
+				resultClientDTO.setAppointTimeList(appointTimeClientDTO);
+				// 参数Entity
+				InterrogationPackageEntity packageEntity = new InterrogationPackageEntity();
+				List<InterrogationPackageEntity> resultPackageEntity = null;
+				packageEntity.setDoctorId(paramDTO.getDoctorId());
+				List<DoctorPackageInfoClientDTO> paramResultInfo = null;
+				packageEntity.setType("0");
+				resultPackageEntity=iInterrogationPackageService.findListByDoctorId(packageEntity);
+				//packageEntity=iInterrogationPackageService.getObject(packageEntity);
+				if(resultPackageEntity!=null&&resultPackageEntity.size()>0){
+					paramResultInfo = new ArrayList<DoctorPackageInfoClientDTO>();
+					for (InterrogationPackageEntity param : resultPackageEntity) {
+						DoctorPackageInfoClientDTO packageInfoClientDTO = new DoctorPackageInfoClientDTO();
+						packageInfoClientDTO.setWorkType(param.getWorkType());
+						packageInfoClientDTO.setEarlyTime(param.getEarlyTime());
+						packageInfoClientDTO.setPackageId(param.getPackageId());
+						if(param.getTotal()!=null){
+						packageInfoClientDTO.setTotal(param.getTotal().toString());}
+						packageInfoClientDTO.setType(param.getType());
+						packageInfoClientDTO.setFreeTotal(param.getFreeTotal());
+						paramResultInfo.add(packageInfoClientDTO);
+					}
+					resultClientDTO.setPackageInfoList(paramResultInfo);
+				}
+
+			}
+
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-1030");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 获取我的私人医生列表 此接口暂时不用
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doAddSchedule(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		DoctorScheduleDTO paramDTO = (DoctorScheduleDTO) form;
+		// paramDTO.setDoctorId(1);
+		// paramDTO.setStartDate("2016-08-10");
+		// paramDTO.setStartTime("09:30|10:30|11:30");
+		// 参数Entity
+		// DoctorScheduleEntity paramEntity = new DoctorScheduleEntity();
+
+		// 结果ClientDTO
+		BaseClientDTO resultClientDTO = new BaseClientDTO();
+
+		// 参数DTO->参数Entity
+		// test
+		// 
+
+		try {
+			// 删除没被预定的日程 预定人数大于0的
+
+			DoctorScheduleEntity deleteEntity = new DoctorScheduleEntity();
+			deleteEntity.setDoctorId(paramDTO.getDoctorId());
+			deleteEntity.setStartDateArgs(paramDTO.getStartDateArgs());
+			iDoctorScheduleService.deleteDoctorSchedule(deleteEntity);
+			// 录入
+			// String[] stratTime = null;
+			// if(paramDTO.getStartTime()!=null){
+			// stratTime = StringUtils.split(paramDTO.getStartTime(), "|");
+			// }
+			// paramEntity.setDoctorId(paramDTO.getDoctorId());
+			// SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			// paramEntity.setStartDate(paramDTO.getStartDate());
+			// paramEntity.setStatus("1");
+			// paramEntity.setAppointStatus("0");
+			// if (stratTime != null) {
+			// for (String section : stratTime) {
+			// // paramEntity.setStartTime(sdf.parse(section));
+			// iDoctorScheduleService.addDoctorSchedule(paramEntity);
+			// }
+			// }
+		}
+
+		catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-2055");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 添加医生日程列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doAddScheduleForList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		DoctorScheduleDTO paramDTO = (DoctorScheduleDTO) form;
+
+		DoctorScheduleEntity paramEntity = new DoctorScheduleEntity();
+		// 结果ClientDTO
+		BaseClientDTO resultClientDTO = new BaseClientDTO();
+
+		try {
+			// json串转换成json
+			if (paramDTO.getScheduleList() != null && !"".equals(paramDTO.getScheduleList())) {
+				getJsonStringToObject(paramDTO);
+			} else {
+				resultClientDTO.setReturnCode("-2059");
+				// 返回结果
+				toJson(response, resultClientDTO);
+				return null;
+			}
+			CommonUtil.reflectClass(paramDTO, paramEntity);
+
+			iDoctorScheduleService.addDoctorSchedule(paramEntity);
+			//
+			// 删除没被预定的日程 预定人数大于0的
+			// DoctorScheduleEntity deleteEntity = new DoctorScheduleEntity();
+			// deleteEntity.setDoctorId(paramDTO.getDoctorId());
+			// deleteEntity.setStartDateArgs(paramDTO.getStartDateArgs());
+			// iDoctorScheduleService.deleteDoctorSchedule(deleteEntity);
+			// // 更新和添加操作
+			// if (paramDTO.getScheduleDTOList() != null &&
+			// paramDTO.getScheduleDTOList().size() > 0) {
+			// // 参数Entity
+			// for (DoctorScheduleDTO doctorScheduleParam :
+			// paramDTO.getScheduleDTOList()) {
+			// List<DoctorScheduleEntity> paramScheduleList = null;
+			// if (doctorScheduleParam.getScheduleDateList() != null
+			// && doctorScheduleParam.getScheduleDateList().size() > 0) {
+			// for (ScheduleDateDTO schDate :
+			// doctorScheduleParam.getScheduleDateList()) {
+			// // 如果日程ID的存在并且更新的数量>=预约人数更新数量
+			// if (schDate.getScheduleId() != null) {
+			// DoctorScheduleEntity paramSchedule = new DoctorScheduleEntity();
+			// DoctorScheduleEntity resultSchedule = new DoctorScheduleEntity();
+			// paramSchedule.setScheduleId(schDate.getScheduleId());
+			// resultSchedule = iDoctorScheduleService.getObject(paramSchedule);
+			// if (schDate.getPatientNum() >= resultSchedule.getAppointNum()
+			// && resultSchedule.getAppointNum() > 0) {
+			// paramSchedule.setPatientNum(schDate.getPatientNum());
+			// iDoctorScheduleService.updateDoctorSchedule(paramSchedule);
+			// }
+			// } else {
+			// // 以天为单位进行插入
+			// SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			// SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+			// paramScheduleList = new ArrayList<DoctorScheduleEntity>();
+			// DoctorScheduleEntity paramSchedule = new DoctorScheduleEntity();
+			// if (doctorScheduleParam.getStartDate() != null) {
+			// paramSchedule.setStartDate(sdf1.parse(doctorScheduleParam.getStartDate()));
+			// }
+			// if (schDate.getStartTime() != null) {
+			// paramSchedule.setStartTime(sdf.parse(schDate.getStartTime()));
+			// }
+			// if (schDate.getEndTime() != null) {
+			// paramSchedule.setEndTime(sdf.parse(schDate.getEndTime()));
+			// }
+			// paramSchedule.setPatientNum(schDate.getPatientNum());
+			// paramSchedule.setDoctorId(paramDTO.getDoctorId());
+			// paramScheduleList.add(paramSchedule);
+			// }
+			// }
+			// }
+			// if (paramScheduleList != null && paramScheduleList.size() > 0) {
+			// iDoctorScheduleService.addDoctorScheduleBatch(paramScheduleList);
+			// }
+			// }
+			// }
+		}
+
+		catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-2055");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 获取医生日程列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetScheduleList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		DoctorScheduleDTO paramDTO = (DoctorScheduleDTO) form;
+
+		// 参数Entity
+		DoctorScheduleEntity paramEntity = new DoctorScheduleEntity();
+
+		// 结果ClientDTO
+		AppointTimeListDTO resultClientDTO = new AppointTimeListDTO();
+		// 参数DTO->参数Entity
+		List<DoctorScheduleEntity> resultEntity = null;
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		// 时间数组转换
+		String[] startDate = null;
+		if (paramDTO.getStartDateList() != null) {
+			startDate = StringUtils.split(paramDTO.getStartDateList(), "|");
+		}
+		paramEntity.setStartDateArgs(startDate);
+		// }
+		if (paramDTO.getStartDate() != null) {
+			paramEntity.setStartDate(sdf1.parse(paramDTO.getStartDate()));
+		}
+		if (paramDTO.getEndDate() != null) {
+			paramEntity.setEndDate(sdf1.parse(paramDTO.getEndDate()));
+		}
+		List<AppointTimeClientDTO> appointTimeClientDTO = null;
+		List<ScheduleDateDTO> timeListDTO = null;
+		// DB查询
+		try {
+			resultEntity = iDoctorScheduleService.getDoctorScheduleList(paramEntity);
+			// 处理时间格式
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			// 处理时间格式
+
+			if (resultEntity != null && resultEntity.size() > 0) {
+				appointTimeClientDTO = new ArrayList<AppointTimeClientDTO>();
+				// 讲一个日期的时间段合并
+				String temp = "";
+				AppointTimeClientDTO appointParam = null;
+				for (DoctorScheduleEntity param : resultEntity) {
+					if (temp.equals(sdf1.format(param.getStartDate()))) {
+						ScheduleDateDTO schedule = new ScheduleDateDTO();
+						schedule.setEndTime(sdf.format(param.getEndTime()));
+						schedule.setStartTime(sdf.format(param.getStartTime()));
+						schedule.setScheduleId(param.getScheduleId());
+						schedule.setPatientNum(param.getPatientNum());
+						schedule.setAppointNum(param.getAppointNum());
+						timeListDTO.add(schedule);
+						// appointParam.setStartDate(sdf1.format(param.getStartDate()));
+						appointParam.setTimeList(timeListDTO);
+						// appointTimeClientDTO.add(appointParam);
+					} else {
+						appointParam = new AppointTimeClientDTO();
+						timeListDTO = new ArrayList<ScheduleDateDTO>();
+
+						ScheduleDateDTO schedule1 = new ScheduleDateDTO();
+						schedule1.setEndTime(sdf.format(param.getEndTime()));
+						schedule1.setStartTime(sdf.format(param.getStartTime()));
+						schedule1.setScheduleId(param.getScheduleId());
+						schedule1.setPatientNum(param.getPatientNum());
+						schedule1.setAppointNum(param.getAppointNum());
+						timeListDTO.add(schedule1);
+						appointParam.setStartDate(sdf1.format(param.getStartDate()));
+						appointParam.setTimeList(timeListDTO);
+						appointTimeClientDTO.add(appointParam);
+					}
+					temp = sdf1.format(param.getStartDate());
+				}
+				// 去掉相同日期的
+				resultClientDTO.setAppointTimeList(appointTimeClientDTO);
+				// 参数Entity
+				InterrogationPackageEntity packageEntity = new InterrogationPackageEntity();
+				List<InterrogationPackageEntity> resultPackageEntity = null;
+				packageEntity.setDoctorId(paramDTO.getDoctorId());
+				List<DoctorPackageInfoClientDTO> paramResultInfo = null;
+				packageEntity.setType("0");
+				resultPackageEntity=iInterrogationPackageService.findListByDoctorId(packageEntity);
+				//packageEntity=iInterrogationPackageService.getObject(packageEntity);
+				if(resultPackageEntity!=null&&resultPackageEntity.size()>0){
+					paramResultInfo = new ArrayList<DoctorPackageInfoClientDTO>();
+					for (InterrogationPackageEntity param : resultPackageEntity) {
+						DoctorPackageInfoClientDTO packageInfoClientDTO = new DoctorPackageInfoClientDTO();
+						packageInfoClientDTO.setWorkType(param.getWorkType());
+						packageInfoClientDTO.setEarlyTime(param.getEarlyTime());
+						packageInfoClientDTO.setPackageId(param.getPackageId());
+						if(param.getTotal()!=null){
+						packageInfoClientDTO.setTotal(param.getTotal().toString());}
+						packageInfoClientDTO.setType(param.getType());
+						paramResultInfo.add(packageInfoClientDTO);
+					}
+					resultClientDTO.setPackageInfoList(paramResultInfo);
+				}
+			}
+
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-2057");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 客户端请求json格式的字符串转换成对象。 ax
+	 * 
+	 * @param vo
+	 *            用户端请求值
+	 */
+	private void getJsonStringToObject(DoctorScheduleDTO paramDTO) {
+
+		// 取得客户端传入的json格式的字符串
+		String param = paramDTO.getScheduleList();
+		if (!"".equals(param)) {
+			List<DoctorScheduleDTO> scheduleList = GsonUtil.getBeanList(param, DoctorScheduleDTO.class);
+			if (scheduleList != null && scheduleList.size() > 0) {
+				List<DoctorScheduleDTO> sList = new ArrayList<DoctorScheduleDTO>();
+				String[] startDate = new String[scheduleList.size()];
+				for (int i = 0; i < scheduleList.size(); i++) {
+					startDate[i] = scheduleList.get(i).getStartDate();
+				}
+				for (DoctorScheduleDTO paramdoctor : scheduleList) {
+					DoctorScheduleDTO doctorScheduleDTO = new DoctorScheduleDTO();
+					doctorScheduleDTO.setStartDate(paramdoctor.getStartDate());
+					doctorScheduleDTO.setScheduleId(paramdoctor.getScheduleId());
+					doctorScheduleDTO.setScheduleDateList(paramdoctor.getTimeList());
+					sList.add(doctorScheduleDTO);
+				}
+				paramDTO.setScheduleDTOList(sList);
+				paramDTO.setStartDateArgs(startDate);
+			}
+		}
+	}
+}

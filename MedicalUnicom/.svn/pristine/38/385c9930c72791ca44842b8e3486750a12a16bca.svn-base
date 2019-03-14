@@ -1,0 +1,30 @@
+package com.djb.ylt.user.dao;
+
+import com.djb.ylt.framework.dao.BaseDAO;
+import com.djb.ylt.user.entity.AppointInquiryEntity;
+
+
+
+
+public interface IAppointInquiryDao extends BaseDAO<AppointInquiryEntity> {
+	public static String FINDPRIVATEDETAIL="findPrivateDetail";
+	public static String FINDLISTBYPATIENTID="findListByPatientId";
+	public static String FINDLISTBYDOCTORID="findListByDoctorId";
+	public static String GETMEMBERINFO="getMemberInfo";
+	public static String FINDLISTBYRECENT="findListByRecent";
+	public static String GETINFOFORPUSH="getInfoForPush";
+	public static String GETINFOFORMINUTESPUSH="getInfoForMinutesPush";
+	public static String GETDOCTORMEMBERINFO="getDoctorMemberInfo";
+	public static String GETDOCTORMEMBERINFOFORPAGE="getDoctorMemberInfoForPage";
+	public static String  GETRECORDSINFO="getRecordsInfo";
+	public static String GETBATCHINFO="getBatchInfo";
+	public static String FINDLISTBYSTATUS="findListByStatus";
+	public static String FINDGRAPHICAPPOINTlISTBYSTATUS="findGraphicAppointListByStatus";
+	public static String GETMONTHRECORDS="getMonthRecords";
+	public static String GETHISTORYAPPOINT="getHistoryAppoint";
+	public static String GETGRAPHICLIST="getGraphicList";
+	public static String FINDGRAPHICLISTBYSTATUS="findGraphicListByStatus";
+	public static String GETAPPOINTFREE="getAppointFree";
+	public static String GETAPPOINTlISTBYIMAGE="getAppointListByImage";
+	public static String GETSEVIVECOUNT="getSeviveCount";
+}

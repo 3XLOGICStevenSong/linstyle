@@ -1,0 +1,255 @@
+$(function(){
+	var pid=getCookie("pid");
+	//var doctorId=window.location.href.substring(window.location.href.lastIndexOf("=")+1,window.location.href.length);
+	//var depId_href=window.location.href.substring(window.location.href.indexOf("&")+1,window.location.href.lastIndexOf("&"));
+	//var depId=depId_href.substring(depId_href.lastIndexOf("=")+1,depId_href.length)
+	//var appointId=window.location.href.substring(window.location.href.indexOf("=")+1,window.location.href.indexOf("&"));
+	var link=window.location.href;
+	var keyVal=link.split("&");
+	var doctorId="";
+	var depId="";
+	var depName="";
+	var appointId="";
+	var patientId="";
+	
+	for(i=0;i<keyVal.length;i++){
+		if(keyVal[i].indexOf("doctorId") != -1 ){
+			doctorId=keyVal[i].substring(keyVal[i].lastIndexOf("=")+1,keyVal[i].length);
+		}else if(keyVal[i].indexOf("appointId") != -1 ){
+			appointId=keyVal[i].substring(keyVal[i].lastIndexOf("=")+1,keyVal[i].length).replace("%"," ");
+		}else if(keyVal[i].indexOf("depId") != -1 ){
+			depId=keyVal[i].substring(keyVal[i].lastIndexOf("=")+1,keyVal[i].length);
+		}else if(keyVal[i].indexOf("depName") != -1 ){
+			depName=decodeURI(keyVal[i].substring(keyVal[i].lastIndexOf("=")+1,keyVal[i].length));
+		}lse if(keyVal[i].indexOf("patientId") != -1 ){
+			patientId=decodeURI(keyVal[i].substring(keyVal[i].lastIndexOf("=")+1,keyVal[i].length));
+		}
+	}
+	
+	function setCookie(name,value){
+	    /*
+	    var Days = 30;
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() + Days*24*60*60*1000);*/
+	    document.cookie = name + "="+ escape (value) ;/*+ ";expires=" + exp.toGMTString()*/
+	}
+	function getCookie(name){
+		
+	    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	 
+	    if(arr=document.cookie.match(reg))
+	 
+	        return (arr[2]);
+	    else
+	        return null;
+	};
+	
+	$.ajax({
+		type:"get",
+		url:"/MedicalUnicom/Appoint.do?doGetPrivateDetail",
+		data:{
+			appointId:appointId
+		},
+		aync:false,
+		dataType:"json",
+		success:function(result){
+			var doctorId=result.doctorId;
+			var name=result.name;
+			var positional=result.positional;
+			var headPic=result.headPic;
+			var hospitalName=result.hospitalName;
+			var healDisease=result.healDisease;
+			var dcName=result.dcName;
+			var departmentName=result.departmentName;
+			var effectTime=result.effectTime;
+			var tel_num=result.tel_num;
+			var vio_num=result.vio_num;
+			var commentCount=result.commentCount;
+			var commentGrade="";
+			if(result.commentGrade != null){
+				commentGrade="评分: <span>"+result.commentGrade.toFixed(1)+"</span>";
+			}else{
+				commentGrade="暂无评分";
+			}
+			var Tel=getCookie("Tel");
+			
+			$(".DocName").text(name+"信息");
+			var recordsList=result.recordsList;
+			
+			var Grad="";
+			
+			Grad="<ul id='point'><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li></ul><p>"+commentGrade+"</p>"
+			
+			var content=$(".doctorMode").html();
+			var Item=new Array();
+			Item[0]=content;
+
+			Item[0]=Item[0].replace("{$name}",name);
+			Item[0]=Item[0].replace("{$positional}",positional);
+			Item[0]=Item[0].replace("{$headPic}",headPic);
+			Item[0]=Item[0].replace("{$hospitalName}",hospitalName);
+			Item[0]=Item[0].replace("{$healDisease}",healDisease);
+			Item[0]=Item[0].replace("{$dcName}",dcName);
+			Item[0]=Item[0].replace("{$departmentName}",departmentName);
+			Item[0]=Item[0].replace("{$effectTime}",effectTime);
+			Item[0]=Item[0].replace("{$tel_num}",tel_num);
+			Item[0]=Item[0].replace("{$vio_num}",vio_num);
+			Item[0]=Item[0].replace("{$commentCount}",commentCount);
+			Item[0]=Item[0].replace("{$commentGrade}",commentGrade);
+			Item[0]=Item[0].replace("{$Grad}",Grad)
+			Item[0]=Item[0].replace("{$Tel}",Tel);
+			
+			
+			$(".doctorMode").html("");
+			$(".doctorMode").html(Item);
+			
+			$(".UserImg img").on("error",function(){
+				$(this).attr("src","img/defaultpatient.png")
+			})
+			
+			for(i=0;i<parseInt(result.commentGrade);i++){
+				$("#point li")[i].className="on";
+			}
+			
+			$(".Next").click(function(){
+				setCookie("DocID",doctorId);
+				
+				if($(this).attr("id") == "0"){
+					if(vio_num == 0){
+						alert("剩余0次，无法继续购买");
+						return false;
+					}
+					setCookie("recordsType",$(this).attr("id"));
+					window.location.href="Pat_TiketBuyed.html?depId="+depId+"&dcName="+dcName;
+					
+				}else if($(this).attr("id") == "1"){
+					if(tel_num == 0){
+						alert("剩余0次，无法继续购买");
+						return false;
+					}
+					setCookie("recordsType",$(this).attr("id"));
+					window.location.href="Pat_TiketBuyed.html?depId="+depId+"&dcName="+dcName;
+					
+				}
+			})
+			
+			if(recordsList != ""){
+				$(".NoneHistory").hide();
+			}else{
+				$(".NoneHistory").show();
+			}
+			
+			
+			var Timelist=$(".List").html();
+			var Li=new Array();
+			
+			for(i=0;i<recordsList.length;i++){
+				var date=new Date();
+				var inquiryStatus=recordsList[i].inquiryStatus;
+				var recordsType=recordsList[i].recordsType;
+				var recordsId=recordsList[i].recordsId;
+				var appointTime=recordsList[i].appointTime;
+				var createTime=recordsList[i].createTime;
+				var Time=createTime;
+				var TelNum=getCookie("TelNum");
+				
+				var date1="";
+				if(appointTime != null){
+					date1=appointTime.replace(/-/g,"/")+":00";  //开始时间  
+				}else{
+					date1=createTime.replace(/-/g,"/")+":00";  //开始时间  
+				}
+
+			    var date2= new Date(date1);  //设置日期时间
+
+			    var date3="";   //时间差的毫秒数
+				var delay="";  // 未来过去判断 0=未来 ， -1=过去
+			    
+				if(new Date().getTime()> date2.getTime() ){
+					delay=-1;
+					date3=new Date().getTime() - date2.getTime(); 
+				}else if(new Date().getTime() < date2.getTime() ){
+					delay=0;
+					date3=date2.getTime() - new Date().getTime(); 
+				}
+
+				//计算出天数  
+				var days=Math.floor(date3/(24*3600*1000)); // 距离问诊日期到就诊日期间的  天数
+
+				//计算出小时数  
+				var leave1=date3%(24*3600*1000);    //计算天数后剩余的毫秒数  
+				var hours=Math.floor(leave1/(3600*1000));// 距离问诊时间小时
+				var H=Math.floor(date3/3600/1000); // 距离问诊日期到就诊日期间的 小时
+
+				//计算相差分钟数  
+				var leave2=leave1%(3600*1000);       //计算小时数后剩余的毫秒数  
+				var minutes=Math.floor(leave2/(60*1000)); // 距离问诊时间分钟
+				var M=Math.floor(date3/60/1000); // 距离问诊日期到就诊日期间的 分钟
+				
+				var InqDiv="";
+
+				if(inquiryStatus == 0 && recordsType == 0){
+					Time=appointTime;
+					InqDiv="<p class='Wait'>等待医生确认</p>";
+
+				}else if(inquiryStatus == 0 && recordsType == 1){
+					Time=createTime;
+					Time=appointTime;
+					InqDiv="<p class='Wait'>等待医生确认</p>";
+					
+				}else if(inquiryStatus == 1 && recordsType == 0){
+					Time=appointTime;
+					
+					if(delay == 0 && H > 24){
+						InqDiv="<p class='Count'><span class='state_icon'></span>还有"+days+"天"+hours+"时</p>";
+					}else if(delay==0 && H < 24 && H >= 1){
+						InqDiv="<p class='Count'><span class='state_icon'></span>还有"+hours+"时"+minutes+"分钟</p>";
+					}else if(delay==0 && M < 60){
+						InqDiv="<p class='Cam'><span class='state_icon'></span><span class='Start'><a href='callVideo.html'>开始就诊</a></span></p>";
+					}else if(delay==-1 && M > 60){
+						InqDiv="<p class='NotResult'>未出就诊结果</p>";
+					};
+				}else if(inquiryStatus == 1 && recordsType == 1){
+					 	Time=createTime;
+				 		InqDiv="<p class='Success'>预约成功</p>"
+					 	
+				}else if(inquiryStatus == 2 ){
+					Time=appointTime;
+					InqDiv="<p class='NotResult'>未出就诊结果</p>";
+				}else if(inquiryStatus == 3 ){
+					InqDiv="<p class='Over'>问诊结束</p>";
+				}else if(inquiryStatus == 4 ){
+					InqDiv="<p class='DocReject'>医生拒绝</p>";
+				}else if(inquiryStatus == 5 ){
+					InqDiv="<p class='WaitCancel'>等待医生同意取消</p>";
+				}else if(inquiryStatus == 6 ){
+					InqDiv="<p class='AgreeCancel'>医生同意取消</p>";
+				}else if(inquiryStatus == 7 ){
+					InqDiv="<p class='Disagree'>医生拒绝取消</p>";
+				}else if(inquiryStatus == 8 ){
+					InqDiv="<p class='Cancel'>医生取消</p>";
+				}
+
+				Li[i]=Timelist;
+				
+				for(Val=0;Val<Li.length;Val++){
+					Li[i]=Li[i].replace("{$Time}",Time);
+					Li[i]=Li[i].replace("{$InqDiv}",InqDiv);
+					Li[i]=Li[i].replace("{$recordsId}",recordsId);
+				}
+			}
+			
+			$(".List").html(Li);
+			
+			$(document).scroll(function(){
+				setCookie("scroll",$(document).scrollTop());
+			})
+			$(document).scrollTop(getCookie("scroll"));
+			
+			$(".Detail").click(function(){
+				setCookie("payStatus",1);
+				window.location.href="Pat_MyReservationDetail.html?date="+$(this).parent().parent("li").attr("date");
+			})
+		}
+	})
+})

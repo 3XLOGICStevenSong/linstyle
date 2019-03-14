@@ -1,0 +1,164 @@
+@charset "utf-8";
+.checkForm {font-size:0.4rem;background:#fff}
+.checkForm ul>li{border-bottom:1px solid #d3d3d3}
+.checkForm .menu .clearfix strong{font-size:0.4rem}
+.checkForm .menu .Ticon{display:inline-block;width:1rem;height:1rem;margin:0 0.5rem 0 0;vertical-align:middle;}
+.checkForm .menu .op_icon{position:absolute;right:0.5rem;top:0.7rem;width:0.7rem;height:0.7rem;background:url("../img/Department_DownButton@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .menu .op_icon.minus{position:absolute;right:0.5rem;top:0.7rem;width:0.7rem;;height:0.7rem;background:url("../img/Department_UpButton@2x.png") no-repeat 0 center;background-size:100%;}
+
+.checkForm .menu {position:relative;padding:0.2rem 0;}
+.checkForm .menu p{width:9rem;margin:0 auto;}
+.checkForm .menu p.clearfix{min-height:1.5rem;line-height:1.5rem;}
+.checkForm .menu .clearfix{padding:0 0 0.2rem;}
+.checkForm .menu .small_menu{font-size:0.35rem;color:#7b7b7b}
+
+/*.checkForm .sub_menu {display:none;font-size:0.35rem;}*/
+.checkForm .sub_menu {
+	height:0;
+	font-size:0.35rem;
+	overflow:hidden;
+	-webkit-transition:height 0.1s linear;
+}
+.checkForm .sub_menu ul {width:9rem;margin:0 auto;}
+.checkForm .sub_menu ul li{display:inline-block;margin:0 0.1rem 0.2rem 0;vertical-align:top;}
+.checkForm .sub_menu ul li label{display:block;padding:0.1rem 0.3rem;font-size:0.4rem;}
+.checkForm .sub_menu ul li input[type=checkbox]{display:none}
+.checkForm .sub_menu ul li.check label {color:#fff;}
+
+.checkForm .tab1 .Ticon{background:url("../img/Symptom_Changjianbing@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab2 .Ticon{background:url("../img/Symptom_Xinzang@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab3 .Ticon{background:url("../img/Symptom_Erbihou@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab4 .Ticon{background:url("../img/Symptom_Kou@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab5 .Ticon{background:url("../img/Symptom_Yan@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab6 .Ticon{background:url("../img/Symptom_Shengzhi@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab7 .Ticon{background:url("../img/Symptom_Yiban@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab8 .Ticon{background:url("../img/Symptom_Fuke@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab9 .Ticon{background:url("../img/Symptom_Xiaohua@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab10 .Ticon{background:url("../img/Symptom_Tou@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab11 .Ticon{background:url("../img/Symptom_Yao@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab12 .Ticon{background:url("../img/Symptom_Pifu@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab13 .Ticon{background:url("../img/Symptom_Xinli@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm .tab14 .Ticon{background:url("../img/Symptom_Sizhi@2x.png") no-repeat 0 center;background-size:100%;}
+
+.checkForm .tab1 .menu {border-left:0.2rem solid #7eb3ea}
+.checkForm .tab2 .menu {border-left:0.2rem solid #7fe0e9}
+.checkForm .tab3 .menu {border-left:0.2rem solid #53e39e}
+.checkForm .tab4 .menu {border-left:0.2rem solid #87d54e}
+.checkForm .tab5 .menu {border-left:0.2rem solid #d5ba4e}
+.checkForm .tab6 .menu {border-left:0.2rem solid #e67857}
+.checkForm .tab7 .menu {border-left:0.2rem solid #da80aa}
+.checkForm .tab8 .menu {border-left:0.2rem solid #b094d2}
+.checkForm .tab9 .menu {border-left:0.2rem solid #86a8dB}
+.checkForm .tab10 .menu {border-left:0.2rem solid #80dacc}
+.checkForm .tab11 .menu {border-left:0.2rem solid #8fda80}
+.checkForm .tab12 .menu {border-left:0.2rem solid #d5ba4e}
+.checkForm .tab13 .menu {border-left:0.2rem solid #dd9771}
+.checkForm .tab14 .menu {border-left:0.2rem solid #dd7373}
+
+.checkForm .sub_menu .licolor1 {background:#7eb3ea;}
+.checkForm .sub_menu .color1 li{border:1px solid #7eb3ea}
+.checkForm .sub_menu .color1 label{color:#7eb3ea}
+.checkForm .sub_menu .licolor2 {background:#7fe0e9;}
+.checkForm .sub_menu .color2 li{border:1px solid #7fe0e9}
+.checkForm .sub_menu .color2 label{color:#7fe0e9}
+.checkForm .sub_menu .licolor3 {background:#53e39e;}
+.checkForm .sub_menu .color3 li{border:1px solid #53e39e}
+.checkForm .sub_menu .color3 label{color:#53e39e}
+.checkForm .sub_menu .licolor4 {background:#87d54e;}
+.checkForm .sub_menu .color4 li{border:1px solid #87d54e}
+.checkForm .sub_menu .color4 label{color:#87d54e}
+.checkForm .sub_menu .licolor5 {background:#d5ba4e;}
+.checkForm .sub_menu .color5 li{border:1px solid #d5ba4e}
+.checkForm .sub_menu .color5 label{color:#d5ba4e}
+.checkForm .sub_menu .licolor6 {background:#e67857;}
+.checkForm .sub_menu .color6 li{border:1px solid #e67857}
+.checkForm .sub_menu .color6 label{color:#e67857}
+.checkForm .sub_menu .licolor7 {background:#da80aa;}
+.checkForm .sub_menu .color7 li{border:1px solid #da80aa}
+.checkForm .sub_menu .color7 label{color:#da80aa}
+.checkForm .sub_menu .licolor8 {background:#b094d2;}
+.checkForm .sub_menu .color8 li{border:1px solid #b094d2}
+.checkForm .sub_menu .color8 label{color:#b094d2}
+.checkForm .sub_menu .licolor9 {background:#86a8dB;}
+.checkForm .sub_menu .color9 li{border:1px solid #86a8dB}
+.checkForm .sub_menu .color9 label{color:#86a8dB}
+.checkForm .sub_menu .licolor10 {background:#80dacc;}
+.checkForm .sub_menu .color10 li{border:1px solid #80dacc}
+.checkForm .sub_menu .color10 label{color:#80dacc}
+.checkForm .sub_menu .licolor11 {background:#8fda80;}
+.checkForm .sub_menu .color11 li{border:1px solid #8fda80}
+.checkForm .sub_menu .color11 label{color:#8fda80}
+.checkForm .sub_menu .licolor12 {background:#d5ba4e;}
+.checkForm .sub_menu .color12 li{border:1px solid #d5ba4e}
+.checkForm .sub_menu .color12 label{color:#d5ba4e}
+.checkForm .sub_menu .licolor13 {background:#dd9771;}
+.checkForm .sub_menu .color13 li{border:1px solid #dd9771}
+.checkForm .sub_menu .color13 label{color:#dd9771}
+.checkForm .sub_menu .licolor14 {background:#dd7373;}
+.checkForm .sub_menu .color14 li{border:1px solid #dd7373}
+.checkForm .sub_menu .color14 label{color:#dd7373}
+
+
+.checkForm.dep {font-size:0.4rem;background:#fff}
+.checkForm.dep ul>li{border-bottom:1px solid #d3d3d3}
+.checkForm.dep .menu .clearfix strong{font-size:0.4rem}
+.checkForm.dep .menu .Ticon{display:inline-block;width:1rem;height:1rem;margin:0 0.5rem 0 0;}
+.checkForm.dep .menu .Ticon img{vertical-align:middle}
+.checkForm.dep .menu .op_icon{position:absolute;right:0.5rem;top:0.7rem;width:0.7rem;height:0.7rem;background:url("../img/Department_DownButton@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .menu .op_icon.minus{position:absolute;right:0.5rem;top:0.7rem;width:0.7rem;;height:0.7rem;background:url("../img/Department_UpButton@2x.png") no-repeat 0 center;background-size:100%;}
+
+.checkForm.dep .menu {position:relative;padding:0.2rem 0;}
+.checkForm.dep .menu p{width:9rem;margin:0 auto;}
+.checkForm.dep .menu p.clearfix{min-height:1.5rem;line-height:1.5rem;}
+.checkForm.dep .menu .clearfix{padding:0 0 0.2rem;}
+.checkForm.dep .menu .small_menu{font-size:0.35rem;color:#7b7b7b}
+
+.checkForm.dep .sub_menu {font-size:0.35rem;}
+.checkForm.dep .sub_menu ul {width:9rem;margin:0 auto;padding:10px 0;}
+.checkForm.dep .sub_menu ul li{display:inline-block;margin:0 0.1rem 0.2rem 0;vertical-align:top;}
+.checkForm.dep .sub_menu ul li label{display:block;padding:0.1rem 0.3rem;font-size:0.4rem;}
+.checkForm.dep .sub_menu ul li input[type=checkbox]{display:none}
+.checkForm.dep .sub_menu ul li.check label {color:#fff;}
+
+.checkForm.dep .tab1 .Ticon{background:url("../img/icon_Internal.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab2 .Ticon{background:url("../img/icon_Surgery.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab3 .Ticon{background:url("../img/icon_Pediatrics.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab4 .Ticon{background:url("../img/Symptom_Yan@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab5 .Ticon{background:url("../img/Symptom_Erbihou@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab6 .Ticon{background:url("../img/Symptom_Fuke@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab7 .Ticon{background:url("../img/Symptom_Kou@2x.png") no-repeat 0 center;background-size:100%;}
+.checkForm.dep .tab8 .Ticon{background:url("../img/Symptom_Pifu@2x.png") no-repeat 0 center;background-size:100%;}
+
+.checkForm.dep .tab1 .menu {border-left:0.2rem solid #53e39e}
+.checkForm.dep .tab2 .menu {border-left:0.2rem solid #87d54e}
+.checkForm.dep .tab3 .menu {border-left:0.2rem solid #7eb3ea}
+.checkForm.dep .tab4 .menu {border-left:0.2rem solid #d5ba4e}
+.checkForm.dep .tab5 .menu {border-left:0.2rem solid #53e39e}
+.checkForm.dep .tab6 .menu {border-left:0.2rem solid #b094d2}
+.checkForm.dep .tab7 .menu {border-left:0.2rem solid #87d54e}
+.checkForm.dep .tab8 .menu {border-left:0.2rem solid #d5ba4e}
+
+.checkForm.dep .sub_menu .licolor1 {background:#53e39e;}
+.checkForm.dep .sub_menu .color1 li{border:1px solid #53e39e}
+.checkForm.dep .sub_menu .color1 label{color:#53e39e}
+.checkForm.dep .sub_menu .licolor2 {background:#87d54e;}
+.checkForm.dep .sub_menu .color2 li{border:1px solid #87d54e}
+.checkForm.dep .sub_menu .color2 label{color:#87d54e}
+.checkForm.dep .sub_menu .licolor3 {background:#7eb3ea;}
+.checkForm.dep .sub_menu .color3 li{border:1px solid #7eb3ea}
+.checkForm.dep .sub_menu .color3 label{color:#7eb3ea}
+.checkForm.dep .sub_menu .licolor4 {background:#d5ba4e;}
+.checkForm.dep .sub_menu .color4 li{border:1px solid #d5ba4e}
+.checkForm.dep .sub_menu .color4 label{color:#d5ba4e}
+.checkForm.dep .sub_menu .licolor5 {background:#53e39e;}
+.checkForm.dep .sub_menu .color5 li{border:1px solid #53e39e}
+.checkForm.dep .sub_menu .color5 label{color:#53e39e}
+.checkForm.dep .sub_menu .licolor6 {background:#b094d2;}
+.checkForm.dep .sub_menu .color6 li{border:1px solid #b094d2}
+.checkForm.dep .sub_menu .color6 label{color:#b094d2}
+.checkForm.dep .sub_menu .licolor7 {background:#87d54e;}
+.checkForm.dep .sub_menu .color7 li{border:1px solid #87d54e}
+.checkForm.dep .sub_menu .color7 label{color:#87d54e}
+.checkForm.dep .sub_menu .licolor8 {background:#d5ba4e;}
+.checkForm.dep .sub_menu .color8 li{border:1px solid #d5ba4e}
+.checkForm.dep .sub_menu .color8 label{color:#d5ba4e}

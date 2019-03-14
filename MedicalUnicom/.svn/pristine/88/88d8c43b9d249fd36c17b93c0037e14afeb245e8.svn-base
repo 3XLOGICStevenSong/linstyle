@@ -1,0 +1,11 @@
+.Emg {padding:0.2rem;font-size:0.45rem;}
+.Emg ul li{margin:0 0 1rem;padding:0 0.5rem;height:1rem;line-height:1rem}
+.Emg ul li span.price{font-size:0.6rem;font-weight:bold;color:#f00}
+
+.Tip{margin:1rem 0 0 0;text-align:center;color:#f00}
+.Tip strong{font-size:0.5rem}
+.Tip p{margin:0.3rem 0 0;font-size:0.4rem;}
+
+.subMit_btn {margin:1rem 0;padding:0 0.2rem;font-size:0.5rem;}
+.subMit_btn span{display:block;height:1.5rem;background:#5caafc;border-radius:5px;line-height:1.5rem;text-align:center;color:#fff}
+

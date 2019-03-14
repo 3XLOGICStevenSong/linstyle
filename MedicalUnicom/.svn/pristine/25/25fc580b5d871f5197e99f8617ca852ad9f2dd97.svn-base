@@ -1,0 +1,105 @@
+package com.djb.ylt.gene.dtoclient;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+public class TestResultClientDTO  extends BaseClientDTO{
+
+
+	private Integer trId;
+
+    private Integer rmId;
+
+    private String geneName;
+
+    private String detectPoint;
+
+    private String classification;
+
+    private String riskType;
+    
+    private String bioFunction;
+    
+    private String chiName;
+
+    public Integer getTrId() {
+        return trId;
+    }
+
+    public void setTrId(Integer trId) {
+        this.trId = trId;
+    }
+
+    public Integer getRmId() {
+        return rmId;
+    }
+
+    public void setRmId(Integer rmId) {
+        this.rmId = rmId;
+    }
+
+    public String getGeneName() {
+        return geneName;
+    }
+
+    public void setGeneName(String geneName) {
+        this.geneName = geneName;
+    }
+
+    public String getDetectPoint() {
+        return detectPoint;
+    }
+
+    public void setDetectPoint(String detectPoint) {
+        this.detectPoint = detectPoint;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+
+    public String getRiskType() {
+        return riskType;
+    }
+
+    public void setRiskType(String riskType) {
+        this.riskType = riskType;
+    }
+
+	/**
+	 * 返回bioFunction的值
+	 * @return String bioFunction的值
+	 */
+	public String getBioFunction() {
+		return bioFunction;
+	}
+
+	/**
+	 * 设置bioFunction的值
+	 * @param  bioFunction bioFunction的值
+	 */
+	public void setBioFunction(String bioFunction) {
+		this.bioFunction = bioFunction;
+	}
+
+	/**
+	 * 返回chiName的值
+	 * @return String chiName的值
+	 */
+	public String getChiName() {
+		return chiName;
+	}
+
+	/**
+	 * 设置chiName的值
+	 * @param  chiName chiName的值
+	 */
+	public void setChiName(String chiName) {
+		this.chiName = chiName;
+	}
+
+   
+}

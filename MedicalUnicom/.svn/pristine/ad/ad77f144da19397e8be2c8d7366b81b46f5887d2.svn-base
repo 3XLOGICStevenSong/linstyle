@@ -1,0 +1,171 @@
+package com.djb.ylt.user.entity;
+
+import com.djb.ylt.framework.entity.PageModel;
+
+public class FollowInterestEntity extends PageModel {
+    /**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = -6448697843249831491L;
+
+	private Integer fId;
+
+    private Integer patientId;
+
+    private Integer doctorId;
+
+    private String fFlag;
+    
+    private DoctorEntity doctorEntity;
+    
+    private Float commentGrade;
+    
+    private String methodFlg;
+
+	private String sortType;
+	
+	private Double minTotal;
+
+	
+    public Integer getfId() {
+        return fId;
+    }
+
+    public void setfId(Integer fId) {
+        this.fId = fId;
+    }
+
+    public Integer getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
+    }
+
+    public Integer getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getfFlag() {
+        return fFlag;
+    }
+
+    public void setfFlag(String fFlag) {
+        this.fFlag = fFlag;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        FollowInterestEntity other = (FollowInterestEntity) that;
+        return (this.getfId() == null ? other.getfId() == null : this.getfId().equals(other.getfId()))
+            && (this.getPatientId() == null ? other.getPatientId() == null : this.getPatientId().equals(other.getPatientId()))
+            && (this.getDoctorId() == null ? other.getDoctorId() == null : this.getDoctorId().equals(other.getDoctorId()))
+            && (this.getfFlag() == null ? other.getfFlag() == null : this.getfFlag().equals(other.getfFlag()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getfId() == null) ? 0 : getfId().hashCode());
+        result = prime * result + ((getPatientId() == null) ? 0 : getPatientId().hashCode());
+        result = prime * result + ((getDoctorId() == null) ? 0 : getDoctorId().hashCode());
+        result = prime * result + ((getfFlag() == null) ? 0 : getfFlag().hashCode());
+        return result;
+    }
+
+	/**
+	 * 返回doctorEntity的值
+	 * @return DoctorEntity doctorEntity的值
+	 */
+	public DoctorEntity getDoctorEntity() {
+		return doctorEntity;
+	}
+
+	/**
+	 * 设置doctorEntity的值
+	 * @param  doctorEntity doctorEntity的值
+	 */
+	public void setDoctorEntity(DoctorEntity doctorEntity) {
+		this.doctorEntity = doctorEntity;
+	}
+
+	/**
+	 * 返回commentGrade的值
+	 * @return Float commentGrade的值
+	 */
+	public Float getCommentGrade() {
+		return commentGrade;
+	}
+
+	/**
+	 * 设置commentGrade的值
+	 * @param  commentGrade commentGrade的值
+	 */
+	public void setCommentGrade(Float commentGrade) {
+		this.commentGrade = commentGrade;
+	}
+
+	/**
+	 * 返回methodFlg的值
+	 * @return String methodFlg的值
+	 */
+	public String getMethodFlg() {
+		return methodFlg;
+	}
+
+	/**
+	 * 设置methodFlg的值
+	 * @param  methodFlg methodFlg的值
+	 */
+	public void setMethodFlg(String methodFlg) {
+		this.methodFlg = methodFlg;
+	}
+
+	/**
+	 * 返回sortType的值
+	 * @return String sortType的值
+	 */
+	public String getSortType() {
+		return sortType;
+	}
+
+	/**
+	 * 设置sortType的值
+	 * @param  sortType sortType的值
+	 */
+	public void setSortType(String sortType) {
+		this.sortType = sortType;
+	}
+
+	/**
+	 * 返回minTotal的值
+	 * @return Double minTotal的值
+	 */
+	public Double getMinTotal() {
+		return minTotal;
+	}
+
+	/**
+	 * 设置minTotal的值
+	 * @param  minTotal minTotal的值
+	 */
+	public void setMinTotal(Double minTotal) {
+		this.minTotal = minTotal;
+	}
+
+}

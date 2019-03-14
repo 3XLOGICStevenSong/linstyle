@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.MedicineAnswerEntity">
+	<resultMap id="MedicineAnswerResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineAnswerEntity">
+		<id column="answer_id" property="answer_id" jdbcType="INTEGER" />
+		<result column="answer_user_name" property="answer_user_name"
+			jdbcType="VARCHAR" />
+		<result column="answer_user_top_pic" property="answer_user_top_pic"
+			jdbcType="VARCHAR" />
+		<result column="question_id" property="question_id" jdbcType="INTEGER" />
+		<result column="answer_user_id" property="userId"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="answer_content" property="answer_content"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="MedicineAnswer_Column_List">
+		answer_id, answer_user_name, answer_user_top_pic,
+		question_id, answer_user_id,
+		create_time,
+		last_modify_time,
+		create_user,
+		last_modify_user,
+		version,answer_content
+	</sql>
+
+
+	<sql id="orderByMedicineAnswerClause">
+		ORDER BY ma.create_time DESC
+	</sql>
+
+	<sql id="MedicineAnswerWhereClause">
+		<if test="answer_id!=null">and ma.answer_id=#{answer_id} </if>
+		<if test="answer_user_name!=null">and ma.answer_user_name=#{answer_user_name} </if>
+		<if test="question_id!=null">and ma.question_id=#{question_id} </if>
+		<if test="userId!=null">and ma.answer_user_id=#{userId} </if>
+	</sql>
+
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.medicine.entity.MedicineAnswerEntity"
+		resultMap="MedicineAnswerResultMap">
+		select
+		<include refid="MedicineAnswer_Column_List" />
+		from medicine_answer ma
+		where 1=1
+		<include refid="MedicineAnswerWhereClause" />
+		<include refid="orderByMedicineAnswerClause" />
+	</select>
+
+
+
+
+	<insert id="insert" parameterType="com.djb.ylt.medicine.entity.MedicineAnswerEntity">
+		insert into medicine_answer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="answer_id != null">
+				answer_id,
+			</if>
+			<if test="answer_user_name != null">
+				answer_user_name,
+			</if>
+			<if test="answer_user_top_pic != null">
+				answer_user_top_pic,
+			</if>
+			<if test="question_id != null">
+				question_id,
+			</if>
+			<if test="userId != null">
+				answer_user_id,
+			</if>
+			<if test="create_time != null">
+				create_time,
+			</if>
+			<if test="last_modify_time != null">
+				last_modify_time,
+			</if>
+			<if test="create_user != null">
+				create_user,
+			</if>
+			<if test="last_modify_user != null">
+				last_modify_user,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="answer_content != null">
+				answer_content,
+			</if>
+
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="answer_id != null">
+				#{answer_id,jdbcType=INTEGER},
+			</if>
+			<if test="answer_user_name != null">
+				#{answer_user_name,jdbcType=VARCHAR},
+			</if>
+			<if test="answer_user_top_pic != null">
+				#{answer_user_top_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="question_id != null">
+				#{question_id,jdbcType=INTEGER},
+			</if>
+			<if test="userId!= null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				#{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="last_modify_time != null">
+				#{last_modify_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="create_user != null">
+				#{create_user,jdbcType=INTEGER},
+			</if>
+			<if test="last_modify_user != null">
+				#{last_modify_user,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=INTEGER},
+			</if>
+			<if test="answer_content != null">
+				#{answer_content,jdbcType=VARCHAR},
+			</if>
+
+		</trim>
+	</insert>
+
+
+	<delete id="delete"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		DELETE FROM medicine_answer
+		where
+		answer_id=#{answer_id}
+	</delete>
+
+	<delete id="deleteBatch"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		DELETE FROM medicine_answer
+		where
+		answer_id=#{answer_id}
+	</delete>
+
+</mapper>

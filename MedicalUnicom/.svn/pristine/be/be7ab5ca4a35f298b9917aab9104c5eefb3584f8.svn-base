@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Patcalend.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/Patcalend.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>预约问诊</h2>
+		</div>
+	</div>
+	 
+	<div id="wrap">
+
+		<div id="container">
+			<div class="contents">
+			
+				<div class="Patcalend">
+					<p class="Description"><span class="condition">请详细说明病情，方便医生诊断。</span></p>
+					<p class="title clearfix"><span class="icon_timer"></span>预约时间</p>
+				</div>
+				
+				<div class="Data">
+					<div class="Fullyear">
+						<span class="left"></span>
+						<span class="right"></span>
+						<h2 id="Settime"><span id="Tm"></span><span id="week"></span></h2>
+					</div>
+					
+					<div id="selTime"></div>
+					
+					<div class="subminBtn">
+						<span class="Btn">确认购买</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

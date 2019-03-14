@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    <id column="SCHEDULE_ID" property="scheduleId" jdbcType="INTEGER" />
+    <result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+    <result column="START_DATE" property="startDate" jdbcType="DATE" />
+    <result column="START_TIME" property="startTime" jdbcType="TIME" />
+    <result column="TIME_INTERVAL" property="timeInterval" jdbcType="VARCHAR" />
+    <result column="APPOINT_STATUS" property="appointStatus" jdbcType="CHAR" />
+    <result column="PATIENT_NUM" property="patientNum" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+     <result column="END_TIME" property="endTime" jdbcType="TIME" />
+      <result column="APPOINT_NUM" property="appointNum" jdbcType="INTEGER" />
+    
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    SCHEDULE_ID, DOCTOR_ID, START_DATE, START_TIME, TIME_INTERVAL, APPOINT_STATUS, PATIENT_NUM, 
+    STATUS, CREATE_TIME, UPDATE_TIME,END_TIME,APPOINT_NUM
+  </sql>
+  <sql id="DoctorScheduleWhereClause">
+		<if test="scheduleId!=null">and SCHEDULE_ID=#{scheduleId} </if>
+		<if test="doctorId!=null">and DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and PATIENT_ID=#{patientId} </if>
+		<if test="startDate!=null">and START_DATE=#{startDate} </if>
+		<if test="timeInterval!=null">and TIME_INTERVAL=#{timeInterval} </if>
+		<if test="startTime!=null">and START_TIME=#{startTime} </if>
+		<if test="appointStatus!=null">and APPOINT_STATUS=#{appointStatus} </if>
+		<if test="status!=null">and STATUS=#{status} </if>
+		<if test="createTime!=null">and CREATE_TIME=#{createTime} </if>
+		<if test="updateTime!=null">and UPDATE_TIME=#{updateTime} </if>
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctor_schedule
+		where 1=1
+		<include refid="DoctorScheduleWhereClause" />
+
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctor_schedule
+		where 1=1 and STATUS='1'  
+		<if test="startDate!=null and endDate!=null">and (START_DATE between #{startDate} and  #{endDate})</if>
+		<!--  <if test="startDate!=null">and START_TIME > CURTIME() </if>-->
+		<if test="doctorId!=null">and DOCTOR_ID=#{doctorId} </if>
+		<if test="appointStatus!=null">and APPOINT_STATUS=#{appointStatus} </if>
+		<if test="startDateArgs!=null">
+			and START_DATE IN
+			<foreach item="item" index="index" collection="startDateArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		ORDER BY  START_DATE ,SCHEDULE_ID
+	</select>
+
+	<select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from doctor_schedule
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor_schedule
+    where SCHEDULE_ID = #{scheduleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="delete" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    delete from doctor_schedule
+    where 1=1 and APPOINT_NUM &lt;= 0
+    <if test="scheduleId!=null">and SCHEDULE_ID=#{scheduleId} </if>
+    <if test="startDate!=null">and START_DATE=#{startDate} </if>
+	<if test="doctorId!=null">and DOCTOR_ID=#{doctorId} </if>
+	<if test="appointStatus!=null">and APPOINT_STATUS=#{appointStatus} </if>
+	<if test="startDateArgs!=null">
+			and START_DATE IN
+			<foreach item="item" index="index" collection="startDateArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+  </delete>
+  <insert id="insert" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    insert into doctor_schedule (SCHEDULE_ID, DOCTOR_ID, START_DATE, 
+      START_TIME, TIME_INTERVAL, APPOINT_STATUS, 
+      PATIENT_NUM, STATUS, CREATE_TIME, 
+      UPDATE_TIME,END_TIME,APPOINT_NUM)
+    values (#{scheduleId,jdbcType=INTEGER}, #{doctorId,jdbcType=INTEGER}, #{startDate,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIME}, #{timeInterval,jdbcType=VARCHAR}, #{appointStatus,jdbcType=CHAR}, 
+      #{patientNum,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, now(), 
+      #{updateTime,jdbcType=TIMESTAMP},#{endTime,jdbcType=TIME},#{appointNum,jdbcType=INTEGER})
+  </insert>
+  
+
+ 
+  <update id="update" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    update doctor_schedule
+    <set >
+      <if test="doctorId != null" >
+        DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="timeInterval != null" >
+        TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="appointStatus != null" >
+        APPOINT_STATUS= #{appointStatus,jdbcType=CHAR},
+      </if>
+      <if test="patientNum != null" >
+        PATIENT_NUM = #{patientNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+       now(),
+      </if>
+           <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIME},
+      </if>
+           <if test="appointNum != null" >
+        APPOINT_NUM = #{appointNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where SCHEDULE_ID = #{scheduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    update doctor_schedule
+    <set >
+      <if test="doctorId != null" >
+        DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="timeInterval != null" >
+        TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="appointStatus != null" >
+        APPOINT_STATUS= #{appointStatus,jdbcType=CHAR},
+      </if>
+      <if test="patientNum != null" >
+        PATIENT_NUM = #{patientNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+       now(),
+      </if>
+           <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIME},
+      </if>
+           <if test="appointNum != null" >
+        APPOINT_NUM = #{appointNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where SCHEDULE_ID = #{scheduleId,jdbcType=INTEGER}
+  </update>
+</mapper>

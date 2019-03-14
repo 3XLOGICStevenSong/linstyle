@@ -1,0 +1,761 @@
+package com.djb.ylt.user.entity;
+
+import java.util.Date;
+import java.util.List;
+
+import com.djb.ylt.framework.entity.BaseEntity;
+import com.djb.ylt.health.entity.InqueryQuestionEntity;
+import com.djb.ylt.health.entity.SymptomEntity;
+
+public class RecordsEntity extends BaseEntity {
+
+	/**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer recordsId;
+
+	private Integer appointId;
+
+	private String result;
+
+	private String guidance;
+
+	private String analysis;
+
+	private String inquiryStatus;
+
+	private String symptonDescribe;
+
+	private String doctorMemo;
+
+	private Date appointTime;
+
+	private Date startTime;
+
+	private Date endTime;
+
+	private String commentContent;
+
+	private Float commentGrade;
+
+	private String role;
+
+	private String recordsType;
+
+	private Date createTime;
+
+	private Date updateTime;
+
+	private String telNum;
+
+	private SymptomEntity symptomEntity;
+
+	private DoctorEntity doctorEntity;
+
+	private AppointInquiryEntity appointInqueryEntity;
+
+	private Integer departmentId;
+
+	private Integer patientId;
+
+	private Integer scheduleId;
+
+	private String inquiryPic;
+
+	private String images;
+	
+	private String memo;
+	
+	private String upFlag;
+
+	private List<InqueryQuestionEntity> inqueryQuestionEntitys;
+	
+	private Integer schId;
+	
+	private Integer patschId;
+
+	private String reasonMemo;
+	
+	private Integer refundId;
+	
+	private String refundReason;
+	
+	private Integer doctorId;
+	
+	private String patientFlag;
+	
+	private String doctorFlag;
+	
+	private String ddelFlag;
+	
+	private String pdelFlag;
+	
+	private String outTradeNum;
+	
+	private PatientEntity patientEntity;
+
+	private String refundNum;
+	
+	private String readFlag;
+	
+	
+	public Integer getRecordsId() {
+		return recordsId;
+	}
+
+	public void setRecordsId(Integer recordsId) {
+		this.recordsId = recordsId;
+	}
+
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getGuidance() {
+		return guidance;
+	}
+
+	public void setGuidance(String guidance) {
+		this.guidance = guidance;
+	}
+
+	public String getAnalysis() {
+		return analysis;
+	}
+
+	public void setAnalysis(String analysis) {
+		this.analysis = analysis;
+	}
+
+	public String getInquiryStatus() {
+		return inquiryStatus;
+	}
+
+	public void setInquiryStatus(String inquiryStatus) {
+		this.inquiryStatus = inquiryStatus;
+	}
+
+	public String getSymptonDescribe() {
+		return symptonDescribe;
+	}
+
+	public void setSymptonDescribe(String symptonDescribe) {
+		this.symptonDescribe = symptonDescribe;
+	}
+
+	public String getDoctorMemo() {
+		return doctorMemo;
+	}
+
+	public void setDoctorMemo(String doctorMemo) {
+		this.doctorMemo = doctorMemo;
+	}
+
+	public Date getAppointTime() {
+		return appointTime;
+	}
+
+	public void setAppointTime(Date appointTime) {
+		this.appointTime = appointTime;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getCommentContent() {
+		return commentContent;
+	}
+
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
+
+	public Float getCommentGrade() {
+		return commentGrade;
+	}
+
+	public void setCommentGrade(Float commentGrade) {
+		this.commentGrade = commentGrade;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getRecordsType() {
+		return recordsType;
+	}
+
+	public void setRecordsType(String recordsType) {
+		this.recordsType = recordsType;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getTelNum() {
+		return telNum;
+	}
+
+	public void setTelNum(String telNum) {
+		this.telNum = telNum;
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (getClass() != that.getClass()) {
+			return false;
+		}
+		RecordsEntity other = (RecordsEntity) that;
+		return (this.getRecordsId() == null ? other.getRecordsId() == null
+				: this.getRecordsId().equals(other.getRecordsId()))
+				&& (this.getAppointId() == null ? other.getAppointId() == null
+						: this.getAppointId().equals(other.getAppointId()))
+				&& (this.getResult() == null ? other.getResult() == null : this.getResult().equals(other.getResult()))
+				&& (this.getGuidance() == null ? other.getGuidance() == null
+						: this.getGuidance().equals(other.getGuidance()))
+				&& (this.getAnalysis() == null ? other.getAnalysis() == null
+						: this.getAnalysis().equals(other.getAnalysis()))
+				&& (this.getInquiryStatus() == null ? other.getInquiryStatus() == null
+						: this.getInquiryStatus().equals(other.getInquiryStatus()))
+				&& (this.getSymptonDescribe() == null ? other.getSymptonDescribe() == null
+						: this.getSymptonDescribe().equals(other.getSymptonDescribe()))
+				&& (this.getDoctorMemo() == null ? other.getDoctorMemo() == null
+						: this.getDoctorMemo().equals(other.getDoctorMemo()))
+				&& (this.getAppointTime() == null ? other.getAppointTime() == null
+						: this.getAppointTime().equals(other.getAppointTime()))
+				&& (this.getStartTime() == null ? other.getStartTime() == null
+						: this.getStartTime().equals(other.getStartTime()))
+				&& (this.getEndTime() == null ? other.getEndTime() == null
+						: this.getEndTime().equals(other.getEndTime()))
+				&& (this.getCommentContent() == null ? other.getCommentContent() == null
+						: this.getCommentContent().equals(other.getCommentContent()))
+				&& (this.getCommentGrade() == null ? other.getCommentGrade() == null
+						: this.getCommentGrade().equals(other.getCommentGrade()))
+				&& (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
+				&& (this.getRecordsType() == null ? other.getRecordsType() == null
+						: this.getRecordsType().equals(other.getRecordsType()))
+				&& (this.getCreateTime() == null ? other.getCreateTime() == null
+						: this.getCreateTime().equals(other.getCreateTime()))
+				&& (this.getUpdateTime() == null ? other.getUpdateTime() == null
+						: this.getUpdateTime().equals(other.getUpdateTime()))
+				&& (this.getTelNum() == null ? other.getTelNum() == null : this.getTelNum().equals(other.getTelNum()));
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getRecordsId() == null) ? 0 : getRecordsId().hashCode());
+		result = prime * result + ((getAppointId() == null) ? 0 : getAppointId().hashCode());
+		result = prime * result + ((getResult() == null) ? 0 : getResult().hashCode());
+		result = prime * result + ((getGuidance() == null) ? 0 : getGuidance().hashCode());
+		result = prime * result + ((getAnalysis() == null) ? 0 : getAnalysis().hashCode());
+		result = prime * result + ((getInquiryStatus() == null) ? 0 : getInquiryStatus().hashCode());
+		result = prime * result + ((getSymptonDescribe() == null) ? 0 : getSymptonDescribe().hashCode());
+		result = prime * result + ((getDoctorMemo() == null) ? 0 : getDoctorMemo().hashCode());
+		result = prime * result + ((getAppointTime() == null) ? 0 : getAppointTime().hashCode());
+		result = prime * result + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
+		result = prime * result + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+		result = prime * result + ((getCommentContent() == null) ? 0 : getCommentContent().hashCode());
+		result = prime * result + ((getCommentGrade() == null) ? 0 : getCommentGrade().hashCode());
+		result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());
+		result = prime * result + ((getRecordsType() == null) ? 0 : getRecordsType().hashCode());
+		result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+		result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+		result = prime * result + ((getTelNum() == null) ? 0 : getTelNum().hashCode());
+		return result;
+	}
+
+	/**
+	 * 返回symptomEntity的值
+	 * 
+	 * @return SymptomEntity symptomEntity的值
+	 */
+	public SymptomEntity getSymptomEntity() {
+		return symptomEntity;
+	}
+
+	/**
+	 * 设置symptomEntity的值
+	 * 
+	 * @param symptomEntity
+	 *            symptomEntity的值
+	 */
+	public void setSymptomEntity(SymptomEntity symptomEntity) {
+		this.symptomEntity = symptomEntity;
+	}
+
+	/**
+	 * 返回doctorEntity的值
+	 * 
+	 * @return DoctorEntity doctorEntity的值
+	 */
+	public DoctorEntity getDoctorEntity() {
+		return doctorEntity;
+	}
+
+	/**
+	 * 设置doctorEntity的值
+	 * 
+	 * @param doctorEntity
+	 *            doctorEntity的值
+	 */
+	public void setDoctorEntity(DoctorEntity doctorEntity) {
+		this.doctorEntity = doctorEntity;
+	}
+
+	/**
+	 * 返回appointInqueryEntity的值
+	 * 
+	 * @return AppointInquiryEntity appointInqueryEntity的值
+	 */
+	public AppointInquiryEntity getAppointInqueryEntity() {
+		return appointInqueryEntity;
+	}
+
+	/**
+	 * 设置appointInqueryEntity的值
+	 * 
+	 * @param appointInqueryEntity
+	 *            appointInqueryEntity的值
+	 */
+	public void setAppointInqueryEntity(AppointInquiryEntity appointInqueryEntity) {
+		this.appointInqueryEntity = appointInqueryEntity;
+	}
+
+	/**
+	 * 返回inqueryQuestionEntitys的值
+	 * 
+	 * @return List<InqueryQuestionEntity> inqueryQuestionEntitys的值
+	 */
+	public List<InqueryQuestionEntity> getInqueryQuestionEntitys() {
+		return inqueryQuestionEntitys;
+	}
+
+	/**
+	 * 设置inqueryQuestionEntitys的值
+	 * 
+	 * @param inqueryQuestionEntitys
+	 *            inqueryQuestionEntitys的值
+	 */
+	public void setInqueryQuestionEntitys(List<InqueryQuestionEntity> inqueryQuestionEntitys) {
+		this.inqueryQuestionEntitys = inqueryQuestionEntitys;
+	}
+
+	/**
+	 * 返回departmentId的值
+	 * 
+	 * @return Integer departmentId的值
+	 */
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	/**
+	 * 设置departmentId的值
+	 * 
+	 * @param departmentId
+	 *            departmentId的值
+	 */
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	/**
+	 * 返回patientId的值
+	 * 
+	 * @return Integer patientId的值
+	 */
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	/**
+	 * 设置patientId的值
+	 * 
+	 * @param patientId
+	 *            patientId的值
+	 */
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+
+	/**
+	 * 返回scheduleId的值
+	 * 
+	 * @return Integer scheduleId的值
+	 */
+	public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	/**
+	 * 设置scheduleId的值
+	 * 
+	 * @param scheduleId
+	 *            scheduleId的值
+	 */
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	/**
+	 * 返回inquiryPic的值
+	 * 
+	 * @return String inquiryPic的值
+	 */
+	public String getInquiryPic() {
+		return inquiryPic;
+	}
+
+	/**
+	 * 设置inquiryPic的值
+	 * 
+	 * @param inquiryPic
+	 *            inquiryPic的值
+	 */
+	public void setInquiryPic(String inquiryPic) {
+		this.inquiryPic = inquiryPic;
+	}
+
+	/**
+	 * 返回images的值
+	 * 
+	 * @return String images的值
+	 */
+	public String getImages() {
+		return images;
+	}
+
+	/**
+	 * 设置images的值
+	 * 
+	 * @param images
+	 *            images的值
+	 */
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	/**
+	 * 返回memo的值
+	 * 
+	 * @return String memo的值
+	 */
+	public String getMemo() {
+		return memo;
+	}
+
+	/**
+	 * 设置memo的值
+	 * 
+	 * @param memo
+	 *            memo的值
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	/**
+	 * 返回schId的值
+	 * @return Integer schId的值
+	 */
+	public Integer getSchId() {
+		return schId;
+	}
+
+	/**
+	 * 设置schId的值
+	 * @param  schId schId的值
+	 */
+	public void setSchId(Integer schId) {
+		this.schId = schId;
+	}
+
+	/**
+	 * 返回upFlag的值
+	 * @return String upFlag的值
+	 */
+	public String getUpFlag() {
+		return upFlag;
+	}
+
+	/**
+	 * 设置upFlag的值
+	 * @param  upFlag upFlag的值
+	 */
+	public void setUpFlag(String upFlag) {
+		this.upFlag = upFlag;
+	}
+
+	/**
+	 * 返回patschId的值
+	 * @return Integer patschId的值
+	 */
+	public Integer getPatschId() {
+		return patschId;
+	}
+
+	/**
+	 * 设置patschId的值
+	 * @param  patschId patschId的值
+	 */
+	public void setPatschId(Integer patschId) {
+		this.patschId = patschId;
+	}
+
+	/**
+	 * 返回reasonMemo的值
+	 * @return String reasonMemo的值
+	 */
+	public String getReasonMemo() {
+		return reasonMemo;
+	}
+
+	/**
+	 * 设置reasonMemo的值
+	 * @param  reasonMemo reasonMemo的值
+	 */
+	public void setReasonMemo(String reasonMemo) {
+		this.reasonMemo = reasonMemo;
+	}
+
+	/**
+	 * 返回refundId的值
+	 * @return Integer refundId的值
+	 */
+	public Integer getRefundId() {
+		return refundId;
+	}
+
+	/**
+	 * 设置refundId的值
+	 * @param  refundId refundId的值
+	 */
+	public void setRefundId(Integer refundId) {
+		this.refundId = refundId;
+	}
+
+	/**
+	 * 返回refundReason的值
+	 * @return String refundReason的值
+	 */
+	public String getRefundReason() {
+		return refundReason;
+	}
+
+	/**
+	 * 设置refundReason的值
+	 * @param  refundReason refundReason的值
+	 */
+	public void setRefundReason(String refundReason) {
+		this.refundReason = refundReason;
+	}
+
+	/**
+	 * 返回doctorId的值
+	 * @return Integer doctorId的值
+	 */
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	/**
+	 * 设置doctorId的值
+	 * @param  doctorId doctorId的值
+	 */
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	/**
+	 * 返回patientFlag的值
+	 * @return String patientFlag的值
+	 */
+	public String getPatientFlag() {
+		return patientFlag;
+	}
+
+	/**
+	 * 设置patientFlag的值
+	 * @param  patientFlag patientFlag的值
+	 */
+	public void setPatientFlag(String patientFlag) {
+		this.patientFlag = patientFlag;
+	}
+
+	/**
+	 * 返回doctorFlag的值
+	 * @return String doctorFlag的值
+	 */
+	public String getDoctorFlag() {
+		return doctorFlag;
+	}
+
+	/**
+	 * 设置doctorFlag的值
+	 * @param  doctorFlag doctorFlag的值
+	 */
+	public void setDoctorFlag(String doctorFlag) {
+		this.doctorFlag = doctorFlag;
+	}
+
+	/**
+	 * 返回patientEntity的值
+	 * @return PatientEntity patientEntity的值
+	 */
+	public PatientEntity getPatientEntity() {
+		return patientEntity;
+	}
+
+	/**
+	 * 设置patientEntity的值
+	 * @param  patientEntity patientEntity的值
+	 */
+	public void setPatientEntity(PatientEntity patientEntity) {
+		this.patientEntity = patientEntity;
+	}
+
+	/**
+	 * 返回ddelFlag的值
+	 * @return String ddelFlag的值
+	 */
+	public String getDdelFlag() {
+		return ddelFlag;
+	}
+
+	/**
+	 * 设置ddelFlag的值
+	 * @param  ddelFlag ddelFlag的值
+	 */
+	public void setDdelFlag(String ddelFlag) {
+		this.ddelFlag = ddelFlag;
+	}
+
+	/**
+	 * 返回pdelFlag的值
+	 * @return String pdelFlag的值
+	 */
+	public String getPdelFlag() {
+		return pdelFlag;
+	}
+
+	/**
+	 * 设置pdelFlag的值
+	 * @param  pdelFlag pdelFlag的值
+	 */
+	public void setPdelFlag(String pdelFlag) {
+		this.pdelFlag = pdelFlag;
+	}
+
+	/**
+	 * 返回outTradeNum的值
+	 * @return String outTradeNum的值
+	 */
+	public String getOutTradeNum() {
+		return outTradeNum;
+	}
+
+	/**
+	 * 设置outTradeNum的值
+	 * @param  outTradeNum outTradeNum的值
+	 */
+	public void setOutTradeNum(String outTradeNum) {
+		this.outTradeNum = outTradeNum;
+	}
+
+	/**
+	 * 返回refundNum的值
+	 * @return String refundNum的值
+	 */
+	public String getRefundNum() {
+		return refundNum;
+	}
+
+	/**
+	 * 设置refundNum的值
+	 * @param  refundNum refundNum的值
+	 */
+	public void setRefundNum(String refundNum) {
+		this.refundNum = refundNum;
+	}
+
+	/**
+	 * 返回readFlag的值
+	 * @return String readFlag的值
+	 */
+	public String getReadFlag() {
+		return readFlag;
+	}
+
+	/**
+	 * 设置readFlag的值
+	 * @param  readFlag readFlag的值
+	 */
+	public void setReadFlag(String readFlag) {
+		this.readFlag = readFlag;
+	}
+
+	/**
+	 * 返回appointId的值
+	 * @return Integer appointId的值
+	 */
+	public Integer getAppointId() {
+		return appointId;
+	}
+
+	/**
+	 * 设置appointId的值
+	 * @param  appointId appointId的值
+	 */
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
+	}
+
+
+
+}

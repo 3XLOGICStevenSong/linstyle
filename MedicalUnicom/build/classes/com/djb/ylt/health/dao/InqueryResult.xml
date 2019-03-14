@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.InqueryResultEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.health.entity.InqueryResultEntity" >
+    <id column="IR_ID" property="irId" jdbcType="INTEGER" />
+    <result column="IQ_ID" property="iqId" jdbcType="INTEGER" />
+    <result column="IR_NAME" property="irName" jdbcType="VARCHAR" />
+    <result column="IR_MEMO" property="irMemo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IR_STATUS" property="irStatus" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IR_ID, IQ_ID, IR_NAME, IR_MEMO, CREATE_TIME, IR_STATUS
+  </sql>
+ 
+  <delete id="delete" parameterType="com.djb.ylt.health.entity.InqueryResultEntity" >
+    delete from inquery_result
+    where IR_ID = #{irId,jdbcType=INTEGER}
+ </delete>
+  <insert id="insert" parameterType="com.djb.ylt.health.entity.InqueryResultEntity" >
+    insert into inquery_result (IR_ID, IQ_ID, IR_NAME, 
+      IR_MEMO, CREATE_TIME, IR_STATUS
+      )
+    values (#{irId,jdbcType=INTEGER}, #{iqId,jdbcType=INTEGER}, #{irName,jdbcType=VARCHAR}, 
+      #{irMemo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{irStatus,jdbcType=CHAR}
+      )
+  </insert>
+  <update id="update" parameterType="com.djb.ylt.health.entity.InqueryResultEntity" >
+    update inquery_result
+    <set >
+      <if test="iqId != null" >
+        IQ_ID = #{iqId,jdbcType=INTEGER},
+      </if>
+      <if test="irName != null" >
+        IR_NAME = #{irName,jdbcType=VARCHAR},
+      </if>
+      <if test="irMemo != null" >
+        IR_MEMO = #{irMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="irStatus != null" >
+        IR_STATUS = #{irStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where IR_ID = #{irId,jdbcType=INTEGER}
+  </update>
+</mapper>

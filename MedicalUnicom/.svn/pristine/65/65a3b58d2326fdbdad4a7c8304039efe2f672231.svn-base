@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>私人医生</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/PrdocList.css" />
+	<script type="text/javascript">
+	window.onload=function(){
+	var Mlist=document.getElementsByClassName("info");
+		for(i=0;i<Mlist.length;i++){
+			Mlist[i].onclick=function(){
+				window.location.href="PrdocInfo.html";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>私人医生</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="Prdoc">
+					<ul>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="img/photo.jpg"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">陈淑娟</strong>
+										<span>内科</span>
+										<span>消化内科</span>
+									</li>
+									<li>
+										<strong class="docTitle">职称: <span>副主任</span></strong>
+										<strong class="docProfile">简介: <span>胃肠道间质肿瘤的诊治。</span></strong>
+									</li>
+								</ul>
+								<div class="Price">
+									<p>100元/30天</p>
+									<p class="videoCam clearfix"><span class="cam_icon"></span>剩余<span class="count">1</span>天</p>
+									<p class="calling clearfix"><span class="call_icon"></span>剩余<span class="count">3</span>天</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="img/photo.jpg"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">陈淑娟</strong>
+										<span>内科</span>
+										<span>消化内科</span>
+									</li>
+									<li>
+										<strong class="docTitle">职称: <span>副主任</span></strong>
+										<strong class="docProfile">简介: <span>胃肠道间质肿瘤的诊治。</span></strong>
+									</li>
+								</ul>
+								<div class="Price">
+									<p>100元/30天</p>
+									<p class="videoCam clearfix"><span class="cam_icon"></span>剩余<span class="count">1</span>天</p>
+									<p class="calling clearfix"><span class="call_icon"></span>剩余<span class="count">3</span>天</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="img/photo.jpg"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">陈淑娟</strong>
+										<span>内科</span>
+										<span>消化内科</span>
+									</li>
+									<li>
+										<strong class="docTitle">职称: <span>副主任</span></strong>
+										<strong class="docProfile">简介: <span>胃肠道间质肿瘤的诊治。</span></strong>
+									</li>
+								</ul>
+								<div class="Price">
+									<p>100元/30天</p>
+									<p class="videoCam clearfix"><span class="cam_icon"></span>剩余<span class="count">1</span>天</p>
+									<p class="calling clearfix"><span class="call_icon"></span>剩余<span class="count">3</span>天</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="img/photo.jpg"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">陈淑娟</strong>
+										<span>内科</span>
+										<span>消化内科</span>
+									</li>
+									<li>
+										<strong class="docTitle">职称: <span>副主任</span></strong>
+										<strong class="docProfile">简介: <span>胃肠道间质肿瘤的诊治。</span></strong>
+									</li>
+								</ul>
+								<div class="Price">
+									<p>100元/30天</p>
+									<p class="videoCam clearfix"><span class="cam_icon"></span>剩余<span class="count">1</span>天</p>
+									<p class="calling clearfix"><span class="call_icon"></span>剩余<span class="count">3</span>天</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

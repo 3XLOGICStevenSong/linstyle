@@ -1,0 +1,13 @@
+.MyMeblist {background:#fff}
+.MyMeblist .info {position:relative;border-bottom:1px solid #d0d0d0}
+.MyMeblist .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.MyMeblist .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.MyMeblist .info ul{display:inline-block;padding:0.2rem 0;vertical-align:top;font-size:0.4rem;}
+.MyMeblist .info ul li {padding:0 0 0.3rem;}
+.MyMeblist .info ul li.frt strong{font-weight:bold;}
+.MyMeblist .info ul li strong{font-weight:normal;}
+.MyMeblist .info ul li.frt strong span{font-weight:bold}
+.MyMeblist .info ul li strong span{font-weight:bold}
+.MyMeblist .info ul li strong.Sex{margin:0 0.5rem 0 0}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;background: #fff;border-top:1px solid #999;border-bottom:1px solid #999;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.gene.entity.TestResultEntity">
+	<resultMap id="TestResultResultMap" type="com.djb.ylt.gene.entity.TestResultEntity">
+		<id column="TR_ID" jdbcType="INTEGER" property="trId" />
+		<result column="RM_ID" jdbcType="INTEGER" property="rmId" />
+		<result column="GENE_NAME" jdbcType="VARCHAR" property="geneName" />
+		<result column="DETECT_POINT" jdbcType="VARCHAR" property="detectPoint" />
+		<result column="CLASSIFICATION" jdbcType="VARCHAR" property="classification" />
+		<result column="RISK_TYPE" jdbcType="VARCHAR" property="riskType" />
+		<result column="BIO_FUNCTION" jdbcType="VARCHAR" property="bioFunction" />
+		<result column="CHI_NAME" jdbcType="VARCHAR" property="chiName" />
+		
+		
+	</resultMap>
+
+	<sql id="TestResult_Column_List">
+		TR_ID, RM_ID, GENE_NAME, DETECT_POINT, CLASSIFICATION, RISK_TYPE,BIO_FUNCTION,CHI_NAME
+	</sql>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from test_result
+		where TR_ID = #{trId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.ylt.gene.entity.TestResultEntity">
+		insert into test_result (TR_ID, RM_ID, GENE_NAME,
+		DETECT_POINT, CLASSIFICATION, RISK_TYPE,BIO_FUNCTION,CHI_NAME
+		)
+		values (#{trId,jdbcType=INTEGER}, #{rmId,jdbcType=INTEGER},
+		#{geneName,jdbcType=VARCHAR},
+		#{detectPoint,jdbcType=VARCHAR}, #{classification,jdbcType=VARCHAR}, #{riskType,jdbcType=VARCHAR},
+		#{bioFunction,jdbcType=VARCHAR},#{chiName,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.gene.entity.TestResultEntity">
+		update test_result
+		<set>
+			<if test="rmId != null">
+				RM_ID = #{rmId,jdbcType=INTEGER},
+			</if>
+			<if test="geneName != null">
+				GENE_NAME = #{geneName,jdbcType=VARCHAR},
+			</if>
+			<if test="detectPoint != null">
+				DETECT_POINT = #{detectPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="classification != null">
+				CLASSIFICATION = #{classification,jdbcType=VARCHAR},
+			</if>
+			<if test="riskType != null">
+				RISK_TYPE = #{riskType,jdbcType=VARCHAR},
+			</if>
+			<if test="bioFunction != null">
+				BIO_FUNCTION = #{bioFunction,jdbcType=VARCHAR},
+			</if>
+			<if test="chiName != null">
+				CHI_NAME = #{chiName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TR_ID = #{trId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

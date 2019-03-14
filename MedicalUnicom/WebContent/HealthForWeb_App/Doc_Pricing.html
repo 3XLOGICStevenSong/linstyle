@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/Dpricing.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxDocPricing.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<!--span class="next"><a href="#none">保存</a></span-->
+			<h2>我的定价</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="complate">
+					<form action="" method="get" >
+						<div class="video">
+							<p class="clearfix"><span class="icon"></span>视频问诊</p>
+							<p><input type="text" class="Vmoney" /> 元 / 次 <span class="radius">5分钟内有效</span></p>
+						</div>
+						<div class="tell">
+							<p class="clearfix"><span class="icon"></span>电话问诊</p>
+							<p><input type="text" class="Cmoney" /> 元 / 次 <span class="radius">5分钟/次</span></p>
+						</div>
+						<div class="private">
+							<p class="clearfix"><span class="icon"></span>私人医生</p>
+							<p class="vcall">
+								视频问诊
+								<input type="text" name="quantity" class="quantity_vid" /> 次
+								<span class="radius">5分钟内有效</span>
+							</p>
+							<p class="call">
+								电话问诊
+								<input type="text" name="quantity" class="quantity_call" /> 次
+								<span class="radius">5分钟/次</span>
+							</p>
+							<p class="totalPrice">
+								<span><input type="text" class="total" /> 元 /</span>
+								<span><input type="text" class="day" /> 天</span>
+							</p>
+						</div>
+						
+					</form>
+					<p class="tip">已定价，不可更改</p>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

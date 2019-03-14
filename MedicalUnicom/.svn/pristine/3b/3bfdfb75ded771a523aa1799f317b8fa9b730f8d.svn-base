@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.RefundReasonEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.RefundReasonEntity" >
+    <id column="REASON_ID" property="reasonId" jdbcType="INTEGER" />
+    <result column="REASON_CONTENT" property="reasonContent" jdbcType="VARCHAR" />
+    <result column="REASON_FLAG" property="reasonFlag" jdbcType="CHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    REASON_ID, REASON_CONTENT, REASON_FLAG
+  </sql>
+ 
+  <insert id="insert" parameterType="com.djb.ylt.user.entity.RefundReasonEntity" >
+    insert into refund_reason (REASON_ID, REASON_CONTENT, REASON_FLAG
+      )
+    values (#{reasonId,jdbcType=INTEGER}, #{reasonContent,jdbcType=VARCHAR}, #{reasonFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <update id="update" parameterType="com.djb.ylt.user.entity.RefundReasonEntity" >
+    update refund_reason
+    <set >
+      <if test="reasonContent != null" >
+        REASON_CONTENT = #{reasonContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonFlag != null" >
+        REASON_FLAG = #{reasonFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where REASON_ID = #{reasonId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from refund_reason 
+		WHERE 1=1 and REASON_FLAG='1'
+	</select>
+</mapper>

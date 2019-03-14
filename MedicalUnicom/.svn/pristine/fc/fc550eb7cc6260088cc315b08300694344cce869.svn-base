@@ -1,0 +1,174 @@
+package com.djb.ylt.main_page.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.common.util.Constants;
+import com.djb.ylt.common.util.ResourceLocator;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.main_page.dto.CarouselDTO;
+import com.djb.ylt.main_page.dtoclient.CarouselClientDTO;
+import com.djb.ylt.main_page.dtoclient.CarouselListClientDTO;
+import com.djb.ylt.main_page.dtoclient.RoleClientDTO;
+import com.djb.ylt.main_page.entity.CarouselEntity;
+import com.djb.ylt.main_page.entity.ServiceHotlineEntity;
+import com.djb.ylt.main_page.service.ICarouselService;
+import com.djb.ylt.main_page.service.IServiceHotlineService;
+
+/**
+ * @date 2016年12月13日 下午6:01:59
+ * @author chengming 
+ * 内容： android端首页轮播图
+ * 修改履历：2016年12月13日 下午6:01:59 chengming android端首页轮播图的请求action
+ */
+@Controller("/Carousel")
+public class CarouselAction extends BaseAction {
+	@Autowired
+	@Qualifier("carouselService")
+	private ICarouselService iCarouselService;
+	
+	@Autowired
+	@Qualifier("serviceHotlineService")
+	private IServiceHotlineService iServiceHotlineService;
+	
+	/**
+	 * 
+	* @Title: doGetCarousel 
+	* @Description:(方法描述) android端首页轮播图的action处理
+	* @param mapping
+	* @param form url的参数
+	* @param request
+	* @param response
+	* @return
+	* @throws Exception
+	* @return ActionForward(返回类型 )
+	* @throws
+	 */
+	public ActionForward doGetCarousel(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// 参数DTO
+		CarouselDTO paramDTO = (CarouselDTO) form;
+		// 参数Entity
+		CarouselEntity paramEntity = new CarouselEntity();
+		// 结果实体
+		List<CarouselEntity> resultEntity = null;
+		// 结果
+		CarouselListClientDTO resultClientDTO = new CarouselListClientDTO();
+
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		try {
+			resultEntity = iCarouselService.getCarouselList(paramEntity);
+			if (resultEntity != null && resultEntity.size() > 0) {
+				CommonUtil.reflectClass(resultEntity, resultClientDTO);
+				List<CarouselClientDTO> carouselClientDTOs = new ArrayList<CarouselClientDTO>();
+				for (CarouselEntity cEntity : resultEntity) {
+					CarouselClientDTO carouselClientDTO = new CarouselClientDTO();
+					if (cEntity.getCarouselUrl()!=null) {
+						cEntity.setCarouselUrl(ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS)
+								+ cEntity.getCarouselUrl());
+					}
+					// 修改履历：2016年12月22日 下午1:53:29 chengming start
+					if (cEntity.getCarouselHtml()!=null) {
+						cEntity.setCarouselHtml(ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS)
+								+ cEntity.getCarouselHtml());
+					}
+					// 修改履历：2016年12月22日 下午1:53:29 chengming end
+					RoleClientDTO resultRoleClientDTO = new RoleClientDTO();
+					resultRoleClientDTO.setRoleId(cEntity.getRoleEntity().getRoleId());
+					resultRoleClientDTO.setRoleName(cEntity.getRoleEntity().getRoleName());
+					carouselClientDTO.setCarouselId(cEntity.getCarouselId());
+					carouselClientDTO.setCarouselUrl(cEntity.getCarouselUrl());
+					carouselClientDTO.setRoleId(cEntity.getRoleId());
+					carouselClientDTO.setRoleClientDTO(resultRoleClientDTO);
+					// 修改履历：2016年12月22日 下午1:53:29 chengming start
+					carouselClientDTO.setCarouselHtml(cEntity.getCarouselHtml());
+					// 修改履历：2016年12月22日 下午1:53:29 chengming end
+					carouselClientDTOs.add(carouselClientDTO);
+				}
+				resultClientDTO.setCarouselClientDTOs(carouselClientDTOs);
+			}
+			ServiceHotlineEntity  serviceHotlineEntity =new ServiceHotlineEntity();
+			serviceHotlineEntity=iServiceHotlineService.getServiceHotline();
+			if(serviceHotlineEntity!=null){
+				resultClientDTO.setHotLine(serviceHotlineEntity.getHotLine());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-1000");
+
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+		return null;
+	}
+	// 2016年12月13日 下午6:01:59 chengming android端首页轮播图的请求action end
+	
+	/**
+	 * 
+	* @Title: doGetCarouselDetailed 
+	* @Description:(方法描述) android端首页轮播图的action处理
+	* @param mapping
+	* @param form url的参数
+	* @param request
+	* @param response
+	* @return
+	* @throws Exception
+	* @return ActionForward(返回类型 )
+	* @throws
+	 */
+	public ActionForward doGetCarouselDetailed(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 结果实体
+		CarouselEntity resultEntity = null;
+		// 结果
+		CarouselClientDTO resultClientDTO = new CarouselClientDTO();
+		// 返回值初期设定
+		resultClientDTO.setReturnCode("0");
+		try {
+			resultEntity = iCarouselService.getCarouselData();
+			if (resultEntity != null) {
+				CommonUtil.reflectClass(resultEntity, resultClientDTO);
+					if (resultEntity.getCarouselUrl()!=null) {
+						resultEntity.setCarouselUrl(ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS)
+								+ resultEntity.getCarouselUrl());
+					}
+					if (resultEntity.getCarouselHtml()!=null) {
+						resultEntity.setCarouselHtml(ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS)
+								+ resultEntity.getCarouselHtml());
+					}
+
+					resultClientDTO.setCarouselId(resultEntity.getCarouselId());
+					resultClientDTO.setCarouselUrl(resultEntity.getCarouselUrl());
+					//resultClientDTO.setRoleId(resultEntity.getRoleId());
+					resultClientDTO.setCarouselHtml(resultEntity.getCarouselHtml());
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultClientDTO.setReturnCode("-8001");
+		}
+
+		// 返回结果
+		toJson(response, resultClientDTO);
+		return null;
+	}
+	// 2017年04月14日 下午14:01:59 fanzeng android端首页轮播图的请求action end
+}

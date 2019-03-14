@@ -1,0 +1,119 @@
+package com.djb.ylt.user.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.user.dao.IDoctorDao;
+
+import com.djb.ylt.user.entity.DoctorEntity;
+
+
+@Service("iDoctorService")
+public class DoctorServiceImpl extends BaseService implements IDoctorService {
+
+    @Autowired
+    @Qualifier("doctorDao")
+    private IDoctorDao doctorDao;
+	@Override
+	public void addDoctor(DoctorEntity doctor) {
+		
+		// TODO Auto-generated method stub
+		  try {
+			  doctorDao.insert(doctor);
+	        } catch (KeyExistException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+
+	@Override
+	public void deleteDoctor(DoctorEntity doctor) {
+		
+		try {
+			doctorDao.delete(doctor);
+        } catch (DataNotFoundException e) {
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+        }
+		
+	}
+
+	@Override
+	public void deleteDoctorBatch(List<DoctorEntity> list) {
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateDoctor(DoctorEntity doctor) {
+		
+		 try {
+			 doctorDao.update(doctor);
+	        } catch (DataNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+
+	@Override
+	public DoctorEntity getObject(DoctorEntity doctor) {
+		
+		  return doctorDao.getObject(doctor);
+		
+	}
+
+	@Override
+	public List<DoctorEntity> getDoctorList() {
+		
+        return (List<DoctorEntity>) doctorDao.findList();
+	}
+
+	@Override
+	public List<DoctorEntity> getDoctorList(DoctorEntity doctor) {
+		 List<DoctorEntity> list = (List<DoctorEntity>) doctorDao.findListByCondition(doctor);
+	        return list;
+	}
+
+	@Override
+	public DoctorEntity getDoctorInfo(DoctorEntity doctor) {
+		 return doctorDao.getOtherObject(IDoctorDao.GETDOCTORINFO, doctor,DoctorEntity.class);
+	}
+
+	@Override
+	public DoctorEntity getDoctorTel(DoctorEntity doctor) {
+		return doctorDao.getOtherObject(IDoctorDao.GETDOCTORTEL, doctor,DoctorEntity.class);
+	}
+
+	@Override
+	public List<DoctorEntity> getDoctorListByDepId(DoctorEntity doctor) {
+		
+		 List<DoctorEntity> list = (List<DoctorEntity>) doctorDao.findOtherList(IDoctorDao.FINDLISTBYDEPID, doctor,DoctorEntity.class);
+	        return list;
+	}
+
+	@Override
+	public List<DoctorEntity> getAllDoctorList(DoctorEntity doctor) {
+		
+		List<DoctorEntity> list = (List<DoctorEntity>) doctorDao.findOtherList(IDoctorDao.FINDALLDOCTOR, doctor,DoctorEntity.class);
+        return list;
+	}
+
+	@Override
+	public DoctorEntity getDoctoForInquery(DoctorEntity doctor) {
+		return doctorDao.getOtherObject(IDoctorDao.GETOBJECTFORINQUERY, doctor,DoctorEntity.class);
+	}
+
+	@Override
+	public List<DoctorEntity> findListForGene(DoctorEntity doctor) {
+		List<DoctorEntity> list = (List<DoctorEntity>) doctorDao.findOtherList(IDoctorDao.FINDLISTFORGENE, doctor,DoctorEntity.class);
+        return list;
+	}
+
+}

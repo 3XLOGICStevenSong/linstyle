@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.AppointInquiryEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.AppointInquiryEntity">
+		<id column="APPOINT_ID" jdbcType="BIGINT" property="appointId" />
+		<result column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+		<result column="count" jdbcType="INTEGER" property="count" />
+		<result column="FOLLOW_COUNT" jdbcType="VARCHAR" property="followFlag" />
+		<result column="MAX_APPOINT_TIME" property="maxAppointTime"
+			jdbcType="TIMESTAMP" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="DEP_CLASS_ID" jdbcType="INTEGER" property="depClassId" />
+		<result column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="SYMPTON_ID" jdbcType="INTEGER" property="symptonId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="APPOINT_TYPE" jdbcType="CHAR" property="appointType" />
+		<result column="BUY_TOTAL" jdbcType="DOUBLE" property="buyTotal" />
+		<result column="PAY_STATUS" jdbcType="CHAR" property="payStatus" />
+		<result column="PAY_TYPE" jdbcType="CHAR" property="payType" />
+		<result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="OUT_TRADE_NUM" jdbcType="VARCHAR" property="outTradeNum" />
+		<result column="BEGIN_TIME" jdbcType="TIMESTAMP" property="beginTime" />
+		<result column="VIO_COUNT" property="vioCount" jdbcType="INTEGER" />
+		<result column="T_COUNT" property="tCount" jdbcType="INTEGER" />
+		<result column="ORDER_NUMBER" property="orderNumber" jdbcType="VARCHAR" />
+		<result column="PAY_PARAM" jdbcType="VARCHAR" property="payParam" />
+		<result column="REASON_MEMO" jdbcType="VARCHAR" property="reasonMemo" />
+		<result column="REFUND_ID" jdbcType="INTEGER" property="refundId" />
+		<result column="REFUND_REASON" jdbcType="VARCHAR" property="refundReason" />
+		<result column="PAY_INFO" jdbcType="VARCHAR" property="payInfo" />
+		<result column="MAX_APPOINT_TIME" property="maxAppointTime"
+			jdbcType="TIMESTAMP" />
+		<result column="REFUND_PARAM" jdbcType="VARCHAR" property="refundParam" />
+		<result column="REFUND_NUM" jdbcType="VARCHAR" property="refundNum" />
+		<result column="WORK_TYPE" jdbcType="CHAR" property="workType" />
+		<result column="APPOINT_DATE" jdbcType="VARCHAR" property="appointDate" />
+		<result column="ALL_COUNT" jdbcType="INTEGER" property="allCount" />
+		<result column="D_COUNT" jdbcType="INTEGER" property="dCount" />
+		<result column="E_COUNT" jdbcType="INTEGER" property="eCount" />
+		<result column="N_COUNT" jdbcType="INTEGER" property="nCount" />
+		<result column="TOTAL" jdbcType="DOUBLE" property="total" />
+		<result column="D_TOTAL" jdbcType="DOUBLE" property="dTotal" />
+		<result column="N_TOTAL" jdbcType="DOUBLE" property="nTotal" />
+		<result column="E_TOTAL" jdbcType="DOUBLE" property="eTotal" />
+		<result column="DOCTOR_TOTAL" jdbcType="DOUBLE" property="doctorTotal" />
+		<result column="DETECT_NUM" jdbcType="VARCHAR" property="detectNum" />
+		<result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+		<result column="FREE_FLAG" jdbcType="CHAR" property="freeFlag" />
+		<result column="FOLLOWUP_FLAG" jdbcType="CHAR" property="followUpFlag" />
+		<result column="PHOTO_END" jdbcType="CHAR" property="photoEnd" />
+		<result column="SCHEDULE_FLAG" property="scheduleFlag" jdbcType="INTEGER" />
+		<result column="FREE_TOTAL" property="freeTotal" jdbcType="INTEGER" />
+		<result column="DOCTOR_NAME" jdbcType="VARCHAR" property="doctorName" />
+		<result column="HEAD_PIC" jdbcType="VARCHAR" property="headPic" />
+		<result column="PATIENT_PIC" jdbcType="VARCHAR" property="patientPic" />
+		<result column="PATIENT_NAME" jdbcType="VARCHAR" property="patientName" />
+		<result column="MAX_CHAT_TIME" jdbcType="TIMESTAMP" property="maxChatTime" />
+		<result column="PHO_TIME" jdbcType="TIMESTAMP" property="phoTime" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="BIRTH" jdbcType="TIMESTAMP" property="age" />
+		<result column="DOC_DEL" jdbcType="VARCHAR" property="docDel" />
+		<result column="PAT_DEL" jdbcType="VARCHAR" property="patDel" />
+		<association property="interrogationPackageEntity"
+			javaType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+			resultMap="InterrogationPackageResultMap" />
+		<association property="doctorEntity"
+			javaType="com.djb.ylt.user.entity.DoctorEntity" resultMap="DoctorResultMap" />
+		<association property="patientEntity"
+			javaType="com.djb.ylt.user.entity.PatientEntity" resultMap="PatientResultMap" />
+		<collection property="recordsEntitys"
+			ofType="com.djb.ylt.user.entity.RecordsEntity" resultMap="RecordsResultMap" />
+		<collection property="graphicEntitys"
+			ofType="com.djb.ylt.user.entity.GraphicEntity" resultMap="GraphicResultMap" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ai.APPOINT_ID, ai.PATIENT_ID, ai.DOCTOR_ID, ai.PACKAGE_ID,
+		ai.DEP_CLASS_ID,
+		ai.DEP_ID, ai.SYMPTON_ID,
+		ai.CREATE_TIME,
+		ai.UPDATE_TIME, ai.APPOINT_TYPE,ai.BUY_TOTAL, ai.PAY_STATUS,
+		ai.PAY_TYPE,ai.PAY_TIME,ai.OUT_TRADE_NUM
+		,ai.BEGIN_TIME,ai.ORDER_NUMBER,ai.PAY_PARAM,ai.REASON_MEMO
+		,ai.REFUND_ID
+		,ai.REFUND_REASON,ai.PAY_INFO,ai.REFUND_PARAM,ai.REFUND_NUM,
+		ai.WORK_TYPE,ai.APPOINT_DATE,ai.DOCTOR_TOTAL,ai.DETECT_NUM,ai.USER_CODE,
+		ai.FREE_FLAG,ai.FOLLOWUP_FLAG,ai.PHOTO_END,ai.FREE_TOTAL,ai.DOC_DEL,ai.PAT_DEL
+	</sql>
+
+	<resultMap id="InterrogationPackageResultMap"
+		type="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		<id column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="COUNT" jdbcType="INTEGER" property="count" />
+		<result column="UNIT" jdbcType="VARCHAR" property="unit" />
+		<result column="QA_TIME" jdbcType="VARCHAR" property="qaTime" />
+		<result column="TIME_UNIT" jdbcType="VARCHAR" property="timeUnit" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIEM" jdbcType="TIMESTAMP" property="updateTiem" />
+		<result column="TYPE_ID" jdbcType="CHAR" property="typeId" />
+		<result column="TEL_COUNT" jdbcType="TINYINT" property="telCount" />
+		<result column="TEL_UNIT" jdbcType="VARCHAR" property="telUnit" />
+		<result column="TOTAL" jdbcType="DECIMAL" property="total" />
+		<result column="EFFECT_TIME" jdbcType="VARCHAR" property="effectTime" />
+		<result column="TEL_TIME" jdbcType="VARCHAR" property="telTime" />
+		<result column="TEL_Time_UNIT" jdbcType="VARCHAR" property="telTimeUnit" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+
+	<sql id="InterrogationPackage_Column_List">
+		ip.PACKAGE_ID, ip.NAME, ip.DOCTOR_ID, ip.COUNT, ip.UNIT,
+		ip.QA_TIME, ip.TIME_UNIT,
+		ip.UPDATE_TIEM,
+		ip.TYPE_ID,ip.TEL_COUNT,
+		ip.TEL_UNIT, ip.TOTAL, ip.EFFECT_TIME,
+		ip.TEL_TIME,
+		ip.TEL_Time_UNIT,ip.TYPE
+	</sql>
+	<resultMap id="DoctorResultMap" type="com.djb.ylt.user.entity.DoctorEntity">
+		<id column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="DATE" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<result column="CARD_NUM" property="cardNum" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_NUM" property="certificateNum"
+			jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PIC" property="certificatePic"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="VERIFY_FLG" property="verifyFlg" jdbcType="CHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="BANK_OWNER" property="bankOwner" jdbcType="VARCHAR" />
+		<result column="BANK_NUM" property="bankNum" jdbcType="VARCHAR" />
+		<result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+		<result column="HEAL_DISEASE" property="healDisease" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="SERVICE_COUNT" property="serviceCount"
+			jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="CHAR" />
+		<result column="DEPARTMENT_ID" property="departmentId"
+			jdbcType="INTEGER" />
+		<result column="DOCTOR_TEL" property="doctorTel" jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DC_ID " property="dcId " jdbcType="INTEGER" />
+		<result column="SERVICE_TYPE" property="serviceType" jdbcType="CHAR" />
+		<association property="userLoginEntity"
+			javaType="com.djb.ylt.user.entity.UserLoginEntity" resultMap="UserLoginResultMap" />
+		<association property="departmentEntity"
+			javaType="com.djb.ylt.health.entity.DepartmentEntity" resultMap="DepartmentResultMap" />
+	</resultMap>
+
+	<sql id="Doctor_Column_List">
+		d.DOCTOR_ID, d.USER_ID, d.NAME, d.SEX, d.AGE, d.POSITIONAL,
+		d.CARD_NUM,
+		d.CERTIFICATE_NUM, d.CERTIFICATE_PIC,
+		d.HEAD_PIC,
+		d.HOSPITAL_NAME, d.INTRODUCTION, d.VERIFY_FLG, d.STATUS_FLG,
+		d.BANK_OWNER, d.BANK_NUM,
+		d.BANK_NAME, d.HEAL_DISEASE, d.EMAIL,
+		d.UPDATE_TIME,
+		d.SERVICE_COUNT,
+		d.GRADE,d.DEPARTMENT_ID,d.DOCTOR_TEL,d.DEPARTMENT_NAME,d.DC_NAME,d.DC_ID,d.SERVICE_TYPE
+	</sql>
+
+	<resultMap id="PatientResultMap" type="com.djb.ylt.user.entity.PatientEntity">
+		<id column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="BIRTH" property="birth" jdbcType="TIMESTAMP" />
+		<result column="AGE_UNIT" property="ageUnit" jdbcType="CHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="MARRY" property="marry" jdbcType="CHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BT" property="bt" jdbcType="CHAR" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="MEDICAL_EATEN_HISTORY" property="medicalEatenHistory"
+			jdbcType="VARCHAR" />
+		<result column="ALLERGY_HISTORY" property="allergyHistory"
+			jdbcType="VARCHAR" />
+		<result column="ILLNESS_HISTORY" property="illnessHistory"
+			jdbcType="VARCHAR" />
+		<result column="AMT" property="amt" jdbcType="VARCHAR" />
+		<result column="PATIENT_PIC" property="patientPic" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+		<result column="PATIENT_TEL" property="patientTel" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Patient_Column_List">
+		p.PATIENT_ID, p.NAME, p.BIRTH, p.AGE_UNIT, p.SEX, p.MARRY,
+		p.ADDRESS, p.BT,
+		p.USER_ID,
+		p.MEDICAL_EATEN_HISTORY,
+		p.ALLERGY_HISTORY,
+		p.ILLNESS_HISTORY, AMT,
+		p.PATIENT_PIC, p.EMAIL,
+		p.UPDATE_TIME,p.NICK_NAME,p.PATIENT_TEL
+	</sql>
+
+	<resultMap id="RecordsResultMap" type="com.djb.ylt.user.entity.RecordsEntity">
+		<id column="RECORDS_ID" property="recordsId" jdbcType="INTEGER" />
+		<result column="APPOINT_ID" property="appointId" jdbcType="BIGINT" />
+		<result column="RESULT" property="result" jdbcType="VARCHAR" />
+		<result column="GUIDANCE" property="guidance" jdbcType="VARCHAR" />
+		<result column="ANALYSIS" property="analysis" jdbcType="VARCHAR" />
+		<result column="INQUIRY_STATUS" property="inquiryStatus"
+			jdbcType="CHAR" />
+		<result column="SYMPTON_DESCRIBE" property="symptonDescribe"
+			jdbcType="VARCHAR" />
+		<result column="DOCTOR_MEMO" property="doctorMemo" jdbcType="VARCHAR" />
+		<result column="APPOINT_TIME" property="appointTime" jdbcType="TIMESTAMP" />
+		<result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="COMMENT_CONTENT" property="commentContent"
+			jdbcType="VARCHAR" />
+		<result column="COMMENT_GRADE" property="commentGrade"
+			jdbcType="REAL" />
+		<result column="ROLE" property="role" jdbcType="CHAR" />
+		<result column="RECORDS_TYPE" property="recordsType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="TEL_NUM" property="telNum" jdbcType="VARCHAR" />
+		<result column="PATIENT_FLAG" property="patientFlag" jdbcType="CHAR" />
+		<result column="DOCTOR_FLAG" property="doctorFlag" jdbcType="CHAR" />
+		<result column="PDEL_FLAG" property="pdelFlag" jdbcType="CHAR" />
+		<result column="DDEL_FLAG" property="ddelFlag" jdbcType="CHAR" />
+		<result column="SCHEDULE_ID" property="scheduleId" jdbcType="INTEGER" />
+		<result column="UP_FLAG" property="upFlag" jdbcType="CHAR" />
+		<result column="PATSCH_ID" property="patschId" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="DepartmentResultMap" type="com.djb.ylt.health.entity.DepartmentEntity">
+		<id column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="DEP_NAME" jdbcType="VARCHAR" property="depName" />
+		<result column="DC_ID" jdbcType="INTEGER" property="dcId" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="ICON_PIC" jdbcType="VARCHAR" property="iconPic" />
+		<result column="CELL_PIC" jdbcType="VARCHAR" property="cellPic" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<!-- 2016.12.20 chengming modify for recent doctor start -->
+		<association property="departmentClassEntity"
+			javaType="com.djb.ylt.health.entity.DepartmentClassEntity" resultMap="DepartmentClassResultMap" />
+		<!-- 2016.12.20 chengming modify for recent doctor end -->
+	</resultMap>
+	<!-- 2016.12.20 chengming modify for recent doctor start -->
+	<resultMap type="com.djb.ylt.health.entity.DepartmentClassEntity"
+		id="DepartmentClassResultMap">
+		<id column="DC_ID" jdbcType="INTEGER" property="dcId" />
+		<result column="DC_NAME" jdbcType="VARCHAR" property="dcName" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<!-- 2016.12.20 chengming modify for recentDocotor end -->
+	<sql id="Department_Column_List">
+		de.DEP_ID, de.DEP_NAME
+
+	</sql>
+	<resultMap id="UserLoginResultMap" type="com.djb.ylt.user.entity.UserLoginEntity">
+		<id column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<result column="USER_TEL" jdbcType="VARCHAR" property="userTel" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ROLE" jdbcType="CHAR" property="role" />
+		<result column="HXUSER_ID" jdbcType="VARCHAR" property="hxuserId" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="UserLogin_Column_List">
+		ul.USER_ID, ul.USER_TEL
+	</sql>
+	<sql id="Records_Column_List">
+		r.RECORDS_ID, r.APPOINT_ID, r.RESULT, r.GUIDANCE, r.ANALYSIS, r.INQUIRY_STATUS,
+		r.SYMPTON_DESCRIBE,
+		r.DOCTOR_MEMO, r.APPOINT_TIME, r.START_TIME, r.END_TIME, r.COMMENT_CONTENT,
+		r.COMMENT_GRADE,
+		r.ROLE, r.RECORDS_TYPE, r.CREATE_TIME, r.UPDATE_TIME,
+		r.TEL_NUM,r.INQUIRY_PIC,r.SCHEDULE_ID,
+		r.UP_FLAG,r.PATSCH_ID,r.PATIENT_FLAG,r.DOCTOR_FLAG,r.PDEL_FLAG,r.DDEL_FLAG
+	</sql>
+
+  <resultMap id="GraphicResultMap" type="com.djb.ylt.user.entity.GraphicEntity" >
+    <id column="GRAPHIC_ID" property="graphicId" jdbcType="BIGINT" />
+    <result column="APPOINT_ID" property="appointId" jdbcType="BIGINT" />
+    <result column="GRAPHIC_CONTENT" property="graphicContent" jdbcType="VARCHAR" />
+    <result column="GRAPHIC_TYPE" property="graphicType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
+    <result column="ROLE" property="role" jdbcType="CHAR" />
+    <result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+    <result column="MAX_TIME" property="maxTime" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Graphic_Column_List" >
+    g.GRAPHIC_ID, g.APPOINT_ID, g.GRAPHIC_CONTENT, g.GRAPHIC_TYPE, g.CREATE_TIME, g.DELETE_FLAG, 
+    g.ROLE, g.DOCTOR_ID, g.PATIENT_ID
+  </sql>
+	<sql id="orderByAppointClause">
+		ORDER BY ai.APPOINT_ID
+	</sql>
+	<sql id="AppointInquiryWhereClause">
+		<if test="appointId !=null">and ai.APPOINT_ID=#{appointId} </if>
+		<if test="doctorId!=null">and ai.DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		<if test="packageId!=null">and ai.PACKAGE_ID=#{packageId} </if>
+		<if test="depClassId!=null">and ai.DEP_CLASS_ID=#{depClassId} </if>
+		<if test="depId!=null">and ai.DEP_ID=#{depId} </if>
+		<if test="symptonId!=null">and ai.SYMPTON_ID=#{symptonId} </if>
+		<if test="orderNumber !=null">and ai.ORDER_NUMBER=#{orderNumber} </if>
+		<if test="appointType!=null">and ai.APPOINT_TYPE=#{appointType} </if>
+		<if test="outTradeNum!=null">and ai.OUT_TRADE_NUM=#{outTradeNum} </if>
+		<if test="refundNum!=null">and ai.REFUND_NUM=#{refundNum} </if>
+		<if test="workType!=null">and ai.WORK_TYPE=#{workType} </if>
+		<if test="appointDate!=null">and ai.APPOINT_DATE=#{appointDate} </if>
+
+
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from appoint_inquiry ai
+		where 1=1
+		<include refid="AppointInquiryWhereClause" />
+
+	</select>
+	<!-- 私人医生列表 ：预约信息套餐信息,医生信息 -->
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		select ai.CREATE_TIME,
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="InterrogationPackage_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />
+		,(SELECT count(*) FROM records r
+		WHERE
+		r.RECORDS_TYPE = '0'
+		AND
+		r.APPOINT_ID
+		= ai.APPOINT_ID
+		AND r.INQUIRY_STATUS IN ('0',
+		'1', '2', '3')
+		) VIO_COUNT,
+		(
+		SELECT
+		count(*)
+		FROM
+		records r
+		WHERE
+		r.RECORDS_TYPE = '1'
+		AND
+		r.APPOINT_ID =
+		ai.APPOINT_ID
+		AND r.INQUIRY_STATUS IN ('0',
+		'1', '2', '3')
+		) AS T_Count
+		from
+		appoint_inquiry ai, interrogation_package ip ,doctor d,user_login ul,
+		department de
+		where 1=1 AND
+		ai.PACKAGE_ID=ip.PACKAGE_ID
+		AND
+		ai.DOCTOR_ID=d.DOCTOR_ID AND
+		d.USER_ID=ul.USER_ID AND
+		d.DEPARTMENT_ID=de.DEP_ID
+		AND ip.TYPE='2'
+		<include refid="AppointInquiryWhereClause" />
+		ORDER BY ai.APPOINT_ID DESC
+		limit #{pageNum},#{pageSize}
+	</select>
+	<select id="findPrivateDetail" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="InterrogationPackage_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		from appoint_inquiry ai left join interrogation_package ip on
+		(ai.PACKAGE_ID=ip.PACKAGE_ID)
+		LEFT JOIN doctor d ON (ai.DOCTOR_ID
+		=d.DOCTOR_ID) LEFT JOIN records r ON ai.APPOINT_ID=r.APPOINT_ID
+		where
+		1=1 AND ip.TYPE='2'
+		<include refid="AppointInquiryWhereClause" />
+		ORDER BY r.CREATE_TIME DESC, ai.APPOINT_ID DESC
+	</select>
+	<select id="findListByPatientId" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai , doctor d , records r
+		WHERE
+		ai.DOCTOR_ID=d.DOCTOR_ID and ai.APPOINT_ID=r.APPOINT_ID
+		and
+		ai.APPOINT_TYPE!='3'and r.RECORDS_TYPE='0' and r.APPOINT_TIME is not
+		null
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		ORDER BY r.APPOINT_TIME DESC
+		limit #{pageNum},#{pageSize}
+	</select>
+	<!-- 获取医生被预约的列表 -->
+	<select id="findListByDoctorId" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+
+		FROM appoint_inquiry ai ,patient p,records r
+		WHERE ai.PATIENT_ID=
+		p.PATIENT_ID and ai.APPOINT_ID=r.APPOINT_ID
+		<if test="doctorId!=null">and ai.DOCTOR_ID=#{doctorId} </if>
+		ORDER BY r.APPOINT_TIME DESC
+	</select>
+	<!-- 获取某一会员的就诊记录 -->
+	<select id="getMemberInfo" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai INNER JOIN patient p ON
+		(ai.PATIENT_ID=p.PATIENT_ID)
+		LEFT OUTER JOIN records r ON
+		ai.APPOINT_ID=r.APPOINT_ID
+		WHERE 1=1 AND ai.APPOINT_TYPE='2'
+		<if test="doctorId!=null">and ai.DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		ORDER BY r.APPOINT_TIME DESC
+	</select>
+
+	<select id="findListByRecent" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+	
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		(select IF(COUNT(*)>0,1,0) from  doctor_schedule  ds where ds.DOCTOR_ID=d.DOCTOR_ID and  date_format(ds.START_DATE ,'%Y-%m-%d')>= date_format(now() ,'%Y-%m-%d')  and   date_format(ds.START_TIME ,'%H:%i:%s')>= date_format(now() ,'%H:%i:%s') ) AS SCHEDULE_FLAG
+		,(select IF(COUNT(*)>0,1,0) from follow f,doctor d where
+		f.PATIENT_ID=#{patientId} AND
+		f.DOCTOR_ID=d.DOCTOR_ID) as
+		FOLLOW_COUNT,ct.c count,max_time.max_appoint_time,
+		dep.DEP_NAME,ds.DC_NAME
+		from
+		appoint_inquiry ai
+		left
+		join doctor d on
+		(ai.DOCTOR_ID=d.DOCTOR_ID)
+		left join records r on
+		(r.APPOINT_ID=ai.APPOINT_ID)
+		left join(
+		SELECT COUNT(*)
+		c,appoint_inquiry.DOCTOR_ID
+		FROM appoint_inquiry,records
+		WHERE
+		records.APPOINT_ID=appoint_inquiry.APPOINT_ID AND
+		(records.INQUIRY_STATUS=2 or records.INQUIRY_STATUS=3) AND
+		appoint_inquiry.PATIENT_ID = #{patientId}
+		GROUP BY
+		appoint_inquiry.DOCTOR_ID) ct ON (ai.DOCTOR_ID=ct.DOCTOR_ID)
+		LEFT JOIN
+		(
+		SELECT MAX(records.APPOINT_TIME)
+		max_appoint_time,appoint_inquiry.DOCTOR_ID
+		from records,appoint_inquiry
+		where (records.INQUIRY_STATUS=2 or
+		records.INQUIRY_STATUS=3) AND
+		appoint_inquiry.APPOINT_ID
+		=records.APPOINT_ID AND
+		appoint_inquiry.PATIENT_ID =#{patientId} GROUP BY
+		appoint_inquiry.DOCTOR_ID
+		)
+		max_time ON
+		(max_time.DOCTOR_ID=ai.DOCTOR_ID)
+		left join
+		department dep on
+		(dep.DEP_ID=d.DEPARTMENT_ID)
+		left join
+		department_class ds on
+		(ds.DC_ID=dep.DC_ID)
+		where ai.APPOINT_TYPE=0 and ct.c!=0
+		and
+		ai.PATIENT_ID=#{patientId}
+		GROUP BY ai.DOCTOR_ID
+		<if test="sortType==0">ORDER BY ct.c DESC</if>
+		<if test="sortType==1">ORDER BY max_appoint_time DESC</if>
+		limit #{pageNum},#{pageSize}
+		<!--2016-12-23 10:24:43 chengming end -->
+	</select>
+	<!-- 2016.12.20 chengming modify for recent doctor end -->
+	<select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from appoint_inquiry
+	</select>
+	<delete id="deleteByExample" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity">
+		delete from
+		appoint_inquiry
+		where APPOINT_ID = #{appointId,jdbcType=BIGINT}
+	</delete>
+
+
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		useGeneratedKeys="true" keyProperty="appointId" keyColumn="GENERATED_KEY"> insert into
+		appoint_inquiry (APPOINT_ID, PATIENT_ID, DOCTOR_ID, PACKAGE_ID,
+		DEP_CLASS_ID, DEP_ID, SYMPTON_ID, CREATE_TIME, UPDATE_TIME,
+		APPOINT_TYPE, BUY_TOTAL, PAY_STATUS, PAY_TYPE,
+		PAY_TIME,OUT_TRADE_NUM,BEGIN_TIME,VIO_COUNT,T_COUNT,ORDER_NUMBER,PAY_PARAM,REASON_MEMO,
+		REFUND_ID , REFUND_REASON
+		,PAY_INFO,REFUND_PARAM,REFUND_NUM,WORK_TYPE,APPOINT_DATE,DOCTOR_TOTAL,DETECT_NUM,USER_CODE,FREE_FLAG,FOLLOWUP_FLAG,PHOTO_END,FREE_TOTAL
+		)
+		values
+		(#{appointId,jdbcType=BIGINT}, #{patientId,jdbcType=INTEGER},
+		#{doctorId,jdbcType=INTEGER}, #{packageId,jdbcType=INTEGER},
+		#{depClassId,jdbcType=INTEGER}, #{depId,jdbcType=INTEGER},
+		#{symptonId,jdbcType=INTEGER},now(), #{updateTime,jdbcType=TIMESTAMP},
+		#{appointType,jdbcType=CHAR}, #{buyTotal,jdbcType=DOUBLE},
+		#{payStatus,jdbcType=CHAR}, #{payType,jdbcType=CHAR},
+		#{payTime,jdbcType=TIMESTAMP},#{outTradeNum,jdbcType=VARCHAR},#{beginTime,jdbcType=TIMESTAMP},
+		#{vioCount,jdbcType=INTEGER},#{tCount,jdbcType=INTEGER},#{orderNumber,jdbcType=VARCHAR},#{payParam,jdbcType=VARCHAR}
+		,#{reasonMemo,jdbcType=VARCHAR},#{refundId,jdbcType=INTEGER},#{refundReason,jdbcType=VARCHAR},#{payInfo,jdbcType=VARCHAR},
+		#{refundParam,jdbcType=VARCHAR},#{refundNum,jdbcType=VARCHAR},#{workType,jdbcType=CHAR},#{appointDate,jdbcType=VARCHAR},
+		 #{doctorTotal,jdbcType=DOUBLE},#{detectNum,jdbcType=VARCHAR},#{userCode,jdbcType=VARCHAR},
+		 #{freeFlag,jdbcType=CHAR},#{followUpFlag,jdbcType=CHAR},#{photoEnd,jdbcType=CHAR},#{freeTotal,jdbcType=INTEGER}
+		)
+	</insert>
+	<update id="update" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity">
+		update appoint_inquiry
+		<set>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="doctorId != null">
+				DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="packageId != null">
+				PACKAGE_ID = #{packageId,jdbcType=INTEGER},
+			</if>
+			<if test="depClassId != null">
+				DEP_CLASS_ID = #{depClassId,jdbcType=INTEGER},
+			</if>
+			<if test="depId != null">
+				DEP_ID = #{depId,jdbcType=INTEGER},
+			</if>
+			<if test="symptonId != null">
+				SYMPTON_ID = #{symptonId,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				CREATE_TIME = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="appointType != null">
+				APPOINT_TYPE = #{appointType,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="buyTotal != null">
+				BUY_TOTAL = #{buyTotal,jdbcType=DOUBLE},
+			</if>
+
+			<if test="payStatus != null">
+				PAY_STATUS = #{payStatus,jdbcType=CHAR},
+			</if>
+			<if test="payType != null">
+				PAY_TYPE = #{payType,jdbcType=CHAR},
+			</if>
+			<if test="payTime != null">
+				PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="outTradeNum != null">
+				OUT_TRADE_NUM = #{outTradeNum,jdbcType=TIMESTAMP},
+			</if>
+			<if test="beginTime != null">
+				BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="vioCount!= null">
+				VIO_COUNT=#{vioCount,jdbcType=INTEGER},
+			</if>
+			<if test="tCount!= null">
+				T_COUNT=#{tCount,jdbcType=INTEGER},
+			</if>
+			<if test="orderNumber!= null">
+				ORDER_NUMBER =#{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="payParam!= null">
+				PAY_PARAM =#{payParam,jdbcType=VARCHAR},
+			</if>
+			<if test="refundId!= null">
+				REFUND_ID =#{refundId,jdbcType=INTEGER},
+			</if>
+			<if test="reasonMemo!= null">
+				REASON_MEMO =#{reasonMemo,jdbcType=VARCHAR},
+			</if>
+			<if test="refundReason!= null">
+				REFUND_REASON =#{refundReason,jdbcType=VARCHAR},
+			</if>
+			<if test="payInfo!= null">
+				PAY_INFO =#{payInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="refundParam!= null">
+				REFUND_PARAM =#{refundParam,jdbcType=VARCHAR},
+			</if>
+			<if test="refundNum!= null">
+				REFUND_NUM =#{refundNum,jdbcType=VARCHAR},
+			</if>
+			<if test="appointDate!= null">
+				APPOINT_DATE =#{appointDate,jdbcType=VARCHAR},
+			</if>
+			<if test="workType!= null">
+				WORK_TYPE =#{workType,jdbcType=CHAR},
+			</if>
+				<if test="doctorTotal!= null">
+				DOCTOR_TOTAL =#{doctorTotal,jdbcType=DOUBLE},
+			</if>
+			<if test="photoEnd!= null">
+				PHOTO_END =#{photoEnd,jdbcType=CHAR},
+			</if>
+			<if test="docDel!= null">
+				DOC_DEL =#{docDel,jdbcType=CHAR},
+			</if>
+			<if test="patDel!= null">
+				PAT_DEL =#{patDel,jdbcType=CHAR}
+			</if>
+		</set>
+		<where>
+		<if test="appointId!=null"> AND APPOINT_ID = #{appointId,jdbcType=BIGINT}</if>
+		<if test="orderNumber!= null">
+			and ORDER_NUMBER= #{orderNumber,jdbcType=VARCHAR}
+		</if></where>
+	</update>
+
+	<update id="updateBatch" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity">
+		update appoint_inquiry
+		<set>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="doctorId != null">
+				DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="packageId != null">
+				PACKAGE_ID = #{packageId,jdbcType=INTEGER},
+			</if>
+			<if test="depClassId != null">
+				DEP_CLASS_ID = #{depClassId,jdbcType=INTEGER},
+			</if>
+			<if test="depId != null">
+				DEP_ID = #{depId,jdbcType=INTEGER},
+			</if>
+			<if test="symptonId != null">
+				SYMPTON_ID = #{symptonId,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				CREATE_TIME = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="appointType != null">
+				APPOINT_TYPE = #{appointType,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="buyTotal != null">
+				BUY_TOTAL = #{buyTotal,jdbcType=DOUBLE},
+			</if>
+			<if test="payStatus != null">
+				PAY_STATUS = #{payStatus,jdbcType=CHAR},
+			</if>
+			<if test="payType != null">
+				PAY_TYPE = #{payType,jdbcType=CHAR},
+			</if>
+			<if test="payTime != null">
+				PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="outTradeNum != null">
+				OUT_TRADE_NUM = #{outTradeNum,jdbcType=TIMESTAMP},
+			</if>
+			<if test="beginTime != null">
+				BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="vioCount!= null">
+				VIO_COUNT=#{vioCount,jdbcType=INTEGER},
+			</if>
+			<if test="tCount!= null">
+				T_COUNT=#{tCount,jdbcType=INTEGER},
+			</if>
+			<if test="orderNumber!= null">
+				ORDER_NUMBER =#{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="payParam!= null">
+				PAY_PARAM =#{payParam,jdbcType=VARCHAR},
+			</if>
+			<if test="refundId!= null">
+				REFUND_ID =#{refundId,jdbcType=INTEGER},
+			</if>
+			<if test="reasonMemo!= null">
+				REASON_MEMO =#{reasonMemo,jdbcType=VARCHAR},
+			</if>
+			<if test="refundReason!= null">
+				REFUND_REASON =#{refundReason,jdbcType=VARCHAR},
+			</if>
+			<if test="payInfo!= null">
+				PAY_INFO =#{payInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where 1=1
+		<if test="appointId!=null"> AND APPOINT_ID = #{appointId,jdbcType=BIGINT}</if>
+		<if test="orderNumber!= null">and ORDER_NUMBER= #{orderNumber,jdbcType=VARCHAR}</if>
+	</update>
+
+	<!-- 获取医生会员列表 新的不分页 -->
+
+	<select id="getDoctorMemberInfo" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InterrogationPackage_Column_List" />
+		FROM appoint_inquiry ai , patient p ,interrogation_package ip
+		WHERE
+		ai.PATIENT_ID=p.PATIENT_ID and ai.PACKAGE_ID=ip.PACKAGE_ID and
+		ai.PAY_STATUS='1' and (now()&lt;=ai.BEGIN_TIME OR (TO_DAYS(NOW()) -
+		TO_DAYS(ai.BEGIN_TIME) &lt;= ip.EFFECT_TIME))
+		<if test="doctorId!=null">and ai.DOCTOR_ID=#{doctorId} </if>
+		<if test="appointType!=null">and ai.APPOINT_TYPE=#{appointType} </if>
+		<if test="appointType!=null">group by ai.PATIENT_ID </if>
+
+	</select>
+	<!-- 获取医生会员列表 新的分页 -->
+	<select id="getDoctorMemberInfoForPage" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InterrogationPackage_Column_List" />
+		FROM appoint_inquiry ai , patient p ,interrogation_package ip
+		WHERE
+		ai.PATIENT_ID=p.PATIENT_ID and ai.PACKAGE_ID=ip.PACKAGE_ID and
+		ai.PAY_STATUS='1' and (now()&lt;=ai.BEGIN_TIME OR (TO_DAYS(NOW()) -
+		TO_DAYS(ai.BEGIN_TIME) &lt;= ip.EFFECT_TIME))
+		<if test="doctorId!=null">and ai.DOCTOR_ID=#{doctorId} </if>
+		<if test="appointType!=null">and ai.APPOINT_TYPE=#{appointType} </if>
+		<if test="appointType!=null">group by ai.PATIENT_ID </if>
+		limit #{pageNum},#{pageSize}
+	</select>
+	<!-- 用来推送 -->
+	<select id="getInfoForPush" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai , doctor d , records r
+		WHERE
+		ai.DOCTOR_ID=d.DOCTOR_ID and ai.APPOINT_ID=r.APPOINT_ID and
+		ai.PAY_STATUS='1'
+		<if test="orderNumber!= null">and ai.ORDER_NUMBER= #{orderNumber,jdbcType=VARCHAR}</if>
+		<if test="refundNum!= null">and ai.REFUND_NUM= #{refundNum,jdbcType=VARCHAR}</if>
+		<if test="appointId !=null">and ai.APPOINT_ID=#{appointId} </if>
+
+	</select>
+
+	<!-- 用来提前三分钟推送 -->
+	<select id="getInfoForMinutesPush" resultMap="BaseResultMap">
+		SELECT
+		ai.APPOINT_ID,
+		ai.DOCTOR_ID,d.DOCTOR_TEL,r.RECORDS_ID,r.PATIENT_FLAG,r.DOCTOR_FLAG
+		,ai.PATIENT_ID,p.PATIENT_TEL
+		FROM appoint_inquiry ai , doctor d ,
+		records r ,patient p
+		WHERE
+		ai.DOCTOR_ID=d.DOCTOR_ID and
+		ai.APPOINT_ID=r.APPOINT_ID and ai.PAY_STATUS='1'and
+		r.INQUIRY_STATUS='1'
+		and ai.PATIENT_ID=p.PATIENT_ID and r.RECORDS_ID is
+		not null
+		and( now() BETWEEN DATE_SUB(r.APPOINT_TIME,INTERVAL 3 MINUTE)
+		AND
+		r.APPOINT_TIME)
+	</select>
+
+	<!-- 用来获取我的病历 -->
+	<select id="getRecordsInfo" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai , doctor d , records r
+		WHERE
+		ai.DOCTOR_ID=d.DOCTOR_ID and ai.APPOINT_ID=r.APPOINT_ID and
+		r.INQUIRY_STATUS='3' and
+		ai.APPOINT_TYPE!='3'
+		<if test="patientId!= null">and ai.PATIENT_ID= #{patientId,jdbcType=INTEGER}</if>
+		ORDER BY IFNULL(r.APPOINT_TIME , ai.UPDATE_TIME) DESC
+		limit #{pageNum},#{pageSize}
+	</select>
+	<select id="getBatchInfo" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai LEFT OUTER JOIN records r ON
+		ai.APPOINT_ID=r.APPOINT_ID
+		WHERE 1=1 and
+		r.INQUIRY_STATUS IN('1','10','11')
+		and ai.APPOINT_TYPE!='3'
+	</select>
+<!-- 按状态检索预约 -->
+	<select id="findListByStatus" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="Records_Column_List" />,
+		
+		<include refid="InterrogationPackage_Column_List" />,
+		
+		<include refid="Graphic_Column_List" />
+		
+		FROM appoint_inquiry ai LEFT JOIN doctor d  ON ai.DOCTOR_ID=d.DOCTOR_ID 
+		LEFT JOIN records r ON ai.APPOINT_ID=r.APPOINT_ID  LEFT  OUTER JOIN interrogation_package ip ON  ai.PACKAGE_ID=ip.PACKAGE_ID
+		LEFT JOIN  graphic_record g ON g.APPOINT_ID =ai.APPOINT_ID
+		WHERE 1=1 
+		and
+		ai.APPOINT_TYPE!='3'and r.RECORDS_TYPE='0' and r.PDEL_FLAG!='0' and
+		r.APPOINT_TIME is not null
+		
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		<if test="statusFlag==0">and ai.PAY_STATUS='0' ORDER BY r.APPOINT_TIME DESC </if>
+		<if test="statusFlag==1">and ai.PAY_STATUS='1' and r.INQUIRY_STATUS IN('1','10','11') ORDER BY
+			r.APPOINT_TIME
+		</if>
+		<if test="statusFlag==2">and ai.PAY_STATUS='1' and r.INQUIRY_STATUS='2' ORDER BY
+			r.APPOINT_TIME DESC
+		</if>
+		<if test="statusFlag==4">and r.INQUIRY_STATUS IN('5','3','9','12','13','14','15') ORDER BY
+			r.APPOINT_TIME DESC
+		</if>
+		limit #{pageNum},#{pageSize}
+	</select>
+	<!-- 按状态检索图文问诊 -->
+		<select id="findGraphicListByStatus" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="Graphic_Column_List" />,ai.CREATE_TIME AS PHO_TIME, g.CREATE_TIME AS MAX_TIME
+		
+		FROM appoint_inquiry ai LEFT JOIN doctor d  ON  ai.DOCTOR_ID=d.DOCTOR_ID 
+		LEFT JOIN  graphic_record g ON g.APPOINT_ID =ai.APPOINT_ID
+		WHERE 1=1 
+		and
+		ai.APPOINT_TYPE ='5'  and ai.PAT_DEL!='1'
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		<if test="statusFlag==0">and ai.PAY_STATUS='0' ORDER BY ai.CREATE_TIME DESC </if>
+		<if test="statusFlag==1">and ai.PAY_STATUS='1' and  ai.PHOTO_END !='1' ORDER BY
+			g.CREATE_TIME DESC
+		</if>
+		<if test="statusFlag==4">and(ai.PHOTO_END='1' OR ai.PAY_STATUS IN ('2','3', '4'))   ORDER BY g.CREATE_TIME DESC	
+		</if>
+		limit #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="findGraphicAppointListByStatus" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+			,
+			<include refid="Doctor_Column_List" />
+			,
+			<include refid="Patient_Column_List" />,
+		
+			<include refid="Graphic_Column_List" />,MAX(g.CREATE_TIME) AS MAX_CHAT_TIME
+		from appoint_inquiry ai
+		left join doctor d on ai.DOCTOR_ID = d.DOCTOR_ID
+		left join patient p on ai.PATIENT_ID = p.PATIENT_ID
+		left join graphic_record g on ai.APPOINT_ID = g.APPOINT_ID
+		where ai.DOCTOR_ID = #{doctorId}
+		and g.DELETE_FLAG != '1'
+		and ai.PAT_DEL != '1'
+		<if test="statusFlag==1">and ai.PAY_STATUS='1' and ai.PHOTO_END = '0'
+		</if>
+		<if test="statusFlag==3">and ai.PAY_STATUS='3' and ai.PHOTO_END = '1'
+		</if>
+		Group by g.CREATE_TIME
+		limit #{pageNum},#{pageSize}
+	</select>
+	
+	<!-- 月次统计 -->
+	<select id="getMonthRecords" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT 
+		(
+		SELECT
+		count(*)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS ALL_COUNT,
+		(
+		SELECT
+		count(*)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='0' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS D_COUNT,
+		(
+		SELECT
+		count(*)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='1'  AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS N_COUNT,
+		(
+		SELECT
+		count(*)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='2' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS E_COUNT,
+		(
+		SELECT
+		SUM(appoint_inquiry.DOCTOR_TOTAL)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS TOTAL,
+		(
+		SELECT
+		SUM(appoint_inquiry.DOCTOR_TOTAL)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='0' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS D_TOTAL,
+		(
+		SELECT
+		SUM(appoint_inquiry.DOCTOR_TOTAL)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='1' AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER} AND  appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS N_TOTAL,
+		(
+		SELECT
+		SUM(appoint_inquiry.DOCTOR_TOTAL)
+		FROM
+		appoint_inquiry ,records 
+		WHERE
+		appoint_inquiry.PAY_STATUS = '1' AND appoint_inquiry.WORK_TYPE='2' AND  appoint_inquiry.APPOINT_DATE=#{appointDate,jdbcType=VARCHAR} AND  appoint_inquiry.DOCTOR_ID= #{doctorId,jdbcType=INTEGER}
+		AND
+		records.APPOINT_ID =appoint_inquiry.APPOINT_ID
+		AND records.INQUIRY_STATUS IN ('2', '3')
+		) AS E_TOTAL
+		
+	</select>
+		<!-- 某个患者离这次最近的预约问诊 -->
+	<select id="getHistoryAppoint" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Records_Column_List" />
+		FROM appoint_inquiry ai 
+		LEFT OUTER JOIN records r ON
+		ai.APPOINT_ID=r.APPOINT_ID
+		WHERE 1=1 
+		<if test="appointTime!=null and appointId!=null">and r.APPOINT_TIME  &lt;= date_format(#{appointTime},'%Y-%m-%d %H:%i:%s')  AND ai.APPOINT_ID &lt; #{appointId} AND ai.APPOINT_TYPE='4'  AND r.INQUIRY_STATUS IN (
+		'1', '2', '3')</if>
+		<if test="patientId!=null">and ai.PATIENT_ID=#{patientId} </if>
+		<if test="appointId!=null and appointTime==null">and ai.APPOINT_ID=#{appointId} </if>
+		ORDER BY r.APPOINT_TIME DESC,ai.APPOINT_ID DESC
+		limit 0,1
+	</select>
+	<!-- 获取聊天记录-->
+	<select id="getGraphicList" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Graphic_Column_List" />
+		,d.NAME AS DOCTOR_NAME, d.HEAD_PIC ,p.PATIENT_PIC, p.NAME AS 
+		PATIENT_NAME,p.SEX AS SEX,p.BIRTH AS BIRTH
+		FROM appoint_inquiry ai
+		LEFT OUTER JOIN graphic_record g ON
+		ai.APPOINT_ID=g.APPOINT_ID LEFT JOIN
+		doctor d ON ai.DOCTOR_ID=d.DOCTOR_ID
+		LEFT JOIN patient p ON
+		ai.PATIENT_ID=p.PATIENT_ID
+		<where>
+			and g.DELETE_FLAG!='1'
+			<if test="appointId != null">and ai.APPOINT_ID=#{appointId}  </if>
+		</where>
+		ORDER BY g.CREATE_TIME DESC
+	</select>
+	<!-- 获取医生和患者是否有免费的记录 -->
+		<select id="getAppointFree" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Graphic_Column_List" />,
+		MAX(g.CREATE_TIME) AS CHAT_TIME
+		FROM appoint_inquiry ai
+		LEFT OUTER JOIN graphic_record g ON
+		ai.APPOINT_ID=g.APPOINT_ID 
+		<where>
+			and g.DELETE_FLAG !='1' and ai.FOLLOWUP_FLAG!='1'
+			<if test="patientId != null and doctorId!=null">and ai.FREE_FLAG='1'and ai.PATIENT_ID=#{patientId}  and ai.DOCTOR_ID=#{doctorId} </if>
+		</where>
+		ORDER BY g.CREATE_TIME DESC
+	</select>
+	<select id="getAppointListByImage" parameterType="com.djb.ylt.user.entity.AppointInquiryEntity"
+		resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+			,
+			<include refid="Doctor_Column_List" />
+			,
+			<include refid="Patient_Column_List" />
+			,
+			<include refid="Graphic_Column_List" />
+			,MAX(g.CREATE_TIME) AS MAX_CHAT_TIME
+			,(select 
+			    count(*)
+			  from graphic_record
+			  left join appoint_inquiry on appoint_inquiry.APPOINT_ID = graphic_record.APPOINT_ID) as count 
+		from appoint_inquiry ai
+		left join doctor d on ai.DOCTOR_ID = d.DOCTOR_ID
+		left join graphic_record g on g.DOCTOR_ID = ai.DOCTOR_ID
+		and ai.APPOINT_ID = g.APPOINT_ID
+		left join patient p on p.PATIENT_ID = ai.PATIENT_ID
+		where d.DOCTOR_ID = '1'
+		and ai.PAY_STATUS = '1'
+		and ai.PHOTO_END = '0'
+		and g.DELETE_FLAG != '1'
+		and ai.DOC_DEL != '1'
+		order by 
+		IFNULL(
+			g.CREATE_TIME,
+			ai.CREATE_TIME
+		) DESC
+	</select>
+</mapper>

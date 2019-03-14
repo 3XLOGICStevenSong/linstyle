@@ -1,0 +1,51 @@
+.Inquiry ul > li{margin:0 0 0.5rem}
+.Inquiry .info {position:relative;background:#fff}
+.Inquiry .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.Inquiry .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.Inquiry .info ul{display:inline-block;padding:0.2rem 0 0;vertical-align:top}
+.Inquiry .info ul li {padding:0 0 0.2rem;margin:0;font-size:0.4rem;}
+.Inquiry .info ul li.frt span{display:inline-block;padding:0.05rem 0.3rem;border-radius:15px;background:#50d071;color:#fff;font-size:0.35rem}
+.Inquiry .info ul li.frt strong{font-weight:bold;}
+.Inquiry .info ul li strong{font-weight:normal;}
+.Inquiry .info ul li.frt strong span{font-weight:bold}
+.Inquiry .info ul li strong span{font-weight:noemal}
+.Inquiry .info span.gt_icon {position:absolute;right:3%;top:20px;color:#d4d4d4;font-size:24px;font-weight:bold}
+
+.Inquiry .TimeList{border-top:1px solid #d0d0d0;background:#fff}
+
+.Inquiry .docTitle,
+.Inquiry .docProfile{display:block;line-height:0.5rem;font-size:0.35rem;}
+
+.Inquiry .state {padding:0.05rem 0.2rem 0.2rem;}
+.Inquiry .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.Inquiry .state .Emp,
+.Inquiry .state .Cam,
+.Inquiry .state .Count,
+.Inquiry .state .Over,
+.Inquiry .state .Start{float:right}
+.Inquiry .state .Emp {color:#ffa173;min-height:0.9rem;line-height:0.9rem;}
+.Inquiry .state .Over {color:#999;min-height:0.9rem;line-height:0.9rem;}
+.Inquiry .state .Cam span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.Inquiry .state .Cam span a{display:block;padding:0 15px;color:#fff}
+.Inquiry .state .Cam span.state_icon {float:left;width:1rem;background:#5faafc url("../img/camera_icon.png") no-repeat center center;background-size:0.5rem;border-right:1px solid #fff}
+
+.Inquiry .state .Start span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.Inquiry .state .Start span.sorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.Inquiry .state .Start span a{display:block;padding:0 15px;color:#fff}
+
+.Inquiry .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.Inquiry .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+.SelFm{display:block;position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;}
+
+.condition ul  {border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;text-align:center}
+.condition ul li{position:relative;display:inline-block;width:3rem;height:1rem;border-left:1px solid #d0d0d0;text-align:center;color:#8a8a8a;line-height:1rem;font-size:0.4rem}
+.condition ul li:first-child{border:0}
+.condition ul li .up {position:absolute;top:0.27rem;right:0.5rem;width:0.2rem;height:0.2rem;background:url("../img/icon_up.png") no-repeat;background-size:100%;}
+.condition ul li .down {position:absolute;bottom:0.27rem;right:0.5rem;width:0.2rem;height:0.2rem;background:url("../img/icon_down.png") no-repeat;background-size:100%;}
+
+.condition ul li.down,
+.condition ul li.up {color:#ff5f10}
+
+.condition ul li.down .down {background:url("../img/icon_down_on.png") no-repeat;background-size:100%;}
+.condition ul li.up .up {background:url("../img/icon_up_on.png") no-repeat;background-size:100%;}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>科室介绍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<style type="text/css">
+
+body { margin:0; padding:0; }
+header { background: #5caafc; height: 64px; width: 100% }
+.header_return { margin:20px 0px 0px 0px; padding: 10px 5px; width: 10%; float: left;}
+header span { margin:20px 0px 0px 0px; text-align: center;line-height: 40px; float:left; width: 75%; color: #ffffff; font-family:微软雅黑; font-size: 20px; font-weight: normal;}
+.director { padding:0px 0;}
+.director img { float: left;  padding:5px 5px 5px 5px; width: 110px;height: 110px;}
+.director p { padding: 10px;font-size: 12px; font-family: 微软雅黑; color: #484848; text-indent: 2em; margin:0;}
+.director h3 { line-height: 0px; padding:0; font-family: 微软雅黑; font-weight: normal; font-size: 16px;}
+.line { width: 100%; height: 15px; background: #f5f5f5 }
+.aboutus { width: 95%; padding: 10px;}
+.aboutus img { width: 100%; margin-bottom: 10px;}
+.aboutus p { font-size: 12px; font-family: 微软雅黑; color: #484848;margin:0; text-indent: 2em;}
+</style>
+
+</head>
+
+<body>
+<header>
+<div class="header_return"><a href="p3.html"><img src="img/return.png"></a></div>	<span>内分泌一科</span>
+</header>
+<section>
+	<div class="director">
+		<img src="img/department_neifenmi1_doctor.png"><h3>田丰秋  主任医师</h3>
+		<p>大连市友谊医院内分泌一科主任，1992年毕业于中国医科大学医疗专业，从事内分泌专业23年，积累了丰富的临床经验。擅长内分泌代谢病的诊治，糖尿病的分型及血糖的精细调整，各型病人的个体化管理；甲状腺、甲状旁腺的分期管理；垂体疾病，肾上腺占位处理，继发高血压的筛查；高尿酸血症及痛风的分级分期管理；血脂紊乱、代谢综合症、多囊卵巢综合症、性腺疾病等处理。</p>
+	</div>
+	<div class="line"> </div>
+	<div class="aboutus">
+		<img src="img/department_neifenmi1_pic.png">
+		<p> 友谊医院·内分泌一科位于民生分部5楼，开放床位36张。现有主任医师1人，副主任医师3人，主治医师2人，住院医师1人，均具有硕士学位。护理团队10人，主管护师6人，护师3人，护士1人，其中7人拥有本科学历。科室拥有胰岛素泵，动态血糖监测系统，伟力糖尿病治疗仪，安诺红外线治疗仪等先进设备。</p>
+		<p> 主治：各类型糖尿病，甲状腺疾病，甲状旁腺疾病，肾上腺疾病，性腺病，继发高血压的筛查，血脂异常，高尿酸血症，肥胖症等。</p>
+		<p> 擅长：糖尿病的精细化调整和个体化管理，糖尿病慢性并发症的综合管理，深入开展各种形式的糖尿病知识宣教和义诊，提高了糖尿病病友对疾病的管理能力。</p>	
+	</div>
+</section>
+</body>
+</html>

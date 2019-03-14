@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<!--base href="http://192.168.11.14:8080/MedicalUnicom/HealthWeb/" target="_blank" /-->
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/topMenu.css" />
+	<link rel="stylesheet" href="css/slide.css" />
+
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/MobileSlide.js"></script>
+	<script type="text/javascript" src="js/sideMenu.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatIndex.js"></script>
+</head>
+<body id="main">
+	<div id="aside"></div>
+	<div class="sideMenu">
+		<p class="Minfo">
+			<span><img class="usrImg" src="img/defaultpatient.png" alt="" /></span>
+			<strong class="usrName"></strong>
+		</p>
+		<div class="list">
+			<ul>
+				<li><a href="Pat_Information.html">我的个人信息</a></li>
+				<!--li><a href="Pat_MyReservation.html">我的预约问诊</a></li>
+				<li><a href="#none">我的收藏</a></li-->
+				<li><a href="Pat_Index.html">返回首页</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="header">
+		<div class="MenuForm">
+			<span id="User"><img src="img/user_icon.png"> 个人中心</span>
+			<div class="logo_text">
+				<div class="searchForm"><img src="img/icon_search.png"><input type="text" onfocus="this.value=''" onblur="this.value=this.value" value="搜索医生"/></div>
+			</div>
+			<span class="Cayegory"><a href="Pat_MessageList.html"><img src="img/category_icon.png"></a></span>
+			<div class="slide clearfix">
+				<ul>
+					<li><a href="#"><img src="img/main_slide1.jpg" width="100%" alt=""></a></li>
+					<li><a href="#"><img src="img/main_slide2.jpg" width="100%" alt=""></a></li>
+					<li><a href="#"><img src="img/main_slide3.jpg" width="100%" alt=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div id="container">
+			<div class="contents">
+				<div class="bigMenu">
+					<ul>
+						<li>
+							<p><span>预约医生</span><br/>网上预约视频问诊</p>
+							<a href="Pat_Reservation.html"><img src="img/yuyue.png"></a>
+						</li>
+						<li>
+							<p><span class="speed">急诊</span><br/>快速视频问诊通道</p>
+							<a href="Pat_Emergency.html"><img src="img/jizhen.png"></a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="smallMenu">
+					<ul>
+						<li>
+							<a href="Pat_MyReservation.html"><img src="img/wodeyuding.png" alt="" /></a>
+							<p><span>我的预定</span></p>
+						</li>
+						<li>
+							<a href="Pat_BuyedDocList.html"><img src="img/wodeyisheng.png" alt="" /></a>
+							<p><span>我的关注</span></p>
+						</li>
+						<li>
+							<a href="Pat_History.html"><img src="img/wodebingli.png" alt="" /></a>
+							<p><span>我的病例</span></p>
+						</li>
+						<li>
+							<a href="#none"><img src="img/yongyaoguanli.png" alt="" /></a>
+							<p><span>用药管理</span></p>
+						</li>
+						<li>
+							<a href="#none"><img src="img/jiankangdangan.png" alt="" /></a>
+							<p><span>健康管理</span></p>
+						</li>
+						<li>
+							<a href="#none"><img src="img/shengmingtizheng.png" alt="" /></a>
+							<p><span>生命体征</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>

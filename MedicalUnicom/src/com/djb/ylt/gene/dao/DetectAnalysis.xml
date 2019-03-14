@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+	<resultMap id="DetectAnalysisResultMap" type="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+		<id column="DA_ID" jdbcType="INTEGER" property="daId" />
+		<result column="RM_ID" jdbcType="INTEGER" property="rmId" />
+		<result column="DISEASE_NAME" jdbcType="VARCHAR" property="diseaseName" />
+		<result column="GENE_NAME" jdbcType="VARCHAR" property="geneName" />
+		<result column="GENE_TYPE" jdbcType="VARCHAR" property="geneType" />
+		<result column="RISK_ADDED" jdbcType="VARCHAR" property="riskAdded" />
+		<result column="DISEASE_ANALYSIS" jdbcType="VARCHAR" property="diseaseAnalysis" />
+
+	</resultMap>
+	<sql id="Analysis_Column_List">
+		DA_ID,RM_ID, DISEASE_NAME, GENE_NAME, GENO_TYPE, RISK_ADDED
+	</sql>
+	<delete id="delete" parameterType="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+		delete from detect_analysis
+		where DA_ID = #{daId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+		insert into detect_analysis (DA_ID, RM_ID, DISEASE_NAME,
+		GENE_NAME, GENE_TYPE, RISK_ADDED
+		)
+		values (#{daId,jdbcType=INTEGER}, #{rmId,jdbcType=INTEGER},
+		#{diseaseName,jdbcType=VARCHAR},
+		#{geneName,jdbcType=VARCHAR}, #{geneType,jdbcType=VARCHAR}, #{riskAdded,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity"
+		resultMap="DetectAnalysisResultMap">
+		select
+		DISEASE_NAME,
+		GROUP_CONCAT(GENE_NAME,":",GENE_TYPE,":", RISK_ADDED ) AS DISEASE_ANALYSIS
+		from detect_analysis
+		WHERE
+		1=1
+		<if test="rmId !=null">and RM_ID=#{rmId} </if>
+		GROUP BY
+		detect_analysis.DISEASE_NAME
+
+	</select>
+	<update id="update" parameterType="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+		update detect_analysis
+		<set>
+			<if test="rmId != null">
+				RM_ID = #{rmId,jdbcType=INTEGER},
+			</if>
+			<if test="diseaseName != null">
+				DISEASE_NAME = #{diseaseName,jdbcType=VARCHAR},
+			</if>
+			<if test="geneName != null">
+				GENE_NAME = #{geneName,jdbcType=VARCHAR},
+			</if>
+			<if test="geneType != null">
+				GENE_TYPE = #{geneType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskAdded != null">
+				RISK_ADDED = #{riskAdded,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where DA_ID = #{daId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

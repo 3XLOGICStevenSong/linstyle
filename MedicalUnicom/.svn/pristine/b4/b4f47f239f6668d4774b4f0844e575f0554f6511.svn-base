@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.InqueryViewEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.InqueryViewEntity">
+		<result column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="COUNT" jdbcType="INTEGER" property="count" />
+		<result column="UNIT" jdbcType="VARCHAR" property="unit" />
+		<result column="QA_TIME" jdbcType="VARCHAR" property="qaTime" />
+		<result column="TIME_UNIT" jdbcType="VARCHAR" property="timeUnit" />
+		<result column="TYPE_ID" jdbcType="CHAR" property="typeId" />
+		<result column="TEL_COUNT" jdbcType="TINYINT" property="telCount" />
+		<result column="TEL_UNIT" jdbcType="VARCHAR" property="telUnit" />
+		<result column="TOTAL" jdbcType="DECIMAL" property="total" />
+		<result column="EFFECT_TIME" jdbcType="VARCHAR" property="effectTime" />
+		<result column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="DEPARTMENT_ID" jdbcType="INTEGER" property="departmentId" />
+		<result column="POSITIONAL" jdbcType="VARCHAR" property="positional" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="HEAD_PIC" jdbcType="VARCHAR" property="headPic" />
+		<result column="HEAL_DISEASE" jdbcType="VARCHAR" property="healDisease" />
+		<result column="GRADE" jdbcType="VARCHAR" property="grade" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="COMMENT_GRADE" jdbcType="DECIMAL" property="commentGrade" />
+		<result column="SERVICE_COUNT" jdbcType="INTEGER" property="serviceCount" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="DEP_NAME" property="depName" jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DC_ID " property="dcId " jdbcType="INTEGER" />
+		<result column="FOLLOW_COUNT" jdbcType="INTEGER" property="followCount" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="SERVICE_TYPE" property="serviceType" jdbcType="CHAR" />
+		<result column="SCHEDULE_FLAG" property="scheduleFlag" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="InqueryView_Column_List">
+		SYMPTOM_ID,DOCTOR_ID,POSITIONAL,NAME,HEAD_PIC,STATUS_FLG,HEAL_DISEASE,GRADE,DEPARTMENT_ID,
+		PACKAGE_ID,COUNT,UNIT,QA_TIME,TIME_UNIT,TYPE_ID,TEL_COUNT,TEL_UNIT,MIN(TOTAL)
+		AS TOTAL,EFFECT_TIME,TYPE,COMMENT_GRADE,SERVICE_COUNT,HOSPITAL_NAME,
+		DEPARTMENT_NAME,DC_NAME,DC_ID,SERVICE_TYPE
+	</sql>
+	<sql id="InqueryViewWhereClause">
+		<if test="packageId !=null">and PACKAGE_ID=#{packageId} </if>
+		<if test="name!=null">and NAME=#{name} </if>
+		<if test="doctorId!=null">and DOCTOR_ID=#{doctorId} </if>
+		<if test="count!=null">and COUNT=#{count} </if>
+		<if test="unit!=null">and UNIT=#{unit} </if>
+		<if test="total!=null">and TOTAL=#{total} </if>
+		<if test="type !=null">and TYPE=#{type} </if>
+	</sql>
+	<sql id="orderByPackageClause">
+		ORDER BY TOTAL DESC,PACKAGE_ID
+	</sql>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.InqueryViewEntity"
+		resultMap="BaseResultMap">
+		select distinct
+		<include refid="InqueryView_Column_List" />,
+		(select COUNT(*) from  doctor_schedule  ds where ds.DOCTOR_ID=InqueryView.DOCTOR_ID and  date_format(ds.START_DATE ,'%Y-%m-%d')>= date_format(now() ,'%Y-%m-%d')  and   date_format(ds.START_TIME ,'%H:%i:%s')>= date_format(now() ,'%H:%i:%s') ) AS SCHEDULE_FLAG
+		<if test="patientId!=null">, (select count(*) from follow f where
+			f.PATIENT_ID=#{patientId} and f.DOCTOR_ID=InqueryView.DOCTOR_ID) AS
+			FOLLOW_COUNT </if>
+		from InqueryView
+		where 1=1 and DOCTOR_ID is not null
+		<if test="symptomId !=null">and SYMPTOM_ID=#{symptomId} </if>
+		<if test="departmentId !=null">and DEPARTMENT_ID=#{departmentId} </if>
+		GROUP BY DOCTOR_ID
+		<if test="methodFlg ==0 and sortType==0">ORDER BY GRADE DESC, DOCTOR_ID </if>
+		<if test="methodFlg ==0 and  sortType==1">ORDER BY GRADE ,DOCTOR_ID</if>
+		<if test="methodFlg ==1  and  sortType==0">ORDER BY TOTAL , DOCTOR_ID</if>
+		<if test="methodFlg ==1 and  sortType==1">ORDER BY TOTAL DESC ,DOCTOR_ID</if>
+		<if test="methodFlg ==2  and  sortType==0">ORDER BY COMMENT_GRADE, DOCTOR_ID </if>
+		<if test="methodFlg ==2  and  sortType==1">ORDER BY COMMENT_GRADE DESC, DOCTOR_ID</if>
+		limit #{pageNum},#{pageSize}
+	</select>
+</mapper>

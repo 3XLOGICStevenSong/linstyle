@@ -1,0 +1,193 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.user.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.user.dto.TypicalCaseDTO;
+import com.djb.ylt.user.dtoclient.TypicalCaseClientDTO;
+import com.djb.ylt.user.dtoclient.TypicalCaseClientListDTO;
+import com.djb.ylt.user.entity.TypicalCaseEntity;
+import com.djb.ylt.user.service.ITypicalCaseService;
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * TypicalCaseAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2017年4月25日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/TypicalCase")
+public class TypicalCaseAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iTypicalCaseService")
+	private ITypicalCaseService iTypicalCaseService;
+
+	public TypicalCaseAction() {
+		super();
+	}
+
+	/**
+	 * 获取我的私人医生列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetTypicalCaseInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		TypicalCaseDTO paramDTO =  (TypicalCaseDTO) form;
+		
+		List<TypicalCaseDTO> paramListDTO = new ArrayList<TypicalCaseDTO>();
+		
+		// 结果ClientDTO
+		TypicalCaseClientDTO typicalCaseClientDTO = new TypicalCaseClientDTO();
+		
+		List<TypicalCaseClientDTO> typicalCaseClientList = 
+				new ArrayList<TypicalCaseClientDTO>();
+		
+		TypicalCaseClientListDTO resultClientDTO  = new TypicalCaseClientListDTO();
+
+		// 参数DTO->参数Entity
+		List<TypicalCaseEntity> resultEntity = new ArrayList<TypicalCaseEntity>();
+
+		try {
+			resultEntity = iTypicalCaseService.getTypicalCaseList();
+			if (resultEntity.size() != 0) {
+				List<String> listNum = new ArrayList<String>();
+				int m = 0;
+				for (int j = 1;j<resultEntity.size();j++) {
+					String strDepName = resultEntity.get(j).getDepName();
+					if (!strDepName.equals(resultEntity.get(j-1).getDepName())) {
+						m = 1;
+						listNum.add(String.valueOf(m));
+						m = 0;
+					} else {
+						listNum.add(String.valueOf(m));
+					}
+				}
+				
+				for (int i = 0;i<resultEntity.size();i++) {
+					typicalCaseClientDTO = new TypicalCaseClientDTO();
+					if (i == resultEntity.size()-1) {
+						break;
+					}
+					// 科室
+					String strDcName = resultEntity.get(i).getDcName();
+					// 科室,专业判断
+					if (!strDcName.equals(resultEntity.get(i+1).getDcName())) {
+						// 科室
+						typicalCaseClientDTO.setDc_name(resultEntity.get(i).getDcName());
+						// 专业
+						typicalCaseClientDTO.setDep_name(resultEntity.get(i).getDepName());
+						paramDTO = new TypicalCaseDTO();
+						// 头像
+						paramDTO.setHead_pic(resultEntity.get(i).getHeadPic());
+						// 姓名
+						paramDTO.setDoctor_name(resultEntity.get(i).getDoctorName());
+						// 地位
+						paramDTO.setPositional(resultEntity.get(i).getPositional());
+						paramListDTO = new ArrayList<TypicalCaseDTO>();
+						paramListDTO.add(paramDTO);
+						typicalCaseClientDTO.setTypicalCaseList(paramListDTO);
+						
+					} else {
+						if ("0".equals(listNum.get(i))) {
+							// 科室
+							typicalCaseClientDTO.setDc_name(resultEntity.get(i).getDcName());
+							// 专业
+							typicalCaseClientDTO.setDep_name(resultEntity.get(i).getDepName());
+							paramDTO = new TypicalCaseDTO();
+							// 头像
+							paramDTO.setHead_pic(resultEntity.get(i).getHeadPic());
+							// 姓名
+							paramDTO.setDoctor_name(resultEntity.get(i).getDoctorName());
+							// 地位
+							paramDTO.setPositional(resultEntity.get(i).getPositional());
+							paramListDTO = new ArrayList<TypicalCaseDTO>();
+							paramListDTO.add(paramDTO);
+							typicalCaseClientDTO.setTypicalCaseList(paramListDTO);
+						} else {
+							paramListDTO = new ArrayList<TypicalCaseDTO>();
+							// 科室
+							typicalCaseClientDTO.setDc_name(resultEntity.get(i).getDcName());
+							// 专业
+							typicalCaseClientDTO.setDep_name(resultEntity.get(i).getDepName());
+							paramDTO = new TypicalCaseDTO();
+							// 头像
+							paramDTO.setHead_pic(resultEntity.get(i).getHeadPic());
+							// 姓名
+							paramDTO.setDoctor_name(resultEntity.get(i).getDoctorName());
+							// 地位
+							paramDTO.setPositional(resultEntity.get(i).getPositional());
+							
+							paramListDTO.add(paramDTO);
+							paramDTO = new TypicalCaseDTO();
+							// 头像
+							paramDTO.setHead_pic(resultEntity.get(i+1).getHeadPic());
+							// 姓名
+							paramDTO.setDoctor_name(resultEntity.get(i+1).getDoctorName());
+							// 地位
+							paramDTO.setPositional(resultEntity.get(i+1).getPositional());
+							paramListDTO.add(paramDTO);
+							typicalCaseClientDTO.setTypicalCaseList(paramListDTO);
+						}
+					}
+					typicalCaseClientList.add(typicalCaseClientDTO);
+				}
+				resultClientDTO.setTypicalCaseInfoList(typicalCaseClientList);
+			}
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("8002");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+}

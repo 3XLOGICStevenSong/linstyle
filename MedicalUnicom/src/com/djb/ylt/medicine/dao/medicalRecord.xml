@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+	<resultMap id="MedicineRecordResultMap"
+		type="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+		<id column="medical_record_id" property="medical_record_id"
+			jdbcType="INTEGER" />
+		<result column="medical_record_code" property="medical_record_code"
+			jdbcType="VARCHAR" />
+		<result column="medical_record_time" property="medical_record_time"
+			jdbcType="TIMESTAMP" />
+		<result column="medical_record_result" property="medical_record_result"
+			jdbcType="VARCHAR" />
+		<result column="hospital_name" property="hospital_name"
+			jdbcType="VARCHAR" />
+		<result column="department_name" property="department_name"
+			jdbcType="VARCHAR" />
+		<result column="patient_symptom_report" property="patient_symptom_report"
+			jdbcType="VARCHAR" />
+		<result column="present_symptom_report" property="present_symptom_report"
+			jdbcType="VARCHAR" />
+		<result column="past_symptom_report" property="past_symptom_report"
+			jdbcType="VARCHAR" />
+		<result column="medical_record_type" property="medical_record_type"
+			jdbcType="VARCHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="bodyCheck" property="bodyCheck" jdbcType="VARCHAR" />
+		<result column="treatScheme" property="treatScheme" jdbcType="VARCHAR" />
+
+		<result column="medical_record_title" property="medical_record_title"
+			jdbcType="VARCHAR" />
+
+		<association property="patientEntity"
+			javaType="com.djb.ylt.user.entity.PatientEntity" resultMap="PatientResult" />
+		<collection property="inspectionReportEntitys"
+			ofType="com.djb.ylt.medicine.entity.InspectionReportEntity"
+			resultMap="InspectionReportEntityResultMap" />
+
+	</resultMap>
+
+	<resultMap id="PatientResult" type="com.djb.ylt.user.entity.PatientEntity">
+		<id column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="BIRTH" property="birth" jdbcType="TIMESTAMP" />
+		<result column="AGE_UNIT" property="ageUnit" jdbcType="CHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="MARRY" property="marry" jdbcType="CHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BT" property="bt" jdbcType="CHAR" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="MEDICAL_EATEN_HISTORY" property="medicalEatenHistory"
+			jdbcType="VARCHAR" />
+		<result column="ALLERGY_HISTORY" property="allergyHistory"
+			jdbcType="VARCHAR" />
+		<result column="ILLNESS_HISTORY" property="illnessHistory"
+			jdbcType="VARCHAR" />
+		<result column="AMT" property="amt" jdbcType="VARCHAR" />
+		<result column="PATIENT_PIC" property="patientPic" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+		
+	</resultMap>
+
+	<sql id="Patient_Column_List">
+		p.PATIENT_ID, p.NAME, p.BIRTH, p.AGE_UNIT, p.SEX, p.MARRY,p.ADDRESS, p.BT,
+		p.USER_ID,
+		p.MEDICAL_EATEN_HISTORY,
+		p.ALLERGY_HISTORY, p.ILLNESS_HISTORY, p.AMT,
+		p.PATIENT_PIC, p.EMAIL, p.CREATE_TIME, p.UPDATE_TIME,p.NICK_NAME
+	</sql>
+
+
+
+	<resultMap id="InspectionReportEntityResultMap"
+		type="com.djb.ylt.medicine.entity.InspectionReportEntity">
+		<id column="inspection_report_id" property="inspection_report_id"
+			jdbcType="INTEGER" />
+		<result column="inspection_report_type" property="inspection_report_type"
+			jdbcType="VARCHAR" />
+		<result column="report_department_name" property="report_department_name"
+			jdbcType="VARCHAR" />
+		<result column="inspection_report_status" property="inspection_report_status"
+			jdbcType="VARCHAR" />
+		<result column="report_content" property="report_content"
+			jdbcType="VARCHAR" />
+		<result column="medical_record_code" property="medical_record_code"
+			jdbcType="VARCHAR" />
+
+		<result column="medical_record_image" property="medical_record_image"
+			jdbcType="VARCHAR" />
+		<result column="medical_report_time" property="medical_report_time"
+			jdbcType="TIMESTAMP" />
+		<result column="inspection_report_name" property="inspection_report_name"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="MedicineRecord_Column_List">
+		mr.medical_record_id, mr.medical_record_code,
+		mr.medical_record_time, mr.medical_record_result,
+		mr.hospital_name,
+		mr.department_name, mr.patient_symptom_report,
+		mr.present_symptom_report,
+		mr.past_symptom_report,
+		mr.medical_record_type, mr.memo,
+		mr.user_id,mr.bodyCheck,mr.treatScheme,mr.medical_record_title
+	</sql>
+
+	
+
+	<sql id="InspectionReportEntity_Column_List">
+		ir.inspection_report_id, ir.inspection_report_type,
+		ir.report_department_name,
+		ir.inspection_report_status,
+		ir.report_content,
+		ir.medical_record_code,ir.medical_record_image,ir.medical_report_time,ir.inspection_report_name
+	</sql>
+
+	<sql id="orderByMedicineRecordClause">
+		ORDER BY mr.medical_record_time DESC
+	</sql>
+
+
+
+	<sql id="MedicineRecordWhereClause">
+		<if test="medical_record_id!=null">and mr.medical_record_id=#{medical_record_id} </if>
+		<if test="medical_record_code!=null">and mr.medical_record_code=#{medical_record_code} </if>
+		<if test="medical_record_time!=null">and mr.medical_record_time=#{medical_record_time} </if>
+		<if test="medical_record_result!=null">and mr.medical_record_result=#{medical_record_result}
+		</if>
+		<if test="hospital_name!=null">and mr.hospital_name=#{hospital_name} </if>
+		<if test="department_name!=null">and mr.department_name=#{department_name} </if>
+		<if test="user_id!=null">and mr.user_id=#{user_id} </if>
+		<if test="patient_symptom_report!=null">and mr.patient_symptom_report=#{patient_symptom_report}
+		</if>
+		<if test="present_symptom_report!=null">and mr.present_symptom_report=#{present_symptom_report}
+		</if>
+		<if test="past_symptom_report!=null">and mr.past_symptom_report=#{past_symptom_report} </if>
+		<if test="memo!=null">and mr.memo=#{memo} </if>
+		<if test="bodyCheck!=null">and mr.bodyCheck=#{bodyCheck} </if>
+		<if test="treatScheme!=null">and mr.treatScheme=#{treatScheme} </if>
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.ylt.medicine.entity.MedicalRecordEntity"
+		resultMap="MedicineRecordResultMap">
+		select
+		<include refid="MedicineRecord_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InspectionReportEntity_Column_List" />
+		from medical_record mr,patient p,inspection_report ir
+		where 1=1
+		and
+		mr.user_id=p.PATIENT_ID
+		and
+		mr.medical_record_code=ir.medical_record_code
+		<include refid="MedicineRecordWhereClause" />
+	</select>
+
+
+	<select id="findList" resultType="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+		select
+		<include refid="MedicineRecord_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InspectionReportEntity_Column_List" />
+		from medical_record mr left outer join inspection_report ir on
+		(mr.medical_record_code=ir.medical_record_code)
+		left outer join
+		patient p on (mr.user_id=p.PATIENT_ID)
+		<include refid="orderByMedicineRecordClause" />
+
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.medicine.entity.MedicalRecordEntity"
+		resultMap="MedicineRecordResultMap">
+		select
+		<include refid="MedicineRecord_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InspectionReportEntity_Column_List" />
+		from medical_record mr left outer join inspection_report ir on
+		(mr.medical_record_code=ir.medical_record_code)
+		left outer join
+		patient p on (mr.user_id=p.PATIENT_ID)
+		<include refid="MedicineRecordWhereClause" />
+		<include refid="orderByMedicineRecordClause" />
+	</select>
+
+
+
+	<select id="findPagedList" resultType="com.djb.ylt.medicine.entity.MedicalRecordEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+		select
+		<include refid="MedicineRecord_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InspectionReportEntity_Column_List" />
+		from medical_record mr left outer join inspection_report ir on
+		(mr.medical_record_code=ir.medical_record_code)
+		left outer join
+		patient p on (mr.user_id=p.PATIENT_ID)
+		<include refid="orderByMedicineRecordClause" />
+		limit
+		#{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedListByCondition" resultType="com.djb.ylt.medicine.entity.MedicalRecordEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+		select
+		<include refid="MedicineRecord_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="InspectionReportEntity_Column_List" />
+		from medical_record mr left outer join inspection_report ir on
+		(mr.medical_record_code=ir.medical_record_code)
+		left outer join
+		patient p on (mr.user_id=p.PATIENT_ID)
+		<include refid="MedicineRecordWhereClause" />
+		<include refid="orderByMedicineRecordClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+
+	<insert id="insertSelective" parameterType="com.djb.ylt.medicine.entity.MedicalRecordEntity">
+		insert into medical_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="medical_record_id != null">
+				medical_record_id,
+			</if>
+			<if test="medical_record_code != null">
+				medical_record_code,
+			</if>
+			<if test="medical_record_time != null">
+				medical_record_time,
+			</if>
+			<if test="medical_record_result != null">
+				medical_record_result,
+			</if>
+			<if test="hospital_name != null">
+				hospital_name,
+			</if>
+			<if test="department_name != null">
+				department_name,
+			</if>
+			<if test="patient_symptom_report != null">
+				patient_symptom_report,
+			</if>
+			<if test="present_symptom_report != null">
+				present_symptom_report,
+			</if>
+			<if test="past_symptom_report != null">
+				past_symptom_report,
+			</if>
+			<if test="medical_record_type != null">
+				medical_record_type,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="user_id != null">
+				user_id,
+			</if>
+			<if test="bodyCheck != null">
+				bodyCheck,
+			</if>
+			<if test="treatScheme != null">
+				treatScheme,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="medical_record_id != null">
+				#{medical_record_id,jdbcType=INTEGER},
+			</if>
+			<if test="medical_record_code != null">
+				#{medical_record_code,jdbcType=VARCHAR},
+			</if>
+			<if test="medical_record_time != null">
+				#{medical_record_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="medical_record_result != null">
+				#{medical_record_result,jdbcType=VARCHAR},
+			</if>
+			<if test="hospital_name != null">
+				#{hospital_name,jdbcType=VARCHAR},
+			</if>
+			<if test="department_name != null">
+				#{department_name,jdbcType=VARCHAR},
+			</if>
+			<if test="patient_symptom_report != null">
+				#{patient_symptom_report,jdbcType=VARCHAR},
+			</if>
+			<if test="present_symptom_report != null">
+				#{present_symptom_report,jdbcType=VARCHAR},
+			</if>
+			<if test="past_symptom_report != null">
+				#{past_symptom_report,jdbcType=VARCHAR},
+			</if>
+			<if test="medical_record_type != null">
+				#{medical_record_type,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="user_id != null">
+				#{user_id,jdbcType=INTEGER},
+			</if>
+
+			<if test="bodyCheck != null">
+				#{bodyCheck,jdbcType=VARCHAR},
+			</if>
+			<if test="treatScheme != null">
+				#{treatScheme,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+
+</mapper>

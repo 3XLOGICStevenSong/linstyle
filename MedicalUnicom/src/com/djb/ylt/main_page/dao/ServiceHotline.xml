@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.main_page.entity.ServiceHotlineEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.main_page.entity.ServiceHotlineEntity" >
+    <id column="HOTLINE" property="hotline" jdbcType="VARCHAR" />
+  </resultMap>
+  
+<select id="getObject" resultMap="BaseResultMap">
+		select
+		HOTLINE
+		from service_hotline
+	</select>
+
+  <insert id="insert" parameterType="com.djb.ylt.main_page.entity.ServiceHotlineEntity" >
+    insert into service_hotline (HOTLINE)
+    values (#{hotLine,jdbcType=VARCHAR})
+  </insert>
+
+
+
+</mapper>

@@ -1,0 +1,23 @@
+package com.djb.ylt.user.service;
+
+import com.djb.ylt.user.entity.TypicalCaseEntity;
+
+import java.util.List;
+
+
+public interface ITypicalCaseService {
+
+    public void addTypicalCase(TypicalCaseEntity typicalCase) throws Exception;
+
+    public void deleteTypicalCase(TypicalCaseEntity typicalCase);
+
+    public void deleteTypicalCaseBatch(List<TypicalCaseEntity> list);
+
+    public void updateTypicalCase(TypicalCaseEntity typicalCase);
+
+    public TypicalCaseEntity getObject(TypicalCaseEntity typicalCase);
+
+    public List<TypicalCaseEntity> getTypicalCaseList();
+
+    public List<TypicalCaseEntity> getTypicalCaseList(TypicalCaseEntity typicalCase);
+}

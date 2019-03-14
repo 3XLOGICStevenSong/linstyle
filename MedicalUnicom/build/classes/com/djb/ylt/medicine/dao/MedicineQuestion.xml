@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+	<resultMap id="MedicineQuestionResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		<id column="question_id" property="question_id" jdbcType="INTEGER" />
+		<result column="ask_user_name" property="ask_user_name"
+			jdbcType="VARCHAR" />
+		<result column="ask_user_top_pic" property="ask_user_top_pic"
+			jdbcType="VARCHAR" />
+		<result column="question_content" property="question_content"
+			jdbcType="VARCHAR" />
+		<result column="medicine_id" property="medicine_id" jdbcType="INTEGER" />
+		<result column="ask_user_id" property="userId" jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+
+		<association property="medicineInfoEntity"
+			javaType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+			resultMap="MedicineInfoResultMap" />
+
+		<collection property="medicineAnswerEntitys"
+			ofType="com.djb.ylt.medicine.entity.MedicineAnswerEntity"
+			resultMap="MedicineAnswerResultMap" />
+	</resultMap>
+
+	<resultMap id="MedicineAnswerResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineAnswerEntity">
+		<id column="answer_id" property="answer_id" jdbcType="INTEGER" />
+		<result column="answer_user_name" property="answer_user_name"
+			jdbcType="VARCHAR" />
+		<result column="answer_user_top_pic" property="answer_user_top_pic"
+			jdbcType="VARCHAR" />
+		<result column="question_id" property="question_id" jdbcType="INTEGER" />
+		<result column="answer_user_id" property="userId"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="answer_content" property="answer_content"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="MedicineInfoResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		<id column="medicine_id" property="medicine_id" jdbcType="INTEGER" />
+		<result column="medicine_name" property="medicine_name"
+			jdbcType="VARCHAR" />
+		<result column="medicine_directions" property="medicine_directions"
+			jdbcType="VARCHAR" />
+		<result column="medicine_price" property="medicine_price"
+			jdbcType="REAL" />
+		<result column="medicine_grade" property="medicine_grade"
+			jdbcType="REAL" />
+		<result column="medicine_pic" property="medicine_pic" jdbcType="VARCHAR" />
+		<result column="medicine_effect" property="medicine_effect"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_name" property="medicine_type_name"
+			jdbcType="CHAR" />
+		<result column="medicine_brand" property="medicine_brand"
+			jdbcType="VARCHAR" />
+		<result column="medicine_factory" property="medicine_factory"
+			jdbcType="VARCHAR" />
+		<result column="medicine_insurance" property="medicine_insurance"
+			jdbcType="VARCHAR" />
+		<result column="medicine_otc" property="medicine_otc" jdbcType="VARCHAR" />
+		<result column="medicine_memo" property="medicine_memo"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_id" property="medicine_type_id"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+	</resultMap>
+
+
+
+
+	<sql id="MedicineQuestion_Column_List">
+		mq.question_id, mq.ask_user_name, mq.ask_user_top_pic,
+		mq.question_content,
+		mq.medicine_id, mq.ask_user_id,
+		mq.create_time,
+		mq.last_modify_time, mq.create_user,
+		mq.last_modify_user, mq.version
+	</sql>
+
+	<sql id="MedicineAnswer_Column_List">
+		ma.answer_id, ma.answer_user_name, ma.answer_user_top_pic,
+		ma.question_id,
+		ma.answer_user_id,
+		ma.create_time,
+		ma.last_modify_time,
+		ma.create_user,
+		ma.last_modify_user, ma.version,ma.answer_content
+	</sql>
+
+
+	<sql id="MedicineInfo_Column_List">
+		mi.medicine_id, mi.medicine_name, mi.medicine_directions,
+		mi.medicine_price,
+		mi.medicine_grade,
+		mi.medicine_pic,
+		mi.medicine_effect,
+		mi.medicine_type_name,
+		mi.medicine_brand,
+		mi.medicine_factory,
+		mi.medicine_insurance,
+		mi.medicine_otc,
+		mi.medicine_memo, mi.medicine_type_id, mi.create_time,
+		mi.last_modify_time,
+		mi.create_user,
+		mi.last_modify_user, mi.version
+	</sql>
+
+	<sql id="MedicineQuestionWhereClause">
+		<if test="question_id!=null">and mq.question_id=#{question_id} </if>
+		<if test="ask_user_name!=null">and mq.ask_user_name=#{ask_user_name} </if>
+		<if test="ask_user_top_pic!=null">and mq.ask_user_top_pic=#{ask_user_top_pic} </if>
+		<if test="question_content!=null">and mq.question_content=#{question_content} </if>
+		<if test="medicine_id!=null">and mq.medicine_id=#{medicine_id} </if>
+		<if test="userId!=null">and mq.ask_user_id=#{userId} </if>
+	</sql>
+
+
+	<sql id="orderByMedicineQuestionClause">
+		ORDER BY mq.create_time DESC
+	</sql>
+
+
+	<select id="getObject"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity"
+		resultMap="MedicineQuestionResultMap">
+		select
+		<include refid="MedicineQuestion_Column_List" />
+		,
+		<include refid="MedicineAnswer_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_question mq,medicine_answer ma,medicine_info mi
+		where 1=1
+		and
+		mq.question_id = ma.question_id
+		and
+		mq.medicine_id=mi.medicine_id
+		<include refid="MedicineQuestionWhereClause" />
+	</select>
+
+
+	<select id="findList"
+		resultType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		select
+		<include refid="MedicineQuestion_Column_List" />
+		,
+		<include refid="MedicineAnswer_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_question mq,medicine_answer ma,medicine_info mi
+		where 1=1
+		and
+		mq.question_id = ma.question_id
+		and
+		mq.medicine_id=mi.medicine_id
+
+		<include refid="orderByMedicineQuestionClause" />
+
+
+	</select>
+
+
+	<select id="findListByCondition"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity"
+		resultMap="MedicineQuestionResultMap">
+		select
+		<include refid="MedicineQuestion_Column_List" />
+		,
+		<include refid="MedicineAnswer_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_question mq left outer join medicine_answer ma
+		on(mq.question_id = ma.question_id)
+		left outer join medicine_info mi
+		on(mq.medicine_id=mi.medicine_id)
+		<include refid="MedicineQuestionWhereClause" />
+		<include refid="orderByMedicineQuestionClause" />
+	</select>
+
+	<select id="findPagedList"
+		resultType="com.djb.ylt.medicine.entity.MedicineQuestionEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		select
+		<include refid="MedicineQuestion_Column_List" />
+		,
+		<include refid="MedicineAnswer_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_question mq,medicine_answer ma,medicine_info mi
+		where 1=1
+		and
+		mq.question_id = ma.question_id
+		and
+		mq.medicine_id=mi.medicine_id
+		<include refid="orderByMedicineQuestionClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedListByCondition"
+		resultType="com.djb.ylt.medicine.entity.MedicineQuestionEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		select
+		<include refid="MedicineQuestion_Column_List" />
+		,
+		<include refid="MedicineAnswer_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_question mq,medicine_answer ma,medicine_info mi
+		where 1=1
+		and
+		mq.question_id = ma.question_id
+		and
+		mq.medicine_id=mi.medicine_id
+		<include refid="MedicineQuestionWhereClause" />
+		<include refid="orderByMedicineQuestionClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+
+	<insert id="insert"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		insert into medicine_question
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="question_id != null">
+				question_id,
+			</if>
+			<if test="ask_user_name != null">
+				ask_user_name,
+			</if>
+			<if test="ask_user_top_pic != null">
+				ask_user_top_pic,
+			</if>
+			<if test="question_content != null">
+				question_content,
+			</if>
+			<if test="medicine_id != null">
+				medicine_id,
+			</if>
+			<if test="userId != null">
+				ask_user_id,
+			</if>
+			<if test="create_time != null">
+				create_time,
+			</if>
+			<if test="last_modify_time != null">
+				last_modify_time,
+			</if>
+			<if test="create_user != null">
+				create_user,
+			</if>
+			<if test="last_modify_user != null">
+				last_modify_user,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="question_id != null">
+				#{question_id,jdbcType=INTEGER},
+			</if>
+			<if test="ask_user_name != null">
+				#{ask_user_name,jdbcType=VARCHAR},
+			</if>
+			<if test="ask_user_top_pic != null">
+				#{ask_user_top_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="question_content != null">
+				#{question_content,jdbcType=VARCHAR},
+			</if>
+			<if test="medicine_id != null">
+				#{medicine_id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				#{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="last_modify_time != null">
+				#{last_modify_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="create_user != null">
+				#{create_user,jdbcType=INTEGER},
+			</if>
+			<if test="last_modify_user != null">
+				#{last_modify_user,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete"
+		parameterType="com.djb.ylt.medicine.entity.MedicineQuestionEntity">
+		DELETE FROM medicine_question
+		where
+		question_id=#{question_id}
+	</delete>
+
+
+
+</mapper>

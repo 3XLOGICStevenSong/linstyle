@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.TypicalCaseEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.TypicalCaseEntity">
+		<result column="TC_ID" property="tcId" jdbcType="INTEGER" />
+		<result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DEP_NAME" property="depName" jdbcType="VARCHAR" />
+		<result column="CASE_NAME" property="caseName" jdbcType="VARCHAR" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="VIEW_TIMES" property="viewTimes" jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="VARCHAR" />
+		<result column="DOCTORGRADE" property="doctorGrade" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<association property="doctorEntity"
+			javaType="com.djb.ylt.user.entity.DoctorEntity" resultMap="DoctorResultMap" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		t.TC_ID, t.DOCTOR_ID, t.DOCTOR_NAME, t.DC_NAME, t.DEP_NAME,
+		t.CASE_NAME, t.CONTENT,
+		t.VIEW_TIMES,
+		t.GRADE, t.HOSPITAL_NAME
+	</sql>
+	
+	<resultMap id="DoctorResultMap" type="com.djb.ylt.user.entity.DoctorEntity">
+		<id column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="DATE" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<result column="CARD_NUM" property="cardNum" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_NUM" property="certificateNum"
+			jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PIC" property="certificatePic"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="VERIFY_FLG" property="verifyFlg" jdbcType="CHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="BANK_OWNER" property="bankOwner" jdbcType="VARCHAR" />
+		<result column="BANK_NUM" property="bankNum" jdbcType="VARCHAR" />
+		<result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+		<result column="HEAL_DISEASE" property="healDisease" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="SERVICE_COUNT" property="serviceCount"
+			jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="CHAR" />
+		<result column="DEPARTMENT_ID" property="departmentId"
+			jdbcType="INTEGER" />
+		<result column="DOCTOR_TEL" property="doctorTel" jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DC_ID " property="dcId " jdbcType="INTEGER" />
+		<result column="SERVICE_TYPE" property="serviceType" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Doctor_Column_List">
+		d.DOCTOR_ID, d.USER_ID, d.NAME, d.SEX, d.AGE, d.POSITIONAL,
+		d.CARD_NUM,
+		d.CERTIFICATE_NUM, d.CERTIFICATE_PIC,
+		d.HEAD_PIC,
+		d.HOSPITAL_NAME, d.INTRODUCTION, d.VERIFY_FLG, d.STATUS_FLG,
+		d.BANK_OWNER, d.BANK_NUM,
+		d.BANK_NAME, d.HEAL_DISEASE, d.EMAIL,
+		d.UPDATE_TIME,
+		d.SERVICE_COUNT,
+		d.GRADE,d.DEPARTMENT_ID,d.DOCTOR_TEL,d.DEPARTMENT_NAME,d.DC_NAME,d.DC_ID,d.SERVICE_TYPE
+	</sql>
+
+	<select id="getObject" resultMap="BaseResultMap"
+		parameterType="com.djb.ylt.user.entity.TypicalCaseEntity">
+		select
+		<include refid="Base_Column_List" />
+		from typical_case t
+		<if test="tcId!= null">where t.TC_ID= #{tcId,jdbcType=INTEGER}</if>
+	</select>
+	<select id="findList" parameterType="com.djb.ylt.user.entity.TypicalCaseEntity"
+		resultMap="BaseResultMap">
+		select
+		 typical_case.tc_id as TC_ID, 
+		 typical_case.case_name as CASE_NAME, 
+		 typical_case.doctor_name as DOCTOR_NAME, 
+		 typical_case.dc_name as DC_NAME, 
+		 typical_case.dep_name as DEP_NAME,
+		 doctor.positional as POSITIONAL,
+		 doctor.head_pic as HEAD_PIC
+		from typical_case
+		left join doctor on typical_case.doctor_id = doctor.doctor_id
+		group by DC_NAME,DEP_NAME,DOCTOR_NAME
+		order by DC_NAME,DEP_NAME,DOCTOR_NAME
+	</select>
+	
+	<select id="findTypicalCaseDoctorComment" parameterType="com.djb.ylt.user.entity.TypicalCaseEntity"
+		resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+			,
+			<include refid="Doctor_Column_List" />
+			,
+			(SELECT
+				AVG(doctor_comment.GRADE)
+			FROM
+				doctor_comment
+			LEFT JOIN doctor ON doctor_comment.DOCTOR_ID = doctor.DOCTOR_ID
+			)  AS DOCTORGRADE
+		FROM typical_case t
+		LEFT JOIN doctor d ON t.DOCTOR_ID = d.DOCTOR_ID
+		where t.TC_ID = #{tcId}
+	</select>
+	
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.TypicalCaseEntity">
+		insert into typical_case
+		(TC_ID, DOCTOR_ID, DOCTOR_NAME,
+		DC_NAME, DEP_NAME, CASE_NAME,
+		CONTENT,
+		VIEW_TIMES, GRADE,
+		HOSPITAL_NAME)
+		values (#{tcId,jdbcType=INTEGER},
+		#{doctorId,jdbcType=INTEGER},
+		#{doctorName,jdbcType=VARCHAR},
+		#{dcName,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR},
+		#{caseName,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{viewTimes,jdbcType=INTEGER},
+		#{grade,jdbcType=VARCHAR},
+		#{hospitalName,jdbcType=VARCHAR})
+	</insert>
+	<update id="update" parameterType="com.djb.ylt.user.entity.TypicalCaseEntity">
+		update typical_case
+		<set>
+			<if test="viewTimes != null">
+				VIEW_TIMES = #{viewTimes,jdbcType=INTEGER},
+			</if>
+		</set>
+		where TC_ID=#{tcId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

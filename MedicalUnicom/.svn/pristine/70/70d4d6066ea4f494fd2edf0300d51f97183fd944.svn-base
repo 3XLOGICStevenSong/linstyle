@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.cases.entity.CasesEntity">
+
+  <resultMap id="CasesListMap" type="com.djb.ylt.cases.entity.CasesEntity">
+    <id column="TC_ID" jdbcType="INTEGER" property="tcId" />
+    <result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+    <result column="DOCTOR_NAME" jdbcType="VARCHAR" property="doctorName" />
+    <result column="DC_NAME" jdbcType="VARCHAR" property="dcName" />
+    <result column="DEP_NAME" jdbcType="VARCHAR" property="depName" />
+    <result column="CASE_NAME" jdbcType="VARCHAR" property="caseName" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="VIEW_TIMES" jdbcType="INTEGER" property="viewTimes" />
+    <result column="GRADE" jdbcType="VARCHAR" property="grade" />
+    <result column="POSITIONAL" jdbcType="VARCHAR" property="positional" />
+    <result column="HEAD_PIC" jdbcType="VARCHAR" property="picUrl" />
+    <result column="HOSPITAL_NAME" jdbcType="VARCHAR" property="hospitalName" />
+  </resultMap>
+ 
+  <sql id="CaseModel_Column_List"> 
+    d.POSITIONAL,d.HEAD_PIC, tc.TC_ID, tc.DOCTOR_ID, tc.DOCTOR_NAME, tc.DC_NAME, tc.DEP_NAME, tc.CASE_NAME, tc.CONTENT, tc.VIEW_TIMES, tc.GRADE, tc.HOSPITAL_NAME  
+  </sql>
+  
+  <select id="findListByCondition" parameterType="com.djb.ylt.cases.entity.CasesEntity"
+		resultMap="CasesListMap">
+		select
+		<include refid="CaseModel_Column_List" />
+		from typical_case tc, doctor d
+		where #{doctorId} = tc.DOCTOR_ID 
+		and tc.DOCTOR_ID = d.DOCTOR_ID
+
+  </select>
+  
+  <update id="update" parameterType="com.djb.ylt.cases.entity.CasesEntity">
+		update typical_case
+		<set>
+			<if test="viewTimes != null">
+				VIEW_TIMES = #{viewTimes,jdbcType=INTEGER},
+			</if>
+		</set>
+		where TC_ID = #{tcId,jdbcType=INTEGER}
+	</update>
+	
+	<select id="getObject" parameterType="com.djb.ylt.cases.entity.CasesEntity"
+		resultMap="CasesListMap">
+		select
+		tc.VIEW_TIMES
+		from typical_case tc
+		where 1=1
+		<if test="tcId!=null">and tc.TC_ID=#{tcId} </if>
+	</select>
+	
+</mapper>

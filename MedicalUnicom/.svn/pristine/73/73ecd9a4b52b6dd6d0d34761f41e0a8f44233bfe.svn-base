@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.RecordsEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.RecordsEntity" >
+    <id column="RECORDS_ID" property="recordsId" jdbcType="INTEGER" />
+    <result column="APPOINT_ID" property="appointId" jdbcType="BIGINT" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="GUIDANCE" property="guidance" jdbcType="VARCHAR" />
+    <result column="ANALYSIS" property="analysis" jdbcType="VARCHAR" />
+    <result column="INQUIRY_STATUS" property="inquiryStatus" jdbcType="CHAR" />
+    <result column="SYMPTON_DESCRIBE" property="symptonDescribe" jdbcType="VARCHAR" />
+    <result column="DOCTOR_MEMO" property="doctorMemo" jdbcType="VARCHAR" />
+    <result column="APPOINT_TIME" property="appointTime" jdbcType="TIMESTAMP" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="COMMENT_CONTENT" property="commentContent" jdbcType="VARCHAR" />
+    <result column="COMMENT_GRADE" property="commentGrade" jdbcType="REAL" />
+    <result column="ROLE" property="role" jdbcType="CHAR" />
+    <result column="RECORDS_TYPE" property="recordsType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="TEL_NUM" property="telNum" jdbcType="VARCHAR" />
+     <result column="INQUIRY_PIC" property="inquiryPic" jdbcType="VARCHAR" />
+      <result column="SCHEDULE_ID" property="scheduleId" jdbcType="INTEGER" />
+      <result column="UP_FLAG" property="upFlag" jdbcType="CHAR" />
+       <result column="PATSCH_ID" property="patschId" jdbcType="INTEGER" />
+       <result column="PATIENT_FLAG" property="patientFlag" jdbcType="CHAR" />
+       <result column="DOCTOR_FLAG" property="doctorFlag" jdbcType="CHAR" />
+        <result column="PDEL_FLAG" property="pdelFlag" jdbcType="CHAR" />
+       <result column="DDEL_FLAG" property="ddelFlag" jdbcType="CHAR" />
+       
+       
+          
+    <association property="doctorEntity"
+			javaType="com.djb.ylt.user.entity.DoctorEntity" resultMap="DoctorResultMap"/>
+			<association property="appointInqueryEntity"
+			javaType="com.djb.ylt.user.entity.AppointInquiryEntity" resultMap="AppointInquiryMap"/>
+	<association property="patientEntity"
+			javaType="com.djb.ylt.user.entity.PatientEntity" resultMap="PatientResultMap" />		
+			<association property="symptomEntity"
+			javaType="com.djb.ylt.health.entity.SymptomEntity" resultMap="SymptomResultMap"/>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    r.RECORDS_ID, r.APPOINT_ID, r.RESULT, r.GUIDANCE, r.ANALYSIS, r.INQUIRY_STATUS, r.SYMPTON_DESCRIBE, 
+    r.DOCTOR_MEMO, r.APPOINT_TIME, r.START_TIME, r.END_TIME, r.COMMENT_CONTENT, r.COMMENT_GRADE, 
+    r.ROLE, r.RECORDS_TYPE, r.CREATE_TIME, r.UPDATE_TIME, r.TEL_NUM,r.INQUIRY_PIC,r.SCHEDULE_ID,
+    r.UP_FLAG,r.PATSCH_ID,r.PATIENT_FLAG,r.DOCTOR_FLAG,r.PDEL_FLAG,r.DDEL_FLAG
+
+  </sql>
+  <resultMap  id="DoctorResultMap" type="com.djb.ylt.user.entity.DoctorEntity">
+		<id column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="INTEGER" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<result column="CARD_NUM" property="cardNum" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_NUM" property="certificateNum"
+			jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PIC" property="certificatePic"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="VERIFY_FLG" property="verifyFlg" jdbcType="CHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="BANK_OWNER" property="bankOwner" jdbcType="VARCHAR" />
+		<result column="BANK_NUM" property="bankNum" jdbcType="VARCHAR" />
+		<result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+		<result column="HEAL_DISEASE" property="healDisease" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="SERVICE_COUNT" property="serviceCount"
+			jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="CHAR" />
+		 <result column="DEPARTMENT_ID" property="departmentId" jdbcType="INTEGER" />
+		 <result column="DOCTOR_TEL" property="doctorTel" jdbcType="VARCHAR" />
+		 	<result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DC_ID " property="dcId " jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Doctor_Column_List">
+		d.DOCTOR_ID, d.USER_ID, d.NAME, d.SEX, d.AGE, d.POSITIONAL, d.CARD_NUM,
+		d.CERTIFICATE_NUM, d.CERTIFICATE_PIC,
+		d.HEAD_PIC, d.HOSPITAL_NAME, d.INTRODUCTION, d.VERIFY_FLG, d.STATUS_FLG,
+		d.BANK_OWNER, d.BANK_NUM,
+		d.BANK_NAME, d.HEAL_DISEASE, d.EMAIL, d.CREATE_TIME, d.UPDATE_TIME,
+		d.SERVICE_COUNT, d.GRADE,d.DEPARTMENT_ID,d.DOCTOR_TEL,d.DEPARTMENT_NAME,d.DC_NAME,d.DC_ID
+	</sql>
+	
+	<resultMap id="AppointInquiryMap" type="com.djb.ylt.user.entity.AppointInquiryEntity">
+		<id column="APPOINT_ID" jdbcType="BIGINT" property="appointId" />
+		<result column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="DEP_CLASS_ID" jdbcType="INTEGER" property="depClassId" />
+		<result column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="SYMPTON_ID" jdbcType="INTEGER" property="symptonId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="APPOINT_TYPE" jdbcType="CHAR" property="appointType" />
+		<result column="BUY_TOTAL" jdbcType="DOUBLE" property="buyTotal" />
+		<result column="PAY_STATUS" jdbcType="CHAR" property="payStatus" />
+		<result column="PAY_TYPE" jdbcType="CHAR" property="payType" />
+		<result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="OUT_TRADE_NUM" jdbcType="VARCHAR" property="outTradeNum" />
+		<result column="PAY_PARAM" jdbcType="VARCHAR" property="payParam" />
+		<result column="REASON_MEMO" jdbcType="VARCHAR" property="reasonMemo" />
+		<result column="REFUND_ID" jdbcType="INTEGER" property="refundId" />
+		<result column="REFUND_REASON" jdbcType="VARCHAR" property="refundReason" />
+	
+	</resultMap>
+	<sql id="AppointInquiry_Column_List">
+		ai.APPOINT_ID, ai.PATIENT_ID, ai.DOCTOR_ID, ai.PACKAGE_ID,
+		ai.DEP_CLASS_ID,
+		ai.DEP_ID, ai.SYMPTON_ID,
+		ai.CREATE_TIME,
+		ai.UPDATE_TIME, ai.APPOINT_TYPE,ai.BUY_TOTAL, ai.PAY_STATUS, ai.PAY_TYPE,ai.PAY_TIME,ai.OUT_TRADE_NUM,ai.PAY_PARAM,ai.REASON_MEMO ,ai.REFUND_ID ,ai.REFUND_REASON
+	</sql>
+	
+		<resultMap id="PatientResultMap" type="com.djb.ylt.user.entity.PatientEntity">
+		<id column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="BIRTH" property="birth" jdbcType="TIMESTAMP" />
+		<result column="AGE_UNIT" property="ageUnit" jdbcType="CHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="MARRY" property="marry" jdbcType="CHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BT" property="bt" jdbcType="CHAR" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="MEDICAL_EATEN_HISTORY" property="medicalEatenHistory"
+			jdbcType="VARCHAR" />
+		<result column="ALLERGY_HISTORY" property="allergyHistory"
+			jdbcType="VARCHAR" />
+		<result column="ILLNESS_HISTORY" property="illnessHistory"
+			jdbcType="VARCHAR" />
+		<result column="AMT" property="amt" jdbcType="VARCHAR" />
+		<result column="PATIENT_PIC" property="patientPic" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+		<result column="PATIENT_TEL" property="patientTel" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Patient_Column_List">
+		p.PATIENT_ID, p.PATIENT_TEL, p.NAME, p.BIRTH, p.PATIENT_PIC, p.NICK_NAME,p.PATIENT_TEL
+	</sql>
+   <resultMap id="SymptomResultMap" type="com.djb.ylt.health.entity.SymptomEntity">
+    <id column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+    <result column="SYMPTOM_NAME" jdbcType="VARCHAR" property="symptomName" />
+    <result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="SYMPTOM_TYPE" jdbcType="VARCHAR" property="symptomType" />
+    <result column="PATIENT_SEX" jdbcType="CHAR" property="patientSex" />
+    <result column="PATIENT_AGE" jdbcType="VARCHAR" property="patientAge" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+ 
+  <sql id="Symptom_Column_List">
+    s.SYMPTOM_ID, s.SYMPTOM_NAME, s.STATUS_FLG, s.MEMO, s.SYMPTOM_TYPE, s.PATIENT_SEX, s.PATIENT_AGE, 
+    s.CREATE_TIME, s.UPDATE_TIME
+  </sql>
+ <sql id="RecordsWhereClause">
+		<if test="recordsId!=null">and r.RECORDS_ID=#{recordsId} </if>
+		<if test="appointId!=null">and r.APPOINT_ID=#{appointId} </if>
+		<if test="result!=null">and r.RESULT=#{result} </if>
+		<if test="guidance!=null">and r.GUIDANCE=#{guidance} </if>
+		<if test="analysis!=null">and r.ANALYSIS=#{analysis} </if>
+		
+		<if test="symptonDescribe!=null">and r.SYMPTON_DESCRIBE=#{symptonDescribe} </if>
+		<if test="doctorMemo!=null">and r.DOCTOR_MEMO=#{doctorMemo} </if>
+		<if test="appointTime !=null">and r.APPOINT_TIME=#{appointTime} </if>
+		<if test="startTime !=null">and r.START_TIME=#{startTime} </if>
+		<if test="endTime !=null">and r.END_TIME=#{endTime} </if>
+		<if test="commentContent !=null">and r.COMMENT_CONTENT=#{commentContent} </if>
+		<if test="commentGrade !=null">and r.COMMENT_GRADE=#{commentGrade} </if>
+		<if test="role !=null">and r.ROLE=#{role} </if>
+		<if test="recordsType !=null">and r.RECORDS_TYPE=#{recordsType} </if>
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.RecordsEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		<include refid="AppointInquiry_Column_List" />
+		from records r,symptom s,doctor d,appoint_inquiry ai
+		where r.APPOINT_ID = ai.APPOINT_ID AND ai.DOCTOR_ID=d.DOCTOR_ID 
+		<include refid="RecordsWhereClause" />
+
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.RecordsEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from records r
+		where 1=1
+		<include refid="RecordsWhereClause" />
+	</select>
+
+	<select id="findList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from records r
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from records  r
+    where r.RECORDS_ID = #{recordsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="delete" parameterType="com.djb.ylt.user.entity.RecordsEntity" >
+    delete from records r
+    where r.RECORDS_ID = #{recordsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.djb.ylt.user.entity.RecordsEntity" 
+  useGeneratedKeys="true" keyProperty="recordsId" keyColumn="GENERATED_KEY" >
+    insert into records  (APPOINT_ID, RESULT, 
+     GUIDANCE, ANALYSIS,INQUIRY_STATUS, 
+      SYMPTON_DESCRIBE, DOCTOR_MEMO, APPOINT_TIME, 
+      START_TIME, END_TIME, COMMENT_CONTENT, 
+      COMMENT_GRADE, ROLE, RECORDS_TYPE, 
+      CREATE_TIME, UPDATE_TIME, TEL_NUM,INQUIRY_PIC,SCHEDULE_ID,UP_FLAG,PATSCH_ID,PATIENT_FLAG,DOCTOR_FLAG,PDEL_FLAG,DDEL_FLAG
+      )
+    values ( #{appointId,jdbcType=BIGINT}, #{result,jdbcType=VARCHAR}, 
+      #{guidance,jdbcType=VARCHAR}, #{analysis,jdbcType=VARCHAR}, #{inquiryStatus,jdbcType=CHAR}, 
+      #{symptonDescribe,jdbcType=VARCHAR}, #{doctorMemo,jdbcType=VARCHAR}, #{appointTime,jdbcType=TIMESTAMP}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{commentContent,jdbcType=VARCHAR}, 
+      #{commentGrade,jdbcType=REAL}, #{role,jdbcType=CHAR}, #{recordsType,jdbcType=CHAR}, 
+     now(), #{updateTime,jdbcType=TIMESTAMP}, #{telNum,jdbcType=VARCHAR},#{inquiryPic,jdbcType=VARCHAR},#{scheduleId,jdbcType=INTEGER},
+     #{upFlag,jdbcType=CHAR} ,#{patschId,jdbcType=INTEGER},#{patientFlag,jdbcType=CHAR},#{doctorFlag,jdbcType=CHAR},#{pdelFlag,jdbcType=CHAR},#{ddelFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.djb.ylt.user.entity.RecordsEntity" >
+    insert into records r
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordsId != null" >
+        r.RECORDS_ID,
+      </if>
+      <if test="appointId != null" >
+        r.APPOINT_ID,
+      </if>
+      <if test="result != null" >
+        r.RESULT,
+      </if>
+      <if test="guidance != null" >
+        r.GUIDANCE,
+      </if>
+      <if test="analysis != null" >
+        r.ANALYSIS,
+      </if>
+      <if test="inquiryStatus != null" >
+        r.INQUIRY_STATUS,
+      </if>
+      <if test="symptonDescribe != null" >
+        r.SYMPTON_DESCRIBE,
+      </if>
+      <if test="doctorMemo != null" >
+        r.DOCTOR_MEMO,
+      </if>
+      <if test="appointTime != null" >
+        r.APPOINT_TIME,
+      </if>
+      <if test="startTime != null" >
+        r.START_TIME,
+      </if>
+      <if test="endTime != null" >
+        r.END_TIME,
+      </if>
+      <if test="commentContent != null" >
+        r.COMMENT_CONTENT,
+      </if>
+      <if test="commentGrade != null" >
+        r.COMMENT_GRADE,
+      </if>
+      <if test="role != null" >
+        r.ROLE,
+      </if>
+      <if test="recordsType != null" >
+        r.RECORDS_TYPE,
+      </if>
+      <if test="createTime != null" >
+        r.CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        r.UPDATE_TIME,
+      </if>
+      <if test="telNum != null" >
+        r.TEL_NUM,
+      </if>
+        <if test="inquiryPic != null" >
+        r.INQUIRY_PIC,
+      </if>
+          <if test="scheduleId != null" >
+        r.SCHEDULE_ID,
+      </if>
+       <if test="upFlag != null" >
+        r.UP_FLAG,
+      </if>
+   
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordsId != null" >
+        #{recordsId,jdbcType=INTEGER},
+      </if>
+      <if test="appointId != null" >
+        #{appointId,jdbcType=BIGINT},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null" >
+        #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryStatus != null" >
+        #{inquiryStatus,jdbcType=CHAR},
+      </if>
+      <if test="symptonDescribe != null" >
+        #{symptonDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorMemo != null" >
+        #{doctorMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointTime != null" >
+        #{appointTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentGrade != null" >
+        #{commentGrade,jdbcType=REAL},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=CHAR},
+      </if>
+      <if test="recordsType != null" >
+        #{recordsType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telNum != null" >
+        #{telNum,jdbcType=VARCHAR},
+      </if>
+       <if test="inquiryPic != null" >
+        #{inquiryPic,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleId != null" >
+       #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="upFlag!= null" >
+       #{upFlag,jdbcType=CHAR},
+      </if>
+           
+    </trim>
+  </insert>
+  <select id="getCount" parameterType="com.djb.ylt.user.entity.RecordsEntity" resultType="java.lang.Integer" >
+    select count(*) from records r
+    where 1=1 and r.INQUIRY_STATUS IN ('0','1', '2', '3')
+   	<if test="recordsType!=null">and r.RECORDS_TYPE=#{recordsType} </if>
+   	<if test="appointId!=null">and r.APPOINT_ID=#{appointId} </if>
+  </select>
+ 
+  <update id="update" parameterType="com.djb.ylt.user.entity.RecordsEntity" >
+    update records r
+    <set >
+      <if test="appointId != null" >
+        r.APPOINT_ID = #{appointId,jdbcType=BIGINT},
+      </if>
+      <if test="result != null" >
+       r.RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null" >
+        r.GUIDANCE = #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        r.ANALYSIS = #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryStatus != null" >
+        r.INQUIRY_STATUS = #{inquiryStatus,jdbcType=CHAR},
+      </if>
+      <if test="symptonDescribe != null" >
+        r.SYMPTON_DESCRIBE = #{symptonDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorMemo != null" >
+        r.DOCTOR_MEMO = #{doctorMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointTime != null" >
+        r.APPOINT_TIME = #{appointTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        r.START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        r.END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentContent != null" >
+        r.COMMENT_CONTENT = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentGrade != null" >
+        r.COMMENT_GRADE = #{commentGrade,jdbcType=REAL},
+      </if>
+      <if test="role != null" >
+        r.ROLE = #{role,jdbcType=CHAR},
+      </if>
+      <if test="recordsType != null" >
+        r.RECORDS_TYPE = #{recordsType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        r.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        r.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telNum!= null" >
+        r.TEL_NUM = #{telNum,jdbcType=VARCHAR},
+      </if>
+       <if test="inquiryPic!= null" >
+        r.INQUIRY_PIC = #{inquiryPic,jdbcType=VARCHAR},
+      </if>
+          <if test="scheduleId!= null" >
+        r.SCHEDULE_ID = #{scheduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="upFlag!= null" >
+        r.UP_FLAG = #{upFlag,jdbcType=CHAR},
+      </if>
+      <if test="patschId!= null" >
+        r.PATSCH_ID = #{patschId,jdbcType=CHAR},
+      </if>
+       <if test="patientFlag!= null" >
+        r.PATIENT_FLAG = #{patientFlag,jdbcType=CHAR},
+      </if>
+       <if test="doctorFlag!= null" >
+        r.DOCTOR_FLAG = #{doctorFlag,jdbcType=CHAR},
+      </if>
+      <if test="pdelFlag!= null" >
+        r.PDEL_FLAG = #{pdelFlag,jdbcType=CHAR},
+      </if>
+      <if test="ddelFlag!= null" >
+        r.DDEL_FLAG = #{ddelFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where r.RECORDS_ID = #{recordsId,jdbcType=INTEGER}
+  </update>
+<update id="updateBatch" parameterType="com.djb.ylt.user.entity.RecordsEntity" >
+    update records r
+    <set >
+      <if test="appointId != null" >
+        r.APPOINT_ID = #{appointId,jdbcType=BIGINT},
+      </if>
+      <if test="result != null" >
+       r.RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null" >
+        r.GUIDANCE = #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        r.ANALYSIS = #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryStatus != null" >
+        r.INQUIRY_STATUS = #{inquiryStatus,jdbcType=CHAR},
+      </if>
+      <if test="symptonDescribe != null" >
+        r.SYMPTON_DESCRIBE = #{symptonDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorMemo != null" >
+        r.DOCTOR_MEMO = #{doctorMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointTime != null" >
+        r.APPOINT_TIME = #{appointTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        r.START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        r.END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentContent != null" >
+        r.COMMENT_CONTENT = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentGrade != null" >
+        r.COMMENT_GRADE = #{commentGrade,jdbcType=REAL},
+      </if>
+      <if test="role != null" >
+        r.ROLE = #{role,jdbcType=CHAR},
+      </if>
+      <if test="recordsType != null" >
+        r.RECORDS_TYPE = #{recordsType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        r.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        r.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telNum!= null" >
+        r.TEL_NUM = #{telNum,jdbcType=VARCHAR},
+      </if>
+       <if test="inquiryPic!= null" >
+        r.INQUIRY_PIC = #{inquiryPic,jdbcType=VARCHAR},
+      </if>
+          <if test="scheduleId!= null" >
+        r.SCHEDULE_ID = #{scheduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="upFlag!= null" >
+        r.UP_FLAG = #{upFlag,jdbcType=CHAR},
+      </if>
+      <if test="patschId!= null" >
+        r.PATSCH_ID = #{patschId,jdbcType=CHAR},
+      </if>
+       <if test="patientFlag!= null" >
+        r.PATIENT_FLAG = #{patientFlag,jdbcType=CHAR},
+      </if>
+       <if test="doctorFlag!= null" >
+        r.DOCTOR_FLAG = #{doctorFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where r.RECORDS_ID = #{recordsId,jdbcType=INTEGER}
+  </update>
+  <!-- 医生填写就诊结果获取患者信息推送 -->
+<select id="getPatientPushInfo" parameterType="com.djb.ylt.user.entity.RecordsEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="AppointInquiry_Column_List" />
+		from records r,appoint_inquiry ai,patient p
+		where r.APPOINT_ID = ai.APPOINT_ID AND ai.PATIENT_ID=p.PATIENT_ID and r.INQUIRY_STATUS='3'
+		<if test="recordsId!=null">and r.RECORDS_ID=#{recordsId} </if>
+	</select>
+	
+	<!-- 获取病历信息 -->
+	<select id="getRecordsInfo" parameterType="com.djb.ylt.user.entity.RecordsEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Patient_Column_List" />
+		,
+		<include refid="AppointInquiry_Column_List" />
+		from records r,symptom s,doctor d,appoint_inquiry ai
+		where r.APPOINT_ID = ai.APPOINT_ID AND ai.DOCTOR_ID=d.DOCTOR_ID 
+		<include refid="RecordsWhereClause" />
+	</select>
+	
+</mapper>

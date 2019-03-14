@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.InqueryAnswerEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.health.entity.InqueryAnswerEntity">
+		<id column="IA_ID" property="iaId" jdbcType="INTEGER" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="IQ_ID" property="iqId" jdbcType="INTEGER" />
+		<result column="IR_ID" property="irId" jdbcType="INTEGER" />
+		<result column="IA_CONTENT" property="iaContent" jdbcType="VARCHAR" />
+		<result column="DEP_ID" property="depId" jdbcType="INTEGER" />
+		<result column="IA_TIME" property="iaTime" jdbcType="TIMESTAMP" />
+		<result column="IA_MEMO" property="iaMemo" jdbcType="VARCHAR" />
+		<result column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+		<result column="IA_FLAG" property="iaFlag" jdbcType="CHAR" />
+		
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		IA_ID, PATIENT_ID, IQ_ID, IR_ID, IA_CONTENT, DEP_ID, IA_TIME, IA_MEMO,
+		RECORD_ID,IA_FLAG
+	</sql>
+
+	<sql id="InqueryAnswerWhereClause">
+		<if test="iqId!=null">and IQ_ID=#{iqId} </if>
+		<if test="irId!=null">and IR_ID=#{irId} </if>
+		<if test="patientId!=null">and PATIENT_ID=#{patientId} </if>
+		<if test="depId!=null">and DEP_ID=#{depId} </if>
+		<if test="iaFlag!=null">and IA_FLAG=#{iaFlag} </if>
+		
+	</sql>
+	<!-- 获取某一科室的问诊票 -->
+	<select id="findListByCondition" parameterType="com.djb.ylt.health.entity.InqueryAnswerEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+
+		from inquery_answer
+		where 1=1 and (IA_FLAG=1 or IA_FLAG=2)
+		<include refid="InqueryAnswerWhereClause" />
+		order by IA_ID
+	</select>
+	<select id="getObject" parameterType="com.djb.ylt.health.entity.InqueryAnswerEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from inquery_answer
+		where 1=1
+		<include refid="InqueryAnswerWhereClause" />
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.health.entity.InqueryAnswerEntity">
+		delete from inquery_answer
+		where DEP_ID = #{depId,jdbcType=INTEGER} and  PATIENT_ID = #{patientId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.ylt.health.entity.InqueryAnswerEntity">
+		insert into inquery_answer (IA_ID, PATIENT_ID, IQ_ID,
+		IR_ID, IA_CONTENT, DEP_ID,
+		IA_TIME, IA_MEMO, RECORD_ID,IA_FLAG
+		)
+		values (#{iaId,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER},
+		#{iqId,jdbcType=INTEGER},
+		#{irId,jdbcType=INTEGER}, #{iaContent,jdbcType=VARCHAR}, #{depId,jdbcType=INTEGER},
+		#{iaTime,jdbcType=TIMESTAMP}, #{iaMemo,jdbcType=VARCHAR},
+		#{recordId,jdbcType=INTEGER},#{iaFlag,jdbcType=CHAR}
+		)
+	</insert>
+		<insert id="insertBatch" parameterType="com.djb.ylt.health.entity.InqueryAnswerEntity">
+		insert into inquery_answer (IA_ID, PATIENT_ID, IQ_ID,
+		IR_ID, IA_CONTENT, DEP_ID,
+		IA_TIME, IA_MEMO, RECORD_ID,IA_FLAG
+		)values 
+		
+		(#{iaId,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER},
+		#{iqId,jdbcType=INTEGER},
+		#{irId,jdbcType=INTEGER}, #{iaContent,jdbcType=VARCHAR}, #{depId,jdbcType=INTEGER},
+		now(), #{iaMemo,jdbcType=VARCHAR},
+		#{recordId,jdbcType=INTEGER},#{iaFlag,jdbcType=CHAR}
+		)
+	</insert>
+	
+</mapper>

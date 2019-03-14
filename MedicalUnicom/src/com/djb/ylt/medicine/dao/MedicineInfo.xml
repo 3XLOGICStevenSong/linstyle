@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+	<resultMap id="MedicineInfoResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		<id column="medicine_id" property="medicine_id" jdbcType="INTEGER" />
+		<result column="medicine_name" property="medicine_name"
+			jdbcType="VARCHAR" />
+		<result column="medicine_directions" property="medicine_directions"
+			jdbcType="VARCHAR" />
+		<result column="medicine_price" property="medicine_price"
+			jdbcType="REAL" />
+		<result column="medicine_grade" property="medicine_grade"
+			jdbcType="REAL" />
+		<result column="medicine_pic" property="medicine_pic" jdbcType="VARCHAR" />
+		<result column="medicine_effect" property="medicine_effect"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_name" property="medicine_type_name"
+			jdbcType="CHAR" />
+		<result column="medicine_brand" property="medicine_brand"
+			jdbcType="VARCHAR" />
+		<result column="medicine_factory" property="medicine_factory"
+			jdbcType="VARCHAR" />
+		<result column="medicine_insurance" property="medicine_insurance"
+			jdbcType="VARCHAR" />
+		<result column="medicine_otc" property="medicine_otc" jdbcType="VARCHAR" />
+		<result column="medicine_memo" property="medicine_memo"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_id" property="medicine_type_id"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="medicine_norms" property="medicine_norms" jdbcType="VARCHAR" />		
+	</resultMap>
+
+	<sql id="MedicineInfo_Column_List">
+		mi.medicine_id, mi.medicine_name, mi.medicine_directions,
+		mi.medicine_price,
+		mi.medicine_grade,
+		mi.medicine_pic,
+		mi.medicine_effect,
+		mi.medicine_type_name,
+		mi.medicine_brand,
+		mi.medicine_factory,
+		mi.medicine_insurance,
+		mi.medicine_otc,
+		mi.medicine_memo, mi.medicine_type_id, mi.create_time,
+		mi.last_modify_time,
+		mi.create_user,
+		mi.last_modify_user, mi.version,mi.medicine_norms
+	</sql>
+
+	<sql id="MedicineInfoWhereClause">
+		<if test="medicine_id!=null">and mi.medicine_id=#{medicine_id} </if>
+		<if test="medicine_name!=null">and mi.medicine_name=#{medicine_name} </if>
+		<if test="medicine_directions!=null">and mi.medicine_directions=#{medicine_directions} </if>
+		<if test="medicine_price!=null">and mi.medicine_price=#{medicine_price} </if>
+		<if test="medicine_grade!=null">and mi.medicine_grade=#{medicine_grade} </if>
+		<if test="medicine_pic!=null">and mi.medicine_pic=#{medicine_pic} </if>
+		<if test="medicine_effect!=null">and mi.medicine_effect like
+			CONCAT("%",#{medicine_effect},"%")</if>
+		<if test="medicine_type_name!=null">and mi.medicine_type_name=#{medicine_type_name} </if>
+		<if test="medicine_brand!=null">and mi.medicine_brand=#{medicine_brand} </if>
+		<if test="medicine_factory!=null">and mi.medicine_factory=#{medicine_factory} </if>
+		<if test="medicine_insurance!=null">and mi.medicine_insurance=#{medicine_insurance} </if>
+		<if test="medicine_otc!=null">and mi.medicine_otc=#{medicine_otc} </if>
+		<if test="medicine_memo!=null">and mi.medicine_memo=#{medicine_memo} </if>
+		<if test="medicine_type_id!=null">and mi.medicine_type_id=#{medicine_type_id} </if>
+		<if test="medicine_norms!=null">and mi.medicine_norms=#{medicine_norms} </if>
+	</sql>
+
+
+
+	<select id="getObject" parameterType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+		resultMap="MedicineInfoResultMap">
+		select
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_info mi
+		where 1=1
+		<include refid="MedicineInfoWhereClause" />
+	</select>
+
+
+	<select id="findList" resultType="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		select
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_info mi
+		where 1=1
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+		resultMap="MedicineInfoResultMap">
+		select
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_info mi
+		where 1=1
+		<include refid="MedicineInfoWhereClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		select
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_info mi
+		where 1=1
+		limit
+		#{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedListByCondition" resultType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		select
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_info mi
+		where 1=1
+		<include refid="MedicineInfoWhereClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+	  <select id="getAverageGrade" parameterType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+		resultMap="MedicineInfoResultMap">
+		SELECT AVG(mc.comment_grade) AS medicine_grade
+		FROM `medicine_info` mi,
+		medicine_comment mc
+		WHERE mi.medicine_id = mc.medicine_id
+		<include refid="MedicineInfoWhereClause" />
+		GROUP BY mc.medicine_id
+	</select>
+
+</mapper>

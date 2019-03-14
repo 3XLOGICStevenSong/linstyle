@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/PrdoctorList.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatMessageList.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>消息列表</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="Prdoc">
+					<ul id="List" class="displaynone">
+						<li>
+							<div class='info clearfix'>
+								<strong class='UserImg'><img src="{$headPic}" /></strong>
+								<ul>
+									<li class='frt'><strong class='name'>{$name}<span class='level'>{$departmentName}</span></strong></li>
+									<li><strong class='docTitle'>{$hospitalName}</strong></li>
+									<li><strong class='docTitle'>{$positional}</strong><span>{$healDisease}</span></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+					<ul class="List"></ul>
+					<button type="button" id="MoreBtn">查看更多</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

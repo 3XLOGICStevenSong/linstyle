@@ -1,0 +1,787 @@
+package com.djb.ylt.user.entity;
+
+import java.util.Date;
+
+import com.djb.ylt.framework.entity.PageModel;
+
+public class UserLoginEntity extends PageModel {
+	/**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = -1210534597943869612L;
+
+	private Integer userId;
+
+	private String userTel;
+
+	private String password;
+
+	private String role;
+
+	private String hxuserId;
+
+	private String status;
+
+	private Date createTime;
+
+	private Date updateTime;
+
+	private String name;
+
+	private String positional;
+
+	private String cardNum;
+
+	private String certificateNum;
+
+	private String certificatePic;
+
+	private String headPic;
+
+	private String hospitalName;
+
+	private String introduction;
+
+	private String bankOwner;
+
+	private String bankNum;
+
+	private String bankName;
+
+	private String healDisease;
+
+	private String symptomId;
+
+	private Integer departmentId;
+
+	private String inqueryTotal;
+
+	private String telTotal;
+
+	private Integer inqueryNum;
+
+	private Integer telNum;
+
+	private String privateTotal;
+
+	private String effectTime;
+
+	private String grade;
+
+	private String sex;
+
+	private Date age;
+
+	private String departmentName;
+
+	private String dcName;
+
+	private Integer dcId;
+
+	private String earlyTime;
+
+	private String dayTotal;
+
+	private String nightTotal;
+	
+	private String doctorType;
+	
+	private String photoPrice ;
+	
+	private Integer freeTotal;
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getUserTel() {
+		return userTel;
+	}
+
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getHxuserId() {
+		return hxuserId;
+	}
+
+	public void setHxuserId(String hxuserId) {
+		this.hxuserId = hxuserId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (getClass() != that.getClass()) {
+			return false;
+		}
+		UserLoginEntity other = (UserLoginEntity) that;
+		return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+				&& (this.getUserTel() == null ? other.getUserTel() == null
+						: this.getUserTel().equals(other.getUserTel()))
+				&& (this.getPassword() == null ? other.getPassword() == null
+						: this.getPassword().equals(other.getPassword()))
+				&& (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
+				&& (this.getHxuserId() == null ? other.getHxuserId() == null
+						: this.getHxuserId().equals(other.getHxuserId()))
+				&& (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+				&& (this.getCreateTime() == null ? other.getCreateTime() == null
+						: this.getCreateTime().equals(other.getCreateTime()))
+				&& (this.getUpdateTime() == null ? other.getUpdateTime() == null
+						: this.getUpdateTime().equals(other.getUpdateTime()));
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+		result = prime * result + ((getUserTel() == null) ? 0 : getUserTel().hashCode());
+		result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+		result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());
+		result = prime * result + ((getHxuserId() == null) ? 0 : getHxuserId().hashCode());
+		result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+		result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+		result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+		return result;
+	}
+
+	/**
+	 * 返回name的值
+	 * 
+	 * @return String name的值
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 设置name的值
+	 * 
+	 * @param name
+	 *            name的值
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * 返回positional的值
+	 * 
+	 * @return String positional的值
+	 */
+	public String getPositional() {
+		return positional;
+	}
+
+	/**
+	 * 设置positional的值
+	 * 
+	 * @param positional
+	 *            positional的值
+	 */
+	public void setPositional(String positional) {
+		this.positional = positional;
+	}
+
+	/**
+	 * 返回cardNum的值
+	 * 
+	 * @return String cardNum的值
+	 */
+	public String getCardNum() {
+		return cardNum;
+	}
+
+	/**
+	 * 设置cardNum的值
+	 * 
+	 * @param cardNum
+	 *            cardNum的值
+	 */
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
+	}
+
+	/**
+	 * 返回certificateNum的值
+	 * 
+	 * @return String certificateNum的值
+	 */
+	public String getCertificateNum() {
+		return certificateNum;
+	}
+
+	/**
+	 * 设置certificateNum的值
+	 * 
+	 * @param certificateNum
+	 *            certificateNum的值
+	 */
+	public void setCertificateNum(String certificateNum) {
+		this.certificateNum = certificateNum;
+	}
+
+	/**
+	 * 返回certificatePic的值
+	 * 
+	 * @return String certificatePic的值
+	 */
+	public String getCertificatePic() {
+		return certificatePic;
+	}
+
+	/**
+	 * 设置certificatePic的值
+	 * 
+	 * @param certificatePic
+	 *            certificatePic的值
+	 */
+	public void setCertificatePic(String certificatePic) {
+		this.certificatePic = certificatePic;
+	}
+
+	/**
+	 * 返回headPic的值
+	 * 
+	 * @return String headPic的值
+	 */
+	public String getHeadPic() {
+		return headPic;
+	}
+
+	/**
+	 * 设置headPic的值
+	 * 
+	 * @param headPic
+	 *            headPic的值
+	 */
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
+	}
+
+	/**
+	 * 返回hospitalName的值
+	 * 
+	 * @return String hospitalName的值
+	 */
+	public String getHospitalName() {
+		return hospitalName;
+	}
+
+	/**
+	 * 设置hospitalName的值
+	 * 
+	 * @param hospitalName
+	 *            hospitalName的值
+	 */
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
+	}
+
+	/**
+	 * 返回introduction的值
+	 * 
+	 * @return String introduction的值
+	 */
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	/**
+	 * 设置introduction的值
+	 * 
+	 * @param introduction
+	 *            introduction的值
+	 */
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	/**
+	 * 返回bankOwner的值
+	 * 
+	 * @return String bankOwner的值
+	 */
+	public String getBankOwner() {
+		return bankOwner;
+	}
+
+	/**
+	 * 设置bankOwner的值
+	 * 
+	 * @param bankOwner
+	 *            bankOwner的值
+	 */
+	public void setBankOwner(String bankOwner) {
+		this.bankOwner = bankOwner;
+	}
+
+	/**
+	 * 返回bankNum的值
+	 * 
+	 * @return String bankNum的值
+	 */
+	public String getBankNum() {
+		return bankNum;
+	}
+
+	/**
+	 * 设置bankNum的值
+	 * 
+	 * @param bankNum
+	 *            bankNum的值
+	 */
+	public void setBankNum(String bankNum) {
+		this.bankNum = bankNum;
+	}
+
+	/**
+	 * 返回bankName的值
+	 * 
+	 * @return String bankName的值
+	 */
+	public String getBankName() {
+		return bankName;
+	}
+
+	/**
+	 * 设置bankName的值
+	 * 
+	 * @param bankName
+	 *            bankName的值
+	 */
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	/**
+	 * 返回healDisease的值
+	 * 
+	 * @return String healDisease的值
+	 */
+	public String getHealDisease() {
+		return healDisease;
+	}
+
+	/**
+	 * 设置healDisease的值
+	 * 
+	 * @param healDisease
+	 *            healDisease的值
+	 */
+	public void setHealDisease(String healDisease) {
+		this.healDisease = healDisease;
+	}
+
+	/**
+	 * 返回symptomId的值
+	 * 
+	 * @return String symptomId的值
+	 */
+	public String getSymptomId() {
+		return symptomId;
+	}
+
+	/**
+	 * 设置symptomId的值
+	 * 
+	 * @param symptomId
+	 *            symptomId的值
+	 */
+	public void setSymptomId(String symptomId) {
+		this.symptomId = symptomId;
+	}
+
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	/**
+	 * 返回inqueryNum的值
+	 * 
+	 * @return Integer inqueryNum的值
+	 */
+	public Integer getInqueryNum() {
+		return inqueryNum;
+	}
+
+	/**
+	 * 设置inqueryNum的值
+	 * 
+	 * @param inqueryNum
+	 *            inqueryNum的值
+	 */
+	public void setInqueryNum(Integer inqueryNum) {
+		this.inqueryNum = inqueryNum;
+	}
+
+	/**
+	 * 返回telNum的值
+	 * 
+	 * @return Integer telNum的值
+	 */
+	public Integer getTelNum() {
+		return telNum;
+	}
+
+	/**
+	 * 设置telNum的值
+	 * 
+	 * @param telNum
+	 *            telNum的值
+	 */
+	public void setTelNum(Integer telNum) {
+		this.telNum = telNum;
+	}
+
+	/**
+	 * 返回effectTime的值
+	 * 
+	 * @return String effectTime的值
+	 */
+	public String getEffectTime() {
+		return effectTime;
+	}
+
+	/**
+	 * 设置effectTime的值
+	 * 
+	 * @param effectTime
+	 *            effectTime的值
+	 */
+	public void setEffectTime(String effectTime) {
+		this.effectTime = effectTime;
+	}
+
+	/**
+	 * 返回grade的值
+	 * 
+	 * @return String grade的值
+	 */
+	public String getGrade() {
+		return grade;
+	}
+
+	/**
+	 * 设置grade的值
+	 * 
+	 * @param grade
+	 *            grade的值
+	 */
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	/**
+	 * 返回sex的值
+	 * 
+	 * @return String sex的值
+	 */
+	public String getSex() {
+		return sex;
+	}
+
+	/**
+	 * 设置sex的值
+	 * 
+	 * @param sex
+	 *            sex的值
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	/**
+	 * 返回age的值
+	 * 
+	 * @return Date age的值
+	 */
+	public Date getAge() {
+		return age;
+	}
+
+	/**
+	 * 设置age的值
+	 * 
+	 * @param age
+	 *            age的值
+	 */
+	public void setAge(Date age) {
+		this.age = age;
+	}
+
+	/**
+	 * 返回inqueryTotal的值
+	 * 
+	 * @return String inqueryTotal的值
+	 */
+	public String getInqueryTotal() {
+		return inqueryTotal;
+	}
+
+	/**
+	 * 设置inqueryTotal的值
+	 * 
+	 * @param inqueryTotal
+	 *            inqueryTotal的值
+	 */
+	public void setInqueryTotal(String inqueryTotal) {
+		this.inqueryTotal = inqueryTotal;
+	}
+
+	/**
+	 * 返回telTotal的值
+	 * 
+	 * @return String telTotal的值
+	 */
+	public String getTelTotal() {
+		return telTotal;
+	}
+
+	/**
+	 * 设置telTotal的值
+	 * 
+	 * @param telTotal
+	 *            telTotal的值
+	 */
+	public void setTelTotal(String telTotal) {
+		this.telTotal = telTotal;
+	}
+
+	/**
+	 * 返回privateTotal的值
+	 * 
+	 * @return String privateTotal的值
+	 */
+	public String getPrivateTotal() {
+		return privateTotal;
+	}
+
+	/**
+	 * 设置privateTotal的值
+	 * 
+	 * @param privateTotal
+	 *            privateTotal的值
+	 */
+	public void setPrivateTotal(String privateTotal) {
+		this.privateTotal = privateTotal;
+	}
+
+	/**
+	 * 返回departmentName的值
+	 * 
+	 * @return String departmentName的值
+	 */
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	/**
+	 * 设置departmentName的值
+	 * 
+	 * @param departmentName
+	 *            departmentName的值
+	 */
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	/**
+	 * 返回dcName的值
+	 * 
+	 * @return String dcName的值
+	 */
+	public String getDcName() {
+		return dcName;
+	}
+
+	/**
+	 * 设置dcName的值
+	 * 
+	 * @param dcName
+	 *            dcName的值
+	 */
+	public void setDcName(String dcName) {
+		this.dcName = dcName;
+	}
+
+	/**
+	 * 返回dcId的值
+	 * 
+	 * @return Integer dcId的值
+	 */
+	public Integer getDcId() {
+		return dcId;
+	}
+
+	/**
+	 * 设置dcId的值
+	 * 
+	 * @param dcId
+	 *            dcId的值
+	 */
+	public void setDcId(Integer dcId) {
+		this.dcId = dcId;
+	}
+
+	/**
+	 * 返回earlyTime的值
+	 * 
+	 * @return String earlyTime的值
+	 */
+	public String getEarlyTime() {
+		return earlyTime;
+	}
+
+	/**
+	 * 设置earlyTime的值
+	 * 
+	 * @param earlyTime
+	 *            earlyTime的值
+	 */
+	public void setEarlyTime(String earlyTime) {
+		this.earlyTime = earlyTime;
+	}
+
+	/**
+	 * 返回dayTotal的值
+	 * 
+	 * @return String dayTotal的值
+	 */
+	public String getDayTotal() {
+		return dayTotal;
+	}
+
+	/**
+	 * 设置dayTotal的值
+	 * 
+	 * @param dayTotal
+	 *            dayTotal的值
+	 */
+	public void setDayTotal(String dayTotal) {
+		this.dayTotal = dayTotal;
+	}
+
+	/**
+	 * 返回nightTotal的值
+	 * 
+	 * @return String nightTotal的值
+	 */
+	public String getNightTotal() {
+		return nightTotal;
+	}
+
+	/**
+	 * 设置nightTotal的值
+	 * 
+	 * @param nightTotal
+	 *            nightTotal的值
+	 */
+	public void setNightTotal(String nightTotal) {
+		this.nightTotal = nightTotal;
+	}
+
+	/**
+	 * 返回doctorType的值
+	 * @return String doctorType的值
+	 */
+	public String getDoctorType() {
+		return doctorType;
+	}
+
+	/**
+	 * 设置doctorType的值
+	 * @param  doctorType doctorType的值
+	 */
+	public void setDoctorType(String doctorType) {
+		this.doctorType = doctorType;
+	}
+
+	/**
+	 * 返回photoPrice的值
+	 * @return String photoPrice的值
+	 */
+	public String getPhotoPrice() {
+		return photoPrice;
+	}
+
+	/**
+	 * 设置photoPrice的值
+	 * @param  photoPrice photoPrice的值
+	 */
+	public void setPhotoPrice(String photoPrice) {
+		this.photoPrice = photoPrice;
+	}
+
+	/**
+	 * 返回freeTotal的值
+	 * @return Integer freeTotal的值
+	 */
+	public Integer getFreeTotal() {
+		return freeTotal;
+	}
+
+	/**
+	 * 设置freeTotal的值
+	 * @param  freeTotal freeTotal的值
+	 */
+	public void setFreeTotal(Integer freeTotal) {
+		this.freeTotal = freeTotal;
+	}
+
+}

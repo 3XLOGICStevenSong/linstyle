@@ -1,0 +1,23 @@
+.complate .video {padding:0.2rem 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;font-size:0.4rem}
+.complate .video .icon{float:left;margin:0 0.3rem 0 0;width:0.6rem;height:1rem;background:url("../img/icon_video.png") no-repeat 0 center;background-size:100%;}
+.complate .video p,
+.complate .tell p,
+.complate .private p{padding:0.2rem 0.2rem;;line-height:0.8rem;}
+.complate .video p.clearfix,
+.complate .tell p.clearfix,
+.complate .private p.clearfix{border-bottom:1px solid #d3d3d3}
+.complate .video p input,
+.complate .tell p input{margin:0 0.3rem 0 0;padding:0 0 0 0.2rem;width:2rem;height:0.8rem;border:0;font-size:0.4rem}
+.complate .tell {margin:0.3rem 0 0;padding:0.2rem 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+.complate .tell .icon{float:left;margin:0 0.3rem 0 0;width:0.6rem;height:1rem;background:url("../img/icon_tel.png") no-repeat 0 center;background-size:100%;}
+.complate .private {margin:0.3rem 0 0;padding:0.2rem 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+.complate .private .icon{float:left;margin:0 0.3rem 0 0;width:0.6rem;height:1rem;background:url("../img/icon_doctor.png") no-repeat 0 center;background-size:100%;}
+
+.complate .private .quantity_vid,
+.complate .private .quantity_call{width:1rem;height:0.8rem;;border:0;text-align:center;font-size:0.4rem}
+
+.complate .private .totalPrice span{display:inline-block;width:49%;font-size:0.4rem}
+.complate .private .totalPrice span input{width:2.5rem;height:0.8rem;border:0;;text-align:center;font-size:0.4rem}
+
+p.tip{padding:0.2rem;font-size:0.4rem}
+span.radius{margin:0 0 0 0.3rem;padding:0.05rem 0.2rem;border:1px solid #fd5908;border-radius:15px;color:#fd5908}

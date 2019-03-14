@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.InterrogationPackageEntity">
+	<resultMap id="BaseResultMap"
+		type="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		<id column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="COUNT" jdbcType="INTEGER" property="count" />
+		<result column="UNIT" jdbcType="VARCHAR" property="unit" />
+		<result column="QA_TIME" jdbcType="VARCHAR" property="qaTime" />
+		<result column="TIME_UNIT" jdbcType="VARCHAR" property="timeUnit" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIEM" jdbcType="TIMESTAMP" property="updateTiem" />
+		<result column="TYPE_ID" jdbcType="CHAR" property="typeId" />
+		<result column="TEL_COUNT" jdbcType="TINYINT" property="telCount" />
+		<result column="TEL_UNIT" jdbcType="VARCHAR" property="telUnit" />
+		<result column="TOTAL" jdbcType="DOUBLE" property="total" />
+		<result column="EFFECT_TIME" jdbcType="VARCHAR" property="effectTime" />
+		<result column="TEL_TIME" jdbcType="VARCHAR" property="telTime" />
+		<result column="TEL_Time_UNIT" jdbcType="VARCHAR" property="telTimeUnit" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="WORK_TYPE" jdbcType="CHAR" property="workType" />
+		<result column="EARLY_TIME" jdbcType="VARCHAR" property="earlyTime" />
+		<result column="MIN_TOTAL" jdbcType="DOUBLE" property="minTotal" />
+		<result column="FREE_TOTAL" jdbcType="INTEGER" property="freeTotal" />
+		
+		<association property="doctorEntity"
+			javaType="com.djb.ylt.user.entity.DoctorEntity" resultMap="DoctorResultMap" />
+	</resultMap>
+	<sql id="InterrogationPackage_Column_List">
+		ip.PACKAGE_ID, ip.DOCTOR_ID, ip.COUNT, ip.UNIT,
+		ip.QA_TIME,
+		ip.TIME_UNIT,
+		ip.CREATE_TIME, ip.UPDATE_TIEM,
+		ip.TYPE_ID,ip.TEL_COUNT,
+		ip.TEL_UNIT, ip.TOTAL, ip.EFFECT_TIME,
+		ip.TEL_TIME,
+		ip.TEL_Time_UNIT,ip.TYPE,ip.WORK_TYPE,ip.EARLY_TIME,ip.FREE_TOTAL
+	</sql>
+	<resultMap id="DoctorResultMap" type="com.djb.ylt.user.entity.DoctorEntity">
+		<id column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="INTEGER" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<result column="CARD_NUM" property="cardNum" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_NUM" property="certificateNum"
+			jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PIC" property="certificatePic"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="VERIFY_FLG" property="verifyFlg" jdbcType="CHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="BANK_OWNER" property="bankOwner" jdbcType="VARCHAR" />
+		<result column="BANK_NUM" property="bankNum" jdbcType="VARCHAR" />
+		<result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+		<result column="HEAL_DISEASE" property="healDisease" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="SERVICE_COUNT" property="serviceCount"
+			jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="CHAR" />
+		<result column="DEPARTMENT_ID" property="departmentId"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Doctor_Column_List">
+		d.DOCTOR_ID, d.USER_ID, d.NAME, d.SEX, d.AGE, d.POSITIONAL,
+		d.CARD_NUM,
+		d.CERTIFICATE_NUM, d.CERTIFICATE_PIC,
+		d.HEAD_PIC,
+		d.HOSPITAL_NAME, d.INTRODUCTION, d.VERIFY_FLG, d.STATUS_FLG,
+		d.BANK_OWNER, d.BANK_NUM,
+		d.BANK_NAME, d.HEAL_DISEASE, d.EMAIL,
+		d.CREATE_TIME, d.UPDATE_TIME,
+		d.SERVICE_COUNT, d.GRADE,d.DEPARTMENT_ID
+	</sql>
+	<sql id="InterrogationPackageWhereClause">
+		<if test="packageId !=null">and ip.PACKAGE_ID=#{packageId} </if>
+		<if test="doctorId!=null">and ip.DOCTOR_ID=#{doctorId} </if>
+		<if test="count!=null">and ip.COUNT=#{count} </if>
+		<if test="unit!=null">and ip.UNIT=#{unit} </if>
+		<if test="total!=null">and ip.TOTAL=#{total} </if>
+		<if test="type !=null">and ip.TYPE=#{type} </if>
+	</sql>
+	<sql id="orderByPackageClause">
+		ORDER BY ip.TOTAL DESC,ip.PACKAGE_ID
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="InterrogationPackage_Column_List" />
+		from interrogation_package ip
+		where 1=1
+		<if test="doctorId!=null">and ip.DOCTOR_ID=#{doctorId} </if>
+		<if test="type!=null">and ip.TYPE=#{type} </if>
+	</select>
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="InterrogationPackage_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		from interrogation_package ip , doctor d
+		where ip.DOCTOR_ID
+		=d.DOCTOR_ID AND d.STATUS_FLG='1'
+		<include refid="InterrogationPackageWhereClause" />
+		<include refid="orderByPackageClause" />
+	</select>
+
+	<select id="findListBySymptomId" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="InterrogationPackage_Column_List" />
+		,
+		<include refid="Doctor_Column_List" />
+		,
+		AVG(dc.GRADE) AS commentGrade,
+		from doctor_symptom ds, doctor d
+		,interrogation_package ip,doctor_comment dc
+		where ds.DOCTOR_ID
+		=d.DOCTOR_ID AND d.STATUS_FLG='1' ADN
+		ip.DOCTOR_ID=d.DOCTOR_ID AND
+		d.DEPARTMENT_ID=#{departmentId,jdbcType=INTEGER} AND
+		<include refid="InterrogationPackageWhereClause" />
+		<include refid="orderByPackageClause" />
+	</select>
+	<select id="findListByDoctorId" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="InterrogationPackage_Column_List" />
+		from interrogation_package ip
+		where 1=1
+		<if test="doctorId!=null">and ip.DOCTOR_ID=#{doctorId} </if>
+		<if test="type!=null">and ip.TYPE=#{type} </if>
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		delete from
+		interrogation_package
+		where PACKAGE_ID = #{packageId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		insert into
+		interrogation_package (PACKAGE_ID, NAME,DOCTOR_ID, COUNT, UNIT,
+		QA_TIME,TIME_UNIT,
+		CREATE_TIME, UPDATE_TIEM,
+		TYPE_ID,TEL_COUNT,
+		TEL_UNIT, TOTAL, EFFECT_TIME, TEL_TIME,
+		TEL_Time_UNIT,TYPE,WORK_TYPE,EARLY_TIME,FREE_TOTAL)
+		values
+		(#{packageId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{doctorId,jdbcType=INTEGER},
+		#{count,jdbcType=INTEGER},
+		#{unit,jdbcType=VARCHAR}, #{qaTime,jdbcType=VARCHAR},
+		#{timeUnit,jdbcType=VARCHAR}, now(), #{updateTiem,jdbcType=TIMESTAMP},
+		#{typeId,jdbcType=CHAR}, #{telCount,jdbcType=TINYINT},
+		#{telUnit,jdbcType=VARCHAR},
+		#{total,jdbcType=DOUBLE},
+		#{effectTime,jdbcType=TIMESTAMP}, #{telTime,jdbcType=VARCHAR},
+		#{telTimeUnit,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{workType,jdbcType=CHAR},
+		#{earlyTime,jdbcType=VARCHAR},#{freeTotal,jdbcType=INTEGER})
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		update interrogation_package ip
+		<set>
+			<if test="name != null">
+				ip.NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorId != null">
+				ip.DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="count != null">
+				ip. COUNT = #{count,jdbcType=INTEGER},
+			</if>
+			<if test="unit != null">
+				ip.UNIT = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="qaTime != null">
+				ip.QA_TIME = #{qaTime,jdbcType=VARCHAR},
+			</if>
+			<if test="timeUnit != null">
+				ip.TIME_UNIT = #{timeUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				ip.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTiem != null">
+				ip.UPDATE_TIEM = #{updateTiem,jdbcType=TIMESTAMP},
+			</if>
+			<if test="typeId != null">
+				ip.TYPE_ID = #{typeId,jdbcType=CHAR},
+			</if>
+			<if test="telCount != null">
+				ip.TEL_COUNT = #{telCount,jdbcType=TINYINT},
+			</if>
+			<if test="telUnit != null">
+				ip.TEL_UNIT = #{telUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				ip.TOTAL = #{total,jdbcType=DECIMAL},
+			</if>
+			<if test="effectTime != null">
+				ip.EFFECT_TIME = #{effectTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="telTime != null">
+				ip.TEL_TIME = #{telTime,jdbcType=VARCHAR},
+			</if>
+			<if test="telTimeUnit != null">
+				ip.TEL_Time_UNIT = #{telTimeUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				ip.TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="workType != null">
+				ip.WORK_TYPE = #{workType,jdbcType=CHAR},
+			</if>
+			<if test="earlyTime != null">
+				ip.EARLY_TIME = #{earlyTime,jdbcType=VARCHAR},
+			</if>
+				<if test="freeTotal != null">
+				ip.FREE_TOTAL = #{freeTotal,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ip.PACKAGE_ID = #{packageId,jdbcType=INTEGER}
+	</update>
+<!-- 修改履历：2016年12月21日 下午3:02:09 chengming start -->
+	<!-- 常用医生接口，获取最低价格 -->
+	<select id="getTotal" parameterType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+		resultMap="BaseResultMap">
+		select
+		min(ip.TOTAL) MIN_TOTAL
+		from interrogation_package ip
+		where 1=1
+		<if test="doctorId!=null">and ip.DOCTOR_ID=#{doctorId} </if>
+		<if test="type!=null">and ip.TYPE=#{type} </if>
+	</select>
+	<!-- 修改履历：2016年12月21日 下午3:02:09 chengming end -->
+
+</mapper>

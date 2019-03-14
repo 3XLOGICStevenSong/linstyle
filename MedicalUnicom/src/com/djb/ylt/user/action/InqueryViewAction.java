@@ -1,0 +1,188 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.user.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.user.dto.InqueryViewDTO;
+import com.djb.ylt.user.dtoclient.InqueryViewClientDTO;
+import com.djb.ylt.user.dtoclient.InqueryViewListDTO;
+import com.djb.ylt.user.entity.FollowInterestEntity;
+import com.djb.ylt.user.entity.InqueryViewEntity;
+import com.djb.ylt.user.service.IFollowInterestService;
+import com.djb.ylt.user.service.IInqueryViewService;
+import com.djb.ylt.user.service.IInterrogationPackageService;
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2016年7月29日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/InqueryView")
+public class InqueryViewAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iInqueryViewService")
+	private IInqueryViewService iInqueryViewService;
+
+	@Autowired
+	@Qualifier("iInterrogationPackageService")
+	private IInterrogationPackageService iInterrogationPackageService;
+
+	@Autowired
+	@Qualifier("iFollowInterestService")
+	private IFollowInterestService iFollowInterestService;
+	public InqueryViewAction() {
+		super();
+	}
+
+	/**
+	 * 获取电话问诊的医生列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetInqueryList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		InqueryViewDTO paramDTO = (InqueryViewDTO) form;
+		// 参数Entity
+		InqueryViewEntity paramEntity = new InqueryViewEntity();
+
+		// 结果ClientDTO
+		InqueryViewListDTO resultClientDTO = new InqueryViewListDTO();
+		List<InqueryViewClientDTO> inqueryViewList = null;
+		// List<SymptomClientDTO> SymptomClientDTOList=null;
+		// 参数DTO->参数Entity
+
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		paramEntity.setPageSize(paramDTO.getPageSize());
+		paramEntity.setPageNum(paramDTO.getPageNum());
+		// paramEntity.setPatientId(1);
+		// 结果Entity
+		List<InqueryViewEntity> resultEntity = null;
+		// 结果DTO
+		// AppointInquiryDTO resultDTO=new AppointInquiryDTO();
+		// DB查询
+		try {
+
+			// paramEntity.setType("1");
+			// paramEntity.setMethodFlg("0");
+			// paramEntity.setSortType("0");
+			// paramEntity.setDepartmentId(1);
+			// paramEntity.setSymptomId(1);
+			// TODO SQL
+			resultEntity = iInqueryViewService.getInqueryViewList(paramEntity);
+			//
+			if (resultEntity != null && resultEntity.size() > 0) {
+				inqueryViewList = new ArrayList<InqueryViewClientDTO>();
+				for (InqueryViewEntity param : resultEntity) {
+					InqueryViewClientDTO paramClientDTO = new InqueryViewClientDTO();
+					CommonUtil.reflectClass(param, paramClientDTO);
+					if (paramDTO.getPatientId() == null) {
+						paramClientDTO.setFollowFlag("0");
+					} else {
+						//if (param>0) {
+						//FollowInterestEntity followEntity = new FollowInterestEntity();
+						//followEntity.setPatientId(paramDTO.getPatientId());
+						///followEntity.setDoctorId(param.getDoctorId());
+						//int count=0;
+						// count =iFollowInterestService.getCount(followEntity);
+						if(param.getFollowCount()>0){
+							paramClientDTO.setFollowFlag("1");
+						} else {
+							paramClientDTO.setFollowFlag("0");
+						}
+					}
+					if ("0".equals(param.getType())) {
+						paramClientDTO.setTotal(param.getTotal().toString());
+					} else {
+						// 没有视频问诊的钱数为零
+						// 参数Entity
+						// 获取医生是否有视频问诊
+						//InterrogationPackageEntity packageEntity = new InterrogationPackageEntity();
+						//packageEntity.setDoctorId(param.getDoctorId());
+						//packageEntity.setType("0");
+						// 参数Entity
+						//InterrogationPackageEntity packageResultEntity = new InterrogationPackageEntity();
+						//packageResultEntity = iInterrogationPackageService.getObject(packageEntity);
+						//if (packageResultEntity != null) {
+						//	paramClientDTO.setTotal(packageResultEntity.getTotal().toString());
+						//} else {
+							paramClientDTO.setTotal("0");
+						//}
+
+					}
+					if (param.getCommentGrade() != null) {
+						paramClientDTO.setCommentGrade((float) (Math.round(param.getCommentGrade() * 10)) / 10);
+					}
+					paramClientDTO.setServiceType(param.getServiceType());
+					if (param.getScheduleFlag()!=null) {
+						paramClientDTO.setScheduleFlag(param.getScheduleFlag());
+					}
+					paramClientDTO.setServiceCount(param.getServiceCount());
+					inqueryViewList.add(paramClientDTO);
+				}
+
+				resultClientDTO.setDoctorList(inqueryViewList);
+				//
+			}
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-1051");
+
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+}

@@ -1,0 +1,20 @@
+.Patcalend {padding:0 3%;}
+.Patcalend p.Description{padding:10px 0;height:30px;line-height:30px;color:#999;}
+
+.Patcalend p.title {padding:10px 0;line-height:30px;}
+.Patcalend p.title span{float:left;margin:0 5px 0 0;width:5%;max-width:20px;height:30px;background:url("../img/icon_timer.png") no-repeat center center;background-size:100%;}
+
+.Data .Fullyear{position:relative;padding:5px 3%;height:30px;text-align:center;line-height:30px;}
+.Data .Fullyear .left{position:absolute;left:10%;width:5%;max-width:20px;height:30px;background:url("../img/icon_left.png") no-repeat center center;background-size:100%;}
+.Data .Fullyear .right{position:absolute;right:10%;width:5%;max-width:20px;height:30px;background:url("../img/icon_right.png") no-repeat center center;background-size:100%;}
+
+.Data .Fullyear h2{color:#999;font-size:14px;}
+.Data .Fullyear h2 #Tm{color:#555}
+
+#selTime {margin:5% 0}
+#selTime ul {text-align:center;}
+#selTime ul li {display:inline-block;margin:0 1% 5px;width:16%;height:25px;border:1px solid #5099e6;border-radius:2px;color:#5099e6;text-align:center;line-height:25px;}
+#selTime ul li.checkOn{background:#5099e6;color:#fff}
+
+.Data .subminBtn {padding:10px 5%}
+.Data .subminBtn span{display:block;height:30px;line-height:30px;background:#50d071;border-radius:3px;text-align:center;color:#fff}

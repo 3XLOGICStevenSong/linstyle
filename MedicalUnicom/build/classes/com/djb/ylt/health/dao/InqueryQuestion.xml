@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.InqueryQuestionEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.health.entity.InqueryQuestionEntity" >
+    <id column="IQ_ID" property="iqId" jdbcType="INTEGER" />
+    <result column="DEP_ID" property="depId" jdbcType="INTEGER" />
+    <result column="IQ_NAME" property="iqName" jdbcType="VARCHAR" />
+    <result column="IQ_TYPE" property="iqType" jdbcType="CHAR" />
+    <result column="IQ_STATUS" property="iqStatus" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IQ_MEMO" property="iqMemo" jdbcType="VARCHAR" />
+    
+    <collection property="inqueryResultEntitys"
+			ofType="com.djb.ylt.health.entity.InqueryResultEntity" resultMap="InqueryResultMap" />
+   <collection property="inqueryAnswerEntitys"
+			ofType="com.djb.ylt.health.entity.InqueryAnswerEntity" resultMap="InqueryAnswerMap" />
+  </resultMap>
+    <sql id="Base_Column_List" >
+    iq.IQ_ID, iq.DEP_ID, iq.IQ_NAME, iq.IQ_TYPE, iq.IQ_STATUS, iq.CREATE_TIME, iq.IQ_MEMO
+  </sql>
+   <resultMap id="InqueryResultMap" type="com.djb.ylt.health.entity.InqueryResultEntity" >
+    <id column="IR_ID" property="irId" jdbcType="INTEGER" />
+    <result column="IQ_ID" property="iqId" jdbcType="INTEGER" />
+    <result column="IR_NAME" property="irName" jdbcType="VARCHAR" />
+    <result column="IR_MEMO" property="irMemo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IR_STATUS" property="irStatus" jdbcType="CHAR" />
+    <result column="IR_TYPE" property="irType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="InqueryResult_Column_List" >
+    ir.IR_ID, ir.IR_NAME, ir.IR_MEMO, ir.CREATE_TIME, ir.IR_STATUS,ir.IR_TYPE
+  </sql>
+   <resultMap id="InqueryAnswerMap" type="com.djb.ylt.health.entity.InqueryAnswerEntity" >
+    <id column="IA_ID" property="iaId" jdbcType="INTEGER" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+    <result column="IQ_ID" property="iqId" jdbcType="INTEGER" />
+    <result column="IR_ID" property="irId" jdbcType="INTEGER" />
+    <result column="IA_CONTENT" property="iaContent" jdbcType="VARCHAR" />
+    <result column="DEP_ID" property="depId" jdbcType="INTEGER" />
+    <result column="IA_TIME" property="iaTime" jdbcType="TIMESTAMP" />
+    <result column="IA_MEMO" property="iaMemo" jdbcType="VARCHAR" />
+    <result column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="InqueryAnswer_Column_List" >
+    ia.IA_ID, ia.PATIENT_ID,  ia.IR_ID, ia.IA_CONTENT, ia.DEP_ID, ia.IA_TIME, ia.IA_MEMO, ia.RECORD_ID
+  </sql>
+  <sql id="InqueryWhereClause">
+		<if test="depId!=null">and iq.DEP_ID=#{depId} </if>
+	</sql>
+  <!-- 获取某一科室的问诊票 -->
+	<select id="findListByCondition" parameterType="com.djb.ylt.health.entity.InqueryQuestionEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="InqueryAnswer_Column_List" />
+		from inquery_question iq 
+		LEFT JOIN inquery_answer  ia ON  iq.IQ_ID=ia.IQ_ID  and ia.PATIENT_ID=#{patientId}
+		where 1=1  and iq.IQ_STATUS='1'
+		<include refid="InqueryWhereClause" />
+		order by iq.IQ_ID
+	</select>
+	<!-- 获取某一科室的问诊票 旧的-->
+	<select id="findListByConditionForOld" parameterType="com.djb.ylt.health.entity.InqueryQuestionEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="InqueryResult_Column_List" />,
+		<include refid="InqueryAnswer_Column_List" />
+		from inquery_question iq LEFT JOIN inquery_result ir ON iq.IQ_ID=ir.IQ_ID  
+		LEFT JOIN inquery_answer  ia ON  iq.IQ_ID=ia.IQ_ID and (ir.IR_ID=ia.IR_ID or ISNULL(ia.IR_ID)) and ia.PATIENT_ID=#{patientId}
+		where 1=1  and iq.IQ_STATUS='1'
+		<include refid="InqueryWhereClause" />
+		order by iq.IQ_ID,ir.IR_ID
+	</select>
+  <insert id="insert" parameterType="com.djb.ylt.health.entity.InqueryQuestionEntity" >
+    insert into inquery_question (IQ_ID, DEP_ID, IQ_NAME, 
+      IQ_TYPE, IQ_STATUS, CREATE_TIME, 
+      IQ_MEMO)
+    values (#{iqId,jdbcType=INTEGER}, #{depId,jdbcType=INTEGER}, #{iqName,jdbcType=VARCHAR}, 
+      #{iqType,jdbcType=CHAR}, #{iqStatus,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{iqMemo,jdbcType=VARCHAR})
+  </insert>
+  <update id="update" parameterType="com.djb.ylt.health.entity.InqueryQuestionEntity" >
+    update inquery_question
+    <set >
+      <if test="depId != null" >
+        DEP_ID = #{depId,jdbcType=INTEGER},
+      </if>
+      <if test="iqName != null" >
+        IQ_NAME = #{iqName,jdbcType=VARCHAR},
+      </if>
+      <if test="iqType != null" >
+        IQ_TYPE = #{iqType,jdbcType=CHAR},
+      </if>
+      <if test="iqStatus != null" >
+        IQ_STATUS = #{iqStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iqMemo != null" >
+        IQ_MEMO = #{iqMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IQ_ID = #{iqId,jdbcType=INTEGER}
+  </update>
+</mapper>

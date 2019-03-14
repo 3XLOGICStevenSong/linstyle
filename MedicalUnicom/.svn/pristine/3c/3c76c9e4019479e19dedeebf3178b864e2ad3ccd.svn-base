@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title></title>
+<style>
+body { margin:0; padding:0}
+.banner1 img{ width:100%;}
+</style>
+</head>
+
+<body>
+<div class="banner1"><img src="ad_doc/2.jpg"></div>
+
+</body>
+</html>

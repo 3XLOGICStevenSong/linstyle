@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.DepartmentEntity">
+	<resultMap id="DepartmentResultMap" type="com.djb.ylt.health.entity.DepartmentEntity">
+		<id column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="DEP_NAME" jdbcType="VARCHAR" property="depName" />
+		<result column="DC_ID" jdbcType="INTEGER" property="dcId" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="ICON_PIC" jdbcType="VARCHAR" property="iconPic" />
+		<result column="CELL_PIC" jdbcType="VARCHAR" property="cellPic" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<collection property="symptomEntitys"
+			ofType="com.djb.ylt.health.entity.SymptomEntity" resultMap="SymptomResultMap" />
+		<collection property="departmentSymptomEntitys"
+			ofType="com.djb.ylt.health.entity.DepartmentSymptomEntity" resultMap="DepartmentSymptomResultMap" />
+
+	</resultMap>
+	<resultMap id="SymptomResultMap" type="com.djb.ylt.health.entity.SymptomEntity">
+		<id column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+		<result column="SYMPTOM_NAME" jdbcType="VARCHAR" property="symptomName" />
+		<result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<result column="SYMPTOM_TYPE" jdbcType="VARCHAR" property="symptomType" />
+		<result column="PATIENT_SEX" jdbcType="CHAR" property="patientSex" />
+		<result column="PATIENT_AGE" jdbcType="VARCHAR" property="patientAge" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<resultMap id="DepartmentSymptomResultMap"
+		type="com.djb.ylt.health.entity.DepartmentSymptomEntity">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="DEPARTMENT_ID" jdbcType="INTEGER" property="departmentId" />
+		<result column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="Department_Column_List">
+		d.DEP_ID, d.DEP_NAME, d.DC_ID, d.STATUS_FLG, d.CREATE_TIME,
+		d.UPDATE_TIME,d.ICON_PIC,d.CELL_PIC,d.MEMO
+	</sql>
+	<sql id="Symptom_Column_List">
+		s.SYMPTOM_ID, s.SYMPTOM_NAME, s.STATUS_FLG, s.MEMO, s.SYMPTOM_TYPE, s.PATIENT_SEX,
+		s.PATIENT_AGE,
+		s.CREATE_TIME, s.UPDATE_TIME
+	</sql>
+	<sql id="DepartmentSymptom_Column_List">
+		ds.ID, ds.DEPARTMENT_ID, ds.SYMPTOM_ID, ds.CREATE_TIME, ds.UPDATE_TIME
+	</sql>
+	<sql id="DepartmetWhereClause">
+		<if test="depId!=null">and d.DEP_ID=#{depId} </if>
+		<if test="depName!=null">and d.DEP_NAME=#{depName} </if>
+		<if test="dcId!=null">and d.DC_ID=#{dcId} </if>
+		<if test="statusFlg!=null">and d.STATUS_FLG=#{statusFlg} </if>
+		<if test="updateTime !=null">and d.UPDATE_TIME=#{updateTime} </if>
+		<if test="createTime !=null">and d.CREATE_TIME=#{createTime} </if>
+	</sql>
+	<sql id="orderByDepartmetClause">
+		ORDER BY d.DEP_ID
+	</sql>
+	<select id="findList" resultMap="DepartmentResultMap">
+		select
+		<include refid="Department_Column_List" />
+		from department d
+	</select>
+	<select id="getObject" parameterType="com.djb.ylt.health.entity.DepartmentEntity"
+		resultMap="DepartmentResultMap">
+		select
+		<include refid="Department_Column_List" />
+		from department d
+		where 1=1
+		<include refid="DepartmetWhereClause" />
+
+	</select>
+	<!-- 获取所有的科室和科室对应症状 -->
+	<select id="findListByCondition" parameterType="com.djb.ylt.health.entity.DepartmentEntity"
+		resultMap="DepartmentResultMap">
+		select
+		<include refid="Department_Column_List" />
+		,
+		<include refid="DepartmentSymptom_Column_List" />
+		,
+		<include refid="Symptom_Column_List" />
+		from department d left join department_symptom ds on
+		(d.DEP_ID=ds.DEPARTMENT_ID)
+		left join symptom s
+		on(ds.SYMPTOM_ID=s.SYMPTOM_ID)
+		where 1=1 and d.STATUS_FLG='1' and s.STATUS_FLG='1'
+		<include refid="orderByDepartmetClause" />
+	</select>
+</mapper>

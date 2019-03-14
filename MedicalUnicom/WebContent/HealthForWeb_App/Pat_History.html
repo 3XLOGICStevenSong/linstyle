@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title>我的病例</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/PrdHistory.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/commons.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatHistory.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>我的病例</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+
+		<div id="container">
+			<div class="contents">
+				<div class="history">
+					<ul id="List" class="displaynone">
+						<li data="{$recordsId}" class="{$payStatus}">
+							<span class="cricle"><img src="img/icon_cricle.jpg" /></span>
+							<strong class="timer">预约{$Type}问诊  <span class="datetime">{$appointTime}</span></strong>
+							<div class="CreatTime">
+								<p>{$createTime}</p>
+							</div>
+						</li>
+					</ul>
+					<ul class="List"></ul>
+					<!-- button type="button" id="MoreBtn">查看更多</button-->
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

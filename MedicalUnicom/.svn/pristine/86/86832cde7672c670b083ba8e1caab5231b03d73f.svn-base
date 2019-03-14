@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/docJoin.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/selectForm_join.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/uploadImg.js"></script>
+	<script type="text/javascript" src="js/ajaxDocjoin.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<span class="next"><a id="save" href="#complate.html">完成</a></span>
+			<h2>医生资格认证</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="docDetail">
+					<form action="" method="get" >
+						<p class="bank_info">标有  <font color="red">*</font> 的为必填项，其余为选填项</p>
+						<div class="doc_join">
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 姓名：</strong>
+								<div class="date"><input type="text" placeholder="请输入真实姓名" name="name"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 性别：</strong>
+								<div class="date">
+									<span id="sex">
+										<label for="man"><img id="man" src="img/icon_uncheckR.png" key="0"> 男</label>
+										<label for="femal"><img id="femal" src="img/icon_checkR.png"> 女</label>
+									</span>
+									<script>
+									$("#sex label").click(function(){
+										if($(this).attr("for") == "man"){
+											$("#sex img").attr("key","");
+											$("#sex img").attr("src","img/icon_checkR.png");
+											$(this).find("img").attr("key","0");
+											$(this).find("img").attr("src","img/icon_uncheckR.png");
+										}else if($(this).attr("for") == "femal"){
+											$("#sex img").attr("key","");
+											$("#sex img").attr("src","img/icon_checkR.png");
+											$(this).find("img").attr("key","1");
+											$(this).find("img").attr("src","img/icon_uncheckR.png");
+										}
+									});
+									</script>
+								</div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 出生年月：</strong>
+								<div class="date">
+									<!--input type="date" max="2016-01-01" min="1900-01-01" placeholder="年/月/日" name="age"/-->
+									<select id="year" style="width:1.5rem"></select> 年
+									<select id="month" style="width:1.2rem"></select> 月
+									<select id="day" style="width:1.2rem"></select> 日
+								</div>
+								<script>
+								//$("input[name='age']").attr("max",data.getFullYear()+"-"+(data.getMonth()+1)+"-"+data.getDate())
+								</script>
+							</div>
+							<div class="docFrom clearfix">
+								<strong>身份证号：</strong>
+								<div class="date"><input type="number" placeholder="请输入身份证号码" name="cardNum"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 行医证号：</strong>
+								<div class="date"><input type="number" placeholder="请输入行医证号码" name="certificateNum"/></div>
+							</div>
+							<div class="docFrom fileForm">
+								<p class="bank_info" style="text-align:center">行医证照片，暂不使用</p>
+								<div id="photo" class="displaynone">
+									<label for="filePhoto">
+										<img src="img/file.jpg" id="UserImg" name="certificatePic" width="50%">
+										<input type="file" id="filePhoto" class="displaynone" onchange="previewImage(this);"/>
+									</label>
+								</div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 医院：</strong>
+								<div class="date"><input type="text" placeholder="请输入所属医院" name="hospitalName"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 主治：</strong>
+								<div class="date"><input type="text" placeholder="主治病种" name="healDisease"/></div>
+							</div>
+							<div class="docFrom Seldes clearfix">
+								<strong><font color="red">*</font> 科室：</strong>
+								<div class="date"><input type="text" placeholder="请选择" name="symptomId" readonly="true" /></div>
+							</div>
+							<div class="docFrom Seldes clearfix">
+								<strong><font color="red">*</font> 专业：</strong>
+								<div class="date"><input type="text" placeholder="请选择" name="departmentId" readonly="true"/></div>
+							</div>
+							<div class="docFrom clearfix displaynone">
+								<strong>职称名称：</strong>
+								<div class="date"><input type="text" name="positional" readonly="readonly"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong><font color="red">*</font> 级别：</strong>
+								<div class="date">
+									<select name="grade" id="grade">
+										<option value=-1>请选择</option>
+										<option value=0>主任医师</option>
+										<option value=1>副主任医师</option>
+										<option value=2>普通医师</option>
+									</select>
+									<!--input type="text" placeholder="请选择" name="grade"/></div-->
+								</div>
+							</div>
+							<div class="docFrom clearfix displaynone">
+								<strong>白天价格：</strong>
+								<div class="date"><input type="text" name="dayTotal" readonly="readonly"/></div>
+							</div>
+							<div class="docFrom clearfix displaynone">
+								<strong>晚上价格：</strong>
+								<div class="date"><input type="text" name="nightTotal" readonly="readonly"/></div>
+							</div>
+							<div class="docFrom clearfix displaynone">
+								<strong>时间段</strong>
+								<div class="date"><input type="text" name="earlyTime" readonly="readonly"/></div>
+							</div>
+							<!--div class="docFrom clearfix displaynone">
+								<strong>套餐问诊</strong>
+								<div class="date"><input type="text" name="taPrice" readonly="readonly"/></div>
+							</div>
+							<div class="docFrom clearfix setMenu displaynone">
+								<strong>价格：</strong>
+								<div class="date">
+									<input type="text" name="paPrice" readonly="readonly"/>元 / 
+									<input type="text" name="effectTime" readonly="readonly"/>天
+								</div>
+							</div-->
+							<div class="docFrom clearfix setMenu displaynone">
+								<strong>内容：</strong>
+								<div class="date">
+									<!--input type="text" placeholder="请选择" name="pvPrice"/>元 / -->视频问诊<input type="text" name="vCount" readonly="readonly"/>次 <br/>
+									<!--input type="text" placeholder="请选择" name="ptPrice"/>元 / -->电话问诊<input type="text" name="tCount" readonly="readonly"/>次
+								</div>
+							</div>
+						</div>
+						
+						<p class="bank_info">个人开户行信息，仅用于本系统付款使用，不可更改</p>
+						
+						<div class="bank_date">
+							<div class="docFrom clearfix">
+								<strong>持卡人：</strong>
+								<div class="date"><input type="text" placeholder="请输入持卡人名字" name="bankOwner"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong>卡号：</strong>
+								<div class="date"><input type="number" placeholder="请输入卡号" name="bankNum"/></div>
+							</div>
+							<div class="docFrom clearfix">
+								<strong>银行：</strong>
+								<div class="date"><input type="text" placeholder="请输入开户行" name="bankName"/></div>
+							</div>
+						</div>
+						
+						<div class="register" id="register">
+							<span class="btn_register">确认注册</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="displaynone SelFm">
+			<!--div class="titleArea" style="position:fixed;top:0;width:100%;height:1.4rem;z-index:9999"">
+				<span class="prev"><a href="#none" id="cancel">&lt;</a></span>
+				<span class="next"><a href="#none" id="saveFm">保存</a></span>
+				<h2>选择科室和症状</h2>
+			</div-->
+			
+			<div class="checkForm">
+				<form action="" method="post" >
+					<ul id="CateGory"></ul>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

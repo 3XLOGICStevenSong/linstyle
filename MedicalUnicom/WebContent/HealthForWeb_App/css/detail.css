@@ -1,0 +1,60 @@
+.detail {background:#fff}
+.detail .info {position:relative;border-bottom:1px solid #d0d0d0;background:#fff}
+.detail .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.detail .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.detail .info ul{display:inline-block;padding:0.2rem 0 0;vertical-align:top}
+.detail .info ul li {padding:0 0 10px;font-size:0.4rem;}
+.detail .info ul li.frt span{display:inline-block;padding:0.05rem 0.3rem;border-radius:15px;background:#50d071;color:#fff;font-size:0.35rem}
+.detail .info ul li.frt strong{font-weight:bold;}
+.detail .info ul li strong{font-weight:normal;}
+.detail .info ul li.frt strong span{font-weight:bold}
+.detail .info ul li strong span{font-weight:bold}
+
+.detail .TimeList{border-top:1px solid #d0d0d0;background:#fff}
+
+.detail .state {padding:0.2rem 0.3rem 0.2rem;}
+.detail .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.detail .state .Notpaid,
+.detail .state .PaidOver,
+.detail .state .Refund,
+.detail .state .Wait,
+.detail .state .Success,
+.detail .state .Start,
+.detail .state .Count,
+.detail .state .Tel,
+.detail .state .Cam,
+.detail .state .Over,
+.detail .state .NotResult,
+.detail .state .DocReject,
+.detail .state .WaitCancel,
+.detail .state .AgreeCancel,
+.detail .state .Disagree,
+.detail .state .Cancel{float:right;color:#999;min-height:0.9rem;line-height:0.9rem;}
+
+.detail .state .Start span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.detail .state .Start span.sorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.detail .state .Start span a{display:block;padding:0 15px;color:#fff}
+
+.detail .state .Tel span{float:left;width:2rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.detail .state .Tel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.detail .state .Tel span a{display:block;padding:0 15px;color:#fff}
+
+.detail .state .Cancel span{float:left;width:2rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.detail .state .Cancel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.detail .state .Cancel span a{display:block;padding:0 15px;color:#fff}
+
+.detail .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.detail .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+.Detail,
+.Result{position:relative;margin:0 0 0.5rem;padding:0 0.2rem;line-height:0.8rem;}
+.Detail .chart_icon,
+.Result .Result_icon{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;}
+.Detail .chart_icon{background:url("../img/chart.png") no-repeat center center;background-size:100%;}
+.Result .Result_icon{background:url("../img/Result.png") no-repeat center center;background-size:100%;}
+
+.detail .DetailInfoTXT{width:100%;padding:0.2rem;box-sizing:border-box;font-size:0.35rem}
+.Result .DetailInfoTXT{margin:0 0 0.5rem;}
+
+.subMit_btn {padding:0.5rem 0.2rem;font-size:0.4rem;}
+.subMit_btn span{display:block;height:1.5rem;border:1px solid #d0d0d0;border-radius:5px;line-height:1.5rem;text-align:center;color:#14ab3a}

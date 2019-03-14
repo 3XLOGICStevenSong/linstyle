@@ -1,0 +1,54 @@
+.contents .title {padding:0.5rem 0.2rem;font-size:0.4rem;background:#fff;border-top:1px solid #e4e4e4;border-bottom:1px solid #c3c3c3}
+.contents .title span{float:right;font-size:0.35rem;font-weight:normal;color:#136dcc}
+.contents .title span a{color:#136dcc}
+
+.patientList ul li.loading{width:5rem;height:3rem;margin:1rem auto;text-align:center;line-height:3rem;background:#000;border-radius:0.2rem;opacity:0.3;}
+.patientList ul li.loading img{vertical-align:middle}
+	
+.patientList .info {position:relative;background:#fff}
+.patientList .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.patientList .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.patientList .info ul{display:inline-block;padding:0.2rem 0 0;vertical-align:top}
+.patientList .info ul li {padding:0 0 0.2rem;margin:0;font-size:0.4rem;}
+.patientList .info ul li.frt span{display:inline-block;padding:0.05rem 0.3rem;border-radius:15px;background:#50d071;color:#fff;font-size:0.35rem}
+.patientList .info ul li.frt strong{font-weight:bold;}
+.patientList .info ul li strong{font-weight:normal;}
+.patientList .info ul li.frt strong span{font-weight:bold}
+.patientList .info ul li strong span{font-weight:noemal}
+.patientList .info ul li strong.Sex{margin:0 0.5rem 0 0}
+.patientList .info span.gt_icon {position:absolute;right:3%;top:20px;color:#d4d4d4;font-size:24px;font-weight:bold}
+
+.patientList .TimeList{border-top:1px solid #d0d0d0;background:#fff}
+.patientList .state {padding:0.2rem 0.3rem 0.2rem;}
+.patientList .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.patientList .state .Notpaid,
+.patientList .state .PaidOver,
+.patientList .state .Refund,
+.patientList .state .Wait,
+.patientList .state .Success,
+.patientList .state .Start,
+.patientList .state .Count,
+.patientList .state .Tel,
+.patientList .state .Cam,
+.patientList .state .Over,
+.patientList .state .NotResult,
+.patientList .state .DocReject,
+.patientList .state .WaitCancel,
+.patientList .state .AgreeCancel,
+.patientList .state .Disagree,
+.patientList .state .Cancel{float:right;color:#999;min-height:0.9rem;line-height:0.9rem;}
+
+.patientList .state .Start span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.patientList .state .Start span.sorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.patientList .state .Start span a{display:block;padding:0 15px;color:#fff}
+
+.patientList .state .Tel span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.patientList .state .Tel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.patientList .state .Tel span a{display:block;padding:0 15px;color:#fff}
+
+.patientList .state .Cancel span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.patientList .state .Cancel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.patientList .state .Cancel span a{display:block;padding:0 15px;color:#fff}
+
+.patientList .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.patientList .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}

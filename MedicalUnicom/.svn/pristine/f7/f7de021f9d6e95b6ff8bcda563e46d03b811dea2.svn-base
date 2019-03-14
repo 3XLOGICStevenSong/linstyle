@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.EmergencyDoctorEntity" >
+  <resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.EmergencyDoctorEntity" >
+    <result column="ED_ID" property="edId" jdbcType="INTEGER" />
+    <result column="ED_DOCID" property="edDocid" jdbcType="INTEGER" />
+    <result column="ED_USERTEL" property="edUsertel" jdbcType="VARCHAR" />
+    <result column="ED_STATUS" property="edStatus" jdbcType="CHAR" />
+    <result column="WORK_DATE" property="workDate" jdbcType="DATE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ED_ID, ED_DOCID, ED_USERTEL, ED_STATUS
+  </sql>
+ <select id="getObject" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from emergency_doctor
+		where WORK_DATE=CURDATE()
+		order by rand() limit 1 
+	</select>
+ 
+ 
+</mapper>

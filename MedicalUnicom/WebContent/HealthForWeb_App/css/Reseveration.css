@@ -1,0 +1,86 @@
+.SelectDoc {padding-top:1rem}
+.SelectDoc .List > li{margin:0 0 0.2rem}
+.SelectDoc .List li:first-child .info{border-top:0}
+.SelectDoc .info {background:#fff;padding: 0.2rem 0 0;border-top:1px solid #d1d1d1;border-bottom:1px solid #d1d1d1}
+.SelectDoc .info strong.UserImg{display:inline-block;width:2.4rem;padding:0.2rem 0;text-align:center;vertical-align:top}
+.SelectDoc .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.SelectDoc .info strong.UserImg span.commentGrade{display:block;padding:0.2rem 0;color:#ffba00;}
+.SelectDoc .info  ul{display:inline-block;width:5rem;padding:0.2rem 0;font-size:0.4rem;vertical-align:top}
+.SelectDoc .info  ul li strong.docTitle{display:block;font-weight:normal;font-size:0.4rem}
+.SelectDoc .info  ul li strong.docTitle span{margin:0 0.3rem 0 0}
+.SelectDoc .info  ul li.frt {padding:0 0 0.2rem}
+.SelectDoc .info  ul li.frt strong{font-weight:bold;font-size:0.4rem}
+.SelectDoc .info  ul li.frt span{margin:0 0 0 0.3rem;font-size:0.35rem}
+
+.SelectDoc .info .Price {float:right;width:2.5rem;min-height:2.4rem;margin:0.2rem 0;border-left:1px solid #999;font-size:0.4rem}
+.SelectDoc .info .Price p span{display:block;margin:0 0 0.3rem;text-align:center}
+.SelectDoc .info .Price p span.Vprice{color:#ff5f10;font-size:0.4rem}
+.SelectDoc .info .Price p span.follow img{width:1rem}
+
+.condition .sortForm{position:fixed;z-index:9}
+.condition ul  {background:#fff;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;text-align:center}
+.condition ul li{position:relative;display:inline-block;width:3.25rem;height:1rem;border-left:1px solid #d0d0d0;text-align:center;color:#8a8a8a;line-height:1rem;font-size:0.4rem}
+.condition ul li:first-child{border:0}
+.condition ul li .up {position:absolute;top:0.27rem;right:0.5rem;width:0.2rem;height:0.2rem;background:url("../img/icon_up.png") no-repeat;background-size:100%;}
+.condition ul li .down {position:absolute;bottom:0.27rem;right:0.5rem;width:0.2rem;height:0.2rem;background:url("../img/icon_down.png") no-repeat;background-size:100%;}
+.condition ul li.down,
+.condition ul li.up {color:#ff5f10}
+.condition ul li.down .down {background:url("../img/icon_down_on.png") no-repeat;background-size:100%;}
+.condition ul li.up .up {background:url("../img/icon_up_on.png") no-repeat;background-size:100%;}
+
+.SelFm{display:block;position:absolute;top:0;left:0;width:100%;background:#fff;}
+
+.MenuChangeTap {position:fixed;right:0.5rem;bottom:0.5rem;width:1rem;height:1rem;border:0.2rem solid #52abfb;background:#fff;border-radius:50%;text-align:center;line-height: 0.85rem;z-index:9;}
+.MenuChangeTap span{font-weight:bold;font-size:1rem;color:#999}
+
+#on{
+	-webkit-transform:rotate(0deg);
+	-webkit-animation: menu 0.5s ease-in-out normal forwards; /*Safari and Chrome*/;
+}
+
+@-webkit-keyframes menu{
+	form{-webkit-transform:rotate(0deg)}
+	to{-webkit-transform:rotate(1125deg)}
+}
+
+#off{
+	display:inline-block;
+	-webkit-transform:rotate(45deg);
+	-webkit-animation:menu1 0.5s ease-in-out normal forwards; /*Safari and Chrome*/;
+}
+
+@-webkit-keyframes menu1{
+	form{-webkit-transform:rotate(0deg)}
+	to{-webkit-transform:rotate(-1080deg)}
+}
+
+.ChangeTap {display:none;position:fixed;right:0.5rem;bottom:0.5rem;width:0;height:0;border-radius:15px;border:1px solid #555;background:#fff;text-align:center;overflow:hidden}
+.ChangeTap span{position:absolute;width:2.4rem;height:2rem;line-height:1.9rem;text-align:center;color:#fff;font-size:0.5rem;font-weight:bold;z-index:9}
+.ChangeTap span.menu1{top:0.1rem;left:0.1rem;border-bottom:1px solid #fff;border-right:1px solid #fff;}
+.ChangeTap span.menu2{top:0.1rem;right:0.1rem;border-bottom:1px solid #fff;}
+.ChangeTap span.menu3{top:2rem;left:0.1rem;border-right:1px solid #fff;}
+.ChangeTap span.menu4{top:2rem;right:0.1rem;}
+.ChangeTap span.bg {position:absolute;top:0.1rem;left:0.1rem;;width:4.8rem;height:2rem;border-radius:10px;padding:0;font-size:0;background:#000;opacity:0.3;z-index:8}
+
+#changeOn{
+	display:block;
+	-webkit-animation:menu3 0.2s ease-in-out normal forwards;
+}
+
+@-webkit-keyframes menu3{
+	form{dposition:fixed;right:0.5rem;bottom:0.5rem;}
+	to{position:fixed;right:2.5rem;bottom:50%;width:5rem;height:2.2rem;}
+}
+
+#changeOff{
+	display:block;
+	position:fixed;right:2.5rem;bottom:50%;width:5rem;height:2.2rem;
+	-webkit-animation:menu4 0.2s ease-in-out normal forwards;
+}
+
+@-webkit-keyframes menu4{
+	form{position:fixed;right:2.5rem;bottom:50%;width:5rem;height:2.2rem;}
+	to{display:none;position:fixed;right:0.5rem;bottom:0.5rem;width:0;height:0}
+}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;border-top:1px solid #999;border-bottom:1px solid #999;background:#fff;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}

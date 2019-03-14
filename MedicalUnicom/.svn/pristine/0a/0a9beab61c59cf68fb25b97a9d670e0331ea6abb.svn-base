@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script>
+		var iScale = 1;
+		// devicePixelRatio 屏幕倍率
+		iScale = iScale / window.devicePixelRatio;
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+iScale+',minimum-scale='+iScale+',maximum-scale='+iScale+',user-scalable=no" />');
+
+		var iWidth = document.documentElement.clientWidth;
+
+		document.getElementsByTagName('html')[0].style.fontSize = iWidth / 10 + 'px';
+	</script>
+
+	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			//var gpId=window.location.href.substring(window.location.href.lastIndexOf("=")+1,window.location.href.length) ;
+			var gpId="1";
+			//var url = "http://42.56.70.47:3690/MedicalUnicom/GeneProducts.do?doGetProductsDetail";
+			var url = "/MedicalUnicom/GeneProducts.do?doGetProductsDetail";
+			var rowSum;
+
+			// ajax同常使用异步操作
+			$.ajax({
+				type: "get",
+				dataType: "json",
+				url: url,
+				data: {
+					gpId: gpId
+				},
+				success: function(result) {
+					console.log("服务器成功响应了我们的请求。");
+					alert(result.gpName);
+					
+					var gpName = result.gpName;
+					var content = result.content;
+					var significance = result.significance;
+					var standardPrice = result.standardPrice;
+					
+					$("#titleName").text(gpName);
+					$("#paracontent").text(content);
+					$("#parasign").text(significance);
+					$("#titlePrice").text("￥"+standardPrice);
+					
+				},
+				error: function(result) {
+					console.error(result);
+					alert("网络连接失败");
+				}
+			});
+
+			// 循环创建表格行数 
+			function appendTdToTable(rowSum){				
+				
+				for (var j = 0; j < rowSum; j++) {
+					var len = $("tr").get(0).children.length;
+					var row = $("<tr></tr>")
+					for (var i = 0; i < len; i++) {
+					var td = $("<td></td>");
+					row.append(td);
+				}
+					$("#tbl").append(row);
+				}
+
+			};
+			appendTdToTable(0);
+
+		})
+	</script>
+
+	<style type="text/css">
+		html, body{
+			margin: 0px;
+			padding: 0px;
+			background-color: #ebebeb;
+		}
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.clearFix:after {
+			content:"";
+			display:block;
+			clear:both;
+		}
+		<!-- 最底层的视图 -->
+
+		#backgroundDiv {
+			width: 10rem;
+			height: 25rem;
+		}
+		
+		#nameDiv {
+			
+			height: 1.73rem;
+			width: 10rem;
+			background: white;
+			overflow:hidden;
+		}
+		#titleIcon {
+			position: relative;
+			top: 0.35rem;
+			left: 0.35rem;
+			float: left;
+			height: 1rem;
+			width: 1rem;
+			background: white;
+			background-image: url(image/gene_product_zhongliu.png);
+			background-position: left top;
+			background-size: 1rem 1rem;
+			background-repeat: no-repeat;
+		}
+		#titleName {
+			font-size: 0.4rem;
+			position: relative;
+			top: 0.65rem;
+			left: 0.5rem;
+		}
+		#titlePrice {
+			position: relative;
+			font-size: 0.4rem;
+		
+			top: 0.3rem;
+			left: 7rem;
+			color: red;
+		}
+
+		<!-- 基因产品特点 -->
+		
+		#introDiv:after {
+			content:"";
+			display:block;
+			clear:both;
+		}
+		#introDiv {
+			position: relative;
+			top: 0.2rem;
+			left: 0;
+			width: 10rem;
+			padding-bottom:0.2rem;
+			background: white;
+			overflow:hidden;
+		}
+
+		#paraIcon {
+			position: relative;
+			top: 0.4rem;
+			left: 0.6rem;
+			width: 0.1rem;
+			height: 0.3rem;
+			background-color: white;
+			background-image: url(image/gene_paraTitle_blue.png);
+			background-position: left top;
+			background-size: 0.1rem 0.3rem;
+			background-repeat: no-repeat;
+			float: left;
+		}
+		
+		.paraTitle {
+			padding:0.36rem 0.7rem 0.1rem 0.7rem;
+			width: 9rem;
+			font-size: 0.4rem;
+			color: #404040;
+			background-color: white;
+			background-image: url(image/gene_paraTitle_blue.png);
+			background-position: 0.5rem 0.4rem;
+			background-size: 0.1rem 0.3rem;
+			background-repeat: no-repeat;
+		}
+		
+		.paraContent {
+			width: 9rem;
+			padding:0.1rem 0.6rem;
+			font-size: 0.35rem;
+			line-height: 0.5rem;
+			color: #757575;
+		}
+		#paraPeople {
+			position: relative;
+			top: 0.5rem;
+			left: 0.6rem;
+			width: 9rem;
+			height:2rem;
+			font-size: 0.35rem;
+			line-height: 0.5rem;
+			color: #757575;
+		}
+		#paraGoods {
+			position: relative;
+			top: 0.5rem;
+			left: 0.6rem;
+			width: 9rem;
+			height: 3.6rem;
+			font-size: 0.35rem;
+			line-height: 0.5rem;
+			color: #757575;
+		}
+
+		#paraAd {
+			
+			padding:0.1rem 0.6rem;
+			
+			/* background-image: url(image/gene_detail_ad.png);
+			background-position: left top;
+			background-size: 9rem 5.47rem;
+			background-repeat: no-repeat; */
+		}
+
+		#reasonDiv:after {
+			content:"";
+			display:block;
+			clear:both;
+		}
+		#reasonDiv {
+			position: relative;
+			top: 0.4rem;
+			left: 0;
+			width: 10rem;
+			height: 2.5rem;
+			background: white;
+			overflow:hidden;
+		}
+
+		#paraIcon2 {
+			background-image: url(image/gene_paraTitle_orange.png);
+		}
+
+		<!-- 基因产品内容 -->
+		#contentDiv:after {
+			content:"";
+			display:block;
+			clear:both;
+		}
+		#contentDiv {
+			position: relative;
+			top: 0.6rem;
+			left: 0;
+			width: 10rem;
+			height: 4rem;
+			background: white;
+			overflow:hidden;
+		}
+
+		#paraIcon3 {
+			background-image: url(image/gene_paraTitle_green.png);
+		}
+
+		#paraTable {
+			position: relative;
+			top: 0.4rem;
+			left: 0.6rem;
+			width: 9.4rem;
+			height: 10rem;
+			font-size: 0.4rem;
+		}
+
+		<!-- 表格 -->
+		.center-align {
+			text-align:center; 
+		}
+
+		#table11 {
+			width:1.3rem;
+			text-align:center;
+			background-color: #50d071;
+			color: white;
+		}
+		#table22 {
+			width:6.2rem;
+			text-align:center;
+			background-color: #50d071;
+			color: white;
+		}
+
+		#table1 {
+			width:1.3rem;
+			text-align:center; 
+		}
+
+		#table2 {
+			width: 6.2rem;
+
+		}
+
+		
+		
+	</style>
+</head>
+<body>
+	
+	<div id="backgroundDiv" class="clearFix">
+
+		<!-- 基因产品名称 -->
+		<div id="nameDiv"  class="clearFix">
+			<div id="titleIcon"></div>
+			<div id="titleName">基因产品</div>
+			<div id="titlePrice">￥</div>
+		</div>
+
+		<!-- 检测意义 -->
+		<div id="introDiv">
+			<h2 class="paraTitle">检测意义</h2>
+			<div class="paraContent" id="parasign"></div>
+			<div id="paraAd" ><img  src="image/gene_detail_ad.png" width=100%/>
+			</div>
+			<!-- <div id="paraAd"></div> -->
+		</div>
+
+		<!-- 适用人群 -->
+		<div id="reasonDiv">
+			<h2 class="paraTitle" id="paraIcon2">适用人群</h2>
+			<div class="paraContent">有家族肿瘤疾病，希望全面检测遗传风险的人群。工作，生活环境存在致癌因素的高危人群。
+			</div>
+		</div>
+
+		<!-- 检测内容 -->
+		<div id="contentDiv">
+			<h2 class="paraTitle" id="paraIcon3">检测内容</h2>
+			<div class="paraContent" id="paracontent"></div>
+			<!-- <div id="paraTable">
+				<table border="1" cellpadding="20" id="tbl">
+				    <tr>
+						<td id="table11" class="center-align">序号</td>
+						<td id="table22" class="center-align">肿瘤套餐</td>
+						
+					</tr>
+					<tr>
+						<td id="table1" class="center-align">1</td>
+						<td id="table2">乳腺癌</td>
+						
+					</tr>
+					<tr>
+						<td id="table1" class="center-align">2</td>
+						<td id="table2">肝癌</td>
+						
+					</tr>
+					<tr>
+						<td id="table1" class="center-align">3</td>
+						<td id="table2">肺癌</td>
+						
+					</tr>
+					<tr>
+						<td id="table1" class="center-align">4</td>
+						<td id="table2">宫颈癌</td>
+					</tr>
+				</table>
+			</div> -->
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

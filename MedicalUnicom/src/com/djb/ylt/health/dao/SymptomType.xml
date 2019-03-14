@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.health.entity.SymptomTypeEntity" >
+  <resultMap id="SymptomTypeResultMap" type="com.djb.ylt.health.entity.SymptomTypeEntity" >
+    <id column="ST_ID" property="stId" jdbcType="INTEGER" />
+    <result column="ST_NAME" property="stName" jdbcType="VARCHAR" />
+    <result column="ST_ICON" property="stIcon" jdbcType="VARCHAR" />
+    <result column="ST_CELL" property="stCell" jdbcType="VARCHAR" />
+    <result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+    <collection property="symptomEntitys"
+			ofType="com.djb.ylt.health.entity.SymptomEntity" resultMap="SymptomResultMap" />
+  </resultMap>
+
+<sql id="Base_Column_List" >
+    st.ST_ID, st.ST_NAME, st.ST_ICON, st.ST_CELL, st.STATUS_FLG
+  </sql>
+  
+  <resultMap id="SymptomResultMap" type="com.djb.ylt.health.entity.SymptomEntity">
+    <id column="SYMPTOM_ID" jdbcType="INTEGER" property="symptomId" />
+    <result column="SYMPTOM_NAME" jdbcType="VARCHAR" property="symptomName" />
+    <result column="STATUS_FLG" jdbcType="CHAR" property="statusFlg" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="SYMPTOM_TYPE" jdbcType="VARCHAR" property="symptomType" />
+    <result column="PATIENT_SEX" jdbcType="CHAR" property="patientSex" />
+    <result column="PATIENT_AGE" jdbcType="VARCHAR" property="patientAge" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+     <result column="ST_ID" jdbcType="INTEGER" property="stId" />
+  </resultMap>
+  <sql id="Symptom_Column_List">
+    s.SYMPTOM_ID, s.SYMPTOM_NAME, s.STATUS_FLG, s.MEMO, s.SYMPTOM_TYPE, s.PATIENT_SEX, s.PATIENT_AGE,
+    s.CREATE_TIME, s.UPDATE_TIME,s.ST_ID
+  </sql>
+  
+  <sql id="orderBySymptomTypeClause">
+		ORDER BY st.ST_ID,s.SYMPTOM_ID
+	</sql>
+	<select id="findList" resultMap="SymptomTypeResultMap">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Symptom_Column_List" />
+		from symptom_type st ,symptom s
+		where  st.ST_ID=s.ST_ID 
+		ORDER BY st.ST_ID,s.SYMPTOM_ID
+	</select>
+</mapper>

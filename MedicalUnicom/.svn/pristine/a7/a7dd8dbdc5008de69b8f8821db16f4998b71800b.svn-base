@@ -1,0 +1,144 @@
+package com.djb.ylt.user.dtoclient;
+
+
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+
+
+public class AppoinPushDTO extends BaseClientDTO{
+	
+    /**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+
+
+	private Integer appointId;
+
+    private Integer patientId;
+
+    private Integer doctorId;
+
+    private Integer recordsId;
+
+    private String patientTel;
+
+    private String doctorTel;
+    
+    private  List<RecordsClientDTO> recordsClientList;
+
+
+	/**
+	 * 返回patientId的值
+	 * @return Integer patientId的值
+	 */
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	/**
+	 * 设置patientId的值
+	 * @param  patientId patientId的值
+	 */
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+
+	/**
+	 * 返回doctorId的值
+	 * @return Integer doctorId的值
+	 */
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	/**
+	 * 设置doctorId的值
+	 * @param  doctorId doctorId的值
+	 */
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	/**
+	 * 返回recordsId的值
+	 * @return Integer recordsId的值
+	 */
+	public Integer getRecordsId() {
+		return recordsId;
+	}
+
+	/**
+	 * 设置recordsId的值
+	 * @param  recordsId recordsId的值
+	 */
+	public void setRecordsId(Integer recordsId) {
+		this.recordsId = recordsId;
+	}
+
+	/**
+	 * 返回patientTel的值
+	 * @return String patientTel的值
+	 */
+	public String getPatientTel() {
+		return patientTel;
+	}
+
+	/**
+	 * 设置patientTel的值
+	 * @param  patientTel patientTel的值
+	 */
+	public void setPatientTel(String patientTel) {
+		this.patientTel = patientTel;
+	}
+
+	/**
+	 * 返回doctorTel的值
+	 * @return String doctorTel的值
+	 */
+	public String getDoctorTel() {
+		return doctorTel;
+	}
+
+	/**
+	 * 设置doctorTel的值
+	 * @param  doctorTel doctorTel的值
+	 */
+	public void setDoctorTel(String doctorTel) {
+		this.doctorTel = doctorTel;
+	}
+	/**
+	 * 返回recordsClientList的值
+	 * @return List<RecordsClientDTO> recordsClientList的值
+	 */
+	public List<RecordsClientDTO> getRecordsClientList() {
+		return recordsClientList;
+	}
+	/**
+	 * 设置recordsClientList的值
+	 * @param  recordsClientList recordsClientList的值
+	 */
+	public void setRecordsClientList(List<RecordsClientDTO> recordsClientList) {
+		this.recordsClientList = recordsClientList;
+	}
+
+	/**
+	 * 返回appointId的值
+	 * @return Integer appointId的值
+	 */
+	public Integer getAppointId() {
+		return appointId;
+	}
+
+	/**
+	 * 设置appointId的值
+	 * @param  appointId appointId的值
+	 */
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
+	}
+
+	
+}

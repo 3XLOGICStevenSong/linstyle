@@ -1,0 +1,103 @@
+package com.djb.ylt.gene.entity;
+
+import com.djb.ylt.framework.entity.PageModel;
+
+public class TestResultEntity  extends PageModel{
+    /**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = 8903246865467790271L;
+
+	private Integer trId;
+
+    private Integer rmId;
+
+    private String geneName;
+
+    private String detectPoint;
+
+    private String classification;
+
+    private String riskType;
+
+    public Integer getTrId() {
+        return trId;
+    }
+
+    public void setTrId(Integer trId) {
+        this.trId = trId;
+    }
+
+    public Integer getRmId() {
+        return rmId;
+    }
+
+    public void setRmId(Integer rmId) {
+        this.rmId = rmId;
+    }
+
+    public String getGeneName() {
+        return geneName;
+    }
+
+    public void setGeneName(String geneName) {
+        this.geneName = geneName;
+    }
+
+    public String getDetectPoint() {
+        return detectPoint;
+    }
+
+    public void setDetectPoint(String detectPoint) {
+        this.detectPoint = detectPoint;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+
+    public String getRiskType() {
+        return riskType;
+    }
+
+    public void setRiskType(String riskType) {
+        this.riskType = riskType;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        TestResultEntity other = (TestResultEntity) that;
+        return (this.getTrId() == null ? other.getTrId() == null : this.getTrId().equals(other.getTrId()))
+            && (this.getRmId() == null ? other.getRmId() == null : this.getRmId().equals(other.getRmId()))
+            && (this.getGeneName() == null ? other.getGeneName() == null : this.getGeneName().equals(other.getGeneName()))
+            && (this.getDetectPoint() == null ? other.getDetectPoint() == null : this.getDetectPoint().equals(other.getDetectPoint()))
+            && (this.getClassification() == null ? other.getClassification() == null : this.getClassification().equals(other.getClassification()))
+            && (this.getRiskType() == null ? other.getRiskType() == null : this.getRiskType().equals(other.getRiskType()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getTrId() == null) ? 0 : getTrId().hashCode());
+        result = prime * result + ((getRmId() == null) ? 0 : getRmId().hashCode());
+        result = prime * result + ((getGeneName() == null) ? 0 : getGeneName().hashCode());
+        result = prime * result + ((getDetectPoint() == null) ? 0 : getDetectPoint().hashCode());
+        result = prime * result + ((getClassification() == null) ? 0 : getClassification().hashCode());
+        result = prime * result + ((getRiskType() == null) ? 0 : getRiskType().hashCode());
+        return result;
+    }
+}

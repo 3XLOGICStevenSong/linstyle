@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.PrescriptionInfoEntity">
+	<resultMap id="PrescriptionInfoResultMap"
+		type="com.djb.ylt.medicine.entity.PrescriptionInfoEntity">
+		<id column="prescription_id" property="prescription_id" jdbcType="INTEGER" />
+		<result column="prescription_start_time" property="prescription_start_time"
+			jdbcType="TIMESTAMP" />
+		<result column="prescription_end_time" property="prescription_end_time"
+			jdbcType="TIMESTAMP" />
+		<result column="prescription_hospital" property="prescription_hospital"
+			jdbcType="VARCHAR" />
+		<result column="patient_sex" property="patient_sex" jdbcType="VARCHAR" />
+		<result column="patient_age" property="patient_age" jdbcType="VARCHAR" />
+		<result column="illness_id" property="illness_id" jdbcType="INTEGER" />
+		<result column="illness_name" property="illness_name" jdbcType="VARCHAR" />
+		<result column="doctor_name" property="doctor_name" jdbcType="VARCHAR" />
+		<result column="patient_name" property="patient_name" jdbcType="VARCHAR" />
+		<result column="prescription_memo" property="prescription_memo"
+			jdbcType="VARCHAR" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="prescription_name" property="prescription_name"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="PrescriptionInfo_Column_List">
+		prescription_id,prescription_start_time
+		,prescription_end_time,
+		prescription_hospital,patient_sex,patient_age,illness_id,
+		illness_name,doctor_name,patient_name,prescription_memo,
+		user_id,create_time,last_modify_time,create_user,last_modify_user,
+		version,prescription_name
+	</sql>
+	<sql id="PrescriptionInfoWhereClause">
+		<if test="prescription_id!=null">and prescription_id=#{prescription_id} </if>
+		<if test="prescription_start_time!=null"> and prescription_start_time=#{prescription_start_time} </if>
+		<if test="prescription_end_time!=null">and prescription_end_time=#{prescription_end_time} </if>
+		<if test="prescription_hospital!=null">and prescription_hospital=#{prescription_hospital} </if>
+		<if test="patient_sex!=null">and patient_sex=#{patient_sex} </if>
+		<if test="patient_age!=null">and patient_age=#{patient_age} </if>
+		<if test="illness_id!=null">and illness_id=#{illness_id} </if>
+		<if test="illness_name!=null">and illness_name=#{illness_name} </if>
+		<if test="doctor_name!=null">and doctor_name=#{doctor_name} </if>
+		<if test="patient_name!=null">and patient_name=#{patient_name} </if>
+		<if test="prescription_memo!=null">and prescription_memo=#{prescription_memo} </if>
+		<if test="user_id!=null">and user_id=#{user_id} </if>
+		<if test="prescription_name!=null">and prescription_name=#{prescription_name} </if>
+	</sql>
+
+	<sql id="orderByPrescriptionInfoClause">
+		ORDER BY prescription_start_time DESC , prescription_id
+	</sql>
+	<select id="getObject"
+		parameterType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity"
+		resultMap="PrescriptionInfoResultMap">
+		select
+		<include refid="PrescriptionInfo_Column_List" />
+		from prescription_info pi
+		where 1=1
+		<include refid="PrescriptionInfoWhereClause" />
+	</select>
+
+	<select id="findList"
+		resultType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity">
+		select
+		<include refid="PrescriptionInfo_Column_List" />
+		from prescription_info pi
+		where 1=1
+	</select>
+	<select id="findListByCondition"
+		parameterType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity"
+		resultMap="PrescriptionInfoResultMap">
+		select
+		<include refid="PrescriptionInfo_Column_List" />
+		from prescription_info pi
+		where 1=1
+		<include refid="PrescriptionInfoWhereClause" />
+		<include refid="orderByPrescriptionInfoClause" />
+	</select>
+
+	<select id="findPagedList"
+		resultType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity"
+		parameterType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity">
+		select
+		<include refid="PrescriptionInfo_Column_List" />
+		from prescription_info pi
+		where 1=1
+		limit
+		#{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedListByCondition"
+		resultType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity"
+		parameterType="com.djb.ylt.medicine.entity.PrescriptionInfoEntity">
+		select
+		<include refid="PrescriptionInfo_Column_List" />
+		from prescription_info pi
+		where 1=1
+		<include refid="PrescriptionInfoWhereClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+</mapper>

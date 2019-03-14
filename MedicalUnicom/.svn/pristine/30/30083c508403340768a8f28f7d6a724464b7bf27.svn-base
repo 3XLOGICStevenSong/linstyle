@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.gene.entity.AnalysisTemplateEntity">
+  <resultMap id="AnalysisTemplateResultMap" type="com.djb.ylt.gene.entity.AnalysisTemplateEntity">
+    <id column="AT_ID" jdbcType="INTEGER" property="atId" />
+    <result column="DISEASE_NAME" jdbcType="VARCHAR" property="diseaseName" />
+    <result column="GENE_NAME" jdbcType="VARCHAR" property="geneName" />
+    <result column="GENO_TYPE" jdbcType="VARCHAR" property="genoType" />
+    <result column="RISK_ADDED" jdbcType="VARCHAR" property="riskAdded" />
+  </resultMap>
+ 
+  <sql id="AnalysisTemplate_Column_List">
+    AT_ID, DISEASE_NAME, GENE_NAME, GENO_TYPE, RISK_ADDED
+  </sql>
+
+  <delete id="delete" parameterType="com.djb.ylt.gene.entity.AnalysisTemplateEntity">
+    delete from analysis_template
+    where AT_ID = #{atId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.djb.ylt.gene.entity.AnalysisTemplateEntity">
+    insert into analysis_template (AT_ID, DISEASE_NAME, GENE_NAME, 
+      GENO_TYPE, RISK_ADDED)
+    values (#{atId,jdbcType=INTEGER}, #{diseaseName,jdbcType=VARCHAR}, #{geneName,jdbcType=VARCHAR}, 
+      #{genoType,jdbcType=VARCHAR}, #{riskAdded,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.djb.ylt.gene.entity.AnalysisTemplateEntity">
+    update analysis_template
+    <set>
+      <if test="diseaseName != null">
+        DISEASE_NAME = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="geneName != null">
+        GENE_NAME = #{geneName,jdbcType=VARCHAR},
+      </if>
+      <if test="genoType != null">
+        GENO_TYPE = #{genoType,jdbcType=VARCHAR},
+      </if>
+      <if test="riskAdded != null">
+        RISK_ADDED = #{riskAdded,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AT_ID = #{atId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

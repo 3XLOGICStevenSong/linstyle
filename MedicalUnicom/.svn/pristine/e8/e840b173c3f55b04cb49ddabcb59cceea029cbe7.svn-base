@@ -1,0 +1,16 @@
+.gradForm  {padding:0.2rem 0;background:#fff;font-size:0.4rem;}
+.gradForm .clearfix{padding:0.5rem 0.2rem;}
+.gradForm strong{display: inline-block;margin:0 0.2rem;font-size:0.4rem;color:#4e4e4e}
+.gradForm #point {display:inline-block;vertical-align:middle}
+.gradForm #point li {display:inline-block;width:1.3rem;text-align:center;vertical-align:top}
+.gradForm #point li span{display:inline-block;width:0.6rem;height:0.7rem;background:url("../img/icon_grad_on.png") no-repeat;background-size:100%;}
+.gradForm #point li p{text-align:center;color:#b5b5b5}
+
+.gradForm #point li.on span{background:url("../img/icon_grad.png") no-repeat;background-size:100%;}
+.gradForm #point li.pOn p{color:#ffba00}
+
+.gradForm  .textForm {margin:0.5rem 0}
+.gradForm  .textForm textArea{width:100%;padding:0.2rem;margin:0;border:1px solid #d1d1d1;box-sizing:border-box;font-size:0.4rem;}
+
+.gradForm .SubmitBtn {padding:0.2rem 0;font-size:0.5rem;}
+.gradForm .SubmitBtn span{display:block;margin:0 auto;width:94%;height:1.5rem;border-radius:5px;background:#50d071;color:#fff;text-align:center;line-height:1.5rem;}

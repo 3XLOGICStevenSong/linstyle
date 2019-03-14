@@ -1,0 +1,96 @@
+.doctorMode .info {position:relative;border-bottom:1px solid #d0d0d0;background:#fff}
+.doctorMode .info strong.UserImg{display:inline-block;width:2.4rem;padding:0.2rem 0;text-align:center;vertical-align:top}
+.doctorMode .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+
+.doctorMode .info  > ul{display:inline-block;width:4.3rem;padding:0.2rem 0;font-size:0.4rem;vertical-align:top}
+.doctorMode .info  ul li strong.docTitle{display:block;margin:0 0 0.2rem;font-weight:normal;font-size:0.4rem}
+.doctorMode .info  ul li strong.docTitle span{margin:0 0.3rem 0 0}
+.doctorMode .info  ul li.frt {padding:0 0 0.2rem}
+.doctorMode .info  ul li.frt strong{font-weight:bold;font-size:0.4rem}
+.doctorMode .info  ul li.frt span{margin:0 0 0 0.3rem;font-size:0.35rem}
+
+.doctorMode .InfoForm {padding:0 0.2rem;margin:0.2rem 0 0 0;background:#fff;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;font-size:0.4rem;}
+.doctorMode .InfoForm span.next{position:absolute;top:40%;right:0.2rem;font-size:0.7rem;font-weight:normal;color:#d4d4d4;}
+.doctorMode .InfoForm p.clearfix{padding:0.2rem 0;}
+.doctorMode .InfoForm .sale{padding:0.2rem 0;line-height:20px;color:#ff5f10;background:#fffbd8}
+
+.doctorMode .InfoForm .icon_doc{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_doctor.png") no-repeat center center;background-size:100%;}
+.doctorMode .InfoForm p.priv{padding:0.2rem 0;line-height:0.8rem}
+.doctorMode .InfoForm .icon_camere{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_cam.png") no-repeat center center;background-size:100%;}
+.doctorMode .InfoForm .Video_inquiry p.clearfix{padding:0.2rem 0;line-height:1rem}
+.doctorMode .InfoForm .Video_inquiry .price{display:inline-block;color:#ff5f10}
+.doctorMode .InfoForm .Video_inquiry  {position:relative;border-bottom:1px solid #d0d0d0}
+.doctorMode .InfoForm .Video_inquiry strong{color:#ff5f10;font-weight:normal}
+.doctorMode .InfoForm .Video_inquiry .Time{display:inline-block;padding:0.01rem 0.3rem;border:1px solid #ff5f10;border-radius:15px;color:#ff5f10;}
+.doctorMode .InfoForm .Video_inquiry .Txt{padding:0.2rem 0;color:#8a8a8a;line-height:0.6rem}
+
+.doctorMode .InfoForm .icon_call{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_tel.png") no-repeat center center;background-size:100%;}
+.doctorMode .InfoForm .Telephone_inquiry p.clearfix{padding:0.2rem 0;line-height:0.8rem}
+.doctorMode .InfoForm .Telephone_inquiry .price{display:inline-block;color:#ff5f10}
+.doctorMode .InfoForm .Telephone_inquiry {position:relative;padding:0.2rem 0 0.3rem;border-bottom:1px solid #d0d0d0}
+.doctorMode .InfoForm .Telephone_inquiry strong{color:#ff5f10;font-weight:normal}
+.doctorMode .InfoForm .Telephone_inquiry .Time{display:inline-block;padding:0.01rem 0.3rem;border:1px solid #ff5f10;border-radius:15px;color:#ff5f10;}
+.doctorMode .InfoForm .Telephone_inquiry .Txt{padding:0.2rem 0;color:#8a8a8a;line-height:0.6rem}
+.doctorMode .InfoForm .Telephone_inquiry .Tell input{height:0.8rem;padding:0 0.2rem;line-height:0.8rem;border: 1px solid #ff5f10;border-radius:5px;font-size:0.4rem}
+
+.doctorMode .InfoForm .icon_message{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_message.png") no-repeat center center;background-size:100%;}
+.doctorMode .InfoForm .Message_inquiry p.clearfix{padding:0.2rem 0;line-height:0.8rem}
+.doctorMode .InfoForm .Message_inquiry .price{display:inline-block;color:#ff5f10}
+.doctorMode .InfoForm .Message_inquiry {position:relative;padding:0.2rem 0 0.3rem;border-bottom:1px solid #d0d0d0}
+.doctorMode .InfoForm .Message_inquiry .Time{display:inline-block;padding:0.01rem 0.3rem;border:1px solid #ff5f10;border-radius:15px;color:#ff5f10;}
+.doctorMode .InfoForm .Message_inquiry .Txt{padding:0.2rem 0;color:#8a8a8a;line-height:0.6rem}
+
+.doctorMode .InfoForm .icon_grad{float:left;margin:0 5px 0 0;width:5%;height:20px;background:url("../img/icon_grad.png") no-repeat center center;background-size:100%;}
+.doctorMode .InfoForm .grade_inquiry {position:relative;padding:10px 0;}
+.doctorMode .InfoForm .grade_inquiry span.next{position:absolute;top:25%;right:2%;}
+.doctorMode .InfoForm .grade_inquiry strong{float:right;margin:0 10% 0 0;font-weight:normal;color:#8a8a8a}
+
+.InquiryHistory .titleText{padding:0.3rem 0.2rem;font-weight:normal;font-size:0.45rem}
+.InquiryHistory .List li{margin:0 0 0.2rem}
+.InquiryHistory .NoneHistory{padding:0.3rem 0.2rem;font-size:0.35rem}
+.InquiryHistory .TimeList{margin:0.2rem 0 0;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;background:#fff}
+.InquiryHistory .docTitle,
+.InquiryHistory .docProfile{display:block;line-height:0.6rem;}
+
+.InquiryHistory .state {padding:0.2rem 0.3rem 0.2rem;border-bottom:1px solid #d0d0d0;}
+.InquiryHistory .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.InquiryHistory .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.InquiryHistory .state .Notpaid,
+.InquiryHistory .state .PaidOver,
+.InquiryHistory .state .Refund,
+.InquiryHistory .state .Wait,
+.InquiryHistory .state .Success,
+.InquiryHistory .state .Count,
+.InquiryHistory .state .Cam,
+.InquiryHistory .state .Over,
+.InquiryHistory .state .NotResult,
+.InquiryHistory .state .DocReject,
+.InquiryHistory .state .WaitCancel,
+.InquiryHistory .state .AgreeCancel,
+.InquiryHistory .state .Disagree,
+.InquiryHistory .state .Cancel{float:right;color:#999;min-height:0.9rem;line-height:0.9rem;}
+
+.InquiryHistory .state .Wait,
+.InquiryHistory .state .Success {color:#ffa173;min-height:0.9rem;line-height:0.9rem;}
+
+.InquiryHistory .state .Cam span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.InquiryHistory .state .Cam span a{display:block;padding:0 15px;color:#fff}
+.InquiryHistory .state .Cam span.state_icon {float:left;width:1rem;background:#5faafc url("../img/camera_icon.png") no-repeat center center;background-size:0.5rem;border-right:1px solid #fff}
+
+.InquiryHistory .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.InquiryHistory .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+.InquiryHistory .Detail {position:relative;padding:0.2rem;border-top:1px solid #d1d1d1;line-height:0.9rem;font-size:0.4rem;}
+.InquiryHistory .Detail .chart_icon{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/chart.png") no-repeat center center;background-size:100%;}
+.InquiryHistory .Detail span.gt_icon {position:absolute;right:0.4rem;top:0;color:#d1d1d1;font-size:0.7rem;}
+
+.InquiryHistory .history h2{font-size:12px;padding:10px 3% 5px;height:30px;line-height:30px}
+
+
+.Grad{float:right;width:2.6rem;margin:0.2rem 0.1rem 0 0;padding:0.2rem;border:1px solid #d1d1d1;border-radius:10px}
+.Grad p{text-align:center;color:#555;font-size:0.35rem}
+.Grad p span{color:#ffba00}
+#point li {display:inline-block;text-align:center;}
+#point li span{display:inline-block;width:0.5rem;height:0.5rem;background:url("../img/icon_grad_on.png") no-repeat;background-size:100%;}
+#point li.on span{background:url("../img/icon_grad.png") no-repeat;background-size:100%;}
+

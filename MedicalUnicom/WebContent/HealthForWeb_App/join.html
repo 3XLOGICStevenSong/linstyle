@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/join.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/navy.js"></script>
+	<script type="text/javascript" src="js/ajaxJoin.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<span class="next"><a id="detailForm" href="#none">下一步</a></span>
+			<h2>注册</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="nav" id="navy">
+					<span class="btnSelect" id="ImUser"><a href="#none">我是普通用户</a></span>
+					<span id="ImDoctor" ><a class="doctor" href="#none">我是医生</a></span>
+				</div>
+				
+				<div id="patient_form" style="display:block">
+					<form action="" method="post" >
+						<div class="pat_join">
+							<div class="patFrom phone clearfix">
+								<strong>手机号：</strong>
+								<div class="date"><input type="text" id="P_userTel" placeholder="请输入手机号码" name="usrTel"/></div>
+							</div>
+							<div class="patFrom phone_pw clearfix">
+								<strong>密码：</strong>
+								<div class="date"><input type="password" id="P_password" placeholder="6位以上字母/数字" name="password"/></div>
+							</div>
+						</div>
+						
+						<div class="btnArea">
+							<div class="clearfix">
+								<input type="text" placeholder="请输入手机验证码"/><button type="submit" >发送验证码</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div id="doctor_form" style="display:none">
+					<form action="" method="get" >
+						<div class="doc_join">
+							<div class="docFrom phone clearfix">
+								<strong>手机号：</strong>
+								<div class="date"><input type="text" id="D_userTel" placeholder="请输入手机号码" name="usrTel"/></div>
+							</div>
+							<div class="docFrom phone_pw clearfix">
+								<strong>密码：</strong>
+								<div class="date"><input type="password" id="D_password" placeholder="6位以上字母/数字" name="password"/></div>
+							</div>
+						</div>
+						
+						<div class="btnArea">
+							<div class="clearfix">
+								<input type="text" placeholder="请输入手机验证码"/><button type="submit" >发送验证码</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<p class="privacy"><span class="check_icon"><img src="img/check_icon.png"></span>我已阅读并同意<a href="agreement.html">《使用条款和相关协议》</a></p>
+		</div>
+	</div>
+	
+</body>
+</html>

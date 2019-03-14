@@ -1,0 +1,23 @@
+.complate .video {padding:10px 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+.complate .video .icon{float:left;margin:0 10px 0 0;width:5%;max-width:32px;height:30px;background:url("../img/icon_video.png") no-repeat 0 center;background-size:100%;}
+.complate .video p,
+.complate .tell p,
+.complate .private p{padding:5px 5%;line-height:30px;}
+.complate .video p.clearfix,
+.complate .tell p.clearfix,
+.complate .private p.clearfix{border-bottom:1px solid #d3d3d3}
+.complate .video p input,
+.complate .tell p input{margin:0 10px 0 0;width:30%;height:30px;border:0;}
+.complate .tell {margin:10px 0 0;padding:10px 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+.complate .tell .icon{float:left;margin:0 10px 0 0;width:5%;max-width:32px;height:30px;background:url("../img/icon_tel.png") no-repeat 0 center;background-size:100%;}
+.complate .private {margin:10px 0 0;padding:10px 0;background:#fff;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3}
+.complate .private .icon{float:left;margin:0 10px 0 0;width:5%;max-width:32px;height:30px;background:url("../img/icon_doctor.png") no-repeat 0 center;background-size:100%;}
+.complate span.radius{padding:3px 5px;border:1px solid #fd5908;border-radius:15px;color:#fd5908}
+
+.complate .private .quantity_vid,
+.complate .private .quantity_call{width:10%;height:30px;border:0;text-align:center}
+.complate .private .minus,
+.complate .private .plus {display:inline-block;margin:0 10px;width:20px;height:20px;background:#5caafc;border-radius:20px;color:#fff;text-align:center;line-height:20px;}
+
+.complate .private .money_day span{display:inline-block;width:49%;}
+.complate .private .money_day span input{width:60%;height:30px;border:0;}

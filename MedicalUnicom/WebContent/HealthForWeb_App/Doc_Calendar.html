@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/DCalendar.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxDocCalendar.js"></script>
+</head>
+<body>
+	
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<span class="next"><a href="#none">保存</a></span>
+			<h2>录入日程表</h2>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div class="contents">
+			<div class="clearfix">
+				<div id="time">
+					<ul class="clearfix"></ul>
+				</div>
+				<div id="swipe_container">
+					<div class="swipe">
+						<div id="week">
+							<ul>
+								<li><span class="days"></span>日<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>一<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>二<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>三<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>四<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>五<span class="data"></span><span class="data1"></span><strong></strong></li>
+								<li><span class="days"></span>六<span class="data"></span><span class="data1"></span><strong></strong></li>
+							</ul>
+						</div>
+						<button type="button" id="next">next</button>
+						<button type="button" id="prev">prev</button>
+						<div id="case">
+							<table id="calen" cellpadding="0" cellspacing="0" border="0">
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+.payment {font-size:0.4rem}
+.payment .infoBox{border-bottom:1px solid #d0d0d0;}
+.payment .Price p,
+.payment .infoBox p{padding-left:0.5rem;padding-right:0.5rem;}
+.payment .title {padding:0.2rem 0;line-height:0.9rem;}
+.payment .title .icon_doctor{float:left;margin:0 0.3rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_doctor.png") no-repeat center center;background-size:100%;}
+.payment .title .icon_video{float:left;margin:0 0.3rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_video.png") no-repeat center center;background-size:100%;}
+.payment .title .icon_tel{float:left;margin:0 0.3rem 0 0;width:0.7rem;height:1rem;background:url("../img/icon_tel.png") no-repeat center center;background-size:100%;}
+
+.payment .title .price{float:right;color:#fe5e20}
+.payment  .label{padding:0.05rem 0;}
+.payment .video,
+.payment .phone,
+.payment .message{display:inline-block;padding:0.05rem 0.3rem;border:1px solid #fe5e20;border-radius:15px;color:#fe5e20}
+.payment .Detailed{padding:0.2rem 0;line-height:0.6rem;color:#999}
+.payment .Total {padding:0.5rem 0.2rem;background:#fff;border-top:1px solid #d0d0d0;font-weight:bold}
+.payment .Total .TotalPrice{float:right;color:#ff0000}
+.payment .Total .TotalPrice span{font-size:0.5rem}
+
+.payment .pay  {margin:0.5rem 0 0.2rem;padding:0.3rem 0;background:#fff;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;line-height:0.9rem;}
+.payment .pay .icon_alipay{float:left;margin:0 0.3rem 0 0;width:1rem;height:1rem;background:url("../img/icon_alipay.png") no-repeat center center;background-size:100%;}
+.payment .pay .TotalPrice{float:right;color:#555;font-size:0.6rem}
+
+.payment .Agree {line-height:1rem;}
+.payment .Agree .icon_check{float:left;margin:0 0.3rem 0 0;width:0.6rem;height:1rem;background:url("../img/check_icon_on.png") no-repeat center center;background-size:100%;}
+.payment .Agree .icon_check.on{float:left;margin:0 0.3rem 0 0;width:0.6rem;height:1rem;background:url("../img/check_icon.png") no-repeat center center;background-size:100%;}
+.payment .Agree strong a{font-weight:normal;color:#01bded}
+
+.payment .title,
+.payment .label,
+.payment .Detailed {background:#fff}

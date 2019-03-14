@@ -1,0 +1,12 @@
+.gradList ul li {margin:0 0 0.2rem;background:#fff;font-size:0.4rem}
+.gradList .info {padding:0 0.2rem;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0}
+.gradList .info p{padding:0.2rem 0;}
+.gradList .info .Title .UserName{float:left;height:1rem;line-height:1rem;}
+.gradList .info .Title .grad{float:right;height:1rem;line-height:1rem;color:#555}
+.gradList .info .Title .grad .point{color:#ffb600}
+
+.gradList .info .condition {padding:0.2rem 0;color:#555}
+.gradList .info .condition .cdtValue{color:#000}
+.gradList .info .cdtInfo {line-height:0.6rem;color:#000}
+
+.gradList .info .date .Times {float:right;color:#555}

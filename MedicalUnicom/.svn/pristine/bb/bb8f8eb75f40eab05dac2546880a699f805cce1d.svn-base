@@ -1,0 +1,45 @@
+package com.djb.ylt.user.dtoclient;
+
+import java.util.List;
+
+/**
+ * @date 2017年04月25日 下午6:04:35
+ * @author fanzeng
+ * 内容：android端首页轮播图的返回pojo类包含RoleClientDTO
+ */
+import com.djb.ylt.framework.dto.BaseClientDTO;
+import com.djb.ylt.user.dto.TypicalCaseDTO;
+
+public class TypicalCaseClientDTO extends BaseClientDTO {
+
+	private String dc_name;
+
+	private String dep_name;
+
+	private List<TypicalCaseDTO> typicalCaseList;
+
+	public String getDc_name() {
+		return dc_name;
+	}
+
+	public void setDc_name(String dc_name) {
+		this.dc_name = dc_name;
+	}
+
+	public String getDep_name() {
+		return dep_name;
+	}
+
+	public void setDep_name(String dep_name) {
+		this.dep_name = dep_name;
+	}
+
+	public List<TypicalCaseDTO> getTypicalCaseList() {
+		return typicalCaseList;
+	}
+
+	public void setTypicalCaseList(List<TypicalCaseDTO> typicalCaseList) {
+		this.typicalCaseList = typicalCaseList;
+	}
+
+}

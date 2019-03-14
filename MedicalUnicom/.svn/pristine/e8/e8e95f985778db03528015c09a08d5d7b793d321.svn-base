@@ -1,0 +1,16 @@
+.data,
+.data1{display:none !important;}
+#time{float:left;width:2rem;padding:2rem 0 0 0;font-size:0.4rem;}
+#time ul li{float:left;width:2rem;height:1rem;border-top:1px solid #fff;text-align:center;}
+#swipe_container{float:left;width:8rem;font-size:0.4rem;}
+.swipe{float:left;width:8rem}
+#week {float:left;width:8rem;}
+#week ul {float:right}
+#week ul li{float:left;width:1.142rem;height:2rem;text-align:center;list-style:none}
+#week ul li strong{display:none}
+#week ul li span{display:block;width:1rem;height:1rem;margin:0.2rem auto;border:1px solid #999;background:#fff;border-radius:100%;text-align:center;line-height:1rem;color:#777}
+#case {float:left}
+#case td{width:1.12rem;height:1rem;border-left:1px solid #fff;border-top:1px solid #fff;background:#ddd;text-align:center;vertical-align:middle}
+
+#week ul li span.today{border:1px solid #eb5ba6;;background:#eb5ba6;color:#fff}
+#week ul li span.nextday{border:1px solid #1166a8;background:#fff;color:#1166a8}

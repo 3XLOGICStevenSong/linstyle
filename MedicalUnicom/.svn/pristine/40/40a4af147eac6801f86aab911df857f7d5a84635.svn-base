@@ -1,0 +1,157 @@
+package com.djb.ylt.user.dto;
+
+import java.util.Date;
+
+import com.djb.ylt.framework.dto.BaseDTO;
+
+
+public class DoctorCommentDTO extends BaseDTO{
+	
+	
+	
+    /**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = 6703644259965332401L;
+
+	private Integer commentId;
+
+    private Integer doctorId;
+
+    private Integer patientId;
+
+    private Integer recordsId;
+
+    private Float grade;
+
+    private String content;
+
+    private String deleteFlg;
+
+    private String evalationType;
+
+    private Date evalationTime;
+
+    private String anonymousFlag;
+
+    private Date createTime;
+
+    private Date updateTime;
+    
+    private Integer appointId; 
+
+    public Integer getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
+    }
+
+    public Integer getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public Integer getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
+    }
+
+    public Integer getRecordsId() {
+        return recordsId;
+    }
+
+    public void setRecordsId(Integer recordsId) {
+        this.recordsId = recordsId;
+    }
+
+    public Float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Float grade) {
+        this.grade = grade;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getDeleteFlg() {
+        return deleteFlg;
+    }
+
+    public void setDeleteFlg(String deleteFlg) {
+        this.deleteFlg = deleteFlg;
+    }
+
+    public String getEvalationType() {
+        return evalationType;
+    }
+
+    public void setEvalationType(String evalationType) {
+        this.evalationType = evalationType;
+    }
+
+    public Date getEvalationTime() {
+        return evalationTime;
+    }
+
+    public void setEvalationTime(Date evalationTime) {
+        this.evalationTime = evalationTime;
+    }
+
+    public String getAnonymousFlag() {
+        return anonymousFlag;
+    }
+
+    public void setAnonymousFlag(String anonymousFlag) {
+        this.anonymousFlag = anonymousFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+	/**
+	 * 返回appointId的值
+	 * @return Integer appointId的值
+	 */
+	public Integer getAppointId() {
+		return appointId;
+	}
+
+	/**
+	 * 设置appointId的值
+	 * @param  appointId appointId的值
+	 */
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
+	}
+
+
+  
+}

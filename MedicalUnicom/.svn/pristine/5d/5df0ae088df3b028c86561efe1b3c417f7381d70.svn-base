@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.main_page.entity.CarouselEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.main_page.entity.CarouselEntity">
+		<id column="carousel_id" property="carouselId" jdbcType="INTEGER" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="carousel_url" property="carouselUrl" jdbcType="VARCHAR" />
+		<!-- 1:53:29 chengming  start-->
+		<result column="carousel_html" property="carouselHtml" jdbcType="VARCHAR" />
+		<!--1:53:29 chengming end -->
+		<association property="roleEntity" javaType="com.djb.ylt.main_page.entity.RoleEntity" resultMap="RoleResultMap"></association>
+	</resultMap>
+	<resultMap id="RoleResultMap" type="com.djb.ylt.main_page.entity.RoleEntity">
+		<id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+		<result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+		<result column="STATU" property="statu" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<select id="findList" parameterType="com.djb.ylt.main_page.entity.CarouselEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />,
+		<include refid="Role_Column_List" />
+		FROM carousel c,role r
+		WHERE 1=1 and c.role_id=r.ROLE_ID
+		<if test="roleId!=null">and c.role_id=#{roleId} </if>
+	</select>
+	<sql id="Base_Column_List">
+		c.carousel_id,c.role_id,c.carousel_url,c.carousel_html
+	</sql>
+	<sql id="Role_Column_List">
+		r.role_id,r.role_name
+	</sql>
+	<select id="getObject"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM carousel c
+		WHERE c.role_id=3
+	</select>
+	
+	
+</mapper>

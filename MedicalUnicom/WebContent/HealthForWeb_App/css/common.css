@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+*{margin:0;padding:0}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img { margin:0; padding:0; }
+html { width:100%;height:100%;font-family: Helvetica }
+body {position:relative;height:100%;}
+body p{font-size:0.35rem;}
+body,code {color:#353535;font-size:0.35rem; background:#ebebeb; }
+#main {position:relative;}
+li { list-style:none; }
+img,fieldset { border:none; vertical-align:top; }
+table { width:100%; border:0; border-spacing:0; border-collapse:collapse; }
+caption { display:none; }
+th,td { border:0; vertical-align:top; }
+input{background:#fff}
+input,select,textarea {color:#353535; vertical-align:middle; }
+.inputTypeText { height:19px; padding:3px 0 0 9px; border:1px solid #d5d5d5; }
+select { height:24px; border:1px solid #d5d5d5; }
+textarea { padding:0.2rem; border:1px solid #d5d5d5; line-height:0.5rem; }
+legend { visibility:hidden; position:absolute; left:-9999px; top:-9999px; width:0; height:0; line-height:0; }
+button { overflow:visible; padding:0; margin:0; border:0; cursor:pointer; }
+hr.layout { display:none; }
+a { text-decoration:none; color:#000; }
+a:hover { text-decoration:none; }
+a:active { text-decoration:none; }
+.objHidden { visibility:hidden; position:absolute; left:-1000px; top:-1000px; height:0; width:0; }
+table tr.radioType input,
+span.noBorder input { border:none !important; width:auto !important; height:auto !important; margin:0 3px 0 0 !important; vertical-align:middle !important; background:none !important; }
+#content_CONTAINER td { width:auto !important; }
+table.nneditor-table { width:auto !important; }
+
+.displaynone{display:none !important;}
+.clearfix:after{content:"";display:block;clear:both}
+.f_left{float:left}
+.f_right{float:right}
+
+.loading{position:absolute;top:5rem;left:2.5rem;width:5rem;height:3rem;margin:1rem auto;text-align:center;line-height:3rem;background:#000;border-radius:0.2rem;opacity:0.3;}
+.loading img{vertical-align:middle}
+
+.titleArea{display:none !important;}
+/*
+#header{position:fixed;top:0;width:100%;height:1.4rem;z-index:999}
+#wrap{padding:1.4rem 0 0 0}
+#main #header{position:static;width:auto;height:auto;}
+#main #wrap{padding-top:0}
+
+
+.titleArea {position:relative;height:1.4rem;background:#5caafc}
+.titleArea h2{color:#fff;text-align:center;line-height:1.4rem;font-size:0.6rem;font-weight:normal}
+.titleArea a,
+.titleArea a:hover{text-decoration:none;color:#fff;font-size:0.4rem}
+
+.titleArea .prev,
+.titleArea .next{position:absolute}
+.prev {left:0.5rem;bottom:0.35rem;}
+.prev a,
+.prev a:hover{font-size:0.7rem;font-weight:bold;font-weight:normal}
+.next {right:0.5rem;bottom:0.3rem;}
+*/
+.NavGuige {padding:0.5rem 0 0;background:#fff;}
+.NavGuige ul {border-bottom:1px solid #999;text-align:center;font-size:0;line-height:0}
+.NavGuige ul li{position:relative;display:inline-block;width:1.6rem;height:1rem;line-height:1rem;border-top:1px solid #999;font-size:0.3rem;text-align:center;}
+.NavGuige ul li span{position:absolute;top:-0.15rem;left:0.65rem;width:0.3rem;height:0.3rem;background:#999;border-radius:50%}
+.NavGuige ul li.on {border-top:1px solid #52abfb;}
+.NavGuige ul li.on span{background:#52abfb;}
+.NavGuige ul li:first-child{width:2rem;}
+
+.NavGuige.buyed ul li{width:2.4rem}
+.NavGuige.buyed ul li span{position:absolute;left:1.05rem}
+
+.opener{display:inline-block;position:relative;width:100px;height:50px;background:#999;border-radius:25px;}
+.opener span{display:inline-block;position:absolute;top:2px;left:2px;width:46px;height:46px;background:#fff;border-radius:100%;}
+.opener.On {background:#4ad764;}
+.opener.On span{background:#fff;position:absolute;top:2px;left:52px;}
+
+.Mess{position:fixed;top:30%;left:2rem;width:6rem;height:3rem;z-index:999}
+.Mess .MessWrap{position:relative;}
+.Mess .bg{display:block;width:100%;height:3rem;background:#000;border-radius:10px;opacity:0.5;}
+.Mess .imgComplate{position:absolute;top:0.7rem;width:100%;text-align:center}
+.Mess .imgComplate img{width:1rem;}
+.Mess font{position:absolute;bottom:0.5rem;width:100%;text-align:center;}
+
+.Mess1{position:fixed;top:30%;left:1rem;width:8rem;height:3rem;border:1px solid #ccc;background:#fff;border-radius:20px;z-index:11}
+.Mess1 .MessWrap{position:relative;width:100%;height:3rem;}
+.Mess1 .tip{position:absolute;top:0.7rem;width:100%;text-align:center;font-size:0.5rem;color:#000;font-weight:bold}
+.Mess1 .cancel{position:absolute;bottom:0;left:0;width:50%;height:1.2rem;line-height:1.2rem;border-top:1px solid #ccc;border-right:1px solid #ccc;text-align:center;color:#52abfb;font-size:0.5rem;}
+.Mess1 .Gologin{position:absolute;bottom:0;right:0;width:50%;height:1.2rem;line-height:1.2rem;border-top:1px solid #ccc;text-align:center;color:#52abfb;font-size:0.5rem;}
+
+.Mess2{position:fixed;bottom:-6rem;width:100%;z-index:11}
+.Mess2 .MessWrap{position:relative;width:9rem;height:5.5rem;margin:0 auto}
+.Mess2 .confrim{position:relative;width:9rem;height:3rem;background:#fff;border-radius:20px;text-align:center}
+.Mess2 .confrim p{height:1.5rem;line-height:1.5rem;text-align:center;font-size:0.5rem;border-bottom:1px solid #ccc;}
+.Mess2 .confrim span{display:block;height:1.5rem;line-height:1.5rem;font-size:0.5rem;}
+.Mess2 .cancel{display:block;height:1.5rem;margin:0.5rem 0 0;line-height:1.5rem;background:#fff;border-radius:20px;text-align:center;color:#52abfb;font-size:0.5rem;}
+
+.blind{position:fixed;top:0;width:100%;height:100%;background:#000;opacity:0.3;z-index:10}

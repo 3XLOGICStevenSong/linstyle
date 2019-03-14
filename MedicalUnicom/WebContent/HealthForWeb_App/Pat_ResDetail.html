@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title>问诊方式</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/doctorMode.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatResDetail.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>问诊方式</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="doctorMode">
+					<div class="NavGuige">
+						<ul>
+							<li class="on"><span></span>选择症状/科室</li>
+							<li class="on"><span></span>选择医生</li>
+							<li class="on"><span></span>问诊方式</li>
+							<li><span></span>预约时间</li>
+							<li><span></span>问诊票</li>
+							<li><span></span>支付</li>
+						</ul>
+					</div>
+					<ul>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="{$headPic}"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">{$name}</strong><span>{$positional}</span>
+									</li>
+									<li>
+										<strong class="docTitle"><span>{$dcName}</span><span>{$departmentName}</span></strong>
+										<strong class="docTitle"><span>{$hospitalName}</span></strong>
+										<strong class="docTitle"><span>{$healDisease}</span></strong>
+									</li>
+								</ul>
+								<div class="Grad">
+									{$Grad}
+								</div>
+							</div>
+						</li>
+					</ul>
+					
+					<div class="InfoForm">
+						<!--p class="sale">特惠:  新用户首次可以免费就诊！</p-->
+						<div class="Video_inquiry" date="{$departmentId}">
+							<div class="Next" id="0" data="{$packageId0}">
+								<p class="clearfix"><span class="icon_camere"></span>视频问诊 <span class="price"></span></p><!-- / {$count0}次 -->
+								<p class="workTime clearfix">
+									08:00~17:00 <span><font style="font-size:0.5rem">{$dayTotal}</font>元</span>
+								</p>
+								<p class="workTime clearfix">
+									其他时间 <span><font style="font-size:0.5rem">{$nightTotal}</font>元</span>
+								</p>
+								<p class="Txt">三甲医院预约，视频面对面咨询问诊<br/>无障碍直面沟通</p>
+								<span class="next">&gt;</span>
+							</div>
+						</div>
+						<!--div class="Telephone_inquiry" date="{$departmentId}">
+							<div class="Next" id="1" data="{$packageId1}">
+								<p class="clearfix"><span class="icon_call"></span>电话问诊 <span class="price">{$total1}元 / {$telCount1}次</span></p>
+								<p class="Txt">三家医院在线，一对一咨询问诊<br/>沟通快捷方便</p>
+								<span class="next">&gt;</span>
+							</div>
+							<p class="Tell"><input type="text" value="{$Tel}" /></p>
+						</div-->
+						<!--div class="Message_inquiry" > 
+							<div class="Next" id="2" data="{$packageId2}" date="{$departmentId}">
+								<p class="clearfix"><span class="icon_doc"></span>私人医生 <span class="price"><font style="font-size:0.6rem">{$total2}</font>元 / <font style="font-size:0.6rem">{$effectTime2}</font>天</span></p>
+								<span class="Time">{$count2}次视频问诊</span>
+								<span class="Time">{$telCount2}次电话问诊</span>
+								<span class="Time">留言免费</span>
+								<p class="Txt">获得医生的随访<br/>创建个人电子病历</p>
+							</div>
+							<p class="selectTime clearfix">套餐开始日期: <label for="DatInp"><span class="DatInp">请选择套餐开始日期</span></label><input type="date" id="DatInp"></p>
+							<span class="next">&gt;</span>
+						</div-->
+						<!--div class="grade_inquiry">
+							<p class="clearfix"><span class="icon_grad"></span>用户评价<strong><span class="Mcount">{$commentNum}</span>条</strong></p>
+							<span class="next">&gt;</span>
+						</div-->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,156 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.health.action;
+
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.common.util.Constants;
+import com.djb.ylt.common.util.ResourceLocator;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.health.dto.DepartmentClassDTO;
+
+import com.djb.ylt.health.dtoclient.DepartmentClientDTO;
+
+import com.djb.ylt.health.dtoclient.DepartmentTypeClientDTO;
+import com.djb.ylt.health.dtoclient.DepartmentTypeListClientDTO;
+
+import com.djb.ylt.health.entity.DepartmentClassEntity;
+import com.djb.ylt.health.entity.DepartmentEntity;
+
+import com.djb.ylt.health.service.IDepartmentClassService;
+
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2016年7月29日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/DepartmentClass")
+public class DepartmentClassAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iDepartmentClassService")
+	private IDepartmentClassService iDepartmentClassService;
+
+	public DepartmentClassAction() {
+		super();
+	}
+
+	/**
+	 * 获取科室症状列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetDepartmentList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		DepartmentClassDTO paramDTO = (DepartmentClassDTO) form;
+		// 参数Entity
+		DepartmentClassEntity paramEntity = new DepartmentClassEntity();
+
+		// 结果ClientDTO
+		DepartmentTypeListClientDTO resultClientDTO = new DepartmentTypeListClientDTO();
+		// ClientParamDTO
+		List<DepartmentTypeClientDTO> departmentTypeClientList = null;
+		List<DepartmentClientDTO> departmentClientDTOList = null;
+		// 参数DTO->参数Entity
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+
+		// 结果Entity
+		List<DepartmentClassEntity> resultEntity = null;
+
+		// DB查询
+		try {
+			// DB 查询
+			resultEntity = iDepartmentClassService.getDepartmentClassList();
+
+			if (resultEntity != null && resultEntity.size() > 0) {
+				departmentTypeClientList = new ArrayList<DepartmentTypeClientDTO>();
+				// 获取主机IP
+				String hostIp = ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS);
+				// 对结果的处理
+				for (DepartmentClassEntity param : resultEntity) {
+					// 给客户端结果赋值
+					DepartmentTypeClientDTO paramClientDTO = new DepartmentTypeClientDTO();
+					paramClientDTO.setCellPic(hostIp + "image_dep/" + param.getCellPic());
+					paramClientDTO.setIconPic(hostIp + "image_dep/" + param.getIconPic());
+					paramClientDTO.setDcName(param.getDcName());
+					paramClientDTO.setDcId(param.getDcId());
+					
+					// 科室列表
+ 					if (param.getDepartmentEntitys()!= null && param.getDepartmentEntitys().size() > 0) {
+						departmentClientDTOList = new ArrayList<DepartmentClientDTO>();
+						for (DepartmentEntity depParam : param.getDepartmentEntitys()) {
+							if(depParam.getDepName()!=null ){
+							DepartmentClientDTO departmentClientDTO = new DepartmentClientDTO();
+							departmentClientDTO.setDepId(depParam.getDepId());
+							departmentClientDTO.setDepName(depParam.getDepName());
+							departmentClientDTOList.add(departmentClientDTO);}
+						
+						paramClientDTO.setDepartmentList(departmentClientDTOList);}
+					}
+					departmentTypeClientList.add(paramClientDTO);
+				}
+				resultClientDTO.setDepartmentTypeList(departmentTypeClientList);
+			}
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-4000");
+
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			resultClientDTO.setSysTime(sdf.format(new Date()));
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+}

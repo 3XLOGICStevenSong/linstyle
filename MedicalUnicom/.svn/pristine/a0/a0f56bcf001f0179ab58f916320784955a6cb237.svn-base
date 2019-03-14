@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title>支付确认</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/payment.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPayMent.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>支付确认</h2>
+		</div>
+	</div>
+	 
+	<div id="wrap">
+
+		<div id="container">
+			<div class="contents">
+				<div class="payment">
+					<div class="info displaynone">
+						<p class="title clearfix"><span class="icon_doctor"></span>急诊 </p>
+						<p class="Detailed">三甲医院预约，视频面对面咨询问诊<br/>无障碍直面沟通</p>
+						<p class="Total clearfix">支付金额 <strong class="TotalPrice">{$total_price}</strong></p>
+					</div>
+					<div class="info0 displaynone">
+						<p class="title clearfix"><span class="icon_video"></span>视频问诊 </p>
+						<p class="Detailed">三甲医院预约，视频面对<br/>无障碍直面沟通</p>
+						<p class="Total clearfix">支付金额 <strong class="TotalPrice">{$total}</strong></p>
+					</div>
+					<div class="info1 displaynone">
+						<p class="title clearfix"><span class="icon_tel"></span>电话问诊 </p>
+						<p class="Detailed">三甲医院预约，一对一的咨询问诊<br/>沟通快捷方便</p>
+						<p class="Total clearfix">支付金额 <strong class="TotalPrice">{$total}</strong></p>
+					</div>
+					<div class="info2 displaynone">
+						<p class="title clearfix"><span class="icon_doctor"></span>私人医生 </p>
+						<p class="label">
+							<span class="video">{$count}次视频问诊</span>
+							<span class="phone">{$telCount}次电话问诊</span>
+							<span class="message">留言免费</span>
+						</p>
+						<p class="Detailed">获得医生的随访<br/>创建个人电子病历</p>
+						<p class="Total clearfix">支付金额 <strong class="TotalPrice"><span>{$total}</span> / {$effectTime}天</strong></p>
+					</div>
+					<div class="infoBox"></div>
+					<div class="Price">
+						<p class="pay clearfix"><span class="icon_alipay"></span>支付宝支付 <strong class="TotalPrice">></strong></p>
+						<p class="Agree clearfix"><span id="check" class="icon_check on"></span>同意<strong> <a href="#paymentAgreement.html">《支付协议》</a></strong></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

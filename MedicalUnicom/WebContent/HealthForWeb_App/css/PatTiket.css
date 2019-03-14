@@ -1,0 +1,31 @@
+.sym_img{padding:0.2rem;background:#fff;font-size:0.4rem;}
+.sym_img #preview{display:block;width:3rem;height:1rem;margin:0 auto;line-height:1rem;text-align:center;border:1px solid #999;border-radius:15px;}
+.sym_img label{display:block;margin:0.5rem 0 0 0;}
+
+.sym_img .imgBox {display:block;;overflow-x:scroll;margin:0.3rem 0;padding:0.4rem 0;white-space:nowrap}
+.sym_img .imgBox span{display:inline-block;position:relative;margin:0 0.5rem 0 0;border:1px solid #000;vertical-align:top;}
+.sym_img .imgBox span img{width:4rem;height:4rem;}
+.sym_img .imgBox span .delete{position:absolute;top:-0.35rem;right:-0.35rem;width:0.7rem;height:0.7rem;margin:0;text-align:center;line-height:0.6rem;background:#999;opacity:0.8;border:1px solid #000;border-radius:100%;color:#fff;font-size:0.6rem;}
+
+.tiketform {padding:0.2rem;background:#fff;font-size:0.4rem;}
+.tiketform .Ask{padding:0.2rem 0 0.5rem;border-bottom:1px solid #555}
+.tiketform .Ask strong{display:block;margin:0 0 0.3rem}
+
+.tiketform p.checkRadio{text-align:center}
+.tiketform p.checkRadio label{display:inline-block;width:4.5rem;text-align:left;vertical-align:top;}
+.tiketform p.checkRadio label input{margin:0 0.2rem 0 0}
+
+.tiketform p.checkbox {width:9rem;margin:0 auto}
+.tiketform p.checkbox label{display:inline-block;width:4.5rem;margin:0 0 0.2rem;text-align:left;vertical-align:top;}
+.tiketform p.checkbox label input{margin:0 0.2rem 0 0}
+.tiketform p.checkbox label input.orther{display:block;width:100%;height:0.7rem;margin:0.2rem 0 0 0;font-size:0.4rem}
+
+.tiketform input[type=text]{display:block;width:9rem;height:1rem;margin:0 auto;line-height:1rem;font-size:0.4rem;}
+.tiketform input[type=radio]{width:0.4rem;height:0.4rem}
+.tiketform input[type=checkbox]{width:0.4rem;height:0.4rem}
+
+.sym_text {background:#fff;padding:0.3rem 0}
+.sym_text textarea{display:block;width:9rem;margin:0 auto;border:1px solid #999;border-radius:5px;font-size:0.4rem;}
+
+.SubmitBtn {padding:0.5rem 0;background:#fff;font-size:0.5rem;}
+.SubmitBtn span{display:block;margin:0 auto;width:94%;height:1.5rem;border-radius:5px;background:#50d071;color:#fff;text-align:center;line-height:1.5rem;}

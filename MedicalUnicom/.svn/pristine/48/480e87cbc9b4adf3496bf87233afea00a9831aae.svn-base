@@ -1,0 +1,470 @@
+package com.djb.ylt.user.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.health.dao.IInqueryAnswerDao;
+import com.djb.ylt.health.entity.InqueryAnswerEntity;
+import com.djb.ylt.health.entity.InqueryQuestionEntity;
+import com.djb.ylt.user.dao.IAppointInquiryDao;
+import com.djb.ylt.user.dao.IDoctorDao;
+import com.djb.ylt.user.dao.IDoctorScheduleDao;
+import com.djb.ylt.user.dao.IPatientScheduleDao;
+import com.djb.ylt.user.dao.IRecordsDao;
+import com.djb.ylt.user.entity.AppointInquiryEntity;
+import com.djb.ylt.user.entity.DoctorEntity;
+import com.djb.ylt.user.entity.DoctorScheduleEntity;
+import com.djb.ylt.user.entity.PatientScheduleEntity;
+import com.djb.ylt.user.entity.RecordsEntity;
+
+@Service("iAppointInquiryService")
+public class AppointInquiryServiceImpl extends BaseService implements IAppointInquiryService {
+
+	@Autowired
+	@Qualifier("appointInquiryDao")
+	private IAppointInquiryDao appointInquiryDao;
+	@Autowired
+	@Qualifier("recordsDao")
+	private IRecordsDao recordsDao;
+	@Autowired
+	@Qualifier("doctorScheduleDao")
+	private IDoctorScheduleDao doctorScheduleDao;
+
+	@Autowired
+	@Qualifier("inqueryAnswerDao")
+	private IInqueryAnswerDao inqueryAnswerDao;
+
+	@Autowired
+	@Qualifier("patientScheduleDao")
+	private IPatientScheduleDao patientScheduleDao;
+	@Autowired
+	@Qualifier("doctorDao")
+	private IDoctorDao doctorDao;
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void addAppointInquiry(AppointInquiryEntity appointInquiry) {
+
+		// TODO Auto-generated method stub
+		try {
+			if (appointInquiry.getPayStatus() == null) {
+				appointInquiry.setPayStatus("0");
+			}
+			appointInquiryDao.insert(appointInquiry);
+			// System.out.println("appoint>>>>>>>>>>>>>>>>>>" + appoint);
+			RecordsEntity recordsEntity = new RecordsEntity();
+			// 视频 和 电话
+			if ("0".equals(appointInquiry.getAppointType()) || "1".equals(appointInquiry.getAppointType())) {
+				// 删除之前填写的
+				InqueryAnswerEntity answerEntity = new InqueryAnswerEntity();
+				answerEntity.setDepId(appointInquiry.getDepId());
+				answerEntity.setPatientId(appointInquiry.getPatientId());
+				inqueryAnswerDao.delete(answerEntity);
+				// System.out.println("del>>>>>>>>>>>>>>>>>>" + del);
+				// 添加问诊票答案
+				if (appointInquiry.getInqueryQuestionEntitys() != null
+						&& appointInquiry.getInqueryQuestionEntitys().size() > 0) {
+					for (InqueryQuestionEntity question : appointInquiry.getInqueryQuestionEntitys()) {
+						if (question.getInqueryAnswerEntitys() != null
+								&& question.getInqueryAnswerEntitys().size() > 0) {
+							inqueryAnswerDao.insertBatch(question.getInqueryAnswerEntitys());
+							// System.out.println("inseran>>>>>>>>>>>>>>>>>>" +
+							// inseran);
+						}
+					}
+				}
+				// 没有问诊票时，患者录入症状描述
+				// 上传备注
+				if (appointInquiry.getMemo() != null && !"".equals(appointInquiry.getMemo())) {
+					InqueryAnswerEntity answer = new InqueryAnswerEntity();
+					answer.setDepId(appointInquiry.getDepId());
+					answer.setPatientId(appointInquiry.getPatientId());
+					answer.setIaContent(appointInquiry.getMemo());
+					answer.setIaFlag("2");
+					inqueryAnswerDao.insert(answer);
+
+				}
+				// 上传问诊票图片
+				if (appointInquiry.getInquiryPic() != null && !"".equals(appointInquiry.getInquiryPic())) {
+					InqueryAnswerEntity answerParam = new InqueryAnswerEntity();
+					answerParam.setDepId(appointInquiry.getDepId());
+					answerParam.setPatientId(appointInquiry.getPatientId());
+					answerParam.setIaContent(appointInquiry.getInquiryPic());
+					answerParam.setIaFlag("1");
+					inqueryAnswerDao.insert(answerParam);
+				}
+
+				// 添加问诊记录信息
+				if (appointInquiry.getAppointId() != null) {
+					recordsEntity.setAppointId(appointInquiry.getAppointId());
+					recordsEntity.setTelNum(appointInquiry.getTelNum());
+					recordsEntity.setAppointTime(appointInquiry.getAppointTime());
+					recordsEntity.setSymptonDescribe(appointInquiry.getSymptonDescribe());
+					// recordsEntity.
+					// 视频电话
+					if ("0".equals(appointInquiry.getAppointType())) {
+						recordsEntity.setInquiryStatus("1");
+						recordsEntity.setRecordsType("0");
+					} else {
+						recordsEntity.setInquiryStatus("1");
+						recordsEntity.setRecordsType("1");
+					}
+
+				}
+			} else if ("3".equals(appointInquiry.getAppointType())) {
+				recordsEntity.setAppointId(appointInquiry.getAppointId());
+				// recordsEntity.setAppointTime(new Date());
+				// recordsEntity.setRecordsType(appointInquiry.getAppointType());
+				recordsEntity.setInquiryStatus("1");
+				recordsEntity.setRecordsType("0");
+			}
+			// TODO 更新日程
+			// 视频的时候更新日程信息
+			PatientScheduleEntity patientSchelduleEntity = new PatientScheduleEntity();
+			if ("0".equals(appointInquiry.getAppointType()) && appointInquiry.getScheduleId() != null) {
+				// 参数Entity
+				// 视频更新日程
+				if (appointInquiry.getScheduleId() != null) {
+					DoctorScheduleEntity scheduleEntity = new DoctorScheduleEntity();
+					scheduleEntity.setScheduleId(appointInquiry.getScheduleId());
+					DoctorScheduleEntity resultSchelduleEntity = new DoctorScheduleEntity();
+					resultSchelduleEntity = doctorScheduleDao.getObject(scheduleEntity);
+					if (resultSchelduleEntity != null) {
+						scheduleEntity.setAppointNum(resultSchelduleEntity.getAppointNum() + 1);
+						doctorScheduleDao.update(scheduleEntity);
+					}
+					patientSchelduleEntity.setPatientId(appointInquiry.getPatientId());
+					patientSchelduleEntity.setScheduleId(appointInquiry.getScheduleId());
+					patientSchelduleEntity.setPsFlag("0");
+					patientScheduleDao.insert(patientSchelduleEntity);
+					recordsEntity.setPatschId(patientSchelduleEntity.getPsId());
+					recordsEntity.setScheduleId(appointInquiry.getScheduleId());
+				}
+			}
+			recordsEntity.setUpFlag("0");
+			recordsEntity.setScheduleId(appointInquiry.getScheduleId());
+			if (appointInquiry.getInquiryPic() != null && !"".equals(appointInquiry.getInquiryPic())) {
+				recordsEntity.setInquiryPic(appointInquiry.getInquiryPic());
+			}
+			recordsEntity.setPatientFlag("0");
+			recordsEntity.setDoctorFlag("0");
+			recordsEntity.setPdelFlag("1");
+			recordsEntity.setDdelFlag("1");
+			if (!"2".equals(appointInquiry.getAppointType())) {
+				recordsDao.insert(recordsEntity);
+			}
+
+		} catch (KeyExistException | DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteAppointInquiry(AppointInquiryEntity AppointInquiry) {
+
+		try {
+			appointInquiryDao.delete(AppointInquiry);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateAppointInquiry(AppointInquiryEntity AppointInquiry) {
+
+		try {
+			appointInquiryDao.update(AppointInquiry);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateBatch(List<AppointInquiryEntity> AppointInquiry) {
+
+		try {
+			appointInquiryDao.updateBatch(AppointInquiry);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public AppointInquiryEntity getObject(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getObject(AppointInquiry);
+
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointInquiryList() {
+
+		return (List<AppointInquiryEntity>) appointInquiryDao.findList();
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointInquiryList(AppointInquiryEntity AppointInquiry) {
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findListByCondition(AppointInquiry);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getPrivateDoctorList(AppointInquiryEntity appointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDPRIVATEDETAIL, appointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointListByPatient(AppointInquiryEntity appointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDLISTBYPATIENTID, appointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointListByDoctor(AppointInquiryEntity appointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDLISTBYDOCTORID, appointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getMemberInfo(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.GETMEMBERINFO, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointListByRecent(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDLISTBYRECENT, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public void deleteAppointInquiryBatch(List<AppointInquiryEntity> list) {
+
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public AppointInquiryEntity getInfoForPush(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getOtherObject(IAppointInquiryDao.GETINFOFORPUSH, AppointInquiry,
+				AppointInquiryEntity.class);
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getInfoForMinutesPush() {
+
+		return (List<AppointInquiryEntity>) appointInquiryDao.findOtherList(IAppointInquiryDao.GETINFOFORMINUTESPUSH,
+				AppointInquiryEntity.class);
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getDoctorMemberInfo(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.GETDOCTORMEMBERINFO, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getDoctorMemberInfoForPage(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao.findOtherList(
+				IAppointInquiryDao.GETDOCTORMEMBERINFOFORPAGE, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getRecordsInfo(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.GETRECORDSINFO, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getBatchInfo(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.GETBATCHINFO, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointListByStatus(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDLISTBYSTATUS, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public List<AppointInquiryEntity> getAppointGraphicListByStatus(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao.findOtherList(
+				IAppointInquiryDao.FINDGRAPHICAPPOINTlISTBYSTATUS, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public AppointInquiryEntity getMonthRecords(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getOtherObject(IAppointInquiryDao.GETMONTHRECORDS, AppointInquiry,
+				AppointInquiryEntity.class);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void appointGeneDoctor(AppointInquiryEntity appointInquiry) {
+
+		try {
+			// if (appointInquiry.getPayStatus() == null) {
+			// appointInquiry.setPayStatus("0");
+			// }
+			// 获取医生所在科室和专业
+			DoctorEntity doctorEntiy = new DoctorEntity();
+			DoctorEntity doctorResult = new DoctorEntity();
+			doctorEntiy.setDoctorId(appointInquiry.getDoctorId());
+			doctorResult = doctorDao.getObject(doctorEntiy);
+			if (doctorResult != null) {
+				appointInquiry.setDepId(doctorResult.getDepartmentId());
+			}
+			appointInquiryDao.insert(appointInquiry);
+
+			RecordsEntity recordsEntity = new RecordsEntity();
+			//
+			// 添加问诊记录信息
+			if (appointInquiry.getAppointId() != null) {
+				recordsEntity.setAppointId(appointInquiry.getAppointId());
+				recordsEntity.setAppointTime(appointInquiry.getAppointTime());
+				// 预约成功
+				recordsEntity.setInquiryStatus("1");
+				recordsEntity.setRecordsType("0");
+			}
+
+			// TODO 更新日程
+			// 视频的时候更新日程信息
+			PatientScheduleEntity patientSchelduleEntity = new PatientScheduleEntity();
+			if (appointInquiry.getScheduleId() != null) {
+				// 参数Entity
+				// 视频更新日程
+				if (appointInquiry.getScheduleId() != null) {
+					DoctorScheduleEntity scheduleEntity = new DoctorScheduleEntity();
+					scheduleEntity.setScheduleId(appointInquiry.getScheduleId());
+					DoctorScheduleEntity resultSchelduleEntity = new DoctorScheduleEntity();
+					resultSchelduleEntity = doctorScheduleDao.getObject(scheduleEntity);
+					if (resultSchelduleEntity != null) {
+						scheduleEntity.setAppointNum(resultSchelduleEntity.getAppointNum() + 1);
+						doctorScheduleDao.update(scheduleEntity);
+					}
+					patientSchelduleEntity.setPatientId(appointInquiry.getPatientId());
+					patientSchelduleEntity.setScheduleId(appointInquiry.getScheduleId());
+					patientSchelduleEntity.setPsFlag("0");
+					patientScheduleDao.insert(patientSchelduleEntity);
+					recordsEntity.setPatschId(patientSchelduleEntity.getPsId());
+				}
+			}
+			recordsEntity.setUpFlag("0");
+			recordsEntity.setScheduleId(appointInquiry.getScheduleId());
+			if (appointInquiry.getInquiryPic() != null && !"".equals(appointInquiry.getInquiryPic())) {
+				recordsEntity.setInquiryPic(appointInquiry.getInquiryPic());
+			}
+			recordsEntity.setPatientFlag("0");
+			recordsEntity.setDoctorFlag("0");
+			recordsEntity.setPdelFlag("1");
+			recordsEntity.setDdelFlag("1");
+			recordsDao.insert(recordsEntity);
+
+		} catch (KeyExistException | DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public AppointInquiryEntity getHistoryAppoint(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getOtherObject(IAppointInquiryDao.GETHISTORYAPPOINT, AppointInquiry,
+				AppointInquiryEntity.class);
+	}
+
+	@Override
+	public void addAppointPhotoInquiry(AppointInquiryEntity appointInquiry) {
+
+		// TODO Auto-generated method stub
+		try {
+			if (appointInquiry.getPayStatus() == null) {
+				appointInquiry.setPayStatus("0");
+			}
+			appointInquiry.setPhotoEnd("0");
+			appointInquiry.setDocDel("0");
+			appointInquiry.setPatDel("0");
+			if (appointInquiry.getFollowUpFlag() == null) {
+				appointInquiry.setFollowUpFlag("0");
+			}
+			appointInquiryDao.insert(appointInquiry);
+
+		} catch (KeyExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public AppointInquiryEntity getGraphicList(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getOtherObject(IAppointInquiryDao.GETGRAPHICLIST, AppointInquiry,
+				AppointInquiryEntity.class);
+
+	}
+
+	@Override
+	// 按状态检索图文问诊
+	public List<AppointInquiryEntity> findGraphicListByStatus(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.FINDGRAPHICLISTBYSTATUS, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	// 按状态检索图文问诊
+	public List<AppointInquiryEntity> getAppointListByImage(AppointInquiryEntity AppointInquiry) {
+
+		List<AppointInquiryEntity> list = (List<AppointInquiryEntity>) appointInquiryDao
+				.findOtherList(IAppointInquiryDao.GETAPPOINTlISTBYIMAGE, AppointInquiry, AppointInquiryEntity.class);
+		return list;
+	}
+
+	@Override
+	public AppointInquiryEntity getAppointFree(AppointInquiryEntity AppointInquiry) {
+
+		return appointInquiryDao.getOtherObject(IAppointInquiryDao.GETAPPOINTFREE, AppointInquiry,
+				AppointInquiryEntity.class);
+	}
+}

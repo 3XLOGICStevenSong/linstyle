@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.UserLoginEntity">
+	<resultMap id="UserLoginResultMap" type="com.djb.ylt.user.entity.UserLoginEntity">
+		<id column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<result column="USER_TEL" jdbcType="VARCHAR" property="userTel" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ROLE" jdbcType="CHAR" property="role" />
+		<result column="HXUSER_ID" jdbcType="VARCHAR" property="hxuserId" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="UserLogin_Column_List">
+		USER_ID, USER_TEL, PASSWORD, ROLE, HXUSER_ID, STATUS, CREATE_TIME, UPDATE_TIME
+	</sql>
+
+	<sql id="UserLoginWhereClause">
+		<if test="userId!=null">and USER_ID=#{userId} </if>
+		<if test="userTel!=null">and USER_TEL=#{userTel} </if>
+		<if test="password!=null">and PASSWORD=#{password} </if>
+		<if test="role!=null">and ROLE=#{role} </if>
+		<if test="hxuserId!=null">and HXUSER_ID=#{hxuserId} </if>
+		<if test="status!=null">and STATUS=#{status} </if>
+		<if test="createTime!=null">and CREATE_TIME=#{createTime} </if>
+		<if test="updateTime!=null">and UPDATE_TIME=#{updateTime} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.UserLoginEntity"
+		resultMap="UserLoginResultMap">
+		select
+		<include refid="UserLogin_Column_List" />
+		from user_login
+		where 1=1
+		<include refid="UserLoginWhereClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.UserLoginEntity"
+		resultMap="UserLoginResultMap">
+		select
+		<include refid="UserLogin_Column_List" />
+		from user_login
+		where 1=1
+		<include refid="UserLoginWhereClause" />
+	</select>
+
+	<select id="findList" resultMap="UserLoginResultMap">
+		select
+		<include refid="UserLogin_Column_List" />
+		from patient
+	</select>
+	<select id="selectByPrimaryKey" resultMap="UserLoginResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="UserLogin_Column_List" />
+		from patient
+		where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_login
+		where USER_ID = #{userId,jdbcType=INTEGER}
+	</delete>
+	<delete id="delete" parameterType="com.djb.ylt.user.entity.UserLoginEntity">
+		delete from user_login
+		where USER_ID = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.UserLoginEntity"
+	useGeneratedKeys="true" keyProperty="userId" keyColumn="GENERATED_KEY">
+		insert into user_login (USER_ID, USER_TEL, PASSWORD,
+		ROLE, HXUSER_ID, STATUS, CREATE_TIME,
+		UPDATE_TIME)
+		values (#{userId,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{role,jdbcType=CHAR}, #{hxuserId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+		now(),
+		#{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+
+
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.UserLoginEntity">
+		update user_login
+		<set>
+			<if test="userTel != null">
+				USER_TEL = #{userTel,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="role != null">
+				ROLE = #{role,jdbcType=CHAR},
+			</if>
+			<if test="hxuserId != null">
+				HXUSER_ID = #{hxuserId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where USER_TEL = #{userTel,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

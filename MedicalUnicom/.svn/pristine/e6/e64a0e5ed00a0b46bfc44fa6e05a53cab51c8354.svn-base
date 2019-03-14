@@ -1,0 +1,14 @@
+package com.djb.ylt.docFollow.service;
+
+import java.util.List;
+import com.djb.ylt.docFollow.entity.DocFollowEntity;
+
+public interface IDocFollowService {
+	public List<DocFollowEntity> getList(DocFollowEntity docFollowEntity);
+	public List<DocFollowEntity> getFollowList(DocFollowEntity docFollowEntity);
+	public DocFollowEntity getObject(DocFollowEntity docFollowEntity);
+	// 添加关注
+	public void addFollowInterest(DocFollowEntity followInterest);
+	// 取消关注
+	public void deleteFollowInterest(DocFollowEntity followInterest);
+}

@@ -1,0 +1,33 @@
+package com.djb.ylt.health.dtoclient;
+
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+
+
+
+public class DepartmentTypeListClientDTO extends BaseClientDTO{
+
+    private List<DepartmentTypeClientDTO> departmentTypeList;
+
+	/**
+	 * 返回departmentTypeList的值
+	 * @return List<DepartmentTypeClientDTO> departmentTypeList的值
+	 */
+	public List<DepartmentTypeClientDTO> getDepartmentTypeList() {
+		return departmentTypeList;
+	}
+
+	/**
+	 * 设置departmentTypeList的值
+	 * @param  departmentTypeList departmentTypeList的值
+	 */
+	public void setDepartmentTypeList(List<DepartmentTypeClientDTO> departmentTypeList) {
+		this.departmentTypeList = departmentTypeList;
+	}
+    
+    
+
+}

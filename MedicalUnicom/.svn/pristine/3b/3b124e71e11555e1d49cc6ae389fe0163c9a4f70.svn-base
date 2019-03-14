@@ -1,0 +1,220 @@
+package com.djb.ylt.gene.entity;
+
+import java.util.Date;
+import java.util.List;
+
+import com.djb.ylt.framework.entity.PageModel;
+
+public class TestResultMasterEntity  extends PageModel{
+    /**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = 575432941455980878L;
+
+	private Integer rmId;
+
+    private String patientName;
+
+    private String patientTel;
+
+    private String doctorName;
+
+    private String doctorTel;
+
+    private String evaluate;
+
+    private Integer totalItems;
+
+    private Date detectTime;
+
+    private Date insertTime;
+
+    private String userCode;
+
+    private String memo;
+    
+    private List<TestResultEntity> testResultEntitys;
+    
+    private List<DetectAnalysisEntity> detectAnalysisEntitys;
+    
+    private Integer patientId;
+     
+    public Integer getRmId() {
+        return rmId;
+    }
+
+    public void setRmId(Integer rmId) {
+        this.rmId = rmId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getPatientTel() {
+        return patientTel;
+    }
+
+    public void setPatientTel(String patientTel) {
+        this.patientTel = patientTel;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getDoctorTel() {
+        return doctorTel;
+    }
+
+    public void setDoctorTel(String doctorTel) {
+        this.doctorTel = doctorTel;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    public Integer getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(Integer totalItems) {
+        this.totalItems = totalItems;
+    }
+
+    public Date getDetectTime() {
+        return detectTime;
+    }
+
+    public void setDetectTime(Date detectTime) {
+        this.detectTime = detectTime;
+    }
+
+    public Date getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        TestResultMasterEntity other = (TestResultMasterEntity) that;
+        return (this.getRmId() == null ? other.getRmId() == null : this.getRmId().equals(other.getRmId()))
+            && (this.getPatientName() == null ? other.getPatientName() == null : this.getPatientName().equals(other.getPatientName()))
+            && (this.getPatientTel() == null ? other.getPatientTel() == null : this.getPatientTel().equals(other.getPatientTel()))
+            && (this.getDoctorName() == null ? other.getDoctorName() == null : this.getDoctorName().equals(other.getDoctorName()))
+            && (this.getDoctorTel() == null ? other.getDoctorTel() == null : this.getDoctorTel().equals(other.getDoctorTel()))
+            && (this.getEvaluate() == null ? other.getEvaluate() == null : this.getEvaluate().equals(other.getEvaluate()))
+            && (this.getTotalItems() == null ? other.getTotalItems() == null : this.getTotalItems().equals(other.getTotalItems()))
+            && (this.getDetectTime() == null ? other.getDetectTime() == null : this.getDetectTime().equals(other.getDetectTime()))
+            && (this.getInsertTime() == null ? other.getInsertTime() == null : this.getInsertTime().equals(other.getInsertTime()))
+            && (this.getUserCode() == null ? other.getUserCode() == null : this.getUserCode().equals(other.getUserCode()))
+            && (this.getMemo() == null ? other.getMemo() == null : this.getMemo().equals(other.getMemo()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getRmId() == null) ? 0 : getRmId().hashCode());
+        result = prime * result + ((getPatientName() == null) ? 0 : getPatientName().hashCode());
+        result = prime * result + ((getPatientTel() == null) ? 0 : getPatientTel().hashCode());
+        result = prime * result + ((getDoctorName() == null) ? 0 : getDoctorName().hashCode());
+        result = prime * result + ((getDoctorTel() == null) ? 0 : getDoctorTel().hashCode());
+        result = prime * result + ((getEvaluate() == null) ? 0 : getEvaluate().hashCode());
+        result = prime * result + ((getTotalItems() == null) ? 0 : getTotalItems().hashCode());
+        result = prime * result + ((getDetectTime() == null) ? 0 : getDetectTime().hashCode());
+        result = prime * result + ((getInsertTime() == null) ? 0 : getInsertTime().hashCode());
+        result = prime * result + ((getUserCode() == null) ? 0 : getUserCode().hashCode());
+        result = prime * result + ((getMemo() == null) ? 0 : getMemo().hashCode());
+        return result;
+    }
+
+	/**
+	 * 返回testResultEntitys的值
+	 * @return List<TestResultEntity> testResultEntitys的值
+	 */
+	public List<TestResultEntity> getTestResultEntitys() {
+		return testResultEntitys;
+	}
+
+	/**
+	 * 设置testResultEntitys的值
+	 * @param  testResultEntitys testResultEntitys的值
+	 */
+	public void setTestResultEntitys(List<TestResultEntity> testResultEntitys) {
+		this.testResultEntitys = testResultEntitys;
+	}
+
+	/**
+	 * 返回detectAnalysisEntitys的值
+	 * @return List<DetectAnalysisEntity> detectAnalysisEntitys的值
+	 */
+	public List<DetectAnalysisEntity> getDetectAnalysisEntitys() {
+		return detectAnalysisEntitys;
+	}
+
+	/**
+	 * 设置detectAnalysisEntitys的值
+	 * @param  detectAnalysisEntitys detectAnalysisEntitys的值
+	 */
+	public void setDetectAnalysisEntitys(List<DetectAnalysisEntity> detectAnalysisEntitys) {
+		this.detectAnalysisEntitys = detectAnalysisEntitys;
+	}
+
+	/**
+	 * 返回patientId的值
+	 * @return Integer patientId的值
+	 */
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	/**
+	 * 设置patientId的值
+	 * @param  patientId patientId的值
+	 */
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+}

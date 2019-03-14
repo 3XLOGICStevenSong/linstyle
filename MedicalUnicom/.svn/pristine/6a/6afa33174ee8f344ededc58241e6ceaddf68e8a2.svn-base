@@ -1,0 +1,604 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.gene.action;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import java.net.URLEncoder;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.alibaba.fastjson.JSON;
+import com.alipay.api.internal.util.AlipaySignature;
+import com.alipay.api.internal.util.StringUtils;
+import com.djb.ylt.alipay.action.AsynAlipayNotifyAction;
+import com.djb.ylt.alipay.config.AlipayConfig;
+import com.djb.ylt.alipay.dto.AlipayNotification;
+import com.djb.ylt.alipay.util.RequestUtils;
+import com.djb.ylt.alipay.util.SignUtils;
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.common.util.Constants;
+import com.djb.ylt.common.util.GsonUtil;
+import com.djb.ylt.common.util.OrderNumberUtil;
+import com.djb.ylt.common.util.ResourceLocator;
+import com.djb.ylt.common.util.WechatPayUtil;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.gene.dto.ProductsPurchaseDTO;
+import com.djb.ylt.gene.dtoclient.BuyHistoryClientDTO;
+import com.djb.ylt.gene.dtoclient.BuyProductsClientDTO;
+import com.djb.ylt.gene.dtoclient.ProductsPurchaseClientDTO;
+import com.djb.ylt.gene.entity.ProductsPurchaseEntity;
+import com.djb.ylt.gene.service.IProductsPurchaseService;
+import com.djb.ylt.wechat.Utils.HttpXmlUtils;
+import com.djb.ylt.wechat.Utils.JdomParseXmlUtils;
+import com.djb.ylt.wechat.Utils.WXSignUtils;
+
+import com.djb.ylt.wechat.entity.UnifiedorderResult;
+import com.djb.ylt.wechat.entity.WXPayResult;
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2016年7月29日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/ProductsPurchase")
+public class ProductsPurchaseAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iProductsPurchaseService")
+	private IProductsPurchaseService iProductsPurchaseService;
+
+	public ProductsPurchaseAction() {
+		super();
+	}
+
+	/**
+	 * 购买基因产品
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doBuyGeneProducts(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		ProductsPurchaseDTO paramDTO = (ProductsPurchaseDTO) form;
+
+		// 参数Entity
+		ProductsPurchaseEntity paramEntity = new ProductsPurchaseEntity();
+
+		// ClientResultDTO
+		BuyProductsClientDTO resultClientDTO = new BuyProductsClientDTO();
+
+		// 参数赋值
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		if (paramDTO.getPayTotal() != null) {
+			paramEntity.setPayTotal(Double.parseDouble(paramDTO.getPayTotal()));
+		}
+		// app购买
+		paramEntity.setBuyType("0");
+		// 购买成功
+		paramEntity.setOrderStatus("0");
+		// DB查询
+		try {
+			// 日期时间戳
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			StringBuffer stringBuffer = new StringBuffer();
+			String str = sdf.format(date);
+			stringBuffer.append(str);
+			// 订单号（程序自动生成）
+			OrderNumberUtil orderNumberUtil = new OrderNumberUtil();
+			// 采番订单编号
+			stringBuffer.append(orderNumberUtil.getOrderNumber(request));
+			paramEntity.setOrderNum(stringBuffer.toString());
+			// 如果是0元设置成下单直接是支付状态
+			if ("0".equals(paramDTO.getPayTotal()) || "0.0".equals(paramDTO.getPayTotal())
+					|| "0.00".equals(paramDTO.getPayTotal())) {
+				paramEntity.setPayStatus("1");
+			}
+			// DB 操作
+			iProductsPurchaseService.addProductsPurchase(paramEntity);
+
+			if (paramEntity.getPrId() == null) {
+				paramDTO.setErrFlg(true);
+				resultClientDTO.setReturnCode("-8200");
+				toJson(response, resultClientDTO);
+				return null;
+			}
+			// 生成支付信息
+			if (paramEntity.getPrId() != null && paramEntity.getPrId() != 0) {
+				resultClientDTO.setPrId(paramEntity.getPrId());
+				if (paramDTO.getPayType() != null) {
+					// 获取主机IP
+					String hostIp = ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS);
+					// 参数Entity
+					ProductsPurchaseEntity paramPayEntity = new ProductsPurchaseEntity();
+					paramPayEntity.setOrderNum(paramEntity.getOrderNum());
+					paramPayEntity.setPrId(paramEntity.getPrId());
+					paramPayEntity.setPayStatus("0");
+					// 支付宝支付
+					if ("0".equals(paramDTO.getPayType())) {
+						// 拼接支付参数
+						StringBuffer url = new StringBuffer();
+						url.append(hostIp);
+						url.append("ProductsPurchase.do?" + "receiveAliPayNotify" + "=");
+						
+						String service_url = url.toString();
+
+						String orderContent = AsynAlipayNotifyAction.getOrderInfo(stringBuffer.toString(), "购买基因检测产品",
+								"支付宝支付", paramDTO.getPayTotal(), service_url);
+						String sign = sign(orderContent);
+						try {
+							// 签名
+							sign = URLEncoder.encode(sign, "UTF-8");
+						} catch (UnsupportedEncodingException e) {
+							e.printStackTrace();
+						}
+						StringBuffer sb = new StringBuffer();
+						sb.append(orderContent);
+						sb.append("&sign=\"" + sign + "\"&");
+						sb.append("sign_type=\"RSA\"");
+						resultClientDTO.setPayInfo(sb.toString());
+						paramPayEntity.setPayInfo(sb.toString());
+						paramPayEntity.setPayType("0");
+					} else if ("1".equals(paramDTO.getPayType())) {
+						// 微信支付
+						String weixinPost = WechatPayUtil.weChatParam(stringBuffer.toString(), "购买基因产品",
+								paramDTO.getPayTotal(), hostIp, "ProductsPurchase.do", request);
+
+						UnifiedorderResult unifiedorderResult = JdomParseXmlUtils.getUnifiedorderResult(weixinPost);
+
+						if ("SUCCESS".equals(unifiedorderResult.getReturn_code())) {
+							// 再次验签
+							UnifiedorderResult result = WechatPayUtil.weChatParamAgain(unifiedorderResult);
+							String reslutxml = GsonUtil.getJsonStringFormBean(result);
+							String payInfo = HttpXmlUtils.xmlInfoJson(result);
+							resultClientDTO.setPayInfo(reslutxml);
+							paramPayEntity.setPayInfo(payInfo);
+							paramPayEntity.setPayType("1");
+						}
+					}
+					iProductsPurchaseService.updateProductsPurchase(paramPayEntity);
+				}
+			}
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-8200");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	private String sign(String content) {
+		return SignUtils.sign(content, AlipayConfig.private_key);
+	}
+
+	/**
+	 * 修改
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doChangePayType(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		ProductsPurchaseDTO paramDTO = (ProductsPurchaseDTO) form;
+		// 参数Entity
+		// paramDTO.setPayType("1");
+		// paramDTO.set
+		ProductsPurchaseEntity paramEntity = new ProductsPurchaseEntity();
+
+		// 结果ClientDTO
+		BuyProductsClientDTO resultClientDTO = new BuyProductsClientDTO();
+		// test 0:视频1电话2私人
+		// 参数DTO->参数Entity
+		paramEntity.setPrId(paramDTO.getPrId());
+
+		// DB查询
+		try {
+			ProductsPurchaseEntity resultEntity = new ProductsPurchaseEntity();
+			resultEntity = iProductsPurchaseService.getObject(paramEntity);
+
+			if (resultEntity != null && "0".equals(resultEntity.getPayStatus())) {
+
+				// 获取主机IP
+				String hostIp = ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS);
+				// 参数Entity
+				ProductsPurchaseEntity paramPayEntity = new ProductsPurchaseEntity();
+				paramPayEntity.setOrderNum(resultEntity.getOrderNum());
+				paramPayEntity.setPrId(resultEntity.getPrId());
+				
+				String total="";
+				if(resultEntity.getPayTotal()!=null){
+					total=resultEntity.getPayTotal().toString();
+				}else{
+					total="0";
+				}
+				//paramPayEntity.setPayStatus("0");
+				// 支付宝支付
+				if ("0".equals(paramDTO.getPayType())) {
+					// 拼接支付参数
+					StringBuffer url = new StringBuffer();
+					url.append(hostIp);
+					url.append("ProductsPurchase.do?" + "receiveAliPayNotify" + "=");
+					
+					String service_url = url.toString();
+					
+					String orderContent = AsynAlipayNotifyAction.getOrderInfo(resultEntity.getOrderNum(), "购买基因检测产品",
+							"支付宝支付", total, service_url);
+					String sign = sign(orderContent);
+					try {
+						// 签名
+						sign = URLEncoder.encode(sign, "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+					StringBuffer sb = new StringBuffer();
+					sb.append(orderContent);
+					sb.append("&sign=\"" + sign + "\"&");
+					sb.append("sign_type=\"RSA\"");
+					resultClientDTO.setPayInfo(sb.toString());
+					paramPayEntity.setPayInfo(sb.toString());
+					paramPayEntity.setPayType("0");
+				} else if ("1".equals(paramDTO.getPayType())) {
+					// 微信支付
+					String weixinPost = WechatPayUtil.weChatParam(resultEntity.getOrderNum(), "购买基因产品",
+							total, hostIp, "ProductsPurchase.do", request);
+
+					UnifiedorderResult unifiedorderResult = JdomParseXmlUtils.getUnifiedorderResult(weixinPost);
+
+					if ("SUCCESS".equals(unifiedorderResult.getReturn_code())) {
+						// 再次验签
+						UnifiedorderResult result = WechatPayUtil.weChatParamAgain(unifiedorderResult);
+						String reslutxml = GsonUtil.getJsonStringFormBean(result);
+						String payInfo = HttpXmlUtils.xmlInfoJson(result);
+						resultClientDTO.setPayInfo(reslutxml);
+						paramPayEntity.setPayInfo(payInfo);
+						paramPayEntity.setPayType("1");
+					}
+				}
+				iProductsPurchaseService.updateProductsPurchase(paramPayEntity);
+				
+			}
+
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-8400");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+	
+	
+	
+	/**
+	 * 购买基因产品
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetBuyInfoList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		ProductsPurchaseDTO paramDTO = (ProductsPurchaseDTO) form;
+
+		// 参数Entity
+		ProductsPurchaseEntity paramEntity = new ProductsPurchaseEntity();
+
+		// ClientResultDTO
+		BuyHistoryClientDTO resultClientDTO = new BuyHistoryClientDTO();
+		List<ProductsPurchaseClientDTO> productsPurchaseList=null;
+//结果Entity
+		List<ProductsPurchaseEntity> resultEntityList = null;
+		// 参数赋值
+		paramEntity.setPatientId(paramDTO.getPatientId());
+		paramEntity.setPageNum(paramDTO.getPageNum());
+		paramEntity.setPageSize(paramDTO.getPageSize());
+		
+		// DB查询
+		try {
+			resultEntityList=iProductsPurchaseService.getProductsPurchaseList(paramEntity);
+			if(resultEntityList!=null&& resultEntityList.size()>0){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+				productsPurchaseList=new ArrayList<ProductsPurchaseClientDTO>();
+				for(ProductsPurchaseEntity param:resultEntityList){
+					ProductsPurchaseClientDTO paramClient=new ProductsPurchaseClientDTO();
+					if(param.getGeneProductsEntity()!=null){
+					paramClient.setGeneName(param.getGeneProductsEntity().getGpName());}
+					
+					paramClient.setPrId(param.getPrId());
+					
+					if(param.getBuyTime()!=null){
+						paramClient.setBuyTime(sdf.format(param.getBuyTime()));
+					}
+					paramClient.setPayStatus(param.getPayStatus());
+					productsPurchaseList.add(paramClient);
+				}
+				resultClientDTO.setBuyRecordsList(productsPurchaseList);
+			}
+			
+			
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			resultClientDTO.setReturnCode("-8500");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+	/**
+	 * 支付宝回调函数
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward receiveAliPayNotify(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		@SuppressWarnings("unused")
+		ProductsPurchaseDTO paramDTO = (ProductsPurchaseDTO) form;
+		// 参数Entity
+		// Map<String, String> underScoreKeyMap =
+		// RequestUtils.getStringParams(request);
+		Map<String, String> params = new HashMap<String, String>();
+		Map requestParams = request.getParameterMap();
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			if (!"receiveAliPayNotify".equals(name)) {
+				String[] values = (String[]) requestParams.get(name);
+				String valueStr = "";
+				for (int i = 0; i < values.length; i++) {
+					valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
+					params.put(name, valueStr);
+				}
+			}
+		}
+		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.ali_public_key,
+				AlipayConfig.input_charset);
+
+		// 首先验证调用是否来自支付宝
+		Map<String, String> camelCaseKeyMap = RequestUtils.convertKeyToCamelCase(params);
+		String jsonString = JSON.toJSONString(camelCaseKeyMap);
+
+		AlipayNotification notice = JSON.parseObject(jsonString, AlipayNotification.class);
+		notice.setVerifyResult(signVerified);
+		String resultResponse = "success";
+		PrintWriter printWriter = null;
+		ProductsPurchaseEntity paramEntity = new ProductsPurchaseEntity();
+		ProductsPurchaseEntity resultEntiy = new ProductsPurchaseEntity();
+		try {
+			printWriter = response.getWriter();
+			// do business
+			if (signVerified) {
+				// 参数Entity
+				paramEntity.setOrderNum(notice.getOutTradeNo());
+				resultEntiy = iProductsPurchaseService.getObject(paramEntity);
+				if (resultEntiy != null && "0".equals(resultEntiy.getPayStatus())) {
+					paramEntity.setPayType("0");
+					paramEntity.setPayStatus("1");
+					paramEntity.setPayTime(new Date());
+					paramEntity.setPayParam(jsonString);
+					iProductsPurchaseService.updateProductsPurchase(paramEntity);
+				}
+
+			}
+
+			else {
+				resultResponse = "fail";
+			}
+
+		} catch (Exception e) {
+			logger.error("alipay notify error :", e);
+			resultResponse = "fail";
+			printWriter.close();
+		}
+
+		if (printWriter != null) {
+			printWriter.print(resultResponse);
+		}
+
+		// 返回结果
+		return null;
+	}
+
+	/**
+	 * 微信支付回调函数
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+
+	public ActionForward receiveWechatNotify(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		@SuppressWarnings("unused")
+		ProductsPurchaseDTO paramDTO = (ProductsPurchaseDTO) form;
+		// 参数Entity
+		try {
+			BufferedReader reader = request.getReader();
+
+			String line = "";
+			StringBuffer inputString = new StringBuffer();
+
+			try {
+				PrintWriter writer = response.getWriter();
+
+				while ((line = reader.readLine()) != null) {
+					inputString.append(line);
+				}
+
+				if (reader != null) {
+					reader.close();
+				}
+
+				if (!StringUtils.isEmpty(inputString.toString())) {
+					WXPayResult wxPayResult = JdomParseXmlUtils.getWXPayResult(inputString.toString());
+					if ("SUCCESS".equalsIgnoreCase(wxPayResult.getReturn_code())) {
+						SortedMap<Object, Object> parameters = new TreeMap<Object, Object>();
+						parameters.put("appid", wxPayResult.getAppid());
+						parameters.put("attach", wxPayResult.getAttach());
+						parameters.put("bank_type", wxPayResult.getBank_type());
+						parameters.put("cash_fee", wxPayResult.getCash_fee());
+						parameters.put("fee_type", wxPayResult.getFee_type());
+						parameters.put("is_subscribe", wxPayResult.getIs_subscribe());
+						parameters.put("mch_id", wxPayResult.getMch_id());
+						parameters.put("nonce_str", wxPayResult.getNonce_str());
+						parameters.put("openid", wxPayResult.getOpenid());
+						parameters.put("out_trade_no", wxPayResult.getOut_trade_no());
+						parameters.put("result_code", wxPayResult.getResult_code());
+						parameters.put("return_code", wxPayResult.getReturn_code());
+						parameters.put("time_end", wxPayResult.getTime_end());
+						parameters.put("total_fee", wxPayResult.getTotal_fee());
+						parameters.put("trade_type", "APP");
+						parameters.put("transaction_id", wxPayResult.getTransaction_id());
+
+						// 反校验签名
+						String sign = WXSignUtils.createSign("UTF-8", parameters);
+						ProductsPurchaseEntity paramEntity = new ProductsPurchaseEntity();
+						ProductsPurchaseEntity resultEntiy = new ProductsPurchaseEntity();
+						if (sign.equals(wxPayResult.getSign())) {
+							// 修改订单的状态
+							paramEntity.setOrderNum(wxPayResult.getOut_trade_no());
+							resultEntiy = iProductsPurchaseService.getObject(paramEntity);
+							if (resultEntiy != null && "0".equals(resultEntiy.getPayStatus())) {
+								paramEntity.setPayType("1");
+								paramEntity.setPayStatus("1");
+								paramEntity.setPayTime(new Date());
+								paramEntity.setPayParam(inputString.toString());
+								iProductsPurchaseService.updateProductsPurchase(paramEntity);
+							}
+							writer.write(HttpXmlUtils.backWeixin("SUCCESS", "OK"));
+
+						} else {
+							writer.write(HttpXmlUtils.backWeixin("FAIL", "签名失败"));
+						}
+					} else {
+						writer.write(HttpXmlUtils.backWeixin("FAIL", wxPayResult.getReturn_msg()));
+					}
+
+					if (writer != null) {
+						writer.close();
+					}
+				} else {
+					writer.write(HttpXmlUtils.backWeixin("FAIL", "未获取到微信返回的结果"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+}

@@ -1,0 +1,84 @@
+package com.djb.ylt.user.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.user.dao.IGraphicDao;
+import com.djb.ylt.user.entity.GraphicEntity;
+
+
+
+@Service("iGraphicService")
+public class GraphicServiceImpl extends BaseService implements IGraphicService {
+
+    @Autowired
+    @Qualifier("graphicDao")
+    private IGraphicDao graphicDao;
+	@Override
+	public void addGraphic(GraphicEntity graphic) {
+		
+		// TODO Auto-generated method stub
+		  try {
+			  graphicDao.insert(graphic);
+	        } catch (KeyExistException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+
+	@Override
+	public void deleteGraphic(GraphicEntity graphic) {
+		
+		try {
+			graphicDao.delete(graphic);
+        } catch (DataNotFoundException e) {
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+        }
+		
+	}
+
+	@Override
+	public void deleteGraphicBatch(List<GraphicEntity> list) {
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateGraphic(GraphicEntity graphic) {
+		
+		 try {
+			 graphicDao.update(graphic);
+	        } catch (DataNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+	@Override
+	publicGraphicEntity getObject(GraphicEntity graphic) {
+		
+		graphicDao.getObject(graphic);
+		
+	}
+
+	@Override
+	public List<GraphicEntity> getGraphicList() {
+		
+        return (List<GraphicEntity>)graphicDao.findList();
+	}
+
+	@Override
+	public List<GraphicEntity> getGraphicList(GraphicEntity graphic) {
+		 List<GraphicEntity> list = (List<GraphicEntity>)graphicDao.findListByCondition(Graphic);
+	return list;
+	}
+
+
+}

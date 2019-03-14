@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script>
+	var iScale = 1;
+	// devicePixelRatio 屏幕倍率
+	iScale = iScale / window.devicePixelRatio;
+	document.write('<meta name="viewport" content="width=device-width,initial-scale='+iScale+',minimum-scale='+iScale+',maximum-scale='+iScale+',user-scalable=no" />');
+
+	var iWidth = document.documentElement.clientWidth;
+
+	document.getElementsByTagName('html')[0].style.fontSize = iWidth / 10 + 'px';
+	</script>
+	<title>选择科室和症状</title>
+	<link rel="stylesheet" href="css/selectForm.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/tab_select.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<span class="next"><a href="#none" >保存</a></span>
+			<h2>选择科室和症状</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="checkForm">
+					<form action="" method="get" >
+						<ul>
+							<li class="tab1">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>儿科</strong></p>
+									<p class="small_menu">发烧，婴儿辅食，药</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color1">
+										<li><input type="checkbox" id="fever" name="fever"/><label for="fever">发烧</label></li>
+										<li><input type="checkbox" id="food" name="food"/><label for="food">婴儿辅食</label></li>
+										<li><input type="checkbox" id="drug" name="drug"/><label for="drug">药</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab2">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>妇科</strong></p>
+									<p class="small_menu">怀孕？分娩，妇科？生理，女性感染病</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color2">
+										<li><input type="checkbox" id="Pregnant" name="Pregnant"/><label for="Pregnant">怀孕？分娩</label></li>
+										<li><input type="checkbox" id="Physiology" name="Physiology"/><label for="Physiology">妇科？生理</label></li>
+										<li><input type="checkbox" id="infectious" name="infectious"/><label for="infectious">女性感染病</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab3">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>内科</strong></p>
+									<p class="small_menu">头痛，便秘，痔疮，眩晕，腹痛</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color3">
+										<li><input type="checkbox" id="headache" name="headache"/><label for="headache">头痛</label></li>
+										<li><input type="checkbox" id="constipation" name="constipation"/><label for="constipation">便秘</label></li>
+										<li><input type="checkbox" id="hemorrhoids" name="hemorrhoids"/><label for="hemorrhoids">痔疮</label></li>
+										<li><input type="checkbox" id="vertigo" name="vertigo"/><label for="vertigo">眩晕</label></li>
+										<li><input type="checkbox" id="abdominal" name="abdominal"/><label for="abdominal">腹痛</label></li>
+										<li><input type="checkbox" id="Lumbago" name="Lumbago"/><label for="Lumbago">腹痛</label></li>
+										<li><input type="checkbox" id="influenza" name="influenza"/><label for="influenza">流感</label></li>
+										<li><input type="checkbox" id="allergy" name="allergy"/><label for="allergy">过敏</label></li>
+										<li><input type="checkbox" id="Herpes" name="Herpes"/><label for="Herpes">疱疹</label></li>
+										<li><input type="checkbox" id="Stomachache" name="Stomachache"/><label for="Stomachache">胃痛</label></li>
+										<li><input type="checkbox" id="food" name="food"/><label for="food">婴儿辅食</label></li>
+										<li><input type="checkbox" id="Mongolism" name="Mongolism"/><label for="Mongolism">先天愚型</label></li>
+										<li><input type="checkbox" id="Cry" name="Cry"/><label for="Cry">夜里哭泣</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab4">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>外科</strong></p>
+									<p class="small_menu">外伤，扭伤，跌伤，刀伤，檫伤</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color4">
+										<li><input type="checkbox" id="trauma" name="trauma"/><label for="trauma">外伤</label></li>
+										<li><input type="checkbox" id="sprain" name="sprain"/><label for="sprain">扭伤</label></li>
+										<li><input type="checkbox" id="Falls" name="Falls"/><label for="Falls">跌伤</label></li>
+										<li><input type="checkbox" id="Knife" name="Knife"/><label for="Knife">刀伤</label></li>
+										<li><input type="checkbox" id="Bruised" name="Bruised"/><label for="Bruised">檫伤</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab5">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>皮肤科</strong></p>
+									<p class="small_menu">粉刺，湿疹，烧伤，体臭，秃顶</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color5">
+										<li><input type="checkbox" id="acne" name="acne"/><label for="acne">粉刺</label></li>
+										<li><input type="checkbox" id="eczema" name="eczema"/><label for="eczema">湿疹</label></li>
+										<li><input type="checkbox" id="Burn" name="Burn"/><label for="Burn">烧伤</label></li>
+										<li><input type="checkbox" id="odor" name="odor"/><label for="odor">体臭</label></li>
+										<li><input type="checkbox" id="Bald" name="Bald"/><label for="Bald">秃顶</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab6">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>心神医学科</strong></p>
+									<p class="small_menu">交感神经，抑郁症</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color6">
+										<li><input type="checkbox" id="Sympathetic" name="Sympathetic"/><label for="Sympathetic">交感神经</label></li>
+										<li><input type="checkbox" id="Depression" name="Depression"/><label for="Depression">抑郁症</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab7">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>泌尿外科</strong></p>
+									<p class="small_menu">泌尿器官，尿频</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color7">
+										<li><input type="checkbox" id="organs" name="organs"/><label for="organs">泌尿器官</label></li>
+										<li><input type="checkbox" id="micturition" name="micturition"/><label for="micturition">尿频</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab8">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>睡眠</strong></p>
+									<p class="small_menu">失眠，安眠药，打鼾</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color8">
+										<li><input type="checkbox" id="insomnia" name="insomnia"/><label for="insomnia">失眠</label></li>
+										<li><input type="checkbox" id="pill" name="pill"/><label for="pill">安眠药</label></li>
+										<li><input type="checkbox" id="Snore" name="Snore"/><label for="Snore">打鼾</label></li>
+									</ul>
+								</div>
+							</li>
+							<li class="tab9">
+								<div class="menu">
+									<p class="clearfix"><span class="Ticon"></span><strong>其他</strong></p>
+									<p class="small_menu">减肥，香烟，检查，营养品</p>
+									<span class="op_icon"></span>
+								</div>
+								<div class="sub_menu">
+									<ul  class="color9">
+										<li><input type="checkbox" id="dieted" name="dieted"/><label for="dieted">减肥</label></li>
+										<li><input type="checkbox" id="cigarette" name="cigarette"/><label for="cigarette">香烟</label></li>
+										<li><input type="checkbox" id="inspect" name="inspect"/><label for="inspect">检查</label></li>
+										<li><input type="checkbox" id="Nutrition" name="Nutrition"/><label for="Nutrition">营养品</label></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

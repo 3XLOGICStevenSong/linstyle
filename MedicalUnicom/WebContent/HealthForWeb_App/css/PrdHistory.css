@@ -1,0 +1,10 @@
+.history{ padding:0 0.2rem;background:#fff;font-size:0.4rem}
+.history ul{width:9rem;margin:0 auto;padding:0.5rem 0}
+.history ul li {position:relative;padding:0 0.5rem;;border-left:1px solid #555;}
+.history ul li:last-child{border:0}
+.history ul li .cricle{position:absolute;left:-0.25rem}
+.history ul li .cricle img{width:0.5rem;height:0.5rem}
+.history ul li .CreatTime{padding:0.1rem 0 0.5rem;color:#999}
+.history ul li .CreatTime p{padding:0 0 0.2rem;border-bottom:1px solid #999}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;background:#fff;border-top:1px solid #999;border-bottom:1px solid #999;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}

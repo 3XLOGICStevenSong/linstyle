@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.OrderNumberEntity">
+
+	<resultMap id="OrderNumberResult" type="com.djb.ylt.user.entity.OrderNumberEntity">
+		<id column="id" property="id" jdbcType="BIGINT" />
+	</resultMap>
+
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.OrderNumberEntity"
+		resultMap="OrderNumberResult">
+		select id from order_number
+	</select>
+
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.OrderNumberEntity">
+		insert into order_number
+		values
+		()
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.OrderNumberEntity">
+		UPDATE order_number set id =
+		id+1
+	</update>
+
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.PatientEntity">
+	<resultMap id="PatientResultMap" type="com.djb.ylt.user.entity.PatientEntity">
+		<id column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="BIRTH" property="birth" jdbcType="TIMESTAMP" />
+		<result column="AGE_UNIT" property="ageUnit" jdbcType="CHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="MARRY" property="marry" jdbcType="CHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BT" property="bt" jdbcType="CHAR" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="MEDICAL_EATEN_HISTORY" property="medicalEatenHistory"
+			jdbcType="VARCHAR" />
+		<result column="ALLERGY_HISTORY" property="allergyHistory"
+			jdbcType="VARCHAR" />
+		<result column="ILLNESS_HISTORY" property="illnessHistory"
+			jdbcType="VARCHAR" />
+		<result column="AMT" property="amt" jdbcType="VARCHAR" />
+		<result column="PATIENT_PIC" property="patientPic" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+		<result column="PATIENT_TEL" property="patientTel" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Patient_Column_List">
+		PATIENT_ID, NAME, BIRTH, AGE_UNIT, SEX, MARRY, ADDRESS, BT,
+		USER_ID,
+		MEDICAL_EATEN_HISTORY,
+		ALLERGY_HISTORY, ILLNESS_HISTORY, AMT,
+		PATIENT_PIC, EMAIL, CREATE_TIME, UPDATE_TIME,NICK_NAME,PATIENT_TEL
+	</sql>
+
+	<sql id="PatientWhereClause">
+		<if test="patientId!=null">and PATIENT_ID=#{patientId} </if>
+		<if test="name!=null">and NAME=#{name} </if>
+		<if test="birth!=null">and BIRTH=#{birth} </if>
+		<if test="userId!=null">and USER_ID=#{userId} </if>
+	
+	</sql>
+	
+		<select id="getObject" parameterType="com.djb.ylt.user.entity.PatientEntity"
+		resultMap="PatientResultMap">
+		select
+		<include refid="Patient_Column_List" />
+		from patient
+		where 1=1 
+		<if test="patientId!=null">and PATIENT_ID=#{patientId} </if>
+		<if test="userId!=null">and USER_ID=#{userId} </if>
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.PatientEntity"
+		resultMap="PatientResultMap">
+		select
+		<include refid="Patient_Column_List" />
+		from patient
+		where 1=1
+		<include refid="PatientWhereClause" />
+	</select>
+
+	<select id="findList" resultMap="PatientResultMap">
+		select
+		<include refid="Patient_Column_List" />
+		from patient
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		patient
+		where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+	</delete>
+	<delete id="delete" parameterType="com.djb.ylt.user.entity.PatientEntity">
+		delete from patient
+		where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.PatientEntity">
+		insert into patient
+		(PATIENT_ID, NAME, BIRTH,
+		AGE_UNIT, SEX, MARRY, ADDRESS,
+		BT, USER_ID,
+		MEDICAL_EATEN_HISTORY,
+		ALLERGY_HISTORY, ILLNESS_HISTORY, AMT,
+		PATIENT_PIC, EMAIL, CREATE_TIME,
+		UPDATE_TIME,NICK_NAME,PATIENT_TEL)
+		values
+		(#{patientId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{birth,jdbcType=TIMESTAMP},
+		#{ageUnit,jdbcType=CHAR},
+		#{sex,jdbcType=CHAR}, #{marry,jdbcType=CHAR},
+		#{address,jdbcType=VARCHAR},
+		#{bt,jdbcType=CHAR},
+		#{userId,jdbcType=INTEGER}, #{medicalEatenHistory,jdbcType=VARCHAR},
+		#{allergyHistory,jdbcType=VARCHAR},
+		#{illnessHistory,jdbcType=VARCHAR}, #{amt,jdbcType=VARCHAR},
+		#{patientPic,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		now(),
+		#{updateTime,jdbcType=TIMESTAMP},#{nickName,jdbcType=TIMESTAMP},#{patientTel,jdbcType=VARCHAR})
+	</insert>
+
+	
+	<update id="update" parameterType="com.djb.ylt.user.entity.PatientEntity">
+		update patient
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="birth != null">
+				BIRTH = #{birth,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ageUnit != null">
+				AGE_UNIT = #{ageUnit,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="marry != null">
+				MARRY = #{marry,jdbcType=CHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="bt != null">
+				BT = #{bt,jdbcType=CHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="medicalEatenHistory != null">
+				MEDICAL_EATEN_HISTORY =
+				#{medicalEatenHistory,jdbcType=VARCHAR},
+			</if>
+			<if test="allergyHistory != null">
+				ALLERGY_HISTORY = #{allergyHistory,jdbcType=VARCHAR},
+			</if>
+			<if test="illnessHistory != null">
+				ILLNESS_HISTORY = #{illnessHistory,jdbcType=VARCHAR},
+			</if>
+			<if test="amt != null">
+				AMT = #{amt,jdbcType=VARCHAR},
+			</if>
+			<if test="patientPic != null">
+				PATIENT_PIC = #{patientPic,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

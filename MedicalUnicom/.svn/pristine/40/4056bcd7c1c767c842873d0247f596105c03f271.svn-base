@@ -1,0 +1,496 @@
+/**
+ * Project Name:MedicalUnicomAPP
+ * File Name:PatientAction.java
+ * Package Name:com.djb.ylt.user.action
+ * Copyright © 大连必捷必信息技术有限公司  All Rights Reserved.
+*/
+
+package com.djb.ylt.user.action;
+
+import java.text.SimpleDateFormat;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.common.util.Constants;
+import com.djb.ylt.common.util.MD5Util;
+import com.djb.ylt.common.util.ResourceLocator;
+import com.djb.ylt.common.util.UploadUtil;
+import com.djb.ylt.framework.action.BaseAction;
+import com.djb.ylt.framework.dto.BaseClientDTO;
+import com.djb.ylt.user.dto.UserLoginDTO;
+import com.djb.ylt.user.dtoclient.UserLoginClientDTO;
+import com.djb.ylt.user.entity.DoctorEntity;
+import com.djb.ylt.user.entity.PatientEntity;
+import com.djb.ylt.user.entity.UserLoginEntity;
+import com.djb.ylt.user.service.IDoctorService;
+import com.djb.ylt.user.service.IPatientService;
+import com.djb.ylt.user.service.IUserLoginService;
+
+/**
+ * <p>
+ * <strong>类名: </strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: </strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * 2016年7月29日下午1:19:01 <br/>
+ * 
+ * @author 林行
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/UserLogin")
+public class UserLoginAction extends BaseAction {
+
+	@Autowired
+	@Qualifier("iUserLoginService")
+	private IUserLoginService iUserLoginService;
+
+	@Autowired
+	@Qualifier("iPatientService")
+	private IPatientService iPatientService;
+
+	@Autowired
+	@Qualifier("iDoctorService")
+	private IDoctorService iDoctorService;
+
+	public UserLoginAction() {
+		super();
+	}
+
+	/**
+	 * 注册患者
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doRegisterPatient(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		UserLoginDTO paramDTO = (UserLoginDTO) form;
+
+		// ClientDTO
+		BaseClientDTO resultClientDTO = new BaseClientDTO();
+
+		if (paramDTO.getUserTel() == null) {
+			resultClientDTO.setReturnCode("-3005");
+			toJson(response, resultClientDTO);
+			return null;
+		}
+		if (paramDTO.getPassword() == null) {
+			resultClientDTO.setReturnCode("-3006");
+			toJson(response, resultClientDTO);
+			return null;
+		}
+		UserLoginEntity paramEntity = new UserLoginEntity();
+		// 参数DTO -> 参数Entity
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+		// paramEntity.setUserTel("15111149742");
+		// paramEntity.setPassword("111111");
+		try {
+			// 检测用户是否存在
+			boolean existUser = checkExistUser(paramEntity.getUserTel());
+			if (!existUser) {
+				paramEntity.setStatus("1");
+				paramEntity.setRole("1");
+				// 录入用户同时录入患者信息
+				// 密码加密
+				paramEntity.setPassword(MD5Util.MD5(paramDTO.getPassword()));
+				iUserLoginService.addUserLogin(paramEntity);
+
+			} else {
+				// 账号存在
+				resultClientDTO.setReturnCode("-3011");
+				paramDTO.setErrFlg(true);
+			}
+
+		} catch (Exception e) {
+			resultClientDTO.setReturnCode("-3010");
+			paramDTO.setErrFlg(true);
+		}
+		// 给客户端赋值
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+		}
+		// android
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 注册医生
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doRegisterDoctor(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		UserLoginDTO paramDTO = (UserLoginDTO) form;
+
+		// ClientDTO
+		BaseClientDTO resultClientDTO = new BaseClientDTO();
+		UserLoginEntity paramEntity = new UserLoginEntity();
+		// 参数DTO -> 参数Entity
+		// paramDTO.setName("李一");
+		// paramDTO.setDepartmentId(1);
+		// paramDTO.setSymptomId("1|2|3");
+		CommonUtil.reflectClass(paramDTO, paramEntity);
+
+		if (paramDTO.getCertificatePic() != null) {
+			paramDTO.setCertificatePic(paramDTO.getCertificatePic().replace("<", ""));
+			paramDTO.setCertificatePic(paramDTO.getCertificatePic().replace(">", ""));
+			String filePath = UploadUtil.doUpload(request, response, paramDTO.getCertificatePic(),paramDTO.getUserTel());
+			paramEntity.setCertificatePic(ResourceLocator.getI18NMessage(this, Constants.MSG_KEY_HOST_ADDRESS) + filePath);
+		}
+		// paramEntity.setUserTel("15111115555");
+		// paramEntity.setPassword("111111");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if (paramDTO.getAge() != null) {
+			paramEntity.setAge(sdf.parse(paramDTO.getAge()));
+
+		}
+		try {
+			// 检查参数是否为空
+			if (paramDTO.getUserTel() == null) {
+				resultClientDTO.setReturnCode("-3022");
+				toJson(response, resultClientDTO);
+				return null;
+			}
+			// 检测用户是否存在
+			boolean existUser = checkExistUser(paramEntity.getUserTel());
+			if (!existUser) {
+				paramEntity.setStatus("1");
+				paramEntity.setRole("0");
+				// 注册用户并且添加医生信息和医生定价
+				paramEntity.setPassword(MD5Util.MD5(paramDTO.getPassword()));
+				if(ResourceLocator.getI18NMessage(this, Constants.KEY_GENE).equals(paramDTO.getDcName())){
+					//基因专家
+					paramEntity.setDoctorType("1");
+				}else{
+					//普通医生
+					paramEntity.setDoctorType("0");
+				}
+				iUserLoginService.addUserLogin(paramEntity);
+			} else {
+				resultClientDTO.setReturnCode("-3021");
+				paramDTO.setErrFlg(true);
+			}
+
+		} catch (Exception e) {
+			resultClientDTO.setReturnCode("-3020");
+			paramDTO.setErrFlg(true);
+		}
+		if (!paramDTO.isErrFlg()) {
+			resultClientDTO.setReturnCode("0");
+		}
+		// android
+		toJson(response, resultClientDTO);
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	// 登录
+	public ActionForward doLogin(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		UserLoginDTO paramDTO = (UserLoginDTO) form;
+
+		// 结果DTO
+		UserLoginClientDTO userLoginClientDTO = new UserLoginClientDTO();
+		if (paramDTO.getUserTel() == null) {
+			userLoginClientDTO.setReturnCode("-3003");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		if (paramDTO.getPassword() == null) {
+			userLoginClientDTO.setReturnCode("-3004");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		// 参数Entity
+		UserLoginEntity paramEntity = new UserLoginEntity();
+		// 参数DTO -> 参数Entity
+		// CommonUtil.reflectClass(paramDTO, paramEntity);
+		paramEntity.setUserTel(paramDTO.getUserTel());
+		// 结果Entity
+		UserLoginEntity resultEntity = null;
+		// // DB操作
+		// paramEntity.setPassword(null);
+		try {
+			resultEntity = iUserLoginService.getObject(paramEntity);
+
+			if (resultEntity == null) { // 用户名不正确
+				// 参数DTO -> 结果DTO
+				CommonUtil.reflectClass(paramDTO, paramEntity);
+				userLoginClientDTO.setReturnCode("-3001");
+				paramDTO.setErrFlg(true);
+			} else {
+				// 密码加密
+				// paramEntity.setPassword(MD5Util.MD5(paramDTO.getPassword()));
+				if (!"".equals(resultEntity.getPassword())
+						&& resultEntity.getPassword().equals(MD5Util.MD5(paramDTO.getPassword()))) {
+					// 如果是医生获取医生信息
+					if ("0".equals(resultEntity.getRole())) {
+						DoctorEntity doctorEntity = new DoctorEntity();
+						doctorEntity.setUserId(resultEntity.getUserId());
+						DoctorEntity doctorResult = null;
+						doctorResult = iDoctorService.getObject(doctorEntity);
+						if (doctorResult != null) {
+							userLoginClientDTO.setDoctorId(doctorResult.getDoctorId());
+							userLoginClientDTO.setName(doctorResult.getName());
+							userLoginClientDTO.setHeadPic(doctorResult.getHeadPic());
+							userLoginClientDTO.setRole(resultEntity.getRole());
+						}
+
+					} else {
+						PatientEntity patientEntity = new PatientEntity();
+						patientEntity.setUserId(resultEntity.getUserId());
+						PatientEntity patientResult = new PatientEntity();
+						patientResult = iPatientService.getObject(patientEntity);
+						if (patientResult != null) {
+							userLoginClientDTO.setPatientId(patientResult.getPatientId());
+							userLoginClientDTO.setHeadPic(patientResult.getPatientPic());
+							userLoginClientDTO.setName(patientResult.getName());
+							userLoginClientDTO.setRole("1");
+						}
+					}
+				} else {// 用户名正确，密码错误
+					userLoginClientDTO.setReturnCode("-3002");
+					paramDTO.setErrFlg(true);
+				}
+			}
+		} catch (Exception e) {
+			userLoginClientDTO.setReturnCode("-3000");
+			paramDTO.setErrFlg(true);
+		}
+
+		if (!paramDTO.isErrFlg()) {
+			userLoginClientDTO.setReturnCode("0");
+			userLoginClientDTO.setUserId(resultEntity.getUserId());
+		}
+		// android
+		toJson(response, userLoginClientDTO);
+
+		return null;
+
+	}
+
+	/**
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	// 登录
+	public ActionForward doResetPassword(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		UserLoginDTO paramDTO = (UserLoginDTO) form;
+		// 结果DTO
+		UserLoginClientDTO userLoginClientDTO = new UserLoginClientDTO();
+		if (paramDTO.getUserTel() == null) {
+			userLoginClientDTO.setReturnCode("-3092");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		if (paramDTO.getPassword() == null) {
+			userLoginClientDTO.setReturnCode("-3093");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		// 参数Entity
+		UserLoginEntity paramEntity = new UserLoginEntity();
+		// 参数DTO -> 参数Entity
+		// CommonUtil.reflectClass(paramDTO, paramEntity);
+		paramEntity.setUserTel(paramDTO.getUserTel());
+		// 结果Entity
+		UserLoginEntity resultEntity = null;
+		// // DB操作
+		// paramEntity.setPassword(null);
+		try {
+			resultEntity = iUserLoginService.getObject(paramEntity);
+
+			if (resultEntity == null) { // 用户名不正确
+				// 参数DTO -> 结果DTO
+				CommonUtil.reflectClass(paramDTO, paramEntity);
+				userLoginClientDTO.setReturnCode("-3091");
+				paramDTO.setErrFlg(true);
+			} else {
+				paramEntity.setPassword(MD5Util.MD5(paramDTO.getPassword()));
+				iUserLoginService.updateUserLogin(paramEntity);
+			}
+		} catch (Exception e) {
+			userLoginClientDTO.setReturnCode("-3090");
+			paramDTO.setErrFlg(true);
+		}
+
+		if (!paramDTO.isErrFlg()) {
+			userLoginClientDTO.setReturnCode("0");
+			// userLoginClientDTO.setUserId(resultEntity.getUserId());
+		}
+		// android
+		toJson(response, userLoginClientDTO);
+
+		return null;
+
+	}
+	
+	
+	/**
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	// 登录
+	public ActionForward doUpdatePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		UserLoginDTO paramDTO = (UserLoginDTO) form;
+		// 结果DTO
+		UserLoginClientDTO userLoginClientDTO = new UserLoginClientDTO();
+		if (paramDTO.getUserTel() == null) {
+			userLoginClientDTO.setReturnCode("-3092");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		if (paramDTO.getPassword() == null) {
+			userLoginClientDTO.setReturnCode("-3093");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		if (paramDTO.getNewPassword()== null) {
+			userLoginClientDTO.setReturnCode("-3094");
+			toJson(response, userLoginClientDTO);
+			return null;
+		}
+		// 参数Entity
+		UserLoginEntity paramEntity = new UserLoginEntity();
+		// 参数DTO -> 参数Entity
+		// CommonUtil.reflectClass(paramDTO, paramEntity);
+		paramEntity.setUserTel(paramDTO.getUserTel());
+		// 结果Entity
+		UserLoginEntity resultEntity = null;
+		// // DB操作
+		// paramEntity.setPassword(null);
+		try {
+			resultEntity = iUserLoginService.getObject(paramEntity);
+
+			if (resultEntity == null) { // 用户名不正确
+				// 参数DTO -> 结果DTO
+				CommonUtil.reflectClass(paramDTO, paramEntity);
+				userLoginClientDTO.setReturnCode("-3091");
+				paramDTO.setErrFlg(true);
+			} else  {
+				if(resultEntity.getPassword().equals(MD5Util.MD5(paramDTO.getPassword()))){
+					paramEntity.setPassword(MD5Util.MD5(paramDTO.getNewPassword()));
+					iUserLoginService.updateUserLogin(paramEntity);
+				}else{
+					userLoginClientDTO.setReturnCode("-3101");
+					toJson(response, userLoginClientDTO);
+					return null;
+				}
+			}
+		} catch (Exception e) {
+			userLoginClientDTO.setReturnCode("-3100");
+			paramDTO.setErrFlg(true);
+		}
+
+		if (!paramDTO.isErrFlg()) {
+			userLoginClientDTO.setReturnCode("0");
+			// userLoginClientDTO.setUserId(resultEntity.getUserId());
+		}
+		// android
+		toJson(response, userLoginClientDTO);
+
+		return null;
+
+	}
+	// 检测用户是否存在的方法
+
+	public boolean checkExistUser(String userTel) {
+
+		try {
+			UserLoginEntity userEntity = new UserLoginEntity();
+			userEntity.setUserTel(userTel);
+			UserLoginEntity resultEntity = iUserLoginService.getObject(userEntity);
+			if (resultEntity == null) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			return true;
+		}
+	}
+}

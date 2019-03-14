@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title>我的病例</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/PrdocInfo.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/commons.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatCaseHistory.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>我的病例</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+
+		<div id="container">
+			<div class="contents">
+				<div class="info clearfix">
+					<strong class="UserImg"><img src="{$patientPic}"></strong>
+					<ul>
+						<li><strong class="UsrName"><span>{$name}</span></strong></li>
+						<li><strong class="UsrTel"><span>{$telNum}</span></strong></li>
+						<li class="clearfix">
+							<strong class="UsrData clearfix">
+								<span class="UsrSex"><img src="{$sex}" />{$age}</span>
+								<span class="UsrHeart"><img src="img/icon_heart.png" />120</span>
+								<span class="UsrLike"><img src="img/icon_star.png" />360</span>
+							</strong>
+						</li>
+					</ul>
+					<div class="UsrPrivacy">
+						<div id="box" class="opener On">
+							<span class="button"></span>
+						</div>
+						<p>隐私策略</p>
+					</div>
+				</div>
+				<div class="NaviCate">
+					<ul>
+						<li cate="1" class="On"><span>就诊记录</span></li>
+						<li cate="2" ><span>问诊信息</span></li>
+						<li cate="3" ><span>检查化验单</span></li>
+						<li cate="4" ><span>用药建议</span></li>
+					</ul>
+				</div>
+				<div class="contentList">
+					<div class="Menu history">
+						<ul class="List">
+							<li><span class="icon"><img src="img/icon_checkList.png"></span> <p>问诊完成，医生书写总结建议 <span>{$time_Over}前</span></p></li>
+							<li><span class="icon"><img src="img/icon_photo.png"></span> <p>和医生视频问诊 <span>{$time_Inquiry}前</span></p></li>
+							<li><span class="icon"><img src="img/icon_videoCam.png"></span> <p>预约视频问诊<span>{$time_Res}前</span></p></li>
+						</ul>
+					</div>
+					<div class="Menu historyInfo">
+						<div>
+							<div class="Dep_Date clearfix">
+								<p class="Dep"><strong>{$departmentName}</strong> <span>问诊票</span></p>
+								<p class="Date"><img src="img/icon_calend.png" /> {$time}</p>
+							</div>
+							
+							<div class="Dep_Date_info">
+								<p class="tImg"><img src="img/icon_question.png"></p>
+								<p class="tTxt">{$symptonDescribe}</p>
+							</div>
+						</div>
+					</div>
+					<div class="Menu ImageFile">
+						<div>
+							<div class="File clearfix">
+								<p class="tImg"><img src="img/icon_Imagefile.png"></p>
+								<p class="Date"><img src="img/icon_calend.png" /> {$ftime}</p>
+							</div>
+							
+							<div class="FileList">
+								<div class="imgList">
+								 	{$imageFile}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="Menu Analsis">
+						<div class="clearfix">
+							<p class="Date"><img src="img/icon_calend.png" /> {$vtime}</p>
+						</div>
+						<div class="AsisGuid">
+							<p class="analysis">
+								<span>症状分析:</span> {$analysis}
+							</p>
+							<p class="guidance">
+								<span>指导意见:</span> {$guidance}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>科室介绍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<style type="text/css">
+
+body { margin:0; padding:0; }
+header { background: #5caafc; height: 64px; width: 100% }
+.header_return { margin:20px 0px 0px 0px; padding: 10px 5px; width: 10%; float: left;}
+header span { margin:20px 0px 0px 0px; text-align: center;line-height: 40px; float:left; width: 75%; color: #ffffff; font-family:微软雅黑; font-size: 20px; font-weight: normal;}
+.director { padding:0px 0;}
+.director img { float: left;  padding:5px 5px 5px 5px; width: 110px;height: 110px;}
+.director p { padding: 10px;font-size: 12px; font-family: 微软雅黑; color: #484848; text-indent: 2em; margin:0;}
+.director h3 { line-height: 0px; padding:0; font-family: 微软雅黑; font-weight: normal; font-size: 16px;}
+.line { width: 100%; height: 15px; background: #f5f5f5 }
+.aboutus { width: 95%; padding: 10px;}
+.aboutus img { width: 100%; margin-bottom: 10px;}
+.aboutus p { font-size: 12px; font-family: 微软雅黑; color: #484848;margin:0; text-indent: 2em;}
+</style>
+
+</head>
+
+<body>
+<header>
+<div class="header_return"><a href="p3.html"><img src="img/return.png"></a></div>	<span>风湿免疫科</span>
+</header>
+<section>
+	<div class="director">
+		<img src="img/department_fengshi_doctor.png"><h3>孙玉兰  主任医师</h3>
+		<p>大连市友谊医院风湿免疫科主任、主任医师、硕士研究生导师、教授。现任中国民族医药学会委员、中华医学会辽宁省风湿免疫学会及大连风湿免疫学会委员，中华医学会中西医结合学会风湿免疫分会常务理事，辽宁省养生康复学会风湿免疫分会副主任委员，辽宁中医药学会风湿免疫分会常务委员，辽宁中西医结合学会康复专业委员会委员。大连市医疗事故评审委员会专家等。</p><p>
+		 从事临床工作20余年，并深造于风湿免疫专业全国翘楚的北京协和医院，获得丰富、扎实的疑难风湿病的诊治技能：不仅熟练掌握类风湿关节炎、干燥综合症、系统性红斑狼疮等常见风湿性疾病的诊治，而且对复发性多软骨炎、IgG4相关疾病等复杂疑难病也有很深造诣。发表SCI、国家级及省级学术论文十余篇。2016年获得辽宁省自然科学学术成果三等奖。多次主持或参与大连市卫生局科研课题立项及研究工作。获得2015年度“大连百名巾帼建功标兵”称号。</p><p>
+      一直秉承 “厚德尚道”的理念，严谨求精、创新发展，获得了众多病人的信赖！</p>
+	</div>
+	<div class="line"> </div>
+	<div class="aboutus">
+		<img src="img/department_fengshi_pic.png">
+		<p> 大连市友谊医院风湿免疫科始建于2009年12月底，为我市三级甲等医院中第一个独立的风湿免疫科。位于大连市友谊医院民生分部(大连中山区民主广场万云巷7号)四楼,开放床位26张。</p>
+		<p> 主要治疗类风湿关节炎、干燥综合症、系统性红斑狼疮、系统性硬化、多发性肌炎皮肌炎、大动脉炎、ANCA相关性小血管炎、白塞氏病、强直性脊柱炎、银屑病关节炎、反应性关节炎、成人still病、风湿性多肌痛、抗磷脂综合症、IgG4相关疾病、痛风、骨关节炎等风湿免疫性疾病。开展慢病管理门诊，提高患者依从性及自我管理能力。采用中西医结合的方法，利用针灸、理疗、中药熏蒸等方法，充分改善病人预后。</p>
+		<p> 开展了生物靶向治疗、IVIG、超声引导下关节腔生物制剂治疗。与兄弟科室合作，建立了先进的风湿病早期诊断平台：如自身免疫项目检测、肌骨超声、关节MRI、唇腺活检、皮肤肌肉活检、肾穿刺等等。现为国家CSTAR、CRDC项目的成员单位之一。</p>
+		<p>学科队伍日渐壮大：现有主任医师2人，主治医师3人，住院医师2人。学科带头人孙玉兰：深造于北京协和医院并于全国、省、市多学会任副主任委员等职务。风湿免疫科业已成为集医疗、教学、科研为一体的实力雄厚的学科。</p>
+		<p> 建科以来，科室认真践行“仁爱、精诚、和谐、卓越”的科训精神，依据风湿免疫疾病的异质性，为众多病人制定出个体化的治疗方案，令广大患者重拾美好生活的信心！</p>
+	</div>
+</section>
+</body>
+</html>

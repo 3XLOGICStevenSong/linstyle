@@ -1,0 +1,247 @@
+package com.djb.ylt.user.service;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.djb.ylt.common.util.Constants;
+import com.djb.ylt.common.util.ResourceLocator;
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.user.dao.IDoctorDao;
+import com.djb.ylt.user.dao.IDoctorSymptomDao;
+import com.djb.ylt.user.dao.IInterrogationPackageDao;
+import com.djb.ylt.user.dao.IPatientDao;
+import com.djb.ylt.user.dao.IUserLoginDao;
+import com.djb.ylt.user.entity.DoctorEntity;
+import com.djb.ylt.user.entity.InterrogationPackageEntity;
+import com.djb.ylt.user.entity.PatientEntity;
+import com.djb.ylt.user.entity.UserLoginEntity;
+
+@Service("iUserLoginService")
+public class UserLoginServiceImpl extends BaseService implements IUserLoginService {
+
+	@Autowired
+	@Qualifier("userLoginDao")
+	private IUserLoginDao userLoginDao;
+
+	@Autowired
+	@Qualifier("patientDao")
+	private IPatientDao patientDao;
+	@Autowired
+	@Qualifier("doctorDao")
+	private IDoctorDao doctorDao;
+
+	@Autowired
+	@Qualifier("doctorSymptomDao")
+	private IDoctorSymptomDao doctorSymptomDao;
+	
+	@Autowired
+	@Qualifier("interrogationPackageDao")
+	private IInterrogationPackageDao interrogationPackageDao;
+	
+	
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void addUserLogin(UserLoginEntity userLogin) throws Exception {
+
+		// TODO Auto-generated method stub
+		try {
+			userLoginDao.insert(userLogin);
+			if ("1".equals(userLogin.getRole())) {
+				if (userLogin.getUserId() != null && userLogin.getUserId() != 0) {
+					PatientEntity patientEntity = new PatientEntity();
+					patientEntity.setUserId(userLogin.getUserId());
+					patientEntity.setNickName(userLogin.getUserTel());
+					patientEntity.setPatientTel(userLogin.getUserTel());
+					patientDao.insert(patientEntity);
+				}
+			}
+			if ("0".equals(userLogin.getRole())) {
+			
+				if (userLogin.getUserId() != null && userLogin.getUserId() != 0) {
+					DoctorEntity doctorEntity = new DoctorEntity();
+					doctorEntity.setUserId(userLogin.getUserId());
+					doctorEntity.setName(userLogin.getName());
+					doctorEntity.setBankName(userLogin.getBankName());
+					doctorEntity.setBankOwner(userLogin.getBankOwner());
+					doctorEntity.setCertificateNum(userLogin.getCertificateNum());
+					doctorEntity.setDepartmentId(userLogin.getDepartmentId());
+					doctorEntity.setBankNum(userLogin.getBankNum());
+					doctorEntity.setCertificatePic(userLogin.getCertificatePic());
+					doctorEntity.setHealDisease(userLogin.getHealDisease());
+					doctorEntity.setHospitalName(userLogin.getHospitalName());
+					doctorEntity.setStatusFlg("1");
+					doctorEntity.setPositional(userLogin.getPositional());
+					doctorEntity.setGrade(userLogin.getGrade());
+					doctorEntity.setDepartmentId(userLogin.getDepartmentId());
+					doctorEntity.setSex(userLogin.getSex());
+					doctorEntity.setAge(userLogin.getAge());
+					doctorEntity.setCardNum(userLogin.getCardNum());
+					doctorEntity.setDoctorTel(userLogin.getUserTel());
+					doctorEntity.setDepartmentName(userLogin.getDepartmentName());
+					doctorEntity.setDcId(userLogin.getDcId());
+					doctorEntity.setDcName(userLogin.getDcName());
+					doctorEntity.setDoctorType(userLogin.getDoctorType());
+					doctorEntity.setServiceType("2");
+					doctorDao.insert(doctorEntity);
+					//添加医生套餐(白班晚班)
+					if (userLogin.getDayTotal() != null && "0".equals(userLogin.getDoctorType()) ) {
+					InterrogationPackageEntity paramEntity = new InterrogationPackageEntity();
+					paramEntity.setTotal(Double.valueOf(userLogin.getDayTotal()));
+					paramEntity.setType("0");
+					paramEntity.setWorkType("0");
+					paramEntity.setEarlyTime(userLogin.getEarlyTime());
+					paramEntity.setDoctorId(doctorEntity.getDoctorId());
+					interrogationPackageDao.insert(paramEntity);
+				}
+					
+					if (userLogin.getNightTotal() != null && "0".equals(userLogin.getDoctorType())) {
+						InterrogationPackageEntity paramEntity = new InterrogationPackageEntity();
+						paramEntity.setTotal(Double.valueOf(userLogin.getNightTotal()));
+						paramEntity.setType("0");
+						paramEntity.setWorkType("1");
+						paramEntity.setEarlyTime(userLogin.getEarlyTime());
+						paramEntity.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity);
+					}
+					//图文问诊
+					if (userLogin.getPhotoPrice() != null && "0".equals(userLogin.getDoctorType())) {
+						InterrogationPackageEntity paramEntity = new InterrogationPackageEntity();
+						paramEntity.setTotal(Double.valueOf(userLogin.getPhotoPrice()));
+						paramEntity.setType("3");
+						paramEntity.setFreeTotal(userLogin.getFreeTotal());
+						//paramEntity.setWorkType("1");
+						//paramEntity.setEarlyTime(userLogin.getEarlyTime());
+						paramEntity.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity);
+					}
+					if("1".equals(userLogin.getDoctorType())){
+						//基因专家早晚班
+						InterrogationPackageEntity paramEntity = new InterrogationPackageEntity();
+						paramEntity.setTotal(0.0);
+						paramEntity.setType("0");
+						paramEntity.setWorkType("1");
+						paramEntity.setEarlyTime(userLogin.getEarlyTime());
+						paramEntity.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity);
+						InterrogationPackageEntity paramEntity1 = new InterrogationPackageEntity();
+						paramEntity1.setTotal(0.0);
+						paramEntity1.setType("0");
+						paramEntity1.setWorkType("0");
+						paramEntity1.setEarlyTime(userLogin.getEarlyTime());
+						paramEntity1.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity1);
+					}
+					
+//					if (userLogin.getSymptomId() != null) {
+//						String[] symptomId = null;
+//						if (userLogin.getSymptomId() != null) {
+//							symptomId = StringUtils.split(userLogin.getSymptomId(), "|");
+//						}
+//						if (symptomId != null) {
+//							for (String section : symptomId) {
+//								DoctorSymptomEntity doctorSymptomEntity = new DoctorSymptomEntity();
+//								doctorSymptomEntity.setDoctorId(doctorEntity.getDoctorId());
+//								doctorSymptomEntity.setSymptomId(Integer.parseInt(section));
+//								doctorSymptomDao.insert(doctorSymptomEntity);
+//							}
+//
+//						}
+//					}
+					//以下这些需要注释掉
+
+					if (userLogin.getInqueryTotal() != null) {
+						InterrogationPackageEntity paramEntity = new InterrogationPackageEntity();
+						paramEntity.setCount(1);
+						paramEntity.setTotal(Double.valueOf(userLogin.getInqueryTotal()));
+						paramEntity.setType("0");
+						paramEntity.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity);
+				}
+					//电话
+					if (userLogin.getTelTotal() != null) {
+						InterrogationPackageEntity paramEntity1 = new InterrogationPackageEntity();
+						paramEntity1.setTotal(Double.valueOf(userLogin.getTelTotal()));
+						paramEntity1.setTelCount(1);
+						paramEntity1.setType("1");
+						paramEntity1.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity1);
+					}
+					//私人医生
+					if (userLogin.getPrivateTotal() != null) {
+						InterrogationPackageEntity paramEntity2 = new InterrogationPackageEntity();
+						paramEntity2.setTotal(Double.valueOf(userLogin.getPrivateTotal()));
+						paramEntity2.setTelCount(userLogin.getTelNum());
+						paramEntity2.setCount(userLogin.getInqueryNum());
+						paramEntity2.setEffectTime(userLogin.getEffectTime());
+						paramEntity2.setType("2");
+						paramEntity2.setDoctorId(doctorEntity.getDoctorId());
+						interrogationPackageDao.insert(paramEntity2);
+					}
+					//以上这些需要注释掉
+				}
+			}
+		} catch (KeyExistException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteUserLogin(UserLoginEntity userLogin) {
+
+		try {
+			userLoginDao.delete(userLogin);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void deleteUserLoginBatch(List<UserLoginEntity> list) {
+
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateUserLogin(UserLoginEntity userLogin) {
+
+		try {
+			userLoginDao.update(userLogin);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public UserLoginEntity getObject(UserLoginEntity userLogin) {
+
+		return userLoginDao.getObject(userLogin);
+
+	}
+
+	@Override
+	public List<UserLoginEntity> getUserLoginList() {
+
+		return (List<UserLoginEntity>) userLoginDao.findList();
+	}
+
+	@Override
+	public List<UserLoginEntity> getUserLoginList(UserLoginEntity userLogin) {
+		List<UserLoginEntity> list = (List<UserLoginEntity>) userLoginDao.findListByCondition(userLogin);
+		return list;
+	}
+
+}

@@ -1,0 +1,33 @@
+.MenuForm {position:relative;}
+.MenuForm .NavMenu{position:absolute;top:0.45rem;width:100%;height:1rem;background:none}
+.MenuForm h1{position:absolute;top:0.15rem;width:100%;text-align:center;color:#fff;font-size:0.6rem;z-index:2}
+.MenuForm #User{position:absolute;top:0;left:0.6rem;z-index:9}
+.MenuForm #User img {width:1.0rem;height:1.0rem}
+.MenuForm .NavMenu.Fix{position:fixed;top:0;width:100%;height:1rem;padding:0.3rem 0;background:#000;opacity:0.3;z-index:999}
+.MenuForm .NavMenu.Fix h1{position:absolute;top:0.45rem;width:100%;text-align:center;color:#fff;font-size:0.6rem;z-index:2}
+.MenuForm .NavMenu.Fix #User{position:absolute;top:0.3rem;left:0.6rem;z-index:9}
+.MenuForm .NavMenu.Fix #User img {width:1.0rem;height:1.0rem}
+.MenuForm .NavMenu.Fix .Cayegory{position:absolute;top:0.3rem;right:0.6rem;z-index:9}
+.MenuForm .NavMenu.Fix .Cayegory img {width:1.0rem;height:1.0rem}
+
+.MenuForm .Cayegory{position:absolute;top:0;right:0.6rem;z-index:9}
+.MenuForm .Cayegory img {width:1.0rem;height:1.0rem}
+.MenuForm .bigMenu {background:#fff}
+.MenuForm .bigMenu ul li{}
+.MenuForm .bigMenu ul li img{width:100%;}
+
+.MenuForm .slider{}
+.MenuForm .focus {text-align:center}
+.MenuForm .focus span{width:10px;height:10px;margin-right:10px;border-radius:50%;background:#fff;font-size:0}
+.MenuForm .focus span.current{background:#63b8fb}
+
+#aside {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:10}
+.sideMenu{position:absolute;top:0;left:-50%;width:50%;height:100%;background:#14477c;z-index:12}
+.sideMenu .Minfo {padding-top:0.5rem}
+.sideMenu .Minfo span{display:block;text-align:center}
+.sideMenu .Minfo span img{width:2rem;}
+.sideMenu .Minfo strong {display:block;padding:0.3rem 0;text-align:center;color:#fff;font-size:0.35rem}
+
+.sideMenu .list {margin:0.5rem 0 0 0}
+.sideMenu .list ul li{padding:0.3rem 0.5rem;}
+.sideMenu .list ul li a{color:#fff;font-size:0.4rem;}

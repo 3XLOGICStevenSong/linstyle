@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title>支付确认</title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/paymentAgreement.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$(".icon_check").click(function(){
+			$(this).toggleClass("on");
+		})
+		
+	})
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2>支付确认</h2>
+		</div>
+	</div>
+	 
+	<div id="wrap">
+
+		<div id="container">
+			<div class="contents">
+				<div class="payment">
+					<div class="info">
+						<p class="title clearfix"><span class="icon_doctor"></span>私人医生 <span class="price">100元/30天</span></p>
+						<p class="label">
+							<span class="video">2次视频问诊</span>
+							<span class="phone">4次电话问诊</span>
+							<span class="message">留言免费</span>
+						</p>
+						<p class="Detailed">获得医生的随访<br/>创建个人电子病历</p>
+					</div>
+					<div class="Price">
+						<p class="Total clearfix">支付金额 <strong class="TotalPrice">100元</strong></p>
+						<p class="pay clearfix"><span class="icon_alipay"></span>支付金额 <strong class="TotalPrice">></strong></p>
+						<p class="Agree clearfix"><span class="icon_check on"></span>同意 <strong> <a href="#paymentAgreement.html">《支付协议》</a></strong></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,59 @@
+.Mebdetail .info {position:relative;background:#fff;border-bottom:1px solid #d0d0d0;}
+.Mebdetail .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.Mebdetail .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.Mebdetail .info ul{display:inline-block;padding:0.2rem 0;vertical-align:top;font-size:0.4rem;}
+.Mebdetail .info ul li {padding:0 0 0.3rem;}
+.Mebdetail .info ul li.frt strong{font-weight:bold;}
+.Mebdetail .info ul li strong{font-weight:normal;}
+.Mebdetail .info ul li.frt strong span{font-weight:bold}
+.Mebdetail .info ul li strong span{font-weight:bold}
+.Mebdetail .info ul li strong.Sex{margin:0 0.5rem 0 0}
+
+.Mebdetail .TimeList{margin:10px 0 0 0;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;background:#fff;}
+
+.Mebdetail .state {padding:0.2rem;}
+.Mebdetail .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.Mebdetail .state .DocReject,
+.Mebdetail .state .Cancel,
+.Mebdetail .state .PatCancelAgree,
+.Mebdetail .state .DocCancelDisagree,
+.Mebdetail .state .DocResCancel,
+.Mebdetail .state .Tel,
+.Mebdetail .state .Emp,
+.Mebdetail .state .delay,
+.Mebdetail .state .Cam,
+.Mebdetail .state .Count,
+.Mebdetail .state .Over,
+.Mebdetail .state .Complate,
+.Mebdetail .state .Start{float:right}
+.Mebdetail .state .Emp {color:#ffa173;min-height:0.9rem;line-height:0.9rem;}
+.Mebdetail .state .DocReject,
+.Mebdetail .state .PatCancelAgree,
+.Mebdetail .state .DocCancelDisagree,
+.Mebdetail .state .DocResCancel,
+.Mebdetail .state .delay,
+.Mebdetail .state .Over {color:#999;min-height:0.9rem;line-height:0.9rem;}
+.Mebdetail .state .Cam span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.Mebdetail .state .Cam span a{display:block;padding:0 15px;color:#fff}
+.Mebdetail .state .Cam span.state_icon {float:left;width:1rem;background:#5faafc url("../img/camera_icon.png") no-repeat center center;background-size:0.5rem;border-right:1px solid #fff}
+.Mebdetail .state .Cancel .Doc_no{background:#bfc1c2}
+.Mebdetail .state .DocCancelDisagree{color:#f00}
+
+
+.Mebdetail .state .Start span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.Mebdetail .state .Start span.sorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.Mebdetail .state .Start span a{display:block;padding:0 15px;color:#fff}
+
+.Mebdetail .state .Tel span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.Mebdetail .state .Tel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.Mebdetail .state .Tel span a{display:block;padding:0 15px;color:#fff}
+
+.Mebdetail .state .Cancel span{float:left;width:2.3rem;min-height:0.9rem;line-height:0.9rem;background:#5faafc;text-align:center}
+.Mebdetail .state .Cancel span.callSorry{float:left;min-height:0.9rem;line-height:0.9rem;background:#bfc1c2;}
+.Mebdetail .state .Cancel span a{display:block;padding:0 15px;color:#fff}
+
+.Mebdetail .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.Mebdetail .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+.Mebdetail .Detail {position:relative;padding:0 0.2rem;line-height:0.8rem;}
+.Mebdetail .Detail .chart_icon{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;background:url("../img/chart.png") no-repeat center center;background-size:100%;}

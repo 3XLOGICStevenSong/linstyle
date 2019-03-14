@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+	<resultMap id="MedicineCommentResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		<id column="comment_id" property="comment_id" jdbcType="INTEGER" />
+		<result column="comment_content" property="comment_content"
+			jdbcType="VARCHAR" />
+		<result column="comment_grade" property="comment_grade"
+			jdbcType="REAL" />
+		<result column="comment_time" property="comment_time" jdbcType="TIMESTAMP" />
+		<result column="medicine_id" property="medicine_id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="last_modify_time" property="last_modify_time"
+			jdbcType="TIMESTAMP" />
+		<result column="create_user" property="create_user" jdbcType="INTEGER" />
+		<result column="last_modify_user" property="last_modify_user"
+			jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+
+		<association property="medicineInfoEntity"
+			javaType="com.djb.ylt.medicine.entity.MedicineInfoEntity"
+			resultMap="MedicineInfoResultMap" />
+
+		<association property="userLoginEntity"
+			javaType="com.djb.ylt.user.entity.UserLoginEntity" resultMap="UserLoginResult" />
+	</resultMap>
+
+	<resultMap id="MedicineInfoResultMap"
+		type="com.djb.ylt.medicine.entity.MedicineInfoEntity">
+		<id column="medicine_id" property="medicine_id" jdbcType="INTEGER" />
+		<result column="medicine_name" property="medicine_name"
+			jdbcType="VARCHAR" />
+		<result column="medicine_directions" property="medicine_directions"
+			jdbcType="VARCHAR" />
+		<result column="medicine_price" property="medicine_price"
+			jdbcType="REAL" />
+		<result column="medicine_grade" property="medicine_grade"
+			jdbcType="REAL" />
+		<result column="medicine_pic" property="medicine_pic" jdbcType="VARCHAR" />
+		<result column="medicine_effect" property="medicine_effect"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_name" property="medicine_type_name"
+			jdbcType="CHAR" />
+		<result column="medicine_brand" property="medicine_brand"
+			jdbcType="VARCHAR" />
+		<result column="medicine_factory" property="medicine_factory"
+			jdbcType="VARCHAR" />
+		<result column="medicine_insurance" property="medicine_insurance"
+			jdbcType="VARCHAR" />
+		<result column="medicine_otc" property="medicine_otc" jdbcType="VARCHAR" />
+		<result column="medicine_memo" property="medicine_memo"
+			jdbcType="VARCHAR" />
+		<result column="medicine_type_id" property="medicine_type_id"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="UserLoginResult" type="com.djb.ylt.user.entity.UserLoginEntity">
+		<id column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<result column="USER_TEL" jdbcType="VARCHAR" property="userTel" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ROLE" jdbcType="CHAR" property="role" />
+		<result column="HXUSER_ID" jdbcType="VARCHAR" property="hxuserId" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+
+
+
+	<sql id="MedicineComment_Column_List">
+		mc.comment_id, mc.comment_content, mc.comment_grade,
+		mc.comment_time,
+		mc.medicine_id,
+		mc.user_id, mc.create_time,
+		mc.last_modify_time,
+		mc.create_user, mc.last_modify_user, mc.version
+	</sql>
+
+
+	<sql id="MedicineInfo_Column_List">
+		mi.medicine_id, mi.medicine_name, mi.medicine_directions,
+		mi.medicine_price,
+		mi.medicine_grade,
+		mi.medicine_pic,
+		mi.medicine_effect,
+		mi.medicine_type_name,
+		mi.medicine_brand,
+		mi.medicine_factory,
+		mi.medicine_insurance,
+		mi.medicine_otc,
+		mi.medicine_memo, mi.medicine_type_id
+	</sql>
+
+	<sql id="UserLogin_Column_List">
+		ul.USER_ID, ul.USER_TEL, ul.PASSWORD, ul.ROLE, ul.HXUSER_ID, ul.STATUS, ul.CREATE_TIME, ul.UPDATE_TIME
+	</sql>
+
+
+
+	<sql id="MedicineCommentWhereClause">
+		<if test="comment_id!=null">and mc.comment_id=#{comment_id} </if>
+		<if test="comment_content!=null">and mc.comment_content=#{comment_content} </if>
+		<if test="comment_grade!=null">and mc.comment_grade=#{comment_grade} </if>
+		<if test="comment_time!=null">and mc.comment_time=#{comment_time} </if>
+		<if test="medicine_id!=null">and mc.medicine_id=#{medicine_id} </if>
+		<if test="userId!=null">and mc.user_id=#{userId} </if>
+	</sql>
+
+	<sql id="orderByMedicineCommentClause">
+		ORDER BY mc.comment_time DESC
+	</sql>
+
+
+	<select id="getObject"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity"
+		resultMap="MedicineCommentResultMap">
+		select
+		<include refid="MedicineComment_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_comment mc ,medicine_info mi
+		where 1=1
+		and
+		mc.medicine_id=mi.medicine_id
+		<include refid="MedicineCommentWhereClause" />
+	</select>
+
+
+
+	<select id="findList"
+		resultType="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		select
+		<include refid="MedicineComment_Column_List" />
+		,
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_comment mc,user_login ul,medicine_info mi
+		where 1=1
+		and
+		mc.user_id =
+		ul.USER_ID
+		and mc.medicine_id=mi.medicine_id
+		<include refid="orderByMedicineCommentClause" />
+
+	</select>
+
+	<select id="findListByCondition"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity"
+		resultMap="MedicineCommentResultMap">
+		select
+		<include refid="MedicineComment_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_comment mc,user_login ul,medicine_info mi
+		where 1=1
+		and
+		mc.user_id =
+		ul.USER_ID
+		and mc.medicine_id=mi.medicine_id
+		<include refid="MedicineCommentWhereClause" />
+		<include refid="orderByMedicineCommentClause" />
+	</select>
+
+	<select id="findPagedList"
+		resultType="com.djb.ylt.medicine.entity.MedicineCommentEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		select
+		<include refid="MedicineComment_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_comment mc,user_login ul,medicine_info mi
+		where 1=1
+		and
+		mc.user_id =
+		ul.USER_ID
+		and mc.medicine_id=mi.medicine_id
+		<include refid="orderByMedicineCommentClause" />
+		limit
+		#{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedListByCondition"
+		resultType="com.djb.ylt.medicine.entity.MedicineCommentEntity"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		select
+		<include refid="MedicineComment_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />
+		,
+		<include refid="MedicineInfo_Column_List" />
+		from medicine_comment mc,user_login ul,medicine_info mi
+		where 1=1
+		and
+		mc.user_id =
+		ul.USER_ID
+		and mc.medicine_id=mi.medicine_id
+		<include refid="MedicineCommentWhereClause" />
+		<include refid="orderByMedicineCommentClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+
+	<insert id="insert"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		insert into medicine_comment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="comment_id != null">
+				comment_id,
+			</if>
+			<if test="comment_content != null">
+				comment_content,
+			</if>
+			<if test="comment_grade != null">
+				comment_grade,
+			</if>
+			<if test="comment_time != null">
+				comment_time,
+			</if>
+			<if test="medicine_id != null">
+				medicine_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="create_time != null">
+				create_time,
+			</if>
+			<if test="last_modify_time != null">
+				last_modify_time,
+			</if>
+			<if test="create_user != null">
+				create_user,
+			</if>
+			<if test="last_modify_user != null">
+				last_modify_user,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="comment_id != null">
+				#{comment_id,jdbcType=INTEGER},
+			</if>
+			<if test="comment_content != null">
+				#{comment_content,jdbcType=VARCHAR},
+			</if>
+			<if test="comment_grade != null">
+				#{comment_grade,jdbcType=REAL},
+			</if>
+			<if test="comment_time != null">
+				#{comment_time,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="medicine_id != null">
+				#{medicine_id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				#{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="last_modify_time != null">
+				#{last_modify_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="create_user != null">
+				#{create_user,jdbcType=INTEGER},
+			</if>
+			<if test="last_modify_user != null">
+				#{last_modify_user,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+
+	<delete id="delete"
+		parameterType="com.djb.ylt.medicine.entity.MedicineCommentEntity">
+		DELETE FROM medicine_comment
+		where
+		comment_id=#{comment_id}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,46 @@
+.moreList #List > li{margin:0 0 0.2rem;border-bottom:1px solid #d1d1d1}
+.moreList #List li:first-child .info{border-top:0}
+.moreList .info {position:relative;background:#fff;border-top:1px solid #d1d1d1;}
+.moreList .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.moreList .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+
+.moreList .info  ul{display:inline-block;padding:0.2rem;font-size:0.4rem;vertical-align:top}
+.moreList .info  ul li strong.docTitle{display:block;margin:0 0 0.2rem;font-weight:normal;font-size:0.4rem}
+.moreList .info  ul li.frt {padding:0 0 0.2rem}
+.moreList .info  ul li.frt strong{font-weight:bold;font-size:0.4rem}
+.moreList .info  ul li.frt span{margin:0 0 0 0.3rem;font-size:0.35rem}
+
+.moreList .TimeList{border-top:1px solid #d0d0d0;background:#fff}
+.moreList .state {padding:0.2rem 0.3rem 0.2rem}
+.moreList .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.moreList .state .Notpaid,
+.moreList .state .PaidOver,
+.moreList .state .Refund,
+.moreList .state .Wait,
+.moreList .state .Success,
+.moreList .state .Count,
+.moreList .state .Cam,
+.moreList .state .Over,
+.moreList .state .NotResult,
+.moreList .state .DocReject,
+.moreList .state .WaitCancel,
+.moreList .state .AgreeCancel,
+.moreList .state .Disagree,
+.moreList .state .Cancel{float:right;color:#999;min-height:0.9rem;line-height:0.9rem;}
+
+.moreList .state .Wait,
+.moreList .state .Success {color:#ffa173;min-height:0.9rem;line-height:0.9rem;}
+
+.moreList .state .Cam span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.moreList .state .Cam span a{display:block;padding:0 15px;color:#fff}
+.moreList .state .Cam span.state_icon {float:left;width:1rem;background:#5faafc url("../img/camera_icon.png") no-repeat center center;background-size:0.5rem;border-right:1px solid #fff}
+
+.moreList .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.moreList .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.2rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;border-top:1px solid #999;border-bottom:1px solid #999;background:#fff;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}
+#pullrefresh {position:absolute;top:1.2rem}
+.listNavy {position:fixed;top:0;;background:#fff;z-index:99}
+.listNavy ul li{float:left;width:2.5rem;height:1.2rem;line-height:1.2rem;font-size:0.4rem;text-align:center;}
+.listNavy ul li span{display:block} 
+.listNavy ul li.On{border-bottom:0.05rem solid #4ad764;color:#4ad764;}

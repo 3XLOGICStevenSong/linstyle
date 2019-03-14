@@ -1,0 +1,183 @@
+package com.djb.ylt.cases.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.djb.ylt.cases.dto.CasesDTO;
+import com.djb.ylt.cases.dtoclient.CasesClientDTO;
+import com.djb.ylt.cases.entity.CasesEntity;
+import com.djb.ylt.cases.service.ICasesService;
+import com.djb.ylt.common.util.CommonUtil;
+import com.djb.ylt.framework.action.BaseAction;
+
+/**
+ * <p>
+ * <strong>类名: 典型病例</strong>
+ * </p>
+ * PatientAction <br/>
+ * <p>
+ * <strong>功能说明: 医生获取自己的典型病例</strong>
+ * </p>
+ * 这个类是封装那个哪个模块，起什么用的，需要手动填写. <br/>
+ * <p>
+ * <strong>创建日期: </strong><br/>
+ * </p>
+ * <br/>
+ * 
+ * @author 陈新宇
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
+@Controller("/Cases")
+public class CasesAction  extends BaseAction {
+
+	@Autowired
+	@Qualifier("iCasesService")
+	private ICasesService iCasesService;
+
+	public CasesAction() {
+		super();
+	}
+	
+	/**
+	 * 获取登录医生自己的典型病例列表
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doGetDoctorCasesList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		CasesDTO paramDTO = (CasesDTO) form;
+		
+		CasesClientDTO paraDTO = new CasesClientDTO();
+		
+		// 结果DTO
+		List<CasesClientDTO> resultCasesDTO = null;
+		
+		// 参数Entity
+		CasesEntity paramEntity=new CasesEntity();
+		// 结果Entity
+		List<CasesEntity> resultCasesList=null;
+
+		// test
+		paramEntity.setDoctorId(paramDTO.getDoctorId());
+		// DB查询
+		try {
+			resultCasesList=iCasesService.getCasesList(paramEntity);	
+			
+			if(resultCasesList!= null && resultCasesList.size()>0){
+				resultCasesDTO = new ArrayList<CasesClientDTO>();
+				
+				for(CasesEntity param:resultCasesList) {
+					//CommonUtil.reflectClass(param, paramDTO);
+					
+					CasesClientDTO cases = new CasesClientDTO();
+					cases.setTcId(param.getTcId());
+					cases.setDcName(param.getDcName());
+					cases.setDoctorName(param.getDoctorName());
+					cases.setDepName(param.getDepName());
+					cases.setCaseName(param.getCaseName());
+					cases.setViewTimes(param.getViewTimes());
+					cases.setPicUrl(param.getPicUrl());
+					//cases.setGrade(param.getGrade());
+					cases.setPositional(param.getPositional());
+					cases.setHospitalName(param.getHospitalName());
+					cases.setDetailUrl("www.baidu.com"+param.getTcId());
+					
+					resultCasesDTO.add(cases);
+				}
+				paraDTO.setCasesDTOList(resultCasesDTO);
+			}
+			
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			paraDTO.setReturnCode("-8000");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			paraDTO.setReturnCode("0");
+			//
+		}
+		// 返回结果
+		toJson(response, paraDTO);
+		return null;
+	}
+	
+	/**
+	 * 典型病例详情 - 浏览次数加 1
+	 * 
+	 * @param mapping
+	 *            The ActionMapping used to select this instance
+	 * @param form
+	 *            The optional ActionForm bean for this request
+	 * @param request
+	 *            The servlet request we are processing
+	 * @param response
+	 *            The servlet response we are creating
+	 * 
+	 * @exception Exception
+	 *                if business logic throws an exception
+	 */
+	public ActionForward doRefreshViewTimes(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		// 参数DTO
+		CasesDTO paramDTO = (CasesDTO) form;
+		// 结果DTO
+		// List<CasesDTO> resultCasesDTO = null;
+
+		// 参数Entity
+		CasesEntity paramEntity=new CasesEntity();
+		CasesEntity currentCaseEntity =new CasesEntity();
+		// 结果Entity
+		// List<CasesEntity> resultCasesList=null;
+
+		// test
+		paramEntity.setTcId(paramDTO.getTcId());
+		
+		try {
+			currentCaseEntity= iCasesService.getObject(paramEntity);
+			int temInt = currentCaseEntity.getViewTimes().intValue()+1;
+			paramEntity.setViewTimes(temInt);
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			paramDTO.setReturnCode("-8001");
+		}
+		
+		try {
+			iCasesService.updateViewTimes(paramEntity);	
+		} catch (Exception e) {
+			paramDTO.setErrFlg(true);
+			paramDTO.setReturnCode("-8001");
+		}
+		// return 处理
+		if (!paramDTO.isErrFlg()) {
+			paramDTO.setReturnCode("0");
+		}
+		// 返回结果
+		toJson(response, paramDTO.getCasesDTOList());
+		return null;
+	}
+}

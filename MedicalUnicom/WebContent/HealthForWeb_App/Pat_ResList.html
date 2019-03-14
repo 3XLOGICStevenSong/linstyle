@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/mui.min.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Reseveration.css" />
+	<link rel="stylesheet" href="css/selectForm.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<!--script type="text/javascript" src="js/ajaxPatReservation.js"></script-->
+	<script type="text/javascript" src="js/ajaxPatResList.js"></script>
+	<script src="js/mui.min.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:location.reload()">&lt;</a></span>
+			<h2 id="depName">预约医生</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="condition">
+					<ul class="sortForm clearfix">
+						<li id="0" class="down">级别
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+						<li id="1">价格
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+						<li id="2">评价
+							<span class="up"></span>
+							<span class="down"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="SelectDoc">
+					<div class="NavGuige">
+						<ul>
+							<li class="on"><span></span>选择症状/科室</li>
+							<li class="on"><span></span>选择医生</li>
+							<li><span></span>问诊方式</li>
+							<li><span></span>预约时间</li>
+							<li><span></span>问诊票</li>
+							<li><span></span>支付</li>
+						</ul>
+					</div>
+					<div id="pullrefresh" style="position:absolute;top:2.52rem" class="mui-content mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="List mui-table-view mui-table-view-chevron"></ul>
+							<!--button type="button" id="MoreBtn">查看更多</button-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

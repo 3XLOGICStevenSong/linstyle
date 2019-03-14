@@ -1,0 +1,122 @@
+package com.djb.ylt.gene.dtoclient;
+
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+
+
+public class DetectResultClientDTO  extends BaseClientDTO{
+
+
+	private Integer rmId;
+
+    private String evaluate;
+    
+    private String checkName;
+
+    private List<TestResultClientDTO> detectResultList;
+    
+    private List<DetectAnalysisClientDTO> detectAnalysisList;
+    
+    private Integer patientId;
+    
+	/**
+	 * 返回rmId的值
+	 * @return Integer rmId的值
+	 */
+	public Integer getRmId() {
+		return rmId;
+	}
+
+	/**
+	 * 设置rmId的值
+	 * @param  rmId rmId的值
+	 */
+	public void setRmId(Integer rmId) {
+		this.rmId = rmId;
+	}
+
+	/**
+	 * 返回evaluate的值
+	 * @return String evaluate的值
+	 */
+	public String getEvaluate() {
+		return evaluate;
+	}
+
+	/**
+	 * 设置evaluate的值
+	 * @param  evaluate evaluate的值
+	 */
+	public void setEvaluate(String evaluate) {
+		this.evaluate = evaluate;
+	}
+
+	/**
+	 * 返回detectResultList的值
+	 * @return List<TestResultClientDTO> detectResultList的值
+	 */
+	public List<TestResultClientDTO> getDetectResultList() {
+		return detectResultList;
+	}
+
+	/**
+	 * 设置detectResultList的值
+	 * @param  detectResultList detectResultList的值
+	 */
+	public void setDetectResultList(List<TestResultClientDTO> detectResultList) {
+		this.detectResultList = detectResultList;
+	}
+
+	/**
+	 * 返回detectAnalysisList的值
+	 * @return List<DetectAnalysisClientDTO> detectAnalysisList的值
+	 */
+	public List<DetectAnalysisClientDTO> getDetectAnalysisList() {
+		return detectAnalysisList;
+	}
+
+	/**
+	 * 设置detectAnalysisList的值
+	 * @param  detectAnalysisList detectAnalysisList的值
+	 */
+	public void setDetectAnalysisList(List<DetectAnalysisClientDTO> detectAnalysisList) {
+		this.detectAnalysisList = detectAnalysisList;
+	}
+
+	/**
+	 * 返回patientId的值
+	 * @return Integer patientId的值
+	 */
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	/**
+	 * 设置patientId的值
+	 * @param  patientId patientId的值
+	 */
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+
+	/**
+	 * 返回checkName的值
+	 * @return String checkName的值
+	 */
+	public String getCheckName() {
+		return checkName;
+	}
+
+	/**
+	 * 设置checkName的值
+	 * @param  checkName checkName的值
+	 */
+	public void setCheckName(String checkName) {
+		this.checkName = checkName;
+	}
+
+  
+}

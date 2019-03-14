@@ -1,0 +1,1738 @@
+package com.djb.ylt.user.entity;
+
+import java.util.Date;
+import java.util.List;
+
+import com.djb.ylt.framework.entity.PageModel;
+import com.djb.ylt.health.entity.InqueryQuestionEntity;
+
+public class AppointInquiryEntity extends PageModel {
+
+	/**
+	 * serialVersionUID:用一句话描述这个变量表示什么。
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer appointId;
+
+	private Integer patientId;
+
+	private Integer doctorId;
+
+	private Integer packageId;
+
+	private Integer depClassId;
+
+	private Integer depId;
+
+	private Integer symptonId;
+
+	private Date insertTime;
+
+	private Date updateTime;
+
+	private Double buyTotal;
+
+	private String buyHash;
+
+	private String payStatus;
+
+	private String payType;
+
+	private Date payTime;
+
+	private String appointType;
+
+	private Date appointTime;
+
+	private String symptonDescribe;
+
+	private String outTradeNum;
+
+	private InterrogationPackageEntity interrogationPackageEntity;
+
+	private QaTypeEntity qaTypeEntity;
+
+	private List<RecordsEntity> recordsEntitys;
+
+	private DoctorEntity doctorEntity;
+
+	private PatientEntity patientEntity;
+	
+	private Date beginTime;
+
+	private String telNum;
+
+	private Integer scheduleId;
+
+	private String inquiryPic;
+
+	private String images;
+
+	private String[] imageArgs;
+
+	private String memo;
+
+	private Integer vioCount;
+
+	private Integer tCount;
+
+	private String orderNumber;
+
+	private List<InqueryQuestionEntity> inqueryQuestionEntitys;
+
+	private Integer vUseNum;
+
+	private Integer tUseNum;
+
+	private String payParam;
+
+	private String reasonMemo;
+
+	private Integer refundId;
+
+	private String refundReason;
+
+	private String payInfo;
+
+	private Integer recordsId;
+
+	private Date createTime;
+
+	private String statusFlag;
+
+	private String refundNum;
+
+	private String refundParam;
+
+	private List<AppointInquiryEntity> appontEntityList;
+
+	private String workType;
+
+	private String appointDate;
+
+	// 是否关注
+	private String followFlag;
+
+	// 此字段为了常用医生接口 返回的为该患者问诊过的医生次数
+	private int count;
+	// 此字段为传入参数排序用
+	private int sortType;
+
+
+	private Date maxAppointTime;
+
+	private Integer allCount;
+
+	private Integer dCount;
+
+	private Integer nCount;
+
+	private Integer eCount;
+
+	private Double total;
+
+	private Double dTotal;
+
+	private Double nTotal;
+
+	private Double eTotal;
+
+	private Double doctorTotal;
+
+	private String detectNum;
+
+	private String userCode;
+
+	private String freeFlag;
+
+	private String followUpFlag;
+
+	private String photoEnd;
+
+	private Integer scheduleFlag;
+
+	private Integer freeTotal;
+	
+	private List<GraphicEntity> graphicEntitys;
+	
+	private String headPic;
+	
+	private String  doctorName;
+	
+	private String patientPic;
+	
+	private String patientName;
+	
+	private String effectFlag;
+	
+	private Date maxChatTime;
+	
+	private Date  chatTime;
+	
+	private Date phoTime;
+	
+	private GraphicEntity graphicEntity;
+
+	private Date age;
+	
+	private String sex;
+	
+	private String docDel;
+	
+	private String patDel;
+	
+	private String patientTel;
+	
+	public String getPatientTel() {
+		return patientTel;
+	}
+
+	public void setPatientTel(String patientTel) {
+		this.patientTel = patientTel;
+	}
+
+	public GraphicEntity getGraphicEntity() {
+		return graphicEntity;
+	}
+
+	public void setGraphicEntity(GraphicEntity graphicEntity) {
+		this.graphicEntity = graphicEntity;
+	}
+
+	public Date getMaxChatTime() {
+		return maxChatTime;
+	}
+
+	public void setMaxChatTime(Date maxChatTime) {
+		this.maxChatTime = maxChatTime;
+	}
+
+	public Date getMaxAppointTime() {
+		return maxAppointTime;
+	}
+
+	public void setMaxAppointTime(Date maxAppointTime) {
+		this.maxAppointTime = maxAppointTime;
+	}
+
+	// 2016.12.26 chengming end add for CommonDoctor
+	// 修改履历：2016年12月23日 上午10:24:43 chengming end
+	public int getSortType() {
+		return sortType;
+	}
+
+	public void setSortType(int sortType) {
+		this.sortType = sortType;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public Integer getPackageId() {
+		return packageId;
+	}
+
+	public void setPackageId(Integer packageId) {
+		this.packageId = packageId;
+	}
+
+	public Integer getDepClassId() {
+		return depClassId;
+	}
+
+	public void setDepClassId(Integer depClassId) {
+		this.depClassId = depClassId;
+	}
+
+	public Integer getDepId() {
+		return depId;
+	}
+
+	public void setDepId(Integer depId) {
+		this.depId = depId;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (getClass() != that.getClass()) {
+			return false;
+		}
+		AppointInquiryEntity other = (AppointInquiryEntity) that;
+		return (this.getAppointId() == null ? other.getAppointId() == null
+				: this.getAppointId().equals(other.getAppointId()))
+				&& (this.getPatientId() == null ? other.getPatientId() == null
+						: this.getPatientId().equals(other.getPatientId()))
+				&& (this.getDoctorId() == null ? other.getDoctorId() == null
+						: this.getDoctorId().equals(other.getDoctorId()))
+				&& (this.getPackageId() == null ? other.getPackageId() == null
+						: this.getPackageId().equals(other.getPackageId()))
+				&& (this.getDepClassId() == null ? other.getDepClassId() == null
+						: this.getDepClassId().equals(other.getDepClassId()))
+				&& (this.getDepId() == null ? other.getDepId() == null : this.getDepId().equals(other.getDepId()))
+				&& (this.getSymptonId() == null ? other.getSymptonId() == null
+						: this.getSymptonId().equals(other.getSymptonId()))
+				&& (this.getInsertTime() == null ? other.getInsertTime() == null
+						: this.getInsertTime().equals(other.getInsertTime()))
+				&& (this.getUpdateTime() == null ? other.getUpdateTime() == null
+						: this.getUpdateTime().equals(other.getUpdateTime()))
+				&& (this.getBuyTotal() == null ? other.getBuyTotal() == null
+						: this.getBuyTotal().equals(other.getBuyTotal()))
+				&& (this.getPayStatus() == null ? other.getPayStatus() == null
+						: this.getPayStatus().equals(other.getPayStatus()))
+				&& (this.getPayType() == null ? other.getPayType() == null
+						: this.getPayType().equals(other.getPayType()))
+				&& (this.getPayTime() == null ? other.getPayTime() == null
+						: this.getPayTime().equals(other.getPayTime()))
+				&& (this.getTUseNum() == null ? other.getTUseNum() == null
+						: this.getTUseNum().equals(other.getTUseNum()))
+				&& (this.getVUseNum() == null ? other.getVUseNum() == null
+						: this.getVUseNum().equals(other.getVUseNum()));
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getAppointId() == null) ? 0 : getAppointId().hashCode());
+		result = prime * result + ((getPatientId() == null) ? 0 : getPatientId().hashCode());
+		result = prime * result + ((getDoctorId() == null) ? 0 : getDoctorId().hashCode());
+		result = prime * result + ((getPackageId() == null) ? 0 : getPackageId().hashCode());
+		result = prime * result + ((getDepClassId() == null) ? 0 : getDepClassId().hashCode());
+		result = prime * result + ((getDepId() == null) ? 0 : getDepId().hashCode());
+		result = prime * result + ((getSymptonId() == null) ? 0 : getSymptonId().hashCode());
+		result = prime * result + ((getInsertTime() == null) ? 0 : getInsertTime().hashCode());
+		result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+		result = prime * result + ((getBuyTotal() == null) ? 0 : getBuyTotal().hashCode());
+
+		result = prime * result + ((getPayStatus() == null) ? 0 : getPayStatus().hashCode());
+		result = prime * result + ((getPayType() == null) ? 0 : getPayType().hashCode());
+		result = prime * result + ((getPayTime() == null) ? 0 : getPayTime().hashCode());
+		result = prime * result + ((getTUseNum() == null) ? 0 : getTUseNum().hashCode());
+		result = prime * result + ((getVUseNum() == null) ? 0 : getVUseNum().hashCode());
+		return result;
+	}
+
+	/**
+	 * 返回recordsEntitys的值
+	 * 
+	 * @return List<RecordsEntity> recordsEntitys的值
+	 */
+	public List<RecordsEntity> getRecordsEntitys() {
+		return recordsEntitys;
+	}
+
+	/**
+	 * 设置recordsEntitys的值
+	 * 
+	 * @param recordsEntitys
+	 *            recordsEntitys的值
+	 */
+	public void setRecordsEntitys(List<RecordsEntity> recordsEntitys) {
+		this.recordsEntitys = recordsEntitys;
+	}
+
+	/**
+	 * 返回interrogationPackageEntity的值
+	 * 
+	 * @return InterrogationPackageEntity interrogationPackageEntity的值
+	 */
+	public InterrogationPackageEntity getInterrogationPackageEntity() {
+		return interrogationPackageEntity;
+	}
+
+	/**
+	 * 设置interrogationPackageEntity的值
+	 * 
+	 * @param interrogationPackageEntity
+	 *            interrogationPackageEntity的值
+	 */
+	public void setInterrogationPackageEntity(InterrogationPackageEntity interrogationPackageEntity) {
+		this.interrogationPackageEntity = interrogationPackageEntity;
+	}
+
+	/**
+	 * 返回qaTypeEntity的值
+	 * 
+	 * @return QaTypeEntity qaTypeEntity的值
+	 */
+	public QaTypeEntity getQaTypeEntity() {
+		return qaTypeEntity;
+	}
+
+	/**
+	 * 设置qaTypeEntity的值
+	 * 
+	 * @param qaTypeEntity
+	 *            qaTypeEntity的值
+	 */
+	public void setQaTypeEntity(QaTypeEntity qaTypeEntity) {
+		this.qaTypeEntity = qaTypeEntity;
+	}
+
+	/**
+	 * 返回doctorEntity的值
+	 * 
+	 * @return DoctorEntity doctorEntity的值
+	 */
+	public DoctorEntity getDoctorEntity() {
+		return doctorEntity;
+	}
+
+	/**
+	 * 设置doctorEntity的值
+	 * 
+	 * @param doctorEntity
+	 *            doctorEntity的值
+	 */
+	public void setDoctorEntity(DoctorEntity doctorEntity) {
+		this.doctorEntity = doctorEntity;
+	}
+
+	/**
+	 * 返回symptonId的值
+	 * 
+	 * @return Integer symptonId的值
+	 */
+	public Integer getSymptonId() {
+		return symptonId;
+	}
+
+	/**
+	 * 设置symptonId的值
+	 * 
+	 * @param symptonId
+	 *            symptonId的值
+	 */
+	public void setSymptonId(Integer symptonId) {
+		this.symptonId = symptonId;
+	}
+
+	/**
+	 * 返回buyHash的值
+	 * 
+	 * @return String buyHash的值
+	 */
+	public String getBuyHash() {
+		return buyHash;
+	}
+
+	/**
+	 * 设置buyHash的值
+	 * 
+	 * @param buyHash
+	 *            buyHash的值
+	 */
+	public void setBuyHash(String buyHash) {
+		this.buyHash = buyHash;
+	}
+
+	/**
+	 * 返回payStatus的值
+	 * 
+	 * @return String payStatus的值
+	 */
+	public String getPayStatus() {
+		return payStatus;
+	}
+
+	/**
+	 * 设置payStatus的值
+	 * 
+	 * @param payStatus
+	 *            payStatus的值
+	 */
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
+
+	/**
+	 * 返回payType的值
+	 * 
+	 * @return String payType的值
+	 */
+	public String getPayType() {
+		return payType;
+	}
+
+	/**
+	 * 设置payType的值
+	 * 
+	 * @param payType
+	 *            payType的值
+	 */
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
+
+	/**
+	 * 返回payTime的值
+	 * 
+	 * @return Date payTime的值
+	 */
+	public Date getPayTime() {
+		return payTime;
+	}
+
+	/**
+	 * 设置payTime的值
+	 * 
+	 * @param payTime
+	 *            payTime的值
+	 */
+	public void setPayTime(Date payTime) {
+		this.payTime = payTime;
+	}
+
+	/**
+	 * 返回appointType的值
+	 * 
+	 * @return String appointType的值
+	 */
+	public String getAppointType() {
+		return appointType;
+	}
+
+	/**
+	 * 设置appointType的值
+	 * 
+	 * @param appointType
+	 *            appointType的值
+	 */
+	public void setAppointType(String appointType) {
+		this.appointType = appointType;
+	}
+
+	/**
+	 * 返回appointTime的值
+	 * 
+	 * @return Date appointTime的值
+	 */
+	public Date getAppointTime() {
+		return appointTime;
+	}
+
+	/**
+	 * 设置appointTime的值
+	 * 
+	 * @param appointTime
+	 *            appointTime的值
+	 */
+	public void setAppointTime(Date appointTime) {
+		this.appointTime = appointTime;
+	}
+
+	/**
+	 * 返回symptonDescribe的值
+	 * 
+	 * @return String symptonDescribe的值
+	 */
+	public String getSymptonDescribe() {
+		return symptonDescribe;
+	}
+
+	/**
+	 * 设置symptonDescribe的值
+	 * 
+	 * @param symptonDescribe
+	 *            symptonDescribe的值
+	 */
+	public void setSymptonDescribe(String symptonDescribe) {
+		this.symptonDescribe = symptonDescribe;
+	}
+
+	/**
+	 * 返回patientEntity的值
+	 * 
+	 * @return PatientEntity patientEntity的值
+	 */
+	public PatientEntity getPatientEntity() {
+		return patientEntity;
+	}
+
+	/**
+	 * 设置patientEntity的值
+	 * 
+	 * @param patientEntity
+	 *            patientEntity的值
+	 */
+	public void setPatientEntity(PatientEntity patientEntity) {
+		this.patientEntity = patientEntity;
+	}
+
+	/**
+	 * 返回outTradeNum的值
+	 * 
+	 * @return String outTradeNum的值
+	 */
+	public String getOutTradeNum() {
+		return outTradeNum;
+	}
+
+	/**
+	 * 设置outTradeNum的值
+	 * 
+	 * @param outTradeNum
+	 *            outTradeNum的值
+	 */
+	public void setOutTradeNum(String outTradeNum) {
+		this.outTradeNum = outTradeNum;
+	}
+
+	/**
+	 * 返回beginTime的值
+	 * 
+	 * @return Date beginTime的值
+	 */
+	public Date getBeginTime() {
+		return beginTime;
+	}
+
+	/**
+	 * 设置beginTime的值
+	 * 
+	 * @param beginTime
+	 *            beginTime的值
+	 */
+	public void setBeginTime(Date beginTime) {
+		this.beginTime = beginTime;
+	}
+
+	/**
+	 * 返回telNum的值
+	 * 
+	 * @return String telNum的值
+	 */
+	public String getTelNum() {
+		return telNum;
+	}
+
+	/**
+	 * 设置telNum的值
+	 * 
+	 * @param telNum
+	 *            telNum的值
+	 */
+	public void setTelNum(String telNum) {
+		this.telNum = telNum;
+	}
+
+	/**
+	 * 返回scheduleId的值
+	 * 
+	 * @return Integer scheduleId的值
+	 */
+	public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	/**
+	 * 设置scheduleId的值
+	 * 
+	 * @param scheduleId
+	 *            scheduleId的值
+	 */
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	/**
+	 * 返回inquiryPic的值
+	 * 
+	 * @return String inquiryPic的值
+	 */
+	public String getInquiryPic() {
+		return inquiryPic;
+	}
+
+	/**
+	 * 设置inquiryPic的值
+	 * 
+	 * @param inquiryPic
+	 *            inquiryPic的值
+	 */
+	public void setInquiryPic(String inquiryPic) {
+		this.inquiryPic = inquiryPic;
+	}
+
+	/**
+	 * 返回images的值
+	 * 
+	 * @return String images的值
+	 */
+	public String getImages() {
+		return images;
+	}
+
+	/**
+	 * 设置images的值
+	 * 
+	 * @param images
+	 *            images的值
+	 */
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	/**
+	 * 返回inqueryQuestionEntitys的值
+	 * 
+	 * @return List<InqueryQuestionEntity> inqueryQuestionEntitys的值
+	 */
+	public List<InqueryQuestionEntity> getInqueryQuestionEntitys() {
+		return inqueryQuestionEntitys;
+	}
+
+	/**
+	 * 设置inqueryQuestionEntitys的值
+	 * 
+	 * @param inqueryQuestionEntitys
+	 *            inqueryQuestionEntitys的值
+	 */
+	public void setInqueryQuestionEntitys(List<InqueryQuestionEntity> inqueryQuestionEntitys) {
+		this.inqueryQuestionEntitys = inqueryQuestionEntitys;
+	}
+
+	/**
+	 * 返回imageArgs的值
+	 * 
+	 * @return String[] imageArgs的值
+	 */
+	public String[] getImageArgs() {
+		return imageArgs;
+	}
+
+	/**
+	 * 设置imageArgs的值
+	 * 
+	 * @param imageArgs
+	 *            imageArgs的值
+	 */
+	public void setImageArgs(String[] imageArgs) {
+		this.imageArgs = imageArgs;
+	}
+
+	/**
+	 * 返回memo的值
+	 * 
+	 * @return String memo的值
+	 */
+	public String getMemo() {
+		return memo;
+	}
+
+	/**
+	 * 设置memo的值
+	 * 
+	 * @param memo
+	 *            memo的值
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	/**
+	 * 返回vioCount的值
+	 * 
+	 * @return Integer vioCount的值
+	 */
+	public Integer getVioCount() {
+		return vioCount;
+	}
+
+	/**
+	 * 设置vioCount的值
+	 * 
+	 * @param vioCount
+	 *            vioCount的值
+	 */
+	public void setVioCount(Integer vioCount) {
+		this.vioCount = vioCount;
+	}
+
+	/**
+	 * 返回telCount的值
+	 * 
+	 * @return Integer telCount的值
+	 */
+	public Integer getTCount() {
+		return tCount;
+	}
+
+	/**
+	 * 设置telCount的值
+	 * 
+	 * @param telCount
+	 *            telCount的值
+	 */
+	public void setTCount(Integer tCount) {
+		this.tCount = tCount;
+	}
+
+	/**
+	 * 返回vUseNum的值
+	 * 
+	 * @return Integer vUseNum的值
+	 */
+	public Integer getVUseNum() {
+		return vUseNum;
+	}
+
+	/**
+	 * 设置vUseNum的值
+	 * 
+	 * @param vUseNum
+	 *            vUseNum的值
+	 */
+	public void setVUseNum(Integer vUseNum) {
+		this.vUseNum = vUseNum;
+	}
+
+	/**
+	 * 返回tUseNum的值
+	 * 
+	 * @return Integer tUseNum的值
+	 */
+	public Integer getTUseNum() {
+		return tUseNum;
+	}
+
+	/**
+	 * 设置tUseNum的值
+	 * 
+	 * @param tUseNum
+	 *            tUseNum的值
+	 */
+	public void setTUseNum(Integer tUseNum) {
+		this.tUseNum = tUseNum;
+	}
+
+	/**
+	 * 返回tCount的值
+	 * 
+	 * @return Integer tCount的值
+	 */
+	public Integer gettCount() {
+		return tCount;
+	}
+
+	/**
+	 * 设置tCount的值
+	 * 
+	 * @param tCount
+	 *            tCount的值
+	 */
+	public void settCount(Integer tCount) {
+		this.tCount = tCount;
+	}
+
+	/**
+	 * 返回orderNumber的值
+	 * 
+	 * @return String orderNumber的值
+	 */
+	public String getOrderNumber() {
+		return orderNumber;
+	}
+
+	/**
+	 * 设置orderNumber的值
+	 * 
+	 * @param orderNumber
+	 *            orderNumber的值
+	 */
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	/**
+	 * 返回vUseNum的值
+	 * 
+	 * @return Integer vUseNum的值
+	 */
+	public Integer getvUseNum() {
+		return vUseNum;
+	}
+
+	/**
+	 * 设置vUseNum的值
+	 * 
+	 * @param vUseNum
+	 *            vUseNum的值
+	 */
+	public void setvUseNum(Integer vUseNum) {
+		this.vUseNum = vUseNum;
+	}
+
+	/**
+	 * 返回tUseNum的值
+	 * 
+	 * @return Integer tUseNum的值
+	 */
+	public Integer gettUseNum() {
+		return tUseNum;
+	}
+
+	/**
+	 * 设置tUseNum的值
+	 * 
+	 * @param tUseNum
+	 *            tUseNum的值
+	 */
+	public void settUseNum(Integer tUseNum) {
+		this.tUseNum = tUseNum;
+	}
+
+	/**
+	 * 返回payParam的值
+	 * 
+	 * @return String payParam的值
+	 */
+	public String getPayParam() {
+		return payParam;
+	}
+
+	/**
+	 * 设置payParam的值
+	 * 
+	 * @param payParam
+	 *            payParam的值
+	 */
+	public void setPayParam(String payParam) {
+		this.payParam = payParam;
+	}
+
+	/**
+	 * 返回reasonMemo的值
+	 * 
+	 * @return String reasonMemo的值
+	 */
+	public String getReasonMemo() {
+		return reasonMemo;
+	}
+
+	/**
+	 * 设置reasonMemo的值
+	 * 
+	 * @param reasonMemo
+	 *            reasonMemo的值
+	 */
+	public void setReasonMemo(String reasonMemo) {
+		this.reasonMemo = reasonMemo;
+	}
+
+	/**
+	 * 返回refundId的值
+	 * 
+	 * @return Integer refundId的值
+	 */
+	public Integer getRefundId() {
+		return refundId;
+	}
+
+	/**
+	 * 设置refundId的值
+	 * 
+	 * @param refundId
+	 *            refundId的值
+	 */
+	public void setRefundId(Integer refundId) {
+		this.refundId = refundId;
+	}
+
+	/**
+	 * 返回refundReason的值
+	 * 
+	 * @return String refundReason的值
+	 */
+	public String getRefundReason() {
+		return refundReason;
+	}
+
+	/**
+	 * 设置refundReason的值
+	 * 
+	 * @param refundReason
+	 *            refundReason的值
+	 */
+	public void setRefundReason(String refundReason) {
+		this.refundReason = refundReason;
+	}
+
+	/**
+	 * 返回payInfo的值
+	 * 
+	 * @return String payInfo的值
+	 */
+	public String getPayInfo() {
+		return payInfo;
+	}
+
+	/**
+	 * 设置payInfo的值
+	 * 
+	 * @param payInfo
+	 *            payInfo的值
+	 */
+	public void setPayInfo(String payInfo) {
+		this.payInfo = payInfo;
+	}
+
+	/**
+	 * 返回insertTime的值
+	 * 
+	 * @return Date insertTime的值
+	 */
+	public Date getInsertTime() {
+		return insertTime;
+	}
+
+	/**
+	 * 设置insertTime的值
+	 * 
+	 * @param insertTime
+	 *            insertTime的值
+	 */
+	public void setInsertTime(Date insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	/**
+	 * 返回buyTotal的值
+	 * 
+	 * @return Double buyTotal的值
+	 */
+	public Double getBuyTotal() {
+		return buyTotal;
+	}
+
+	/**
+	 * 设置buyTotal的值
+	 * 
+	 * @param buyTotal
+	 *            buyTotal的值
+	 */
+	public void setBuyTotal(Double buyTotal) {
+		this.buyTotal = buyTotal;
+	}
+
+	/**
+	 * 返回recordsId的值
+	 * 
+	 * @return Integer recordsId的值
+	 */
+	public Integer getRecordsId() {
+		return recordsId;
+	}
+
+	/**
+	 * 设置recordsId的值
+	 * 
+	 * @param recordsId
+	 *            recordsId的值
+	 */
+	public void setRecordsId(Integer recordsId) {
+		this.recordsId = recordsId;
+	}
+
+	/**
+	 * 返回createTime的值
+	 * 
+	 * @return Date createTime的值
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	/**
+	 * 设置createTime的值
+	 * 
+	 * @param createTime
+	 *            createTime的值
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	/**
+	 * 返回statusFlag的值
+	 * 
+	 * @return String statusFlag的值
+	 */
+	public String getStatusFlag() {
+		return statusFlag;
+	}
+
+	/**
+	 * 设置statusFlag的值
+	 * 
+	 * @param statusFlag
+	 *            statusFlag的值
+	 */
+	public void setStatusFlag(String statusFlag) {
+		this.statusFlag = statusFlag;
+	}
+
+	/**
+	 * 返回appontEntityList的值
+	 * 
+	 * @return List<AppointInquiryEntity> appontEntityList的值
+	 */
+	public List<AppointInquiryEntity> getAppontEntityList() {
+		return appontEntityList;
+	}
+
+	/**
+	 * 设置appontEntityList的值
+	 * 
+	 * @param appontEntityList
+	 *            appontEntityList的值
+	 */
+	public void setAppontEntityList(List<AppointInquiryEntity> appontEntityList) {
+		this.appontEntityList = appontEntityList;
+	}
+
+	/**
+	 * 返回followFlag的值
+	 * 
+	 * @return String followFlag的值
+	 */
+	public String getFollowFlag() {
+		return followFlag;
+	}
+
+	/**
+	 * 设置followFlag的值
+	 * 
+	 * @param followFlag
+	 *            followFlag的值
+	 */
+	public void setFollowFlag(String followFlag) {
+		this.followFlag = followFlag;
+	}
+
+	/**
+	 * 返回refundNum的值
+	 * 
+	 * @return String refundNum的值
+	 */
+	public String getRefundNum() {
+		return refundNum;
+	}
+
+	/**
+	 * 设置refundNum的值
+	 * 
+	 * @param refundNum
+	 *            refundNum的值
+	 */
+	public void setRefundNum(String refundNum) {
+		this.refundNum = refundNum;
+	}
+
+	/**
+	 * 返回refundParam的值
+	 * 
+	 * @return String refundParam的值
+	 */
+	public String getRefundParam() {
+		return refundParam;
+	}
+
+	/**
+	 * 设置refundParam的值
+	 * 
+	 * @param refundParam
+	 *            refundParam的值
+	 */
+	public void setRefundParam(String refundParam) {
+		this.refundParam = refundParam;
+	}
+
+	/**
+	 * 返回workType的值
+	 * 
+	 * @return String workType的值
+	 */
+	public String getWorkType() {
+		return workType;
+	}
+
+	/**
+	 * 设置workType的值
+	 * 
+	 * @param workType
+	 *            workType的值
+	 */
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
+
+	/**
+	 * 返回appointDate的值
+	 * 
+	 * @return String appointDate的值
+	 */
+	public String getAppointDate() {
+		return appointDate;
+	}
+
+	/**
+	 * 设置appointDate的值
+	 * 
+	 * @param appointDate
+	 *            appointDate的值
+	 */
+	public void setAppointDate(String appointDate) {
+		this.appointDate = appointDate;
+	}
+
+	/**
+	 * 返回allCount的值
+	 * 
+	 * @return Integer allCount的值
+	 */
+	public Integer getAllCount() {
+		return allCount;
+	}
+
+	/**
+	 * 设置allCount的值
+	 * 
+	 * @param allCount
+	 *            allCount的值
+	 */
+	public void setAllCount(Integer allCount) {
+		this.allCount = allCount;
+	}
+
+	/**
+	 * 返回dCount的值
+	 * 
+	 * @return Integer dCount的值
+	 */
+	public Integer getdCount() {
+		return dCount;
+	}
+
+	/**
+	 * 设置dCount的值
+	 * 
+	 * @param dCount
+	 *            dCount的值
+	 */
+	public void setdCount(Integer dCount) {
+		this.dCount = dCount;
+	}
+
+	/**
+	 * 返回nCount的值
+	 * 
+	 * @return Integer nCount的值
+	 */
+	public Integer getnCount() {
+		return nCount;
+	}
+
+	/**
+	 * 设置nCount的值
+	 * 
+	 * @param nCount
+	 *            nCount的值
+	 */
+	public void setnCount(Integer nCount) {
+		this.nCount = nCount;
+	}
+
+	/**
+	 * 返回eCount的值
+	 * 
+	 * @return Integer eCount的值
+	 */
+	public Integer geteCount() {
+		return eCount;
+	}
+
+	/**
+	 * 设置eCount的值
+	 * 
+	 * @param eCount
+	 *            eCount的值
+	 */
+	public void seteCount(Integer eCount) {
+		this.eCount = eCount;
+	}
+
+	/**
+	 * 返回total的值
+	 * 
+	 * @return Double total的值
+	 */
+	public Double getTotal() {
+		return total;
+	}
+
+	/**
+	 * 设置total的值
+	 * 
+	 * @param total
+	 *            total的值
+	 */
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+	/**
+	 * 返回nTotal的值
+	 * 
+	 * @return Double nTotal的值
+	 */
+	public Double getnTotal() {
+		return nTotal;
+	}
+
+	/**
+	 * 设置nTotal的值
+	 * 
+	 * @param nTotal
+	 *            nTotal的值
+	 */
+	public void setnTotal(Double nTotal) {
+		this.nTotal = nTotal;
+	}
+
+	/**
+	 * 返回eTotal的值
+	 * 
+	 * @return Double eTotal的值
+	 */
+	public Double geteTotal() {
+		return eTotal;
+	}
+
+	/**
+	 * 设置eTotal的值
+	 * 
+	 * @param eTotal
+	 *            eTotal的值
+	 */
+	public void seteTotal(Double eTotal) {
+		this.eTotal = eTotal;
+	}
+
+	/**
+	 * 返回dTotal的值
+	 * 
+	 * @return Double dTotal的值
+	 */
+	public Double getdTotal() {
+		return dTotal;
+	}
+
+	/**
+	 * 设置dTotal的值
+	 * 
+	 * @param dTotal
+	 *            dTotal的值
+	 */
+	public void setdTotal(Double dTotal) {
+		this.dTotal = dTotal;
+	}
+
+	/**
+	 * 返回doctorTotal的值
+	 * 
+	 * @return Double doctorTotal的值
+	 */
+	public Double getDoctorTotal() {
+		return doctorTotal;
+	}
+
+	/**
+	 * 设置doctorTotal的值
+	 * 
+	 * @param doctorTotal
+	 *            doctorTotal的值
+	 */
+	public void setDoctorTotal(Double doctorTotal) {
+		this.doctorTotal = doctorTotal;
+	}
+
+	/**
+	 * 返回userCode的值
+	 * 
+	 * @return String userCode的值
+	 */
+	public String getUserCode() {
+		return userCode;
+	}
+
+	/**
+	 * 设置userCode的值
+	 * 
+	 * @param userCode
+	 *            userCode的值
+	 */
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	/**
+	 * 返回detectNum的值
+	 * 
+	 * @return String detectNum的值
+	 */
+	public String getDetectNum() {
+		return detectNum;
+	}
+
+	/**
+	 * 设置detectNum的值
+	 * 
+	 * @param detectNum
+	 *            detectNum的值
+	 */
+	public void setDetectNum(String detectNum) {
+		this.detectNum = detectNum;
+	}
+
+	/**
+	 * 返回freeFlag的值
+	 * 
+	 * @return String freeFlag的值
+	 */
+	public String getFreeFlag() {
+		return freeFlag;
+	}
+
+	/**
+	 * 设置freeFlag的值
+	 * 
+	 * @param freeFlag
+	 *            freeFlag的值
+	 */
+	public void setFreeFlag(String freeFlag) {
+		this.freeFlag = freeFlag;
+	}
+
+	
+
+	/**
+	 * 返回photoEnd的值
+	 * 
+	 * @return String photoEnd的值
+	 */
+	public String getPhotoEnd() {
+		return photoEnd;
+	}
+
+	/**
+	 * 设置photoEnd的值
+	 * 
+	 * @param photoEnd
+	 *            photoEnd的值
+	 */
+	public void setPhotoEnd(String photoEnd) {
+		this.photoEnd = photoEnd;
+	}
+
+	/**
+	 * 返回scheduleFlag的值
+	 * 
+	 * @return Integer scheduleFlag的值
+	 */
+	public Integer getScheduleFlag() {
+		return scheduleFlag;
+	}
+
+	/**
+	 * 设置scheduleFlag的值
+	 * 
+	 * @param scheduleFlag
+	 *            scheduleFlag的值
+	 */
+	public void setScheduleFlag(Integer scheduleFlag) {
+		this.scheduleFlag = scheduleFlag;
+	}
+
+	/**
+	 * 返回freeTotal的值
+	 * 
+	 * @return Integer freeTotal的值
+	 */
+	public Integer getFreeTotal() {
+		return freeTotal;
+	}
+
+	/**
+	 * 设置freeTotal的值
+	 * 
+	 * @param freeTotal
+	 *            freeTotal的值
+	 */
+	public void setFreeTotal(Integer freeTotal) {
+		this.freeTotal = freeTotal;
+	}
+
+	
+	/**
+	 * 返回graphicEntitys的值
+	 * @return List<GraphicEntity> graphicEntitys的值
+	 */
+	public List<GraphicEntity> getGraphicEntitys() {
+		return graphicEntitys;
+	}
+
+	/**
+	 * 设置graphicEntitys的值
+	 * @param  graphicEntitys graphicEntitys的值
+	 */
+	public void setGraphicEntitys(List<GraphicEntity> graphicEntitys) {
+		this.graphicEntitys = graphicEntitys;
+	}
+
+	/**
+	 * 返回appointId的值
+	 * @return Integer appointId的值
+	 */
+	public Integer getAppointId() {
+		return appointId;
+	}
+
+	/**
+	 * 设置appointId的值
+	 * @param  appointId appointId的值
+	 */
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
+	}
+
+	/**
+	 * 返回headPic的值
+	 * @return String headPic的值
+	 */
+	public String getHeadPic() {
+		return headPic;
+	}
+
+	/**
+	 * 设置headPic的值
+	 * @param  headPic headPic的值
+	 */
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
+	}
+
+	/**
+	 * 返回doctorName的值
+	 * @return String doctorName的值
+	 */
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	/**
+	 * 设置doctorName的值
+	 * @param  doctorName doctorName的值
+	 */
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	/**
+	 * 返回patientPic的值
+	 * @return String patientPic的值
+	 */
+	public String getPatientPic() {
+		return patientPic;
+	}
+
+	/**
+	 * 设置patientPic的值
+	 * @param  patientPic patientPic的值
+	 */
+	public void setPatientPic(String patientPic) {
+		this.patientPic = patientPic;
+	}
+
+	/**
+	 * 返回patientName的值
+	 * @return String patientName的值
+	 */
+	public String getPatientName() {
+		return patientName;
+	}
+
+	/**
+	 * 设置patientName的值
+	 * @param  patientName patientName的值
+	 */
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	/**
+	 * 返回effectFlag的值
+	 * @return String effectFlag的值
+	 */
+	public String getEffectFlag() {
+		return effectFlag;
+	}
+
+	/**
+	 * 设置effectFlag的值
+	 * @param  effectFlag effectFlag的值
+	 */
+	public void setEffectFlag(String effectFlag) {
+		this.effectFlag = effectFlag;
+	}
+
+	/**
+	 * 返回followUpFlag的值
+	 * @return String followUpFlag的值
+	 */
+	public String getFollowUpFlag() {
+		return followUpFlag;
+	}
+
+	/**
+	 * 设置followUpFlag的值
+	 * @param  followUpFlag followUpFlag的值
+	 */
+	public void setFollowUpFlag(String followUpFlag) {
+		this.followUpFlag = followUpFlag;
+	}
+
+	/**
+	 * 返回chatTime的值
+	 * @return Date chatTime的值
+	 */
+	public Date getChatTime() {
+		return chatTime;
+	}
+
+	/**
+	 * 设置chatTime的值
+	 * @param  chatTime chatTime的值
+	 */
+	public void setChatTime(Date chatTime) {
+		this.chatTime = chatTime;
+	}
+
+	/**
+	 * 返回phoTime的值
+	 * @return Date phoTime的值
+	 */
+	public Date getPhoTime() {
+		return phoTime;
+	}
+
+	/**
+	 * 设置phoTime的值
+	 * @param  phoTime phoTime的值
+	 */
+	public void setPhoTime(Date phoTime) {
+		this.phoTime = phoTime;
+	}
+
+	/**
+	 * 返回age的值
+	 * @return Date age的值
+	 */
+	public Date getAge() {
+		return age;
+	}
+
+	/**
+	 * 设置age的值
+	 * @param  age age的值
+	 */
+	public void setAge(Date age) {
+		this.age = age;
+	}
+
+	/**
+	 * 返回sex的值
+	 * @return String sex的值
+	 */
+	public String getSex() {
+		return sex;
+	}
+
+	/**
+	 * 设置sex的值
+	 * @param  sex sex的值
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	/**
+	 * 返回docDel的值
+	 * @return String docDel的值
+	 */
+	public String getDocDel() {
+		return docDel;
+	}
+
+	/**
+	 * 设置docDel的值
+	 * @param  docDel docDel的值
+	 */
+	public void setDocDel(String docDel) {
+		this.docDel = docDel;
+	}
+
+	/**
+	 * 返回patDel的值
+	 * @return String patDel的值
+	 */
+	public String getPatDel() {
+		return patDel;
+	}
+
+	/**
+	 * 设置patDel的值
+	 * @param  patDel patDel的值
+	 */
+	public void setPatDel(String patDel) {
+		this.patDel = patDel;
+	}
+
+
+}

@@ -1,0 +1,15 @@
+package com.djb.ylt.main_page.service;
+
+import java.util.List;
+
+import com.djb.ylt.main_page.entity.CarouselEntity;
+
+/**
+ * @date 2016年12月13日 下午6:09:09
+ * @author chengming
+ * 内容：android端首页轮播图service接口
+ * 修改履历：2016年12月13日 下午6:09:09 chengming 
+ */
+public interface ICarouselService {
+	public List<CarouselEntity> getCarouselList(CarouselEntity carouselEntity);
+}

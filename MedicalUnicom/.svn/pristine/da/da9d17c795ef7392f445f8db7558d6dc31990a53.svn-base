@@ -1,0 +1,68 @@
+.InquiryDetail {background:#fff}
+.InquiryDetail .info {position:relative;border-bottom:1px solid #d0d0d0;background:#fff}
+.InquiryDetail .info strong.UserImg{display:inline-block;width:2.4rem;padding:0.2rem 0;text-align:center;vertical-align:top}
+.InquiryDetail .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+
+.InquiryDetail .info  > ul{display:inline-block;width:4.3rem;padding:0.2rem 0;font-size:0.4rem;vertical-align:top}
+.InquiryDetail .info  ul li strong.docTitle{display:block;margin:0 0 0.2rem;font-weight:normal;font-size:0.4rem}
+.InquiryDetail .info  ul li strong.docTitle span{margin:0 0.3rem 0 0}
+.InquiryDetail .info  ul li.frt {padding:0 0 0.2rem}
+.InquiryDetail .info  ul li.frt strong{font-weight:bold;font-size:0.4rem}
+.InquiryDetail .info  ul li.frt span{margin:0 0 0 0.3rem;font-size:0.35rem}
+
+.InquiryDetail .TimeList{margin:0.2rem 0 0;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;background:#fff}
+
+.InquiryDetail .state {padding:0.2rem 0.3rem 0.2rem;border-bottom:1px solid #d0d0d0;}
+.InquiryDetail .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.InquiryDetail .state .timer{float:left;min-height:0.9rem;line-height:0.9rem;color:#7f7f7f;font-weight:normal}
+.InquiryDetail .state .Notpaid,
+.InquiryDetail .state .PaidOver,
+.InquiryDetail .state .Refund,
+.InquiryDetail .state .Wait,
+.InquiryDetail .state .Success,
+.InquiryDetail .state .Count,
+.InquiryDetail .state .Cam,
+.InquiryDetail .state .Over,
+.InquiryDetail .state .NotResult,
+.InquiryDetail .state .DocReject,
+.InquiryDetail .state .WaitCancel,
+.InquiryDetail .state .AgreeCancel,
+.InquiryDetail .state .Disagree,
+.InquiryDetail .state .Cancel{float:right;color:#999;min-height:0.9rem;line-height:0.9rem;}
+
+.InquiryDetail .state .Wait,
+.InquiryDetail .state .Success {color:#ffa173;min-height:0.9rem;line-height:0.9rem;}
+
+.InquiryDetail .state .Cam span{float:left;min-height:0.9rem;line-height:0.9rem;background:#5faafc;}
+.InquiryDetail .state .Cam span a{display:block;padding:0 15px;color:#fff}
+.InquiryDetail .state .Cam span.state_icon {float:left;width:1rem;background:#5faafc url("../img/camera_icon.png") no-repeat center center;background-size:0.5rem;border-right:1px solid #fff}
+
+.InquiryDetail .state .Count span{float:left;line-height:0.9rem;color:#818181}
+.InquiryDetail .state .Count span.state_icon {float:left;width:0.5rem;height:0.9rem;;margin:0 0.02rem 0 0;background:url("../img/timer_icon.png") no-repeat 0 center;background-size:0.5rem;}
+
+.Detail,
+.Result{position:relative;margin:0.2rem 0 0.5rem;padding:0 0.2rem;line-height:0.8rem;}
+.Detail .chart_icon,
+.Result .Result_icon{float:left;margin:0 0.2rem 0 0;width:0.7rem;height:1rem;}
+.Detail .chart_icon{background:url("../img/chart.png") no-repeat center center;background-size:100%;}
+.Result .Result_icon{background:url("../img/Result.png") no-repeat center center;background-size:100%;}
+
+.Detail .DetailInfoTXT,
+.Result .DetailInfoTXT{width:100%;padding:0.2rem;box-sizing:border-box;font-size:0.35rem}
+
+.Grad{float:right;width:2.6rem;margin:0.2rem 0.1rem 0 0;padding:0.2rem;border:1px solid #d1d1d1;border-radius:10px}
+.Grad p{text-align:center;color:#555;font-size:0.35rem}
+.Grad p span{color:#ffba00}
+#point li {display:inline-block;text-align:center;}
+#point li span{display:inline-block;width:0.5rem;height:0.5rem;background:url("../img/icon_grad_on.png") no-repeat;background-size:100%;}
+#point li.on span{background:url("../img/icon_grad.png") no-repeat;background-size:100%;}
+
+
+.subMit_btn {display:none;padding:0.5rem 0.2rem;font-size:0.4rem;}
+.subMit_btn .btnGrad,
+.subMit_btn .btnCancel{display:block;height:1.5rem;border:1px solid #fe5909;border-radius:5px;line-height:1.5rem;text-align:center;color:#fe5909}
+
+#aside{display:none;position:fixed;top:0;width:100%;height:100%;background:#000;opacity:0.2;}
+#buttonArea{display:none;position:fixed;bottom:-224px;text-align:center;;z-index:99}
+#buttonArea button{margin:0.5rem 0 0;width:9rem;height:1.5rem;background:#fff;border-radius:15px;color:#f00;font-size:0.5rem}
+#buttonArea button#cancel{margin:0.5rem 0;width:9rem;height:1.5rem;background:#fff;border-radius:15px;color:blue;font-size:0.5rem}

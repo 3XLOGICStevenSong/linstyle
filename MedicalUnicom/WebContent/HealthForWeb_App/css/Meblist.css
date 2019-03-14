@@ -1,0 +1,16 @@
+.Mlist {background:#fff}
+.Mlist .info {position:relative;border-bottom:1px solid #d0d0d0}
+.Mlist .info strong.UserImg{display:inline-block;padding:0.2rem;vertical-align:top}
+.Mlist .info strong.UserImg img{width:2rem;height:2rem;border-radius:100%;}
+.Mlist .info ul{display:inline-block;padding:0.2rem 0;vertical-align:top;font-size:0.4rem;}
+.Mlist .info ul li {padding:0 0 0.3rem;}
+.Mlist .info ul li.frt strong{font-weight:bold;}
+.Mlist .info ul li strong{font-weight:normal;}
+.Mlist .info ul li.frt strong span{font-weight:bold}
+.Mlist .info ul li strong span{font-weight:bold}
+.Mlist .info ul li strong.Sex{margin:0 0.5rem 0 0}
+
+#header .titleArea .next a{font-size:0.8rem;}
+#header .titleArea .next {bottom:0.35rem}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;background: #fff;border-top:1px solid #999;border-bottom:1px solid #999;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}

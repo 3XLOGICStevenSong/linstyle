@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/ResDocMode.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatBuded.js"></script>
+</head>
+<body>
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<h2 class="DocName">问诊选择</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+		<div id="container">
+			<div class="contents">
+				<div class="doctorMode">
+					<div class="NavGuige buyed">
+						<ul>
+							<li class="on"><span></span>我的医生</li>
+							<li class="on"><span></span>问诊方式</li>
+							<li><span></span>预约时间</li>
+							<li><span></span>问诊票</li>
+						</ul>
+					</div>
+					<ul>
+						<li>
+							<div class="info">
+								<strong class="UserImg"><img src="{$headPic}"></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name">{$name}</strong><span>{$positional}</span>
+									</li>
+									<li>
+										<strong class="docTitle"><span>{$dcName}</span><span>{$departmentName}</span></strong>
+										<strong class="docTitle"><span>{$hospitalName}</span></strong>
+										<strong class="docTitle"><span>{$healDisease}</span></strong>
+									</li>
+								</ul>
+								<div class="Grad">
+									{$Grad}
+								</div>
+							</div>
+						</li>
+					</ul>
+					
+					<div class="InfoForm">
+						<p class="priv clearfix"><span class="icon_doc"></span>私人医生套餐</p>
+						<!--p class="sale">特惠:  新用户首次可以免费就诊！</p-->
+						<div class="Video_inquiry">
+							<div class="Next" id="0">
+								<p class="clearfix"><span class="icon_camere"></span>视频问诊 <span class="price">剩余{$vio_num}次</span></p>
+								<span class="Time">每次5分钟</span>
+								<p class="Txt">三甲医院预约，视频面对面咨询问诊<br/>无障碍直面沟通</p>
+								<span class="next">&gt;</span>
+							</div>
+						</div>
+						<!--div class="Telephone_inquiry">
+							<div class="Next" id="1">
+								<p class="clearfix"><span class="icon_call"></span>电话问诊 <span class="price">剩余{$tel_num}次</span></p>
+								<p class="Txt">三甲医院在线，一对一咨询问诊<br/>沟通快捷方便</p>
+								
+								<span class="next">&gt;</span>
+							</div>
+							<p class="Tell"><input type="text" value="{$Tel}" /></p>
+						</div-->
+						<div class="Message_inquiry">
+							<p class="clearfix"><span class="icon_message"></span>留言消息 <span class="price">免费</span></p>
+							<p class="Txt">获得医生的随访</p>
+							<span class="next">&gt;</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="InquiryHistory">
+					<h2 class="titleText">就诊记录</h2>
+					<p class="NoneHistory">尚未使用，无就诊记录</p>
+					<ul class="List">
+						<li date="{$recordsId}">
+							<div class="TimeList">
+								<div class="state clearfix">
+									<strong class="timer">预约时间: <span class="datetime">{$Time}</span></strong>
+									{$InqDiv}
+								</div>
+								<div class='Detail clearfix'><span class='chart_icon'></span>就诊详情<span class="gt_icon">&gt;</span> </div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+</body>
+</html>

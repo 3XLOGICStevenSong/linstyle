@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.gene.entity.GeneProductsEntity">
+	<resultMap id="GeneProductsResultMap" type="com.djb.ylt.gene.entity.GeneProductsEntity">
+		<id column="GP_ID" jdbcType="INTEGER" property="gpId" />
+		<result column="GP_NAME" jdbcType="VARCHAR" property="gpName" />
+		<result column="CONTENT" jdbcType="VARCHAR" property="content" />
+		<result column="SIGNIFICANCE" jdbcType="VARCHAR" property="significance" />
+		<result column="SIMPLE_POINT" jdbcType="VARCHAR" property="simplePoint" />
+		<result column="SIMPLE_PRICE" jdbcType="DOUBLE" property="simplePrice" />
+		<result column="STANDARD_POINT" jdbcType="VARCHAR" property="standardPoint" />
+		<result column="STANDARD_PRICE" jdbcType="DOUBLE" property="standardPrice" />
+		<result column="PRODUCTS_TYPE" jdbcType="VARCHAR" property="productsType" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+
+	<sql id="GeneProducts_Column_List">
+		GP_ID, GP_NAME, CONTENT, SIGNIFICANCE, SIMPLE_POINT,
+		SIMPLE_PRICE,
+		STANDARD_POINT,
+		STANDARD_PRICE, PRODUCTS_TYPE, STATUS,
+		CREATE_TIME
+	</sql>
+	<sql id="GeneProductsWhereClause">
+		<if test="gpId!=null">and GP_ID=#{gpId} </if>
+		<if test="gpName!=null">and GP_NAME=#{gpName} </if>
+	</sql>
+	<sql id="orderByGeneProductsClause">
+		ORDER BY GP_ID
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.gene.entity.GeneProductsEntity"
+		resultMap="GeneProductsResultMap">
+		select
+		<include refid="GeneProducts_Column_List" />
+		from gene_products
+		where 1=1
+		<include refid="GeneProductsWhereClause" />
+
+	</select>
+	<select id="findList" resultMap="GeneProductsResultMap">
+		select
+		<include refid="GeneProducts_Column_List" />
+		from gene_products
+	</select>
+	<select id="findListByCondition" parameterType="com.djb.ylt.gene.entity.GeneProductsEntity"
+		resultMap="GeneProductsResultMap">
+		select
+		<include refid="GeneProducts_Column_List" />
+		from gene_products
+		where 1=1
+		<include refid="GeneProductsWhereClause" />
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.gene.entity.GeneProductsEntity">
+		delete from gene_products
+		where GP_ID = #{gpId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.ylt.gene.entity.GeneProductsEntity">
+		insert into gene_products
+		(GP_ID, GP_NAME, CONTENT,
+		SIGNIFICANCE, SIMPLE_POINT, SIMPLE_PRICE,
+		STANDARD_POINT, STANDARD_PRICE, PRODUCTS_TYPE,
+		STATUS, CREATE_TIME)
+		values (#{gpId,jdbcType=INTEGER}, #{gpName,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{significance,jdbcType=VARCHAR},
+		#{simplePoint,jdbcType=VARCHAR}, #{simplePrice,jdbcType=DOUBLE},
+		#{standardPoint,jdbcType=VARCHAR}, #{standardPrice,jdbcType=DOUBLE},
+		#{productsType,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.gene.entity.GeneProductsEntity">
+		update gene_products
+		<set>
+			<if test="gpName != null">
+				GP_NAME = #{gpName,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="significance != null">
+				SIGNIFICANCE = #{significance,jdbcType=VARCHAR},
+			</if>
+			<if test="simplePoint != null">
+				SIMPLE_POINT = #{simplePoint,jdbcType=VARCHAR},
+			</if>
+			<if test="simplePrice != null">
+				SIMPLE_PRICE = #{simplePrice,jdbcType=DOUBLE},
+			</if>
+			<if test="standardPoint != null">
+				STANDARD_POINT = #{standardPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="standardPrice != null">
+				STANDARD_PRICE = #{standardPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="productsType != null">
+				PRODUCTS_TYPE = #{productsType,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where GP_ID = #{gpId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

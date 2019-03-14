@@ -1,0 +1,23 @@
+package com.djb.ylt.main_page.dtoclient;
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+/**
+ * @date 2016年12月13日 下午6:04:53
+ * @author chengming 内容：android端首页轮播图的返回pojo类包含CarouselClientDTO，最终返回json
+ *         修改履历：2016年12月13日 下午6:04:53 chengming
+ */
+public class CarouselListClientDTO extends BaseClientDTO {
+	private List<CarouselClientDTO> carouselList;
+
+	public List<CarouselClientDTO> getCarouselClientDTOs() {
+		return carouselList;
+	}
+
+	public void setCarouselClientDTOs(List<CarouselClientDTO> carouselClientDTOs) {
+		this.carouselList = carouselClientDTOs;
+	}
+
+}

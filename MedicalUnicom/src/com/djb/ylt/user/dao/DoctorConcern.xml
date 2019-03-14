@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.ylt.user.entity.DoctorConcernEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.DoctorConcernEntity">
+		<result column="CONCERN_ID" property="concernId" jdbcType="INTEGER" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		CONCERN_ID, PATIENT_ID, DOCTOR_ID, CREATE_TIME, DELETE_FLAG
+	</sql>
+
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.DoctorConcernEntity">
+		insert into doctor_concern (CONCERN_ID, PATIENT_ID, DOCTOR_ID,
+		CREATE_TIME, DELETE_FLAG)
+		values (#{concernId,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER},
+		#{doctorId,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=CHAR})
+	</insert>
+
+	<update id="update" parameterType="com.djb.ylt.user.entity.DoctorConcernEntity">
+		update doctor_concern
+		<set>
+			<if test="concernId != null">
+				CONCERN_ID = #{concernId,jdbcType=INTEGER},
+			</if>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="doctorId != null">
+				DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+			</if>
+		</set>
+		where CONCERN_ID= #{concernId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

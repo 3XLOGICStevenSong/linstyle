@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="DepartmentForm" type="com.djb.ylt.health.dto.DepartmentDTO" />
+		<form-bean name="SymptomForm" type="com.djb.ylt.health.dto.SymptomDTO" />
+		<form-bean name="AppointInquiryForm" type="com.djb.ylt.user.dto.AppointInquiryDTO" />
+		<form-bean name="RecordsForm" type="com.djb.ylt.user.dto.RecordsDTO" />
+		<form-bean name="DoctorCommentForm" type="com.djb.ylt.user.dto.DoctorCommentDTO" />
+		<form-bean name="DoctorForm" type="com.djb.ylt.user.dto.DoctorDTO" />
+		<form-bean name="InterrogationForm"
+			type="com.djb.ylt.user.dto.InterrogationPackageDTO" />
+		<form-bean name="InqueryViewForm" type="com.djb.ylt.user.dto.InqueryViewDTO" />
+		<form-bean name="DoctorScheduleForm" type="com.djb.ylt.user.dto.DoctorScheduleDTO" />
+		<form-bean name="UserLoginForm" type="com.djb.ylt.user.dto.UserLoginDTO" />
+		<form-bean name="MedicineInfoForm" type="com.djb.ylt.medicine.dto.MedicineInfoDTO" />
+		<form-bean name="PatientForm" type="com.djb.ylt.user.dto.PatientDTO" />
+
+		<form-bean name="MedicineCollectionForm"
+			type="com.djb.ylt.medicine.dto.MedicineCollectionDTO" />
+		<form-bean name="MedicineCommentForm"
+			type="com.djb.ylt.medicine.dto.MedicineCommentDTO" />
+		<form-bean name="MedicineQuestionForm"
+			type="com.djb.ylt.medicine.dto.MedicineQuestionDTO" />
+		<form-bean name="MedicineAnswerForm" type="com.djb.ylt.medicine.dto.MedicineAnswerDTO" />
+		<form-bean name="GradePriceForm" type="com.djb.ylt.user.dto.GradePriceDTO" />
+
+		<form-bean name="InqueryQuestionForm" type="com.djb.ylt.health.dto.InqueryQuestionDTO" />
+		<form-bean name="MedicalRecordForm" type="com.djb.ylt.medicine.dto.MedicalRecordDTO" />
+		<form-bean name="InspectionReportForm"
+			type="com.djb.ylt.medicine.dto.InspectionReportDTO" />
+		<form-bean name="PrescriptionMedicineForm"
+			type="com.djb.ylt.medicine.dto.PrescriptionMedicineDTO" />
+		<form-bean name="PrescriptionInfoForm"
+			type="com.djb.ylt.medicine.dto.PrescriptionInfoDTO" />
+		<form-bean name="EmergencyDoctorForm" type="com.djb.ylt.user.dto.EmergencyDoctorDTO" />
+		<form-bean name="RefundReasonForm" type="com.djb.ylt.user.dto.RefundReasonDTO" />
+		<form-bean name="SymptomTypeForm" type="com.djb.ylt.health.dto.SymptomTypeDTO" />
+		<form-bean name="DepartmentClassForm" type="com.djb.ylt.health.dto.DepartmentClassDTO" />
+		<form-bean name="FollowInterestForm" type="com.djb.ylt.user.dto.FollowInterestDTO" />
+		<form-bean name="CarouselForm" type="com.djb.ylt.main_page.dto.CarouselDTO" />
+		<form-bean name="ProductsPurchaseForm" type="com.djb.ylt.gene.dto.ProductsPurchaseDTO" />
+		<form-bean name="GeneProductsForm" type="com.djb.ylt.gene.dto.GeneProductsDTO" />
+		<form-bean name="TestResultMasterForm" type="com.djb.ylt.gene.dto.TestResultMasterDTO" />
+	</form-beans>
+	<global-forwards>
+
+	</global-forwards>
+
+	<action-mappings>
+
+		<action path="/Department"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetDepartmentSymptom" name="DepartmentForm" scope="request">
+		</action>
+		<action path="/Carousel"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetCarousel" name="CarouselForm" scope="request">
+		</action>
+		<action path="/Symptom"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert" name="SymptomForm" scope="request">
+		</action>
+		<action path="/SymptomType"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetSymptomList" name="SymptomTypeForm" scope="request">
+		</action>
+
+		<action path="/Appoint"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPrivateDoctor,doGetPrivateDetail,doGetAppointListByPatient,doInsertAppoint,doGetAppointListByDoctor,doGetAllPatient,doGetMembers,doGetPatientInfoByDoctor,doAliPayInfo,receiveNotify,doGetRecentDoctorInfo,
+			doGetMinutePushInfo,doGetMembersForPage,doGetAllPatientForPage,doGetRecordsInfo,doGetAppointByBatch,doGetAppointListByStatus,doGetAllPatientByStatus,doUpdateBatchForQuartz,doUpdateBatchForQuartz,receiveWechatNotify,doUpdatePayType,doGetMonthRecords,doAppointGeneDoctor,default=receiveWechatNotify"
+			name="AppointInquiryForm" scope="request">
+		</action>
+		<action path="/Records"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetAppointDetail,doAddPrivateRecords,doGetAppointDetailByDoctor,doUpdateRecordsInfo,doUpdateRecordsTime,doDoctorAgreeCancel,doCancelRecordsInfo,doUpdateRecordsBatch,doDeleteRecords,doUpdateStatusForBatch,receiveRefundInfo,default=receiveRefundInfo"
+			name="RecordsForm" scope="request">
+		</action>
+		<action path="/DoctorComment"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsertDoctorComment,doGetDoctorCommentList" name="DoctorCommentForm"
+			scope="request">
+		</action>
+		<action path="/Interrogation"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTelList,doAddPackage,doGetDoctorPackage" name="InterrogationForm"
+			scope="request">
+		</action>
+		<action path="/InqueryView"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetInqueryList" name="InqueryViewForm" scope="request">
+		</action>
+		<action path="/Doctor"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPackageByDoctor,doGetDoctorInfo,doUpdateDoctorInfo,doGetDoctorInfoById,doGetDoctorDetail,doGetAllDoctor,doGetDoctorListByDepId,doGetPackageByDoctorNew,doGetGeneDoctorList"
+			name="DoctorForm" scope="request">
+		</action>
+
+		<action path="/DoctorSchedule"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetDoctorScheduleList,doAddSchedule,doAddScheduleForList,doGetScheduleList"
+			name="DoctorScheduleForm" scope="request">
+		</action>
+
+		<action path="/UserLogin"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doRegisterPatient,doRegisterDoctor,doLogin,doResetPassword,doUpdatePassword"
+			name="UserLoginForm" scope="request">
+		</action>
+
+		<action path="/MedicineInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMedicineInfoList,doGetMedicineInfo,doInitMedicineTypeList"
+			name="MedicineInfoForm" scope="request">
+		</action>
+
+		<action path="/Patient"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doUpdatePatientInfo,doGetPatientInfo" name="PatientForm"
+			scope="request">
+		</action>
+		<action path="/MedicineCollection"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMedicineCollectionList,doGetMedicineCollection,doInsert,doDeleteMedicineCollection"
+			name="MedicineCollectionForm" scope="request">
+		</action>
+
+		<action path="/MedicineComment"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMedicineCommentList,doGetMedicineComment,doInsert,doDeleteMedicineComment"
+			name="MedicineCommentForm" scope="request">
+		</action>
+
+		<action path="/MedicineQuestion"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMedicineQuestionList,doGetMedicineQuestion,doInsert,doDeleteMedicineQuestion"
+			name="MedicineQuestionForm" scope="request">
+		</action>
+		<action path="/MedicineAnswer"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert,doDeleteMedicineAnswer" name="MedicineAnswerForm"
+			scope="request">
+		</action>
+		<action path="/GradePrice"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetGradePriceList,doGetEmergencyPrice" name="GradePriceForm"
+			scope="request">
+		</action>
+		<action path="/InqueryQuestion"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetInqueryQuestionList" name="InqueryQuestionForm"
+			scope="request">
+		</action>
+
+		<action path="/MedicineRecord"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMedicineRecordList,doGetMedicineRecord,doInitMedicineTypeList"
+			name="MedicalRecordForm" scope="request">
+		</action>
+		<action path="/PrescriptionInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPrescriptionInfoList," name="PrescriptionInfoForm"
+			scope="request">
+		</action>
+
+		<action path="/PrescriptionMedicine"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPrescriptionMedicine" name="PrescriptionMedicineForm"
+			scope="request">
+		</action>
+		<action path="/EmergencyDoctor"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doAppointEmergency" name="EmergencyDoctorForm" scope="request">
+		</action>
+		<action path="/RefundReason"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetReasonList" name="RefundReasonForm" scope="request">
+		</action>
+
+		<action path="/DepartmentClass"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetDepartmentList" name="DepartmentClassForm" scope="request">
+		</action>
+		<action path="/FollowInterest"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsertFollow,doCancelFollow,doGetFollowList" name="FollowInterestForm"
+			scope="request">
+		</action>
+
+		<action path="/ProductsPurchase"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doBuyGeneProducts,receiveAliPayNotify,doGetBuyInfoList,doChangePayType,receiveWechatNotify,default=receiveWechatNotify"
+			name="ProductsPurchaseForm" scope="request">
+		</action>
+
+		<action path="/GeneProducts"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetGeneProductsList,default=doGetGeneProductsList"
+			name="GeneProductsForm" scope="request">
+		</action>
+		<action path="/DetectResult"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetDetectResult,default=doGetDetectResult"
+			name="TestResultMasterForm" scope="request">
+		</action>
+
+	</action-mappings>
+
+	<controller processorClass="com.djb.ylt.framework.action.GsRequestProcessor"></controller>
+	<message-resources parameter="messages" />
+
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation" value="/WEB-INF/applicationContext.xml" />
+	</plug-in>
+</struts-config>

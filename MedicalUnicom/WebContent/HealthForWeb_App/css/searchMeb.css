@@ -1,0 +1,19 @@
+.srcForm {margin:5px 0 0;background:#fff;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0}
+.srcForm .search{padding:10px 3%;height:25px;line-height:25px;}
+.srcForm .src_icon{float:left;margin:0 10px 0 0;width:7%;}
+.srcForm .src_icon img{width:100%;max-width:30px;}
+.srcForm .phone {float:left;width:70%;}
+.srcForm .phone input{width:100%;height:25px;border:0 none;}
+.srcForm .scan_icon{float:right;width:7%;}
+.srcForm .scan_icon img{width:100%;max-width:30px;}
+
+h2.tit {padding:10px 3%;font-size: 12px;}
+
+.searchList {border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0}
+.searchList .info {background:#fff;}
+.searchList .info strong.UserImg{display:inline-block;padding:5px 3%;width:15%;vertical-align:middle}
+.searchList .info strong.UserImg img{width:100%;height:50px;border-radius:50%;}
+.searchList .info strong.Tel {display:inline-block;margin-left:15px;width:30%;font-size:16px;color:#50d071;font-weight:normal;vertical-align:middle}
+.searchList .info strong.addMeb {float:right;width:20%;background:#50d071;text-align:center;vertical-align:middle}
+
+.searchList .info strong.addMeb a{display:block;padding:16px 0;color:#fff;font-weight:normal;}

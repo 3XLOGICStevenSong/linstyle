@@ -1,0 +1,83 @@
+package com.djb.ylt.user.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.user.dao.ITypicalCaseDao;
+import com.djb.ylt.user.entity.TypicalCaseEntity;
+
+
+@Service("iTypicalCaseService")
+public class TypicalCaseServiceImpl extends BaseService implements ITypicalCaseService {
+
+    @Autowired
+    @Qualifier("typicalCaseDao")
+    private ITypicalCaseDao typicalCaseDao;
+	@Override
+	public void addTypicalCase(TypicalCaseEntity TypicalCase) {
+		
+		// TODO Auto-generated method stub
+		  try {
+			  typicalCaseDao.insert(TypicalCase);
+	        } catch (KeyExistException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+
+	@Override
+	public void deleteTypicalCase(TypicalCaseEntity TypicalCase) {
+		
+		try {
+			typicalCaseDao.delete(TypicalCase);
+        } catch (DataNotFoundException e) {
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+        }
+		
+	}
+
+	@Override
+	public void deleteTypicalCaseBatch(List<TypicalCaseEntity> list) {
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateTypicalCase(TypicalCaseEntity TypicalCase) {
+		
+		 try {
+			 typicalCaseDao.update(TypicalCase);
+	        } catch (DataNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            // e.printStackTrace();
+	        }
+	}
+
+	@Override
+	public TypicalCaseEntity getObject(TypicalCaseEntity TypicalCase) {
+		
+		  return typicalCaseDao.getObject(TypicalCase);
+		
+	}
+
+	@Override
+	public List<TypicalCaseEntity> getTypicalCaseList() {
+		
+        return (List<TypicalCaseEntity>) typicalCaseDao.findList();
+	}
+
+	@Override
+	public List<TypicalCaseEntity> getTypicalCaseList(TypicalCaseEntity TypicalCase) {
+		 List<TypicalCaseEntity> list = (List<TypicalCaseEntity>) typicalCaseDao.findListByCondition(TypicalCase);
+	        return list;
+	}
+
+}

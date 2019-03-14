@@ -1,0 +1,26 @@
+package com.djb.ylt.user.service;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.user.entity.GraphicEntity;
+
+
+import java.util.List;
+
+public interface IGraphicService {
+
+    public void addGraphic(GraphicEntity graphic) throws Exception;
+
+    public void deleteGraphic(GraphicEntity graphic);
+
+    public void deleteGraphicBatch(List<GraphicEntity> list);
+
+    public void updateGraphic(GraphicEntity graphic);
+    
+    public void updateGraphicDeleteFlag(GraphicEntity graphic) throws DataNotFoundException;
+
+    public GraphicEntity getObject(GraphicEntity graphic);
+
+    public List<GraphicEntity> getGraphicList();
+
+    public List<GraphicEntity> getGraphicList(GraphicEntity graphic);
+}

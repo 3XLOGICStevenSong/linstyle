@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.FollowInterestEntity">
+	<resultMap id="BaseResultMap" type="com.djb.ylt.user.entity.FollowInterestEntity">
+		<id column="F_ID" jdbcType="INTEGER" property="fId" />
+		<result column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="F_FLAG" jdbcType="CHAR" property="fFlag" />
+		<result column="COMMENT_GRADE" jdbcType="DECIMAL" property="commentGrade" />
+		<result column="MIN_TOTAL" jdbcType="DOUBLE" property="minTotal" />
+		<result column="SCHEDULE_FLAG" property="scheduleFlag" jdbcType="INTEGER" />
+		<association property="doctorEntity"
+			javaType="com.djb.ylt.user.entity.DoctorEntity" resultMap="DoctorResultMap" />
+	</resultMap>
+	<resultMap id="CommentResultMap" type="com.djb.ylt.user.entity.DoctorCommentEntity">
+		<id column="COMMENT_ID" property="commentId" jdbcType="INTEGER" />
+		<result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="INTEGER" />
+		<result column="RECORDS_ID" property="recordsId" jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="REAL" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="DELETE_FLG" property="deleteFlg" jdbcType="CHAR" />
+		<result column="EVALATION_TYPE" property="evalationType"
+			jdbcType="CHAR" />
+		<result column="EVALATION_TIME" property="evalationTime"
+			jdbcType="TIMESTAMP" />
+		<result column="ANONYMOUS_FLAG" property="anonymousFlag"
+			jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		F_ID, PATIENT_ID, DOCTOR_ID, F_FLAG
+	</sql>
+
+	<resultMap id="DoctorResultMap" type="com.djb.ylt.user.entity.DoctorEntity">
+		<id column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="CHAR" />
+		<result column="AGE" property="age" jdbcType="DATE" />
+		<result column="POSITIONAL" property="positional" jdbcType="VARCHAR" />
+		<result column="CARD_NUM" property="cardNum" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_NUM" property="certificateNum"
+			jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PIC" property="certificatePic"
+			jdbcType="VARCHAR" />
+		<result column="HEAD_PIC" property="headPic" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName"
+			jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="VERIFY_FLG" property="verifyFlg" jdbcType="CHAR" />
+		<result column="STATUS_FLG" property="statusFlg" jdbcType="CHAR" />
+		<result column="BANK_OWNER" property="bankOwner" jdbcType="VARCHAR" />
+		<result column="BANK_NUM" property="bankNum" jdbcType="VARCHAR" />
+		<result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+		<result column="HEAL_DISEASE" property="healDisease" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="SERVICE_COUNT" property="serviceCount"
+			jdbcType="INTEGER" />
+		<result column="GRADE" property="grade" jdbcType="CHAR" />
+		<result column="DEPARTMENT_ID" property="departmentId"
+			jdbcType="INTEGER" />
+		<result column="DOCTOR_TEL" property="doctorTel" jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DC_NAME" property="dcName" jdbcType="VARCHAR" />
+		<result column="DC_ID " property="dcId " jdbcType="INTEGER" />
+		<result column="SERVICE_TYPE" property="serviceType" jdbcType="CHAR" />
+		
+		<collection property="interrogationEntitys"
+			ofType="com.djb.ylt.user.entity.InterrogationPackageEntity"
+			resultMap="InterrogationPackageResultMap" />
+	</resultMap>
+	<sql id="Doctor_Column_List">
+		d.DOCTOR_ID, d.USER_ID, d.NAME, d.SEX, d.AGE, d.POSITIONAL,
+		d.CARD_NUM,
+		d.CERTIFICATE_NUM, d.CERTIFICATE_PIC,
+		d.HEAD_PIC,
+		d.HOSPITAL_NAME, d.INTRODUCTION, d.VERIFY_FLG, d.STATUS_FLG,
+		d.BANK_OWNER, d.BANK_NUM,
+		d.BANK_NAME, d.HEAL_DISEASE, d.EMAIL,
+		d.CREATE_TIME, d.UPDATE_TIME,
+		d.SERVICE_COUNT,
+		d.GRADE,d.DEPARTMENT_ID,d.DOCTOR_TEL,d.DEPARTMENT_NAME,d.DC_NAME,d.DC_ID,d.SERVICE_TYPE
+	</sql>
+	<resultMap id="InterrogationPackageResultMap"
+		type="com.djb.ylt.user.entity.InterrogationPackageEntity">
+		<id column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="COUNT" jdbcType="INTEGER" property="count" />
+		<result column="UNIT" jdbcType="VARCHAR" property="unit" />
+		<result column="QA_TIME" jdbcType="VARCHAR" property="qaTime" />
+		<result column="TIME_UNIT" jdbcType="VARCHAR" property="timeUnit" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIEM" jdbcType="TIMESTAMP" property="updateTiem" />
+		<result column="TYPE_ID" jdbcType="CHAR" property="typeId" />
+		<result column="TEL_COUNT" jdbcType="TINYINT" property="telCount" />
+		<result column="TEL_UNIT" jdbcType="VARCHAR" property="telUnit" />
+		<result column="TOTAL" jdbcType="DECIMAL" property="total" />
+		<result column="EFFECT_TIME" jdbcType="VARCHAR" property="effectTime" />
+		<result column="TEL_TIME" jdbcType="VARCHAR" property="telTime" />
+		<result column="TEL_Time_UNIT" jdbcType="VARCHAR" property="telTimeUnit" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+
+	<sql id="InterrogationPackage_Column_List">
+		ip.PACKAGE_ID, ip.NAME, ip.DOCTOR_ID, ip.COUNT, ip.UNIT,
+		ip.QA_TIME, ip.TIME_UNIT,
+		ip.CREATE_TIME, ip.UPDATE_TIEM,
+		ip.TYPE_ID,ip.TEL_COUNT, ip.TEL_UNIT, ip.TOTAL, ip.EFFECT_TIME,
+		ip.TEL_TIME,
+		ip.TEL_Time_UNIT,ip.TYPE
+	</sql>
+	<!-- 取消关注 -->
+	<delete id="delete" parameterType="com.djb.ylt.user.entity.FollowInterestEntity">
+		delete from follow
+		where 1=1
+		<if test="patientId!=null">and PATIENT_ID=#{patientId,jdbcType=INTEGER} </if>
+		<if test="doctorId!=null">and DOCTOR_ID=#{doctorId,jdbcType=INTEGER} </if>
+		<if test="fId!=null">and F_ID =#{fId,jdbcType=INTEGER} </if>
+
+	</delete>
+	<!-- 添加关注 -->
+	<insert id="insert" parameterType="com.djb.ylt.user.entity.FollowInterestEntity">
+		insert into follow (F_ID,
+		PATIENT_ID, DOCTOR_ID,
+		F_FLAG)
+		values (#{fId,jdbcType=INTEGER},
+		#{patientId,jdbcType=INTEGER},
+		#{doctorId,jdbcType=INTEGER},
+		#{fFlag,jdbcType=CHAR})
+	</insert>
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.FollowInterestEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Doctor_Column_List" />,
+		(select IF(COUNT(*)>0,1,0) from  doctor_schedule  ds where ds.DOCTOR_ID=d.DOCTOR_ID and  date_format(ds.START_DATE ,'%Y-%m-%d')>= date_format(now() ,'%Y-%m-%d')  and   date_format(ds.START_TIME ,'%H:%i:%s')>= date_format(now() ,'%H:%i:%s') ) AS SCHEDULE_FLAG,
+		(SELECT MIN(ip.TOTAL) FROM interrogation_package ip WHERE
+		d.DOCTOR_ID=ip.DOCTOR_ID )AS MIN_TOTAL,
+		(
+		SELECT
+		AVG(dc.GRADE)
+		FROM
+		doctor_comment dc
+		WHERE
+		dc.DOCTOR_ID =d.DOCTOR_ID
+		)AS COMMENT_GRADE
+		from follow f LEFT JOIN doctor d
+		ON f.DOCTOR_ID=d.DOCTOR_ID
+		where 1=1
+		<if test="patientId!=null">and f.PATIENT_ID=#{patientId,jdbcType=INTEGER} </if>
+		order by f.F_ID 
+		limit #{pageNum},#{pageSize}
+	</select>
+	<select id="getCount" parameterType="com.djb.ylt.user.entity.FollowInterestEntity"
+		resultType="java.lang.Integer">
+		select count(*) from follow f
+		where 1=1
+		<if test="patientId!=null">and f.PATIENT_ID=#{patientId} </if>
+		<if test="doctorId!=null">and f.DOCTOR_ID=#{doctorId} </if>
+	</select>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.FollowInterestEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from follow f
+		where 1=1
+		<if test="patientId!=null">and f.PATIENT_ID=#{patientId} </if>
+		<if test="doctorId!=null">and f.DOCTOR_ID=#{doctorId} </if>
+	</select>
+	<update id="update" parameterType="com.djb.ylt.user.entity.FollowInterestEntity">
+		update follow
+		<set>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=INTEGER},
+			</if>
+			<if test="doctorId != null">
+				DOCTOR_ID = #{doctorId,jdbcType=INTEGER},
+			</if>
+			<if test="fFlag != null">
+				F_FLAG = #{fFlag,jdbcType=CHAR},
+			</if>
+		</set>
+		where F_ID = #{fId,jdbcType=INTEGER}
+	</update>
+
+
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.user.entity.DoctorInquiryViewEntity">
+	<resultMap id="BaseResultMap"
+		type="com.djb.ylt.user.entity.DoctorInquiryViewEntity">
+		<result column="APPOINT_ID" jdbcType="BIGINT" property="appointId" />
+		<result column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+		<result column="DOCTOR_ID" jdbcType="INTEGER" property="doctorId" />
+		<result column="PACKAGE_ID" jdbcType="INTEGER" property="packageId" />
+		<result column="DEP_ID" jdbcType="INTEGER" property="depId" />
+		<result column="SYMPTON_ID" jdbcType="INTEGER" property="symptonId" />
+		<result column="APPOINT_TYPE" jdbcType="CHAR" property="appointType" />
+		<result column="RECORDS_ID" jdbcType="INTEGER" property="recordsId" />
+		<result column="GUIDANCE" jdbcType="VARCHAR" property="guidance" />
+		<result column="RESULT" jdbcType="VARCHAR" property="result" />
+		<result column="ANALYSIS" jdbcType="VARCHAR" property="analysis" />
+		<result column="INQUIRY_STATUS" jdbcType="CHAR" property="inquiryStatus" />
+		<result column="SYMPTON_DESCRIBE" jdbcType="VARCHAR" property="symptonDescribe" />
+		<result column="APPOINT_TIME" jdbcType="TIMESTAMP" property="appointTime" />
+		<result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+		<result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="RECORDS_TYPE" jdbcType="CHAR" property="recordsType" />
+		<result column="TEL_NUM" jdbcType="VARCHAR" property="telNum" />
+		<result column="ROLE" jdbcType="CHAR" property="role" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="BIRTH" jdbcType="TIMESTAMP" property="birth" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="PATIENT_PIC" jdbcType="VARCHAR" property="patientPic" />
+		<result column="SYMPTOM_NAME" jdbcType="VARCHAR" property="symptomName" />
+		<result column="DEP_NAME" jdbcType="VARCHAR" property="depName" />
+		<result column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="PAY_STATUS" jdbcType="CHAR" property="payStatus" />
+		<result column="INSERT_TIME" property="insertTime" jdbcType="TIMESTAMP" />
+		<result column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+		<result column="SCHEDULE_ID" jdbcType="INTEGER" property="scheduleId" />
+		<result column="PATSCH_ID" jdbcType="INTEGER" property="patschId" />
+		<result column="INQUIRY_PIC" jdbcType="VARCHAR" property="inquiryPic" />
+		<result column="DDEL_FLAG" property="ddelFlag" jdbcType="CHAR" />
+		<result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+		<result column="QA_TIME" jdbcType="VARCHAR" property="qaTime" />
+		<association property="userLoginEntity"
+			javaType="com.djb.ylt.user.entity.UserLoginEntity" resultMap="UserLoginResultMap" />
+			<association property="doctorScheduleEntity"
+			javaType="com.djb.ylt.user.entity.DoctorScheduleEntity" resultMap="DoctorScheduleMap" />
+	</resultMap>
+	<sql id="DoctorInqueryView_Column_List">
+		di.APPOINT_ID,di.PATIENT_ID,di.DOCTOR_ID,
+		di.PACKAGE_ID,di.DEP_ID,di.SYMPTON_ID,di.APPOINT_TYPE,di.RECORDS_ID,di.GUIDANCE,di.RESULT,di.ANALYSIS,di.INQUIRY_STATUS,
+		di.SYMPTON_DESCRIBE,di.APPOINT_TIME,
+		di.START_TIME,di.END_TIME,di.RECORDS_TYPE,di.TEL_NUM,di.ROLE,di.NAME,di.BIRTH,di.SEX,di.PATIENT_PIC,di.SYMPTOM_NAME,di.DEP_NAME,
+		di.USER_ID,di.CREATE_TIME,di.PAY_STATUS,di.INSERT_TIME,di.SCHEDULE_ID,di.PATSCH_ID,di.INQUIRY_PIC,di.DDEL_FLAG,di.USER_CODE,di.QA_TIME
+	</sql>
+	<resultMap id="UserLoginResultMap" type="com.djb.ylt.user.entity.UserLoginEntity">
+		<id column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<result column="USER_TEL" jdbcType="VARCHAR" property="userTel" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ROLE" jdbcType="CHAR" property="role" />
+		<result column="HXUSER_ID" jdbcType="VARCHAR" property="hxuserId" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+<resultMap id="DoctorScheduleMap" type="com.djb.ylt.user.entity.DoctorScheduleEntity" >
+    <id column="SCHEDULE_ID" property="scheduleId" jdbcType="INTEGER" />
+    <result column="DOCTOR_ID" property="doctorId" jdbcType="INTEGER" />
+    <result column="START_DATE" property="startDate" jdbcType="DATE" />
+    <result column="START_TIME" property="startTime" jdbcType="TIME" />
+    <result column="TIME_INTERVAL" property="timeInterval" jdbcType="VARCHAR" />
+    <result column="APPOINT_STATUS" property="appointStatus" jdbcType="CHAR" />
+    <result column="PATIENT_NUM" property="patientNum" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+     <result column="END_TIME" property="endTime" jdbcType="TIME" />
+      <result column="APPOINT_NUM" property="appointNum" jdbcType="INTEGER" />
+    
+  </resultMap>
+  
+  <sql id="DoctorSchedule_Column_List" >
+    ds.SCHEDULE_ID, ds.DOCTOR_ID, ds.START_DATE, ds.START_TIME, ds.TIME_INTERVAL, ds.APPOINT_STATUS, ds.PATIENT_NUM, 
+    ds.STATUS, ds.END_TIME,ds.APPOINT_NUM
+  </sql>
+	<sql id="UserLogin_Column_List">
+		ul.USER_ID, ul.USER_TEL
+	</sql>
+	<sql id="InqueryViewWhereClause">
+		<if test="packageId !=null">and di.PACKAGE_ID=#{packageId} </if>
+		<if test="recordsId!=null">and di.RECORDS_ID=#{recordsId} </if>
+		<if test="doctorId!=null">and di.DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and di.PATIENT_ID=#{patientId} </if>
+	</sql>
+	<select id="getObject" parameterType="com.djb.ylt.user.entity.DoctorInquiryViewEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="DoctorInqueryView_Column_List" />
+		from doctor_inquery_view di
+		where 1=1
+		<if test="recordsId!=null">and di.RECORDS_ID=#{recordsId} </if>
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.ylt.user.entity.DoctorInquiryViewEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="DoctorInqueryView_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />,
+		<include refid="DoctorSchedule_Column_List" />
+		from doctor_inquery_view di LEFT JOIN user_login ul ON di.USER_ID=ul.USER_ID 
+		 LEFT JOIN doctor_schedule ds ON di.SCHEDULE_ID=ds.SCHEDULE_ID
+		where 1=1 and di.APPOINT_TYPE!='3' and  di.PAY_STATUS='1' and di.INQUIRY_STATUS IN('1','2','3','8','9') and di.RECORDS_ID is not null and date_format(di.APPOINT_TIME,'%Y-%m-%d')=CURDATE()
+		<if test="doctorId!=null">and di.DOCTOR_ID=#{doctorId} </if>
+		<if test="patientId!=null">and di.PATIENT_ID=#{patientId} </if>
+		ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC
+		
+	</select>
+	<select id="findAllPatient" parameterType="com.djb.ylt.user.entity.DoctorInquiryViewEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="DoctorInqueryView_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />,
+		
+		<include refid="DoctorSchedule_Column_List" />
+		from doctor_inquery_view di LEFT JOIN user_login ul ON di.USER_ID=ul.USER_ID 
+		 LEFT JOIN doctor_schedule ds ON di.SCHEDULE_ID=ds.SCHEDULE_ID
+		where 1=1 and di.APPOINT_TYPE!='3'and di.RECORDS_ID is not null and di.RECORDS_TYPE='0' and  di.APPOINT_TIME is not null
+		<if test="doctorId!=null">and di.DOCTOR_ID=#{doctorId} </if>
+		<if test="appointType!=null">and di.APPOINT_TYPE=#{appointType} </if>
+		ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC
+	
+	</select>
+		<select id="findAllPatientForPage" parameterType="com.djb.ylt.user.entity.DoctorInquiryViewEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="DoctorInqueryView_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />,
+		
+		<include refid="DoctorSchedule_Column_List" />
+		from doctor_inquery_view di LEFT JOIN user_login ul ON di.USER_ID=ul.USER_ID 
+		 LEFT JOIN doctor_schedule ds ON di.SCHEDULE_ID=ds.SCHEDULE_ID
+		where 1=1 and di.APPOINT_TYPE!='3'and  di.RECORDS_ID is not null and di.RECORDS_TYPE='0' and  di.APPOINT_TIME is not null
+		<if test="doctorId!=null">and di.DOCTOR_ID=#{doctorId} </if>
+		<if test="appointType!=null">and di.APPOINT_TYPE=#{appointType} </if>
+		ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC
+		limit #{pageNum},#{pageSize}
+	</select>
+	<select id="findAllPatientByStatus" parameterType="com.djb.ylt.user.entity.DoctorInquiryViewEntity"
+		resultMap="BaseResultMap">
+		select
+		<include refid="DoctorInqueryView_Column_List" />
+		,
+		<include refid="UserLogin_Column_List" />,
+		
+		<include refid="DoctorSchedule_Column_List" />
+		from doctor_inquery_view di LEFT JOIN user_login ul ON di.USER_ID=ul.USER_ID 
+		 LEFT JOIN doctor_schedule ds ON di.SCHEDULE_ID=ds.SCHEDULE_ID
+		where 1=1 and di.APPOINT_TYPE!='3' and di.PAY_STATUS='1' and di.DDEL_FLAG!='0'and di.RECORDS_ID is not null and di.RECORDS_TYPE='0' and  di.APPOINT_TIME is not null
+		<if test="doctorId!=null">and di.DOCTOR_ID=#{doctorId} </if>
+		<if test="appointType!=null">and di.APPOINT_TYPE=#{appointType} </if>
+		<if test="statusFlag==1"> and  di.INQUIRY_STATUS='1'  ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) </if>
+		<if test="statusFlag==2"> and di.INQUIRY_STATUS='2'ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC </if>
+		<if test="statusFlag==3"> and di.INQUIRY_STATUS='3'ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC </if>
+	    <if test="statusFlag==4">and di.INQUIRY_STATUS IN('8','9') ORDER BY IFNULL(di.APPOINT_TIME , di.CREATE_TIME) DESC</if>
+		limit #{pageNum},#{pageSize}
+	</select>
+</mapper>

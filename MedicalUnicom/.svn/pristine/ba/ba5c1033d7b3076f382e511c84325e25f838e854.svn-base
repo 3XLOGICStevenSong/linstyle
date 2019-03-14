@@ -1,0 +1,302 @@
+package com.djb.ylt.user.dtoclient;
+
+
+
+import java.util.List;
+
+import com.djb.ylt.framework.dto.BaseClientDTO;
+
+public class GraphicClientDTO extends BaseClientDTO {
+
+	private Integer appointId;
+
+	private Integer doctorId;
+
+	private Integer patientId;
+
+	private String patientName;
+	
+	private String doctorName;
+	
+	private String patientPic;
+	
+	private String doctorPic;
+	
+	private Integer supTotal;
+	
+	private Integer freeTotal;
+	
+	private String freeFlag;
+	
+	private String followFlag;
+
+	private List<GraphicInfoClientDTO> graphicList;
+	
+	
+	private String sex;
+	
+	private String birth;
+	
+	private String positional;
+
+	private String  commentFlag;
+	
+	
+
+	/**
+	 * 返回doctorId的值
+	 * @return Integer doctorId的值
+	 */
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	/**
+	 * 设置doctorId的值
+	 * @param  doctorId doctorId的值
+	 */
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	/**
+	 * 返回patientId的值
+	 * @return Integer patientId的值
+	 */
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	/**
+	 * 设置patientId的值
+	 * @param  patientId patientId的值
+	 */
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+
+	/**
+	 * 返回patientName的值
+	 * @return String patientName的值
+	 */
+	public String getPatientName() {
+		return patientName;
+	}
+
+	/**
+	 * 设置patientName的值
+	 * @param  patientName patientName的值
+	 */
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	/**
+	 * 返回doctorName的值
+	 * @return String doctorName的值
+	 */
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	/**
+	 * 设置doctorName的值
+	 * @param  doctorName doctorName的值
+	 */
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	/**
+	 * 返回patientPic的值
+	 * @return String patientPic的值
+	 */
+	public String getPatientPic() {
+		return patientPic;
+	}
+
+	/**
+	 * 设置patientPic的值
+	 * @param  patientPic patientPic的值
+	 */
+	public void setPatientPic(String patientPic) {
+		this.patientPic = patientPic;
+	}
+
+	/**
+	 * 返回doctorPic的值
+	 * @return String doctorPic的值
+	 */
+	public String getDoctorPic() {
+		return doctorPic;
+	}
+
+	/**
+	 * 设置doctorPic的值
+	 * @param  doctorPic doctorPic的值
+	 */
+	public void setDoctorPic(String doctorPic) {
+		this.doctorPic = doctorPic;
+	}
+
+	/**
+	 * 返回supTotal的值
+	 * @return Integer supTotal的值
+	 */
+	public Integer getSupTotal() {
+		return supTotal;
+	}
+
+	/**
+	 * 设置supTotal的值
+	 * @param  supTotal supTotal的值
+	 */
+	public void setSupTotal(Integer supTotal) {
+		this.supTotal = supTotal;
+	}
+
+	/**
+	 * 返回freeTotal的值
+	 * @return Integer freeTotal的值
+	 */
+	public Integer getFreeTotal() {
+		return freeTotal;
+	}
+
+	/**
+	 * 设置freeTotal的值
+	 * @param  freeTotal freeTotal的值
+	 */
+	public void setFreeTotal(Integer freeTotal) {
+		this.freeTotal = freeTotal;
+	}
+
+	/**
+	 * 返回freeFlag的值
+	 * @return String freeFlag的值
+	 */
+	public String getFreeFlag() {
+		return freeFlag;
+	}
+
+	/**
+	 * 设置freeFlag的值
+	 * @param  freeFlag freeFlag的值
+	 */
+	public void setFreeFlag(String freeFlag) {
+		this.freeFlag = freeFlag;
+	}
+
+	/**
+	 * 返回followFlag的值
+	 * @return String followFlag的值
+	 */
+	public String getFollowFlag() {
+		return followFlag;
+	}
+
+	/**
+	 * 设置followFlag的值
+	 * @param  followFlag followFlag的值
+	 */
+	public void setFollowFlag(String followFlag) {
+		this.followFlag = followFlag;
+	}
+
+	/**
+	 * 返回graphicList的值
+	 * @return List<GraphicInfoClientDTO> graphicList的值
+	 */
+	public List<GraphicInfoClientDTO> getGraphicList() {
+		return graphicList;
+	}
+
+	/**
+	 * 设置graphicList的值
+	 * @param  graphicList graphicList的值
+	 */
+	public void setGraphicList(List<GraphicInfoClientDTO> graphicList) {
+		this.graphicList = graphicList;
+	}
+
+	/**
+	 * 返回appointId的值
+	 * @return Integer appointId的值
+	 */
+	public Integer getAppointId() {
+		return appointId;
+	}
+
+	/**
+	 * 设置appointId的值
+	 * @param  appointId appointId的值
+	 */
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
+	}
+
+	/**
+	 * 返回sex的值
+	 * @return String sex的值
+	 */
+	public String getSex() {
+		return sex;
+	}
+
+	/**
+	 * 设置sex的值
+	 * @param  sex sex的值
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	/**
+	 * 返回birth的值
+	 * @return String birth的值
+	 */
+	public String getBirth() {
+		return birth;
+	}
+
+	/**
+	 * 设置birth的值
+	 * @param  birth birth的值
+	 */
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	/**
+	 * 返回positional的值
+	 * @return String positional的值
+	 */
+	public String getPositional() {
+		return positional;
+	}
+
+	/**
+	 * 设置positional的值
+	 * @param  positional positional的值
+	 */
+	public void setPositional(String positional) {
+		this.positional = positional;
+	}
+
+	/**
+	 * 返回commentFlag的值
+	 * @return String commentFlag的值
+	 */
+	public String getCommentFlag() {
+		return commentFlag;
+	}
+
+	/**
+	 * 设置commentFlag的值
+	 * @param  commentFlag commentFlag的值
+	 */
+	public void setCommentFlag(String commentFlag) {
+		this.commentFlag = commentFlag;
+	}
+
+}

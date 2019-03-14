@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Dinfor.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/uploadImg_info.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxDocImformation.js"></script>
+</head>
+<body>
+	<!--div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="Doc_Index.html"><img src="img/icon_back.png"></a></span>
+			<span class="next"><a href="#none">保存</a></span>
+			<span class="Edit"><a href="#none">编辑</a></span>
+			<h2>个人信息</h2>
+		</div>
+	</div-->
+
+	<div id="wrap">
+		<div class="contents">
+			<div class="information">
+				<div class="list1 clearfix">
+					<strong>关注数<span class="followCount"></span></strong>
+					<label for="Photofile">
+						<span id="preview"><img src="img/defaultpatient.png" id="UserImg" alt="" /><img id="icon_camera" src="img/em_profile_headphoto_update_icon.png"></span>
+					</label>
+					<input type="file" id="Photofile" class="displaynone" onchange="previewImage(this)" name="Photofile"/>
+				</div>
+				<div class="list2 ">
+					<!--div class="account clearfix">
+						<strong>账号：</strong>
+						<span><input type="text" id="account" /></span>
+					</div-->
+					<div class="name clearfix">
+						<strong>姓名：</strong>
+						<span><input type="text" id="name" /></span>
+					</div>
+					<div class="birth clearfix">
+						<strong>年龄：</strong>
+						<span><input type="text" id="birth" /></span>
+					</div>
+					<div class="sex clearfix">
+						<strong>性别：</strong>
+						<span id="sex"><input type="text" name="sex" /></span>
+					</div>
+					<div class="cardNum clearfix">
+						<strong>身份证号：</strong>
+						<span><input type="text" id="cardNum" placeholder="未填写" /></span>
+					</div>
+					<div class="certificateNum clearfix">
+						<strong>行医证号：</strong>
+						<span><input type="text" id="certificateNum" /></span>
+					</div>
+					<div class="certificatePic clearfix">
+						<strong>行医证照片：</strong>
+						<!--span><img src="/" id="certificatePic" /></span-->
+						<p style="clear:both;padding:0.5rem 0;text-align:center;color:353535;font-size:0.4rem">行医证照片，暂不使用</p>
+					</div>
+					<div class="hospitalName clearfix">
+						<strong>医院：</strong>
+						<span><input type="text" id="hospitalName" /></span>
+					</div>
+					<div class="healDisease clearfix">
+						<strong>主治：</strong>
+						<span><input type="text" id="healDisease" /></span>
+					</div>
+					<div class="dcName clearfix">
+						<strong>科室：</strong>
+						<span><input type="text" id="dcName" /></span>
+					</div>
+					<div class="departmentId clearfix">
+						<strong>专业：</strong>
+						<span><input type="text" id="departmentId" /></span>
+					</div>
+				</div>
+				
+				<div class="list3 clearfix">
+					<div class="bankOwner clearfix">
+						<strong>持卡人：</strong>
+						<span><input type="text" id="bankOwner" placeholder="未填写" /></span>
+					</div>
+					<div class="bankNum clearfix">
+						<strong>卡号：</strong>
+						<span><input type="text" id="bankNum" placeholder="未填写" /></span>
+					</div>
+					<div class="bankName clearfix">
+						<strong>银行：</strong>
+						<span><input type="text" id="bankName" placeholder="未填写" /></span>
+					</div>
+				</div>
+				
+				<div class="logout" id="logout_btn">
+					<span class="btn_logout">退出登录</span>
+				</div>
+				
+				<div id="aside"></div>
+				<div id="buttonArea">
+					<button type="button" id="logout" >退出登录</button>
+					<button type="button" id="cancel" >取消</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>

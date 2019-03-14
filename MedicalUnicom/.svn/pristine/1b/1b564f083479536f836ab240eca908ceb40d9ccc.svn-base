@@ -1,0 +1,344 @@
+package com.djb.ylt.user.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.djb.ylt.framework.exception.dao.DataNotFoundException;
+import com.djb.ylt.framework.exception.dao.KeyExistException;
+import com.djb.ylt.framework.service.BaseService;
+import com.djb.ylt.health.dao.IInqueryAnswerDao;
+import com.djb.ylt.health.entity.InqueryAnswerEntity;
+import com.djb.ylt.health.entity.InqueryQuestionEntity;
+import com.djb.ylt.user.dao.IAppointInquiryDao;
+import com.djb.ylt.user.dao.IDoctorDao;
+import com.djb.ylt.user.dao.IDoctorScheduleDao;
+import com.djb.ylt.user.dao.IPatientScheduleDao;
+import com.djb.ylt.user.dao.IRecordsDao;
+import com.djb.ylt.user.entity.AppointInquiryEntity;
+import com.djb.ylt.user.entity.DoctorEntity;
+import com.djb.ylt.user.entity.DoctorScheduleEntity;
+import com.djb.ylt.user.entity.PatientScheduleEntity;
+import com.djb.ylt.user.entity.RecordsEntity;
+
+@Service("iRecordsService")
+public class RecordsServiceImpl extends BaseService implements IRecordsService {
+
+	@Autowired
+	@Qualifier("recordsDao")
+	private IRecordsDao recordsDao;
+
+	@Autowired
+	@Qualifier("inqueryAnswerDao")
+	private IInqueryAnswerDao inqueryAnswerDao;
+	@Autowired
+	@Qualifier("doctorScheduleDao")
+	private IDoctorScheduleDao doctorScheduleDao;
+
+	@Autowired
+	@Qualifier("patientScheduleDao")
+	private IPatientScheduleDao patientScheduleDao;
+	@Autowired
+	@Qualifier("iPatientScheduleService")
+	private IPatientScheduleService iPatientScheduleService;
+
+	@Autowired
+	@Qualifier("appointInquiryDao")
+	private IAppointInquiryDao appointInquiryDao;
+
+	@Autowired
+	@Qualifier("doctorDao")
+	private IDoctorDao doctorDao;
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void addRecords(RecordsEntity records) {
+
+		try {
+			// 删除之前填写的
+			InqueryAnswerEntity answerEntity = new InqueryAnswerEntity();
+			answerEntity.setDepId(records.getDepartmentId());
+			answerEntity.setPatientId(records.getPatientId());
+			inqueryAnswerDao.delete(answerEntity);
+
+			// 添加问诊票答案
+			if (records.getInqueryQuestionEntitys() != null && records.getInqueryQuestionEntitys().size() > 0) {
+				for (InqueryQuestionEntity question : records.getInqueryQuestionEntitys()) {
+					if (question.getInqueryAnswerEntitys() != null && question.getInqueryAnswerEntitys().size() > 0) {
+						inqueryAnswerDao.insertBatch(question.getInqueryAnswerEntitys());
+
+					}
+				}
+			}
+			// 没有问诊票时，患者录入症状描述
+			// 上传备注
+			if (records.getMemo() != null && !"".equals(records.getMemo())) {
+				InqueryAnswerEntity answer = new InqueryAnswerEntity();
+				answer.setDepId(records.getDepartmentId());
+				answer.setPatientId(records.getPatientId());
+				answer.setIaContent(records.getMemo());
+				answer.setIaFlag("2");
+				inqueryAnswerDao.insert(answer);
+
+			}
+
+			// 上传问诊票图片
+			if (records.getInquiryPic() != null && !"".equals(records.getInquiryPic())) {
+				InqueryAnswerEntity answerParam = new InqueryAnswerEntity();
+				answerParam.setDepId(records.getDepartmentId());
+				answerParam.setPatientId(records.getPatientId());
+				answerParam.setIaContent(records.getInquiryPic());
+				answerParam.setIaFlag("1");
+				inqueryAnswerDao.insert(answerParam);
+			}
+			// 更新日程表
+			// 视频更新日程
+			PatientScheduleEntity patientSchelduleEntity = new PatientScheduleEntity();
+			if (records.getScheduleId() != null) {
+				DoctorScheduleEntity scheduleEntity = new DoctorScheduleEntity();
+				scheduleEntity.setScheduleId(records.getScheduleId());
+				DoctorScheduleEntity resultSchelduleEntity = new DoctorScheduleEntity();
+				resultSchelduleEntity = doctorScheduleDao.getObject(scheduleEntity);
+				if (resultSchelduleEntity != null) {
+
+					scheduleEntity.setAppointNum(resultSchelduleEntity.getAppointNum() + 1);
+					doctorScheduleDao.update(scheduleEntity);
+
+				}
+
+				patientSchelduleEntity.setPatientId(records.getPatientId());
+				patientSchelduleEntity.setScheduleId(records.getScheduleId());
+				patientSchelduleEntity.setPsFlag("0");
+				iPatientScheduleService.addPatientSchedule(patientSchelduleEntity);
+				records.setPatschId(patientSchelduleEntity.getPsId());
+				// System.out.println(">>>>>>>>>psId"+patientSchelduleEntity.getPsId());
+			}
+			records.setUpFlag("0");
+			records.setPatientFlag("0");
+			records.setDoctorFlag("0");
+			recordsDao.insert(records);
+
+		} catch (KeyExistException e) {
+
+			// e.printStackTrace();
+		} catch (DataNotFoundException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteRecords(RecordsEntity records) {
+
+		try {
+			recordsDao.delete(records);
+		} catch (DataNotFoundException e) {
+
+			// e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void deleteRecordsBatch(List<RecordsEntity> list) {
+
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void updateRecords(RecordsEntity records) {
+
+		try {
+			if (records.getRefundId() != null) {
+				// 参数Entity
+				AppointInquiryEntity appointEntity = new AppointInquiryEntity();
+				appointEntity.setAppointId(records.getAppointId());
+				appointEntity.setRefundNum(records.getRefundNum());
+				appointEntity.setRefundId(records.getRefundId());
+				appointEntity.setReasonMemo(records.getReasonMemo());
+				appointEntity.setRefundReason(records.getRefundReason());
+				appointInquiryDao.update(appointEntity);
+
+			}
+			// 患者取消执行以下操作
+			if ("5".equals(records.getInquiryStatus()) ||"0".equals(records.getPdelFlag())) {
+				if (records.getPatschId() != null) {
+					PatientScheduleEntity patientSche = new PatientScheduleEntity();
+					patientSche.setPsId(records.getPatschId());
+					patientSche.setPsFlag("1");
+					patientScheduleDao.update(patientSche);
+				}
+				if (records.getScheduleId() != null) {
+					DoctorScheduleEntity scheduleEntity = new DoctorScheduleEntity();
+					scheduleEntity.setScheduleId(records.getScheduleId());
+					DoctorScheduleEntity schedule = new DoctorScheduleEntity();
+					schedule = doctorScheduleDao.getObject(scheduleEntity);
+					if (schedule != null) {
+						if (schedule.getAppointNum() <= 1) {
+							scheduleEntity.setAppointNum(0);
+							scheduleEntity.setAppointStatus("0");
+						} else {
+							scheduleEntity.setAppointNum(schedule.getAppointNum() - 1);
+						}
+						doctorScheduleDao.update(scheduleEntity);
+					}
+				}
+			}
+			recordsDao.update(records);
+			// 医生服务次数+1
+			if ("3".equals(records.getInquiryStatus())) {
+				DoctorEntity doctorEntity = new DoctorEntity();
+				// 结果Entity
+				DoctorEntity doctorResultEntity = new DoctorEntity();
+				doctorEntity.setDoctorId(records.getDoctorId());
+				doctorResultEntity = doctorDao.getObject(doctorEntity);
+				if (doctorResultEntity != null) {
+					if (doctorResultEntity.getServiceCount() != null) {
+						doctorEntity.setServiceCount(doctorResultEntity.getServiceCount() + 1);
+					} else {
+						doctorEntity.setServiceCount(1);
+					}
+					doctorDao.update(doctorEntity);
+				}
+			}
+			if("2".equals(records.getInquiryStatus())){
+			RecordsEntity recordsParam=new  RecordsEntity();
+			recordsParam.setRecordsId(records.getRecordsId());
+			RecordsEntity recordsResult=recordsDao.getObject(records);
+			if(recordsResult!=null){
+				AppointInquiryEntity appointEntity = new AppointInquiryEntity();
+				appointEntity.setAppointId(recordsResult.getAppointId());
+				AppointInquiryEntity appointresult=appointInquiryDao.getObject(appointEntity);
+				if(appointresult!=null){
+					//急诊更新服务人数
+					if("3".equals(appointresult.getAppointType())){
+						DoctorEntity doctorEntity = new DoctorEntity();
+						// 结果Entity
+						DoctorEntity doctorResultEntity = new DoctorEntity();
+						doctorEntity.setDoctorId(appointresult.getDoctorId());
+						doctorResultEntity = doctorDao.getObject(doctorEntity);
+						if (doctorResultEntity != null) {
+							if (doctorResultEntity.getServiceCount() != null) {
+								doctorEntity.setServiceCount(doctorResultEntity.getServiceCount() + 1);
+							} else {
+								doctorEntity.setServiceCount(1);
+							}
+							doctorDao.update(doctorEntity);
+						}
+					}
+				}
+				
+			}
+			}
+		} catch (DataNotFoundException e) {
+
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public RecordsEntity getObject(RecordsEntity records) {
+
+		return recordsDao.getObject(records);
+
+	}
+
+	@Override
+	public List<RecordsEntity> getRecordsList() {
+
+		return (List<RecordsEntity>) recordsDao.findList();
+	}
+
+	@Override
+	public List<RecordsEntity> getRecordsList(RecordsEntity records) {
+		List<RecordsEntity> list = (List<RecordsEntity>) recordsDao.findListByCondition(records);
+		return list;
+	}
+
+	@Override
+	public Integer getCount(RecordsEntity records) {
+		return recordsDao.getOtherObject(IRecordsDao.GETCOUNT, records, Integer.class);
+
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public int updateRecordsTime(RecordsEntity records) {
+		int flag = 0;
+		try {
+			// 获取日程ID信息
+			// 旧的日程更新数量
+			// 新的日程是否可预约
+			// RecordsEntity recordsEntity=new RecordsEntity();
+			DoctorScheduleEntity scheduleEntity = new DoctorScheduleEntity();
+			// 获取新的
+			scheduleEntity.setScheduleId(records.getScheduleId());
+			DoctorScheduleEntity result = doctorScheduleDao.getObject(scheduleEntity);
+			if (result != null) {
+				// 新的日程存在并且可预订才可以更新
+				if (result.getPatientNum() != null && result.getAppointNum() != null) {
+					if ((result.getAppointNum() + 1) <= result.getPatientNum()) {
+						// 删除原来的日程用户关系并且获取原来的日程在更新原来的日程的信息数量-1
+						// 删除原来的日程用户关系
+						PatientScheduleEntity patientScheduleEntity = new PatientScheduleEntity();
+						patientScheduleEntity.setPatientId(records.getPatientId());
+						patientScheduleEntity.setScheduleId(records.getSchId());
+						patientScheduleDao.delete(patientScheduleEntity);
+						// 获取旧的更新数量
+						DoctorScheduleEntity oldScheduleEntity = new DoctorScheduleEntity();
+						oldScheduleEntity.setScheduleId(records.getSchId());
+						DoctorScheduleEntity oldResult = doctorScheduleDao.getObject(oldScheduleEntity);
+						if (oldResult != null) {
+							oldScheduleEntity.setAppointNum(oldResult.getAppointNum() - 1);
+							doctorScheduleDao.update(oldScheduleEntity);
+						}
+
+						// 获取新的数量+1
+						scheduleEntity.setAppointNum(result.getAppointNum() + 1);
+						doctorScheduleDao.update(scheduleEntity);
+						PatientScheduleEntity deletePa = new PatientScheduleEntity();
+						deletePa.setScheduleId(records.getScheduleId());
+						deletePa.setPatientId(records.getPatientId());
+						patientScheduleDao.insert(deletePa);
+						records.setInquiryStatus("1");
+						records.setUpFlag("1");
+						recordsDao.update(records);
+					} else {
+						flag = 1;
+						return flag;
+					}
+				}
+			} else {
+				flag = 1;
+				return flag;
+				// 不存在不能更新
+			}
+
+		} catch (DataNotFoundException | KeyExistException e) {
+
+			// e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public void updateRecordsBatch(List<RecordsEntity> records) {
+		try {
+			recordsDao.updateBatch(records);
+		} catch (DataNotFoundException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	@Override
+	public RecordsEntity getPatientPushInfo(RecordsEntity records) {
+		
+		return recordsDao.getOtherObject(IRecordsDao.GETPATIENTPUSHINFO, records, RecordsEntity.class);
+	}
+
+}

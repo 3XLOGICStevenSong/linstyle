@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Meblist.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxDocChatMeblist.js"></script>
+</head>
+<body>
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="javascript:history.go(-1)">&lt;</a></span>
+			<span class="next"><a href="search.html">+</a></span>
+			<h2>会员</h2>
+		</div>
+	</div>
+	
+	<div id="wrap">
+	
+		<div id="container">
+			<div class="contents">
+				<div class="Mlist">
+					<ul id="List">
+						<!--li class="loading"><img src="img/loading.gif"></li-->
+						<!--li>
+							<div class="info">
+								<strong class="UserImg"><img src="" /></strong>
+								<ul>
+									<li class="frt">
+										<strong class="name"></strong>
+									</li>
+									<li>
+										<strong>性别: <span class="Sex"></span></strong>
+										<strong>年龄: <span class="Age"></span></strong>
+									</li>
+								</ul>
+							</div>
+						</li-->
+					</ul>
+					<button type="button" id="MoreBtn">查看更多</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+	
+</body>
+</html>

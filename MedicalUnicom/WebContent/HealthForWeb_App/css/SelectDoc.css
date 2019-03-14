@@ -1,0 +1,35 @@
+.SelectDoc #List > li{margin:0 0 0.2rem}
+.SelectDoc #List li:first-child .info{border-top:0}
+.SelectDoc .info {padding:0.2rem 0 0;background:#fff;border-top:1px solid #d1d1d1;border-bottom:1px solid #d1d1d1}
+.SelectDoc .info strong.UserImg{display:inline-block;width:2.4rem;padding:0.2rem 0;text-align:center;vertical-align:top}
+.SelectDoc .info strong.UserImg img{width:2rem;height:2rem;border-radius:50%;}
+.SelectDoc .info strong.UserImg span.commentGrade{display:block;padding:0.2rem 0;color:#ffba00;}
+.SelectDoc .info  ul{display:inline-block;width:5rem;padding:0.2rem 0;font-size:0.4rem;vertical-align:top}
+.SelectDoc .info  ul li strong.docTitle{display:block;font-weight:normal;font-size:0.4rem}
+.SelectDoc .info  ul li strong.docTitle span{margin:0 0.3rem 0 0}
+.SelectDoc .info  ul li.frt {padding:0 0 0.2rem}
+.SelectDoc .info  ul li.frt strong{font-weight:bold;font-size:0.4rem}
+.SelectDoc .info  ul li.frt span{margin:0 0 0 0.3rem;font-size:0.35rem}
+
+
+.SelectDoc .info .Price {float:right;width:2.5rem;min-height:2.4rem;margin:0.2rem 0;border-left:1px solid #999;font-size:0.4rem}
+.SelectDoc .info .Price p span{display:block;margin:0 0 0.3rem;text-align:center}
+.SelectDoc .info .Price p span img{width:1rem}
+.SelectDoc .info .Price p span.Vprice{color:#ff5f10;font-size:0.4rem}.
+
+/*
+.SelectDoc .info .Price {float:right;width:2.6rem;min-height:2.4rem;padding:0.2rem 0;border-left:1px solid #999;font-size:0.4rem}
+.SelectDoc .info .Price p span{display:block;text-align:center}
+.SelectDoc .info .Price p span img{width:0.5rem;margin:0 0.3rem 0 0;vertical-align:middle}
+.SelectDoc .info .Price p span.Effect{margin:0.5rem 0 0;color:#ff5f10}
+*/
+
+.SelectDoc .Follow ul {border-bottom:1px solid #999;font-size:0;line-height:0;}
+.SelectDoc .Follow ul li{display:inline-block;width:50%;height:1.5rem;line-height:1.5rem;border-bottom:0.1rem solid transparent;background:#fff;text-align:center;}
+.SelectDoc .Follow ul li span{display:block;height:1rem;margin:0.25rem 0 0;line-height:1rem;font-size:0.4rem;font-weight:bold;border-left:1px solid #999}
+.SelectDoc .Follow ul li:first-child span{border:0}
+.SelectDoc .Follow ul li.on {border-bottom:0.1rem solid #50d071;}
+.SelectDoc .Follow ul li.on span{color:#50d071;font-size:0.4rem;font-weight:bold;}
+
+#MoreBtn{width:100%;height:1.5rem;padding:0.3rem 0;border-top:1px solid #999;border-bottom:1px solid #999;background:#fff;text-align:center;font-weight:bold;font-size:0.4rem;color:#f00}
+

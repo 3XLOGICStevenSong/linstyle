@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.ylt.gene.entity.TestResultMasterEntity">
+	<resultMap id="ResultMasterResultMap"
+		type="com.djb.ylt.gene.entity.TestResultMasterEntity">
+		<id column="RM_ID" jdbcType="INTEGER" property="rmId" />
+		<result column="DETECTED_NAME" jdbcType="VARCHAR" property="detectedName" />
+		<result column="DETECTED_TEL" jdbcType="VARCHAR" property="detectedTel" />
+		<result column="DOCTOR_NAME" jdbcType="VARCHAR" property="doctorName" />
+		<result column="DOCTOR_TEL" jdbcType="VARCHAR" property="doctorTel" />
+		<result column="EVALUATE" jdbcType="VARCHAR" property="evaluate" />
+		<result column="TOTAL_ITEMS" jdbcType="INTEGER" property="totalItems" />
+		<result column="DETECT_TIME" jdbcType="TIMESTAMP" property="detectTime" />
+		<result column="INSERT_TIME" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="AGE" jdbcType="INTEGER" property="age" />
+		<result column="GENE_NAME" jdbcType="CHAR" property="geneName" />
+		<result column="DETECT_NUM" jdbcType="CHAR" property="detectNum" />
+		<collection property="testResultEntitys"
+			ofType="com.djb.ylt.gene.entity.TestResultEntity" resultMap="TestResultResultMap" />
+			<collection property="detectAnalysisEntitys"
+			ofType="com.djb.ylt.gene.entity.DetectAnalysisEntity" resultMap="DetectAnalysisResultMap" />
+	</resultMap>
+
+	<sql id="ResultMaster_Column_List">
+		 tm.RM_ID, tm.DETECTED_NAME, tm.DETECTED_TEL, tm.DOCTOR_NAME, tm.DOCTOR_TEL, tm.EVALUATE,
+		tm.TOTAL_ITEMS,
+		tm.DETECT_TIME, tm.INSERT_TIME, tm.USER_CODE,tm.MEMO,tm.SEX,tm.AGE,tm.GENE_NAME,tm.DETECT_NUM
+	</sql>
+	<sql id="ResultMasterWhereClause">
+		<if test="rmId !=null">and RM_ID=#{rmId} </if>
+		<if test="userCode !=null">and USER_CODE=#{userCode} </if>
+		
+	</sql>
+	<sql id="orderByResultMasterClause">
+		ORDER BY gp.INSERT_TIME, gp.RM_ID
+	</sql>
+	<resultMap id="TestResultResultMap" type="com.djb.ylt.gene.entity.TestResultEntity">
+		<id column="TR_ID" jdbcType="INTEGER" property="trId" />
+		<result column="RM_ID" jdbcType="INTEGER" property="rmId" />
+		<result column="GENE_NAME" jdbcType="VARCHAR" property="geneName" />
+		<result column="DETECT_POINT" jdbcType="VARCHAR" property="detectPoint" />
+		<result column="CLASSIFICATION" jdbcType="VARCHAR" property="classification" />
+		<result column="RISK_TYPE" jdbcType="VARCHAR" property="riskType" />
+	</resultMap>
+
+	<sql id="TestResult_Column_List">
+		tr.TR_ID,  tr.GENE_NAME, tr.DETECT_POINT, tr.CLASSIFICATION, tr.RISK_TYPE
+	</sql>
+	
+  <resultMap id="DetectAnalysisResultMap" type="com.djb.ylt.gene.entity.DetectAnalysisEntity">
+    <id column="DA_ID" jdbcType="INTEGER" property="daId" />
+    <result column="RM_ID" jdbcType="INTEGER" property="rmId" />
+    <result column="DISEASE_NAME" jdbcType="VARCHAR" property="diseaseName" />
+    <result column="GENE_NAME" jdbcType="VARCHAR" property="geneName" />
+    <result column="GENE_TYPE" jdbcType="VARCHAR" property="geneType" />
+    <result column="RISK_ADDED" jdbcType="VARCHAR" property="riskAdded" />
+  </resultMap>
+  <sql id="Analysis_Column_List">
+     da.DA_ID, da.DISEASE_NAME, da.GENE_NAME, da.GENE_TYPE, da.RISK_ADDED
+  </sql>
+  
+  <select id="findListByCondition" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity"
+		resultMap="ResultMasterResultMap">
+	select
+		<include refid="ResultMaster_Column_List" />,
+		<include refid="TestResult_Column_List" />
+		
+		from test_result_master  tm left join test_result tr ON tm.RM_ID=tr.RM_ID
+		where 1=1 AND tm.INSERT_TIME=(SELECT MAX(INSERT_TIME)FROM test_result_master WHERE PATIENT_ID=#{patientId})
+		
+		<if test="patientId !=null">and tm.PATIENT_ID=#{patientId} </if>
+	ORDER BY tm.INSERT_TIME DESC,tm.RM_ID DESC
+	
+
+	</select>
+	
+	<select id="getObject" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity"
+		resultMap="ResultMasterResultMap">
+		select
+		<include refid="ResultMaster_Column_List" />,
+		<include refid="TestResult_Column_List" />,
+		<include refid="Analysis_Column_List" />
+		from test_result_master  tm left join test_result tr ON tm.RM_ID=tr.RM_ID
+		left join detect_analysis da ON tm.RM_ID=da.RM_ID
+		where 1=1 AND tm.INSERT_TIME=(SELECT MAX(INSERT_TIME)FROM test_result_master WHERE PATIENT_ID=#{patientId})
+		and tm.RM_ID=(SELECT MAX(RM_ID)FROM test_result_master WHERE PATIENT_ID=#{patientId})
+		<if test="patientId !=null">and tm.PATIENT_ID=#{patientId} </if>
+	ORDER BY tm.INSERT_TIME DESC,tm.RM_ID DESC
+	
+	</select>
+	<delete id="delete" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity">
+		delete from test_result_master
+		where RM_ID = #{rmId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity">
+		insert into test_result_master (RM_ID, DETECTED_NAME, DETECTED_TEL,
+		DOCTOR_NAME, DOCTOR_TEL, EVALUATE,
+		TOTAL_ITEMS, DETECT_TIME, INSERT_TIME,
+		USER_CODE, MEMO,SEX,AGE,GENE_NAME,DETECT_NUM)
+		values (#{rmId,jdbcType=INTEGER}, #{detectedName,jdbcType=VARCHAR},
+		#{detectedTel,jdbcType=VARCHAR},
+		#{doctorName,jdbcType=VARCHAR}, #{doctorTel,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR},
+		#{totalItems,jdbcType=INTEGER}, #{detectTime,jdbcType=TIMESTAMP},
+		now(),
+		#{userCode,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR},#{sex,jdbcType=CHAR},
+		#{age,jdbcType=INTEGER},#{geneName,jdbcType=VARCHAR},#{detectNum,jdbcType=VARCHAR})
+	</insert>
+	<update id="update" parameterType="com.djb.ylt.gene.entity.TestResultMasterEntity">
+		update test_result_master
+		<set>
+			<if test="detectedName != null">
+				DETECTED_NAME = #{detectedName,jdbcType=VARCHAR},
+			</if>
+			<if test="checkTel != null">
+				DETECTED_TEL = #{detectedTel,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorName != null">
+				DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorTel != null">
+				DOCTOR_TEL = #{doctorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="evaluate != null">
+				EVALUATE = #{evaluate,jdbcType=VARCHAR},
+			</if>
+			<if test="totalItems != null">
+				TOTAL_ITEMS = #{totalItems,jdbcType=INTEGER},
+			</if>
+			<if test="detectTime != null">
+				DETECT_TIME = #{detectTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="insertTime != null">
+				INSERT_TIME = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userCode != null">
+				USER_CODE = #{userCode,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				AGE = #{age,jdbcType=INTEGER},
+			</if>
+				<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+				<if test="geneName != null">
+				GENE_NAME = #{geneName,jdbcType=VARCHAR},
+			</if>
+				<if test="detectNum != null">
+				DETECT_NUM = #{detectNum,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RM_ID = #{rmId,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/Device_rem.js"></script>
+	<title></title>
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/Dinfor.css" />
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/uploadImg_info.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/ajaxPatImformation.js"></script>
+</head>
+<body id="bodyMain">
+
+	<div id="header">
+		<div class="titleArea">
+			<span class="prev"><a href="Pat_Index.html"><img src="img/icon_back.png"></a></span>
+			<span class="next"><a href="#none">保存</a></span>
+			<span class="Edit"><a href="#none">编辑</a></span>
+			<h2>个人信息</h2>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div class="contents">
+			<div class="information">
+				<div class="list1 clearfix">
+					<label for="Photofile1">
+						<span id="preview"><img src="img/defaultpatient.png" id="UserImg" alt="" /><img id="icon_camera" src="img/em_profile_headphoto_update_icon.png"></span>
+					</label>
+					<strong class="TelNumber"></strong>
+					<input type="file" id="Photofile1" class="displaynone" name="Photofile"/>
+				</div>
+				<div class="list2 ">
+					<!--div class="account clearfix">
+						<strong>账号：</strong>
+						<span><input type="text" id="account" /></span>
+					</div-->
+					<div class="name clearfix">
+						<strong>姓名：</strong>
+						<span><input type="text" id="name" /></span>
+					</div>
+					<div class="birth clearfix">
+						<strong>出生日期：</strong>
+						<span><input type="text" id="birth" /></span>
+						<!--p style="clear:both;padding:0 0.2rem;text-align:right"><span class="consult">格式:YYYY-MM-DD</span></p-->
+					</div>
+					<div class="sex clearfix">
+						<strong>性别：</strong>
+						<span id="sexPat"><input type="text" id="sex" /></span>
+							<!--label for="man"><input type="radio" name="sex" id="man" />男</label>
+							<label for="femal"><input type="radio" name="sex" id="femal" />女</label>
+							<span></span>
+						</span-->
+						<!--script>
+						$("#sexPat input").click(function(){
+							if($(this).attr("id") == "man"){
+								$("#sexPat input").removeAttr("key");
+								$(this).attr("key","0");
+							}else if($(this).attr("id") == "femal"){
+								$("#sexPat input").removeAttr("key");
+								$(this).attr("key","1");
+							}
+						})
+						</script  -->
+					</div>
+				</div>
+
+				<div class="logout" id="logout_btn">
+					<span class="btn_logout">退出登录</span>
+				</div>
+				
+				<div id="aside"></div>
+				<div id="buttonArea">
+					<button type="button" id="logout" >确认退出</button>
+					<button type="button" id="cancel" >取消</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+	</div>
+
+</body>
+</html>
