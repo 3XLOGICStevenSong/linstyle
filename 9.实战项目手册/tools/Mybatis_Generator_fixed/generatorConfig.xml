@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="MySqlDev" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="UTF-8" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Query" />
+		</plugin>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/ylxt" userId="root"
+			password="buzhidao">
+			<property name="useInformationSchema" value="true" />
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator
+			targetPackage="lifecare.dao.generator.po"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/pension-system-djb/pension-system-djb-dao/src/main/java" />
+		<sqlMapGenerator targetPackage="mappers.lifecare.dao.generator.mapper"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/pension-system-djb/pension-system-djb-dao/src/main/resources" />
+		<javaClientGenerator
+			targetPackage="lifecare.dao.generator.respository"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/pension-system-djb/pension-system-djb-dao/src/main/java"
+			type="XMLMAPPER" />
+
+		<table schema="" tableName="sys_backend_person" domainObjectName="BackendPersonPO" />
+		<table schema="" tableName="sys_login_log" domainObjectName="LoginLogPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="sys_member_person" domainObjectName="MemberPersonPO" />
+		<table schema="" tableName="sys_menu" domainObjectName="MenuPO">
+		  <generatedKey column="menu_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="sys_role" domainObjectName="RolePO">
+		  <generatedKey column="role_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="sys_role_menu_map" domainObjectName="RoleMenuMapPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="sys_service_person" domainObjectName="ServicePersonPO" />
+		<table schema="" tableName="sys_user_login" domainObjectName="UserLoginPO" />
+		<table schema="" tableName="sys_user_role_map" domainObjectName="UserRoleMapPO">
+          <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_city" domainObjectName="CityPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_data_model" domainObjectName="DataModelPO">
+          <generatedKey column="model_id" sqlStatement="MySql" identity="true"/>
+        </table>
+		<table schema="" tableName="t_data_model_item" domainObjectName="DataModelItemPO">
+          <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+		<table schema="" tableName="t_district" domainObjectName="DistrictPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_main_img" domainObjectName="MainImgPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_medical_items" domainObjectName="MedicalItemsPO">
+		  <generatedKey column="project_number" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_member_archives" domainObjectName="MemberArchivesPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_member_map" domainObjectName="MemberMapPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_member_nurse_plan" domainObjectName="MemberNursePlanPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_organization_structure" domainObjectName="OrganizationStructurePO">
+		  <generatedKey column="organization_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_province" domainObjectName="ProvincePO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_service" domainObjectName="ServicePO">
+		  <generatedKey column="service_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_service_level" domainObjectName="ServiceLevelPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_service_person_type" domainObjectName="ServicePersonTypePO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_service_person_work_time" domainObjectName="ServicePersonWorkTimePO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_service_type" domainObjectName="ServiceTypePO">
+		  <generatedKey column="category_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_sms_push_rule" domainObjectName="SmsPushRulePO">
+		  
+		</table>
+		<table schema="" tableName="t_sms_template" domainObjectName="SmsTemplatePO">
+		  <generatedKey column="template_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="sys_user_operator_log" domainObjectName="UserOperatorLogPO">
+		  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+	</context>
+</generatorConfiguration>
+
