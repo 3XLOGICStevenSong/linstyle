@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.com.dbridge.lifecare.dao.respository.RolePOMapper">
+
+	<resultMap id="BaseResultMap"
+		type="cn.com.dbridge.lifecare.dao.po.RolePO">
+		<id column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
+		<result column="ROLE_NAME" jdbcType="VARCHAR"
+			property="roleName" />
+		<result column="STATUS" jdbcType="CHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<result column="ROLE_NAME_PINYIN" jdbcType="VARCHAR" property="roleNamePinyin" />
+		
+		<collection property="responsibiltyList"
+			ofType="cn.com.dbridge.lifecare.dao.po.ResponsibilityPO"
+			resultMap="cn.com.dbridge.lifecare.dao.respository.ResponsibilityPOMapper.BaseResultMap"></collection>
+	</resultMap>
+
+	<select id="selectStringRolesByUserLoginCode"
+		parameterType="java.lang.String" resultType="java.lang.String">
+		select distinct
+		role.ROLE_NAME from
+		(
+		select
+		USER_ID,USER_NUMBER
+		from
+		t_user
+		where
+		USER_NUMBER=#{userNumber}
+		) user
+		inner join
+		t_responsibility
+		sbrp
+		on
+		user.USER_ID= sbrp.USER_ID
+		inner
+		join
+		t_role role
+		on
+		sbrp.ROLE_ID=role.ROLE_ID
+		where
+		role.STATUS=1
+	</select>
+	<select id="getRoleByRoleId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select distinct
+		role.ROLE_NAME ,role.ROLE_ID,role.MEMO from
+		t_role role
+
+		where
+		role.ROLE_ID=#{roleId}
+	</select>
+	<!-- 通过角色名称查询角色 -->
+	<select id="getRoleByRoleName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select distinct
+		role.ROLE_NAME ,role.ROLE_ID,role.MEMO from
+		t_role role
+
+		where
+		role.ROLE_NAME=#{roleName} 
+	</select>
+	<!-- 获取角色 -->
+	<select id="getRoles" resultMap="BaseResultMap">
+		select DISTINCT
+		role.ROLE_NAME,role.ROLE_ID,role.MEMO,role.ROLE_NAME_PINYIN
+		FROM
+		t_role role
+		where
+		role.STATUS='1'
+		order by role.ROLE_NAME_PINYIN,role.ROLE_ID
+	</select>
+	<!-- 获取角色 -->
+	<select id="getAllRoles" resultMap="BaseResultMap">
+		select DISTINCT
+		role.ROLE_NAME,role.ROLE_ID,role.MEMO,role.ROLE_NAME_PINYIN
+		FROM
+		t_role role
+		<where>role.STATUS='1'</where>
+		order by role.ROLE_NAME_PINYIN, role.ROLE_ID
+
+	</select>
+		<!-- 获取角色名字是否冲突-->
+	<select id="getRolesInfo" resultMap="BaseResultMap" parameterType="cn.com.dbridge.lifecare.dao.po.RolePO">
+		select DISTINCT
+		role.ROLE_NAME,role.ROLE_ID,role.MEMO,role.ROLE_NAME_PINYIN
+		FROM
+		t_role role
+		<where> role.ROLE_ID != #{roleId,jdbcType=INTEGER} AND role.ROLE_NAME=#{roleName,jdbcType=VARCHAR}  </where>
+		
+
+	</select>
+	<select id="getRolesByUserId" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+		select DISTINCT
+		role.ROLE_NAME,role.ROLE_ID,role.MEMO,tr.USER_ID
+		FROM
+		t_role role <if test="userId != null">left join t_responsibility  tr on  role.ROLE_ID=tr.ROLE_ID and  tr.USER_ID= #{userId,jdbcType=INTEGER} </if>
+		<where>role.STATUS='1'</where>
+		order by role.ROLE_ID
+
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		SELECT count(*)
+		from t_role role
+		where role.STATUS='1'
+	</select>
+	
+	<delete id="deleteByRoleId" parameterType="java.lang.Integer" >
+	    delete from t_role
+	    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  	</delete>
+  	
+	<update id="updateRole"
+		parameterType="cn.com.dbridge.lifecare.dao.po.RolePO">
+		update t_role
+		<set>
+			<if test="roleName != null">
+				ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+
+			<if test="updateTime != null">
+				UPDATE_TIME = now(),
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+			<if test="roleNamePinyin != null">
+				ROLE_NAME_PINYIN = #{roleNamePinyin,jdbcType=CHAR},
+			</if>
+		</set>
+		where ROLE_ID = #{roleId,jdbcType=INTEGER}
+	</update>
+	<insert id="insert"
+		parameterType="cn.com.dbridge.lifecare.dao.po.RolePO"
+		useGeneratedKeys="true" keyProperty="roleId">
+		insert into t_role (ROLE_ID,
+		ROLE_NAME, STATUS, CREATE_TIME,
+		UPDATE_TIME,MEMO,ROLE_NAME_PINYIN)
+		values (
+		#{roleId,jdbcType=INTEGER},
+		#{roleName,jdbcType=VARCHAR},
+		"1",
+		now(),
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR},#{roleNamePinyin,jdbcType=VARCHAR})
+	</insert>
+
+
+	<delete id="deletePermission" parameterType="java.lang.Integer">
+		delete from
+		t_permission
+		where ROLE_ID = #{_parameter}
+	</delete>
+	<insert id="insertPermission" parameterType="java.util.List">
+		insert into t_permission
+		( ROLE_ID,RESOURCE_ID
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			( #{item.roleId,jdbcType=INTEGER},
+			#{item.resourceId,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+</mapper>

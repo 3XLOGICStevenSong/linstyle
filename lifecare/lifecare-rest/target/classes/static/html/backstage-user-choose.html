@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>选择后台用户</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+     <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+     <!-- 引入bootstrap-table样式 -->
+    <link href="../css/bootstrap-table.min.css" rel="stylesheet">
+     <!--时间相关  -->
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+     <!-- 引入bootstrap-table样式 -->
+    <link href="../css/bootstrap-table.min.css" rel="stylesheet">
+    <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <script src="../js/common/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../js/common/bootstrap-table-zh-CN.min.js"></script>
+     <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/information/backstage-user-choose.js"></script>
+
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+        <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>选择后台用户</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                  <input type="hidden" >
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">用户工号</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                         <input type="text" class="form-control" id="userNumber" name="userNumber" maxlength="16">
+                      </div>
+                     <label class="col-md-2 col-xs-2 col-sm-2 control-label">用户身份证号</label>
+                      <div class="col-md-3">
+                        <input type="text" class="form-control" id="idCard" name="idCard" >
+                      </div>                    
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">用户姓名</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control" id="realName" name="realName" maxlength="16">              
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">用户手机号</label>
+                      <div class="col-md-3">
+                        <input type="text" class="form-control" id="mobile" name="mobile">                        
+                      </div>    
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">用户生日</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <!-- <input class="form-control laydate-icon"  onclick="laydate()" id="birthday" name="birthday"> -->
+                      <input type="text" class="form-control dateinput dateicon" id="birthday" name="birthday" readonly>
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">等级</label>
+                        <div class="col-md-1">
+                        <select class="form-control" id="userLevel" name="userLevel">
+                            <option value=""  selected="selected"></option> 
+                            <option value="1">1</option>           
+                            <option value="2">2</option> 
+                            <option value="3">3</option> 
+                            <option value="4">4</option>           
+                            <option value="5">5</option>                          
+                        </select>                       
+                      </div>
+                      <div class="col-md-2 col-xs-2 col-sm-2 control-label">
+                        <button type="button" class="btn btn-primary searchBtn">查询</button>
+                      </div>           
+                    </div>
+                        <table class="table table-bordered table-hover" id="table">
+<!--                           <tr class="info">
+                            <th>用户工号</th>
+                            <th>用户姓名</th>
+                            <th>手机</th>
+                            <th>地址</th>
+                            <th>生日</th>
+                            <th>性别</th>
+                            <th>等级</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>D00001</td>
+                            <td>用户甲</td>
+                            <td>13800009999</td>
+                            <td>中山区黄浦路101号</td>
+                            <td>2018-12-20</td>
+                            <td>男</td>
+                            <td>C</td>
+                            <td>启用</td>
+                            <td><button type="button" class="btn btn-primary btn-size" >选择</button></td>
+                          </tr>
+                          <tr>
+                            <td>D00002</td>
+                            <td>用户乙</td>
+                            <td>15600008888</td>
+                            <td>高新区胜利路81号</td>
+                            <td>-</td>
+                            <td>女</td>
+                            <td>D</td>
+                            <td>停用</td>
+                            <td><button type="button" class="btn btn-primary btn-size" >选择</button></td>
+                          </tr> -->
+                        </table>  
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //权限管理
+    window.sidebar_menu_id=2;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

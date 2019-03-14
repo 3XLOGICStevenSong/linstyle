@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.SmsSendRuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.SmsSendRulePO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="send_user" property="sendUser" jdbcType="VARCHAR" />
+    <result column="send_service_use" property="sendServiceUse" jdbcType="VARCHAR" />
+    <result column="minutes" property="minutes" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sms_send_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.SmsSendRulePO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_sms_send_rule (send_user, send_service_use, minutes, 
+      create_time, create_by, update_time, 
+      update_by)
+    values (#{sendUser,jdbcType=VARCHAR}, #{sendServiceUse,jdbcType=VARCHAR}, #{minutes,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.lifecare.dao.po.SmsSendRulePO" >
+    update t_sms_send_rule
+    set send_user = #{sendUser,jdbcType=VARCHAR},
+      send_service_use = #{sendServiceUse,jdbcType=VARCHAR},
+      minutes = #{minutes,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, send_user, send_service_use, minutes, create_time, create_by, update_time, 
+    update_by
+    from t_sms_send_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, send_user, send_service_use, minutes, create_time, create_by, update_time, 
+    update_by
+    from t_sms_send_rule
+  </select>
+</mapper>

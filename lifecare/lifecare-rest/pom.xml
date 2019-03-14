@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.com.dbridge</groupId>
+		<artifactId>lifecare</artifactId>
+		<version>1.0.3</version>
+	</parent>
+	<artifactId>lifecare-rest</artifactId>
+	<name>lifecare-rest</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+
+		<!-- SpringBoot Mybatis 依赖 -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis-spring-boot.version}</version>
+		</dependency>
+
+		<!-- Mysql JDBC 依赖 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- PageHelper 分页依赖 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>${pagehelper-spring-boot-starter}</version>
+		</dependency>
+
+		<!-- Druid数据源集成依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<!-- SpringBoot Redis开发依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+
+		<!-- Spring Boot Web开发依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Spring AOP 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+
+		<!-- Spring Boot Test 开发依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 热启动配置 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Spring Boot H2 开发依赖 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-service -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-service</artifactId>
+			<version>${lifecare.version}</version>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-dao -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-dao</artifactId>
+			<version>${lifecare.version}</version>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-framework -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-framework</artifactId>
+			<version>${lifecare.version}</version>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-auth -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-auth</artifactId>
+			<version>${lifecare.version}</version>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-framework -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-upload-plugin</artifactId>
+			<version>${lifecare.version}</version>
+		</dependency>
+
+		<!-- Swagger 依赖 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+
+		<!-- Spring Boot Config 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.github.binarywang</groupId> -->
+<!-- 			<artifactId>weixin-java-mp</artifactId> -->
+<!-- 			<version>2.7.0</version> -->
+<!-- 		</dependency> -->
+		
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<platforms>
+						<platform>windows</platform>
+						<platform>unix</platform>
+					</platforms>
+					<assembleDirectory>${project.build.directory}/lifecare</assembleDirectory>
+					<repositoryName>lib</repositoryName>
+					<binFolder>bin</binFolder>
+					<configurationDirectory>conf</configurationDirectory>
+					<copyConfigurationDirectory>true</copyConfigurationDirectory>
+					<configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+					<repositoryLayout>flat</repositoryLayout>
+					<encoding>UTF-8</encoding>
+					<logsDirectory>logs</logsDirectory>
+					<tempDirectory>tmp</tempDirectory>
+					<programs>
+						<program>
+							<id>lifecare</id>
+							<mainClass>cn.com.dbridge.lifecare.LifecareStartUp</mainClass>
+							<jvmSettings>
+								<extraArguments>
+									<extraArgument>-server</extraArgument>
+									<extraArgument>-Xmx1G</extraArgument>
+									<extraArgument>-Xms1G</extraArgument>
+								</extraArguments>
+							</jvmSettings>
+						</program>
+					</programs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	 
+<!-- 	 <build> -->
+<!-- 		<plugins> -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-compiler-plugin</artifactId> -->
+<!-- 				<version>3.8.0</version> -->
+<!-- 				<configuration> -->
+<!-- 					<source>1.8</source> -->
+<!-- 					<target>1.8</target> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+<!-- 		</plugins> -->
+<!-- 	</build> -->
+</project>

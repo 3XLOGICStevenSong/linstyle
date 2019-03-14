@@ -1,0 +1,17 @@
+/*主要样式*/
+ol, ul { list-style: none;padding:0;margin:0}
+.subNavBox{box-sizing:border-box;float:left;width:100%;margin:0;color:#fff}
+.subNav{margin-top:1px;cursor:pointer;font-size:14px;line-height:42px;padding-left:10px;background:url(../images/nav_bg.png) repeat-x;position: relative;}
+.subNav .right_icon{display:inline-block;width:8px;height:8px;position: absolute;top:18px;right:10px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
+.currentDd{color:#fff;font-weight:bold;}
+.currentDd .right_icon{display:inline-block;width:8px;height:8px;position: absolute;top:18px;right:10px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(-45deg)}
+.currentDt{background:url(../images/nav_bg.png) repeat-x;}
+.navContent{display:none;}
+.navContent i{display:inline-block; vertical-align:middle;background:#023c65;width:10px;height:44px;margin-right:10px}
+.navContent li{height:44px;line-height:44px;box-sizing:border-box;border-bottom:1px solid #003b64}
+.navContent li.active{color:#fff;}
+.navContent li {display:block;text-align:left;font-size:14px;color:#fff;cursor:pointer;}
+.navContent li:hover{text-decoration:none;font-weight:bold;cursor:pointer;}
+.navContent li:hover i{vertical-align:middle;background:url(../images/sub_left_icon.png) no-repeat;width:10px;height:44px}
+.navContent li.active i{vertical-align:middle;background:url(../images/sub_left_icon.png) no-repeat;width:10px;height:44px}
+ 

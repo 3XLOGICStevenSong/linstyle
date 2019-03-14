@@ -1,0 +1,50 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /lifecare
+  tomcat: 
+    uri-encoding: utf-8
+spring: 
+  druid: 
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://59.108.59.14:3306/lifecare-test?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Win2012@djbsql
+    #最大连接池数量
+    max-active: 20
+    #最小连接池数量
+    min-idle: 1
+    #获取连接时最大等待时间，单位毫秒。
+    #配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，
+    #如果需要可以通过配置useUnfairLock属性为true使用非公平锁。
+    max-wait: 10000
+    #用来检测连接是否有效的sql，要求是一个查询语句。
+    #如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。
+    validation-query: SELECT 'x'
+    #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，
+    #如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+    testWhileIdle: true
+    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000 
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 400KB
+      max-file-size: 400KB
+      max-request-size: 100MB
+mybatis:
+  mapper-locations:
+  - classpath:mappers/cn/com/dbridge/lifecare/dao/mapper/*.xml
+  pagehelper: null
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+storage: 
+  location: ../../uploads
+  showPath: http://localhost:8084/lifecare/api/file/files/

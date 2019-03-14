@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>用户权限分配</title>
+<meta name="keyword" content="">
+<meta name="description" content="">
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/mystyle.css">
+<link href="../css/nav.css" rel="stylesheet" type="text/css">
+<link href="../css/popup.css" rel="stylesheet" type="text/css">
+<link
+	href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css"
+	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+<script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<!--<script src="../js/bootstrap.min.js"></script>-->
+
+<script src="../js/common/myjs.js"></script>
+<script src="../js/permisson/grant-role.js"></script>
+<script src="../js/common/exception.js"></script>
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+               <!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+             <form action="" method="post">
+                <h4><strong>用户权限分配</strong></h4>
+                  <p class="ok" style="display:none">您的信息保存成功!</p>
+               <p class="error" style="display:none"></p>
+                <div class="space clearfix">
+                  <div class="col-3">用户工号：</div>
+                    <div class="col-2">
+                      <input type="text" class="form-control" id="userNumber">
+                    </div>
+                    <div class="col-3">
+                      <button type="button" class="btn btn-primary btn-pos searchBtn">查询</button>
+                    </div>
+                    <div class="person-info space clearfix">
+                      <span class="show-notice" id="info"></span>
+                    </div>
+                </div>
+            <table id="table">
+                <!--  <thead>
+                    <tr class="info">
+                      <th>选择项</th>
+                      <th>角色名称</th>
+                      <th>角色描述</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" value="option1"></td>
+                      <td>调度室</td>
+                      <td>任务及订单管理</td>
+                    </tr>
+                    <tr class="active">
+                      <td><input type="checkbox" value="option1"></td>
+                      <td>管理部</td>
+                      <td>基本信息维护</td>
+                    </tr>
+                  </tbody> --> 
+                </table>
+               
+                <div>
+                  <button type="button" class="btn btn-primary col-md-offset-5 col-md-1 top10 add">保存</button>
+
+                </div>  
+              </form>  
+            </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=4;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

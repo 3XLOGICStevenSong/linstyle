@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.SmsMsgMapper">
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.SmsMsgPO">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TASK_ID" jdbcType="INTEGER" property="taskId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="USER_TYPE" jdbcType="TINYINT" property="userType" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+    <result column="STEP" jdbcType="INTEGER" property="step" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TASK_ID, USER_ID, STEP, SEND_TIME, CREATE_TIME, CREATE_BY, UPDATE_TIME, 
+    UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sms_msg
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据主键删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sms_msg
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteSmsMsg" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO">
+  	delete from t_sms_msg
+  	<where>
+      <if test="id != null">
+        ID = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="taskId != null">
+        and TASK_ID = #{taskId,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null">
+        and USER_ID = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="sendTime != null">
+        and SEND_TIME = #{sendTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="step != null">
+        and STEP = #{step,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null">
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null">
+        and CREATE_BY = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null">
+        and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null">
+        and UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+      </if>
+    </where>
+  </delete>
+  
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO" useGeneratedKeys="true">
+    insert into t_sms_msg (TASK_ID, USER_ID,
+      STEP, SEND_TIME, CREATE_TIME, 
+      CREATE_BY, UPDATE_TIME, UPDATE_BY
+      )
+    values (#{taskId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+      #{step,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO" useGeneratedKeys="true">
+    insert into t_sms_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="step != null">
+        STEP,
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="step != null">
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO">
+    update t_sms_msg
+    <set>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="step != null">
+        STEP = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO">
+    update t_sms_msg
+    set TASK_ID = #{taskId,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      STEP = #{step,jdbcType=INTEGER},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <insert id="insertServiceSmsMsgByOrderId" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+       SELECT LAST_INSERT_ID() 
+    </selectKey>
+    INSERT INTO t_sms_msg (
+        TASK_ID,
+        USER_ID,
+        SEND_TIME,
+        STEP,
+        CREATE_TIME,
+        CREATE_BY,
+        UPDATE_TIME,
+        UPDATE_BY
+    )
+    SELECT 
+      A.TASK_ID,
+      #{userId,jdbcType=INTEGER} USER_ID,
+      A.SEND_TIME,
+      A.STEP,
+      A.CREATE_TIME,
+      #{createBy,jdbcType=INTEGER} CREATE_BY,
+      #{updateTime,jdbcType=TIMESTAMP} UPDATE_TIME,
+      #{updateBy,jdbcType=INTEGER} UPDATE_BY
+    FROM
+      (
+        SELECT
+          T.ID TASK_ID,
+          DATE_SUB(
+            CONCAT(DATE_FORMAT(T.ORDER_DATE, '%Y-%m-%d '), 
+                   DATE_FORMAT(T.ORDER_BEGIN_TIME, '%T')),
+            INTERVAL IFNULL(SR.MINUTES, 0) MINUTE 
+          ) SEND_TIME,
+          SR.MINUTES STEP,
+          NOW() CREATE_TIME
+        FROM
+          T_SMS_SEND_RULE SR
+          INNER JOIN T_TASK T 
+          INNER JOIN T_USER U
+           ON T.SERVICE_PERSON_ID = U.USER_ID
+        WHERE
+          SR.SEND_FLAG IN (2, 3) 
+          <if test="taskId != null">
+            AND T.ID = #{taskId,jdbcType=INTEGER}
+          </if>
+      ) A
+      WHERE A.SEND_TIME >= A.CREATE_TIME    
+  </insert>
+  
+  <delete id="deleteByTaskId" parameterType="java.lang.Integer" >
+    delete from t_sms_msg 
+    where TASK_ID = #{taskId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertCustomSmsMsgByOrderId" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_sms_msg (
+        TASK_ID,
+        USER_ID,
+        SEND_TIME,
+        STEP,
+        CREATE_TIME,
+        CREATE_BY,
+        UPDATE_TIME,
+        UPDATE_BY
+    )
+    SELECT 
+      A.TASK_ID,
+      A.USER_ID,
+      A.SEND_TIME,
+      A.STEP,
+      A.CREATE_TIME,
+      #{createBy,jdbcType=INTEGER} CREATE_BY,
+      #{updateTime,jdbcType=TIMESTAMP} UPDATE_TIME,
+      #{updateBy,jdbcType=INTEGER} UPDATE_BY
+    FROM
+      (
+        SELECT
+          T.ID TASK_ID,
+          U.USER_ID,
+          DATE_SUB(
+            CONCAT(DATE_FORMAT(T.ORDER_DATE, '%Y-%m-%d '), 
+                   DATE_FORMAT(T.ORDER_BEGIN_TIME, '%T')),
+            INTERVAL IFNULL(SR.MINUTES, 0) MINUTE 
+          ) SEND_TIME,
+          SR.MINUTES STEP,
+          NOW() CREATE_TIME
+        FROM
+          T_SMS_SEND_RULE SR
+          INNER JOIN T_TASK T 
+          INNER JOIN T_USER U
+           ON T.CUSTOM_ID = U.USER_ID
+        WHERE
+          SR.SEND_FLAG IN (1, 3) 
+          <if test="taskId != null">
+            AND T.ID = #{taskId,jdbcType=INTEGER}
+          </if>
+      ) A
+      WHERE A.SEND_TIME >= A.CREATE_TIME
+  </insert>
+  
+  <select id="selectSmsMsg" parameterType="cn.com.dbridge.lifecare.dao.po.SmsMsgPO" resultMap="BaseResultMap">
+    select
+        a.ID,
+        a.TASK_ID,
+        b.USER_TYPE,
+        b.MOBILE,
+        b.REAL_NAME,
+        a.STEP,
+        a.SEND_TIME,
+        a.CREATE_TIME,
+        a.CREATE_BY,
+        a.UPDATE_TIME,
+        a.UPDATE_BY
+    from
+        t_sms_msg a
+    left join t_user b on a.USER_ID = b.USER_ID
+    where
+      <if test="id != null">
+        a.ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskId != null">
+        and a.TASK_ID = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        and b.USER_TYPE = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="phone != null">
+        and b.MOBILE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        and b.REAL_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="step != null">
+        and a.STEP = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        and a.SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        and a.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        and a.CREATE_BY = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        and a.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        and a.UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+      </if>
+  </select>
+</mapper>

@@ -1,0 +1,11 @@
+##这里是在做JUnit测试时候使用，前提是SQL一定要兼容H2数据库的语法
+#spring:
+#  datasource:
+#    url: jdbc:h2:file:~/.h2/test
+#    driverClassName: org.h2.Driver
+#    username: sa 
+#    password: 
+#    schema:
+#    - classpath:db/schema.sql
+#    data:
+#    - classpath:db/data.sql

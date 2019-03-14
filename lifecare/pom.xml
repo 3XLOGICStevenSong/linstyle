@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.com.dbridge</groupId>
+	<artifactId>lifecare</artifactId>
+	<version>1.0.3</version>
+	<packaging>pom</packaging>
+
+	<!-- 统一管理依赖版本 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mybatis-spring-boot.version>1.3.2</mybatis-spring-boot.version>
+		<java.version>1.8</java.version>
+		<swagger2.version>2.7.0</swagger2.version>
+		<druid.version>1.1.12</druid.version>
+		<pagehelper-spring-boot-starter>1.2.10</pagehelper-spring-boot-starter>
+		<lombok.version>1.18.4</lombok.version>
+		<shiro.version>1.3.2</shiro.version>
+		<mapper.version>2.1.0</mapper.version>
+		<fastjson.version>1.2.47</fastjson.version>
+		<jwt.version>3.3.0</jwt.version>
+		<lifecare.version>1.0.3</lifecare.version>
+		<commons-io.version>1.3.2</commons-io.version>
+		<pdfbox.version>2.0.13</pdfbox.version>
+		<jave.version>1.0.2</jave.version>
+		<commons-logging.version>1.2</commons-logging.version>
+		<pinyin4j.version>2.5.0</pinyin4j.version>
+		<commons-fileupload.version>1.3</commons-fileupload.version>
+	</properties>
+
+	<!-- 引入Spring Boot 依赖 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.0.6.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!-- Maven依赖的所有模块 -->
+	<modules>
+		<module>lifecare-dao</module>
+		<module>lifecare-service</module>
+		<module>lifecare-rest</module>
+		<module>lifecare-framework</module>
+    	<module>lifecare-auth</module>
+		<module>lifecare-upload-plugin</module>
+	</modules>
+
+	<!-- 指定JDK版本 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

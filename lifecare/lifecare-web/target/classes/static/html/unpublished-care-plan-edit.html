@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>未发布照护方案编辑</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- 弹窗插件sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> 
+    <!--时间相关  -->
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../laydate/laydate.js"></script>
+    <script src="../js/information/care-plan-common.js"></script>
+    <script src="../js/information/unpublished-care-plan-edit.js"></script>
+    <!-- 引入validate表单验证插件 -->
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>未发布照护方案编辑</strong></h4>
+                <div class="space clearfix">
+              <form class="form-horizontal" id="missionForm">
+
+                <div class="form-group col-md-offset-4">
+                  <input type="hidden" class="form-control" id="nursePlanId" name="nursePlanId"  value="0">
+                  <label class="col-md-2 col-md-offset-2 control-label">客户编号</label>
+                  <input type="hidden" class="form-control" id="customId" name="customId"  value="1">
+                  <div class="col-md-4 input-group">
+                      <input type="text" class="form-control" readonly="readonly" id="customNumber" name="customNumber" >
+                      <!-- 
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" id = "customChoose">选择</button>
+                       </span>
+                       --> 
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4">
+                  <label class="col-md-2 col-md-offset-2 control-label">客户姓名</label>
+                  <div class="col-md-4">
+                    <input class="form-control" readonly="readonly" id="customRealName" name="customRealName">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4">
+                  <label class="col-md-2 col-md-offset-2 control-label">照护方案标题</label>
+                  <div class="col-md-4">
+                    <input class="form-control" id="nursePlanTitle" name="nursePlanTitle" >
+                  </div>
+                  <i class="must-float must-fill">*</i>
+                </div>
+                <div class="form-group">                   
+                      <label class="col-md-4 control-label">方案开始日期</label>
+                        <div class="col-md-4">
+                          <input type="text" class="form-control dateinput dateicon" id="nursePlanBeginDate" name="nursePlanBeginDate" placeholder="YYYY-MM-DD" >
+                          <!-- <input class="form-control laydate-icon" onClick="laydate()" id=nursePlanBeginDate name="nursePlanBeginDate" > -->
+                        </div>
+                        <!-- 
+                        <span class="float-left">-</span>
+                        <div class="col-md-2">
+                          <input class="form-control laydate-icon" onclick="laydate()">
+                        </div>
+                         -->
+                        <i class="must-float must-fill">*</i>
+                    </div>
+                 <div class="form-group col-md-offset-4">
+                    <label class="col-md-2 col-md-offset-2 control-label">照护方案内容</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" rows="18" id=nursePlanContent name="nursePlanContent" ></textarea>
+                    </div>
+                    <i class="must-float must-fill">*</i>
+                 </div>      
+                 <div class="form-group col-md-offset-4">
+                    <label class="col-md-2 col-md-offset-2 control-label">制定人员工号</label>
+                    <input type="hidden" class="form-control" id="backatageUserId" name="backatageUserId"  value="1">
+                    <div class="col-md-4 input-group">
+                      <input type="text" class="form-control" readonly="readonly" id="backatageUserNumber" name="backatageUserNumber" >
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" id = "userChoose">选择</button>
+                      </span>
+                    </div>
+                    <i class="must-float must-fill">*</i>
+                 </div>
+                 <div class="form-group col-md-offset-4">
+                  <label class="col-md-2 col-md-offset-2 control-label">制定人员姓名</label>
+                  <div class="col-md-4">
+                    <input class="form-control" readonly="readonly" id="backatageUserName" name="backatageUserName" >
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4">
+                  <label class="col-md-2 col-md-offset-2 control-label">制定日期</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control dateinput dateicon" id="draftDate" name="draftDate" placeholder="YYYY-MM-DD" >
+                    <!-- <input class="form-control laydate-icon" onClick="laydate()" id="draftDate" name="draftDate"> -->
+                  </div>
+                  <i class="must-float must-fill">*</i>
+                </div>
+                <div class=" col-md-offset-3">
+                    <div class="checkbox checkbox-status">
+                        <label class="radio-inline"><input type="checkbox" id="nursePlanStatus" value="0" onclick="this.value=(this.value==0)?1:0">发布</label>
+                    </div>
+                </div>
+              </form>
+            <div class="form-group">
+              <button type="button" class="col-md-offset-4 btn btn-primary col-md-1 save">保存</button>
+              <button type="button" class="btn btn-primary col-md-1 col-md-offset-1 back">返回</button>
+            </div>    
+          </div>      
+        </div>
+      </div>     
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //权限管理
+    window.sidebar_menu_id=3;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

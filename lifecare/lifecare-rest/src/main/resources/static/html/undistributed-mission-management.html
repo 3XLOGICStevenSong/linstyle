@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>未分配任务管理</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+     <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <!-- 引入bootstrap-table样式 -->
+     <link href="../css/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../js/common/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/task/undistributed-mission-management.js"></script>
+    <script src="../js/common/exception.js"></script>
+     <script src="../js/common/jedate.js"></script>
+
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+ 		<!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>未分配任务管理</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">任务编号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                         <input type="text" class="form-control" name="orderNo" id="orderNo" tabIndex="1">
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">服务类别</label>
+                      <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox1" name="serviceCategoryCodes"  value="A" tabIndex="2"> 生活助理
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox2" name="serviceCategoryCodes"  value="B" tabIndex="3"> 老龄照护
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox3"  name="serviceCategoryCodes"  value="C" tabIndex="4"> 临床护理
+                        </label>                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户编号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" name="userNumber" id="userNumber" tabIndex="5">              
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">预约日期</label>
+                      <div class="col-8">
+                       <input type="text" class="form-control dateinput dateicon" name="orderDateFrom" id="orderDateFrom"  tabIndex="6">
+                      </div>
+                      <span class="float-left">-</span>
+                      <div class="col-8">
+
+                           <input type="text" class="form-control dateinput dateicon" name="orderDateTo" id="orderDateTo"  tabIndex="7">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户姓名</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" name="realName" id="realName" tabIndex="8">              
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">预约开始时间</label>
+                      <div class="col-8">
+                       <input type="text" class="form-control dateinput dateicon" name="orderBeginTimeFrom" id="orderBeginTimeFrom" readonly tabIndex="9">
+          
+                      </div>
+                      <span class="float-left">-</span>
+                      <div class="col-8">
+   
+                           <input type="text" class="form-control dateinput dateicon" name="orderBeginTimeTo" id="orderBeginTimeTo" readonly tabIndex="10">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户生日</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                      <input type="text" class="form-control dateinput dateicon" name="birthday" id="birthday" placeholder="YYYY-MM-DD" tabIndex="11">
+      
+                      </div>
+                       <label class="col-md-2 col-xs-2 col-sm-2 control-label">预约时长</label>                   
+                      <div class="col-md-1 col-xs-1 col-sm-1">
+                           <input type="text" class="form-control" name="orderDurationFrom" id="orderDurationFrom" tabIndex="12">  
+                      </div>
+                      <span class="float-left hour">小时&nbsp;</span>
+                       <span class="float-left">-</span>
+                      <div class="col-md-1 col-xs-1 col-sm-1">
+                           <input type="text" class="form-control" name="orderDurationTo" id="orderDurationTo" tabIndex="13">  
+                      </div>
+                      <span class="float-left hour">小时</span>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户手机号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                       <input type="text" class="form-control" name="mobile" id="mobile" tabIndex="14">    
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户身份证号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" name="idCard" id="idCard" tabIndex="15">                        
+                      </div>       
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label"id="totalLable"></label>
+                          <div class="col-md-2 col-xs-2 col-sm-2 text-lh" id="totalOrderDuration">
+                              
+                      </div> 
+                      
+                      <div class="col-md-4 col-xs-4 col-sm-4 " style="float:right;margin-right:30px">
+                       <button type="button" class="btn btn-primary search" tabIndex="16">查询</button>
+                       <button type="button" class="btn btn-primary btn-pos add" style="display:none" tabIndex="17">添加</button>
+                      </div>
+                    </div>                   
+                        <table id="table">
+                         <!--   <tr class="info">
+                            <th>任务编号</th>
+                            <th>服务类型</th>
+                            <th>预约开始时间</th>
+                            <th>服务时长</th>
+                            <th>客户姓名</th>  
+                            <th>客户手机</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>A20181220-0001</td>
+                            <td>生活助理</td>
+                            <td>2018/08/10 8:30</td>
+                            <td>6小时25分钟</td>
+                            <td><a>客户甲</a></td>
+                            <td>13900009999</td>
+                            <td><button type="button" class="btn btn-default top0" onclick="window.open('')">编辑</button></td>
+                          </tr>
+                          <tr>
+                            <td>B20181220-0001</td>
+                            <td>老龄照护</td>
+                            <td>2018/08/10 8:30</td>
+                            <td>45分钟</td>
+                            <td><a>客户乙</a></td>
+                            <td>15900008888</td>
+                            <td><button type="button" class="btn btn-default top0" onclick="window.open('')">编辑</button></td>
+                          </tr>-->
+                        </table>
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->  
+        	<!-- 对话框开始 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">提示</h4>
+						</div>
+						<div class="modal-body">你确定要删除吗？</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary sure">确定</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 对话框结束 -->    
+    </div>
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=1;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

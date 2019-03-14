@@ -1,0 +1,5 @@
+cn\com\dbridge\jtraining\upload\picture\service\impl\FileSystemStorageService.class
+cn\com\dbridge\jtraining\upload\picture\controller\FileUploadController.class
+cn\com\dbridge\jtraining\upload\picture\service\StorageService.class
+META-INF\spring-configuration-metadata.json
+cn\com\dbridge\jtraining\upload\picture\service\impl\StorageProperties.class

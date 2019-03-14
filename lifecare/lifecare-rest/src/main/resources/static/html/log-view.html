@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>日志信息</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <!--时间相关  -->
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <!-- 引入bootstrap-table样式 -->
+    <link href="../css/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../js/common/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/permisson/log-view.js"></script>
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+        <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>日志信息</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="missionForm">
+                  <!-- 
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">模块名称</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                         <input type="text" class="form-control" id = "module" name = "module " tabIndex="1">
+                      </div>
+                     <label class="col-md-2 col-xs-2 col-sm-2 control-label">方法名称</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" id = "method" name = "method" tabIndex="2">
+                      </div>                    
+                    </div>
+                    --> 
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">操作人IP</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control" id = "ip" name = "ip" tabIndex="3">
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">操作人姓名</label>
+                      <div class="col-10">
+                        <input type="text" class="form-control" id = "userCode" name = "userCode" tabIndex="4">
+                      </div>    
+                    </div>
+                     <!-- 
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户生日</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input class="form-control laydate-icon"  onclick="laydate()">
+                      </div>
+                      <div class="col-md-4 control-label">
+                        <button type="button" class="btn btn-primary ">查询</button>
+                        <button type="button" class="btn btn-primary btn-pos addNursePlan">追加</button>
+                      </div>           
+                    </div>
+                     -->
+
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label " >请求状态</label>
+                        <div class="col-md-2 col-xs-2 col-sm-2" >
+                        <select class="form-control" name="code" id="code" tabIndex="6">
+                            <option value=""></option> 
+                            <option value="0">成功</option>           
+                            <option value="1">失败</option>                          
+                        </select>                       
+                      </div> 
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">开始时间</label>
+                      <div class="col-10">
+                          <input type="text" class="form-control dateinput dateicon" name="startTime" id="startTime" readonly tabIndex="5">
+                      </div>
+                      <span class="float-left " >-</span>
+                      <div class="col-10">
+                            <input type="text" class="form-control dateinput dateicon" name="endTime" id="endTime" readonly tabIndex="5">
+                      </div>
+                     
+                      <div class="col-md-1 col-xs-3 col-sm-3 control-label" style="float:right;margin:10px 80px 0 0">
+                        <button type="button" class="btn btn-primary searchCarePlan" style=display:none tabIndex="7">查询</button>
+                        <!-- 
+                        <button type="button" class="btn btn-primary btn-pos addCarePlan" style=display:none tabIndex="8">添加</button>
+                         -->
+                      </div>           
+                    </div>
+                    <p class="ok" style="display:none"></p>
+                    <p class="error" style="display:none"></p>
+                        <table id="table" class="table table-bordered table-hover" >
+                        <!-- 
+                          <tr class="info">
+                            <th>客户编号</th>
+                            <th>客户姓名</th>
+                            <th>服务方案</th>
+                            <th>方案开始日期</th>
+                            <th>方案结束日期</th>
+                            <th>指定人员</th>
+                            <th>制定日期</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>ZQM00001</td>
+                            <td>客户甲</td>
+                            <td>服务方案1</td>
+                            <td>2018-11-01</td>
+                            <td>2018-11-30</td>
+                            <td>用户甲</td>
+                            <td>2018-10-08</td>
+                            <td><button type="button" class="btn btn-primary btn-size">编辑</button>
+                            <button type="button" class="btn btn-default col-md-offset-1 btn-size" onClick="launchModal(this)">删除</button></td>
+                          </tr>
+                          <tr>
+                            <td>ZQM00002</td>
+                            <td>客户乙</td>
+                            <td>服务方案2</td>
+                            <td>2018-11-01</td>
+                            <td>2018-11-30</td>
+                            <td>用户乙</td>
+                            <td>2018-10-08</td>
+                            <td><button type="button" class="btn btn-primary btn-size">编辑</button>
+                            <button type="button" class="btn btn-default col-md-offset-1 btn-size" onClick="launchModal(this)">删除</button></td>
+                          </tr>
+                         -->
+                        </table>
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+        <!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要发布吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary sure">确定</button>  
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>      
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- 对话框结束 -->     
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //权限管理
+    window.sidebar_menu_id=4;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.ResponsibilityPOMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.dbridge.lifecare.dao.po.ResponsibilityPO">
+		<id column="USER_ID" jdbcType="INTEGER" property="userId" />
+		<id column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
+	</resultMap>
+	<insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.ResponsibilityPO">
+		insert into
+		t_responsibility
+		(USER_ID, ROLE_ID
+		)
+		values
+		(
+		#{userId,jdbcType=INTEGER},
+		#{roleId,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from
+			t_responsibility
+		where USER_ID = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into t_responsibility
+		(USER_ID, ROLE_ID
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			( #{item.userId,jdbcType=INTEGER},
+			#{item.roleId,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	<select id="getResponseByRoleId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select tr.ROLE_ID,tr.USER_ID from
+			t_responsibility tr
+		where
+			tr.ROLE_ID=#{roleId}
+	</select>
+</mapper>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>首页信息</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/information/home-message.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../laydate/laydate.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    
+</head>
+<body>
+     <div id="wrap" style="height: auto; min-height: 100%;">
+              <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong >首页信息</strong></h4>
+            <!--   <p class="ok">您的信息保存成功!</p>
+               <p class="error">真实姓名不可包含字母、数字、特殊符号和非法词汇。</p> --> 
+                <div class="space clearfix">
+                  <form class="form-horizontal">
+                    <input type="hidden" id="loginUserId" name="loginUserId">
+                    <input type="hidden" id="userId" name="userId">
+                    <div class="form-group has-error">
+                      <div class="col-md-2 control-label col-md-offset-1 posi">
+                        <label>培训信息</label>
+                         </div>
+                      <div class="col-md-8">
+                       <textarea class="form-control" rows="4" placeholder="请输入信息内容" id="trainInfo"  maxlength="4000"></textarea>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label col-md-offset-1 posi">
+                          <label>驿站信息</label>
+                        </div>
+                        <div class="col-md-8">
+                          <textarea class="form-control" rows="4" placeholder="请输入信息内容" id="dakInfo"  maxlength="4000"></textarea>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="col-md-2 control-label col-md-offset-1 posi">
+                          <label>巡回车信息</label>
+                        </div>
+                        <div class="col-md-8">
+                          <textarea class="form-control" rows="4" placeholder="请输入信息内容" id="tourBusInfo"  maxlength="4000"></textarea>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="col-md-2 control-label col-md-offset-1 posi">
+                          <label>其他信息</label>
+                        </div>
+                        <div class="col-md-8">
+                          <textarea class="form-control" rows="4" placeholder="请输入信息内容" id="dutyInfo"  maxlength="4000"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="col-md-offset-5 btn btn-primary col-md-1 save" >保存</button>
+                   </div>
+                  </form>
+               </div>     
+        </div> 
+      </div>
+        <!--右侧内容结束-->      
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //系统功能
+    window.sidebar_menu_id=5;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

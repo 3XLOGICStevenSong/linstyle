@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active:
+    - test
+
+wechat:
+  mpAppId: wx158857f4a6a8f248
+  mpAppSecret: 25efdb5bef5637c11abed8765f50694e

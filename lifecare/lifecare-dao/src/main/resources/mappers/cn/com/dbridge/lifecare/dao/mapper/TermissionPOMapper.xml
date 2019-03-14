@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.TermissionPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.TermissionPO" >
+    <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <id column="RESOURCE_ID" property="resourceId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_permission
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and RESOURCE_ID = #{resourceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.TermissionPO" >
+    insert into t_permission (ROLE_ID, RESOURCE_ID)
+    values (#{roleId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ROLE_ID, RESOURCE_ID
+    from t_permission
+  </select>
+</mapper>

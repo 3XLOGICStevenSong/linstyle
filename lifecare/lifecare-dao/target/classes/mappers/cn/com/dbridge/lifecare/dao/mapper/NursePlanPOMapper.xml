@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.NursePlanPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.NursePlanPO" >
+    <id column="NURSE_PLAN_ID" property="nursePlanId" jdbcType="INTEGER" />
+    <result column="CUSTOM_ID" property="customId" jdbcType="INTEGER" />
+    <result column="BACKEND_PERSON_ID" property="backendPersonId" jdbcType="INTEGER" />
+    <result column="NURSE_PLAN_TYPE" property="nursePlanType" jdbcType="TINYINT" />
+    <result column="USE_TYPE" property="useType" jdbcType="TINYINT" />
+    <result column="NURSE_PLAN_CONTENT" property="nursePlanContent" jdbcType="LONGVARCHAR" />
+    <result column="NURSE_PLAN_TITLE" property="nursePlanTitle" jdbcType="VARCHAR" />
+    <result column="NURSE_PLAN_BEGIN_DATE" property="nursePlanBeginDate" jdbcType="DATE" />
+    <result column="NURSE_PLAN_STATUS" property="nursePlanStatus" jdbcType="TINYINT" />
+    <result column="DRAFT_DATE" property="draftDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="NursePlanResultMap" type="cn.com.dbridge.lifecare.dao.po.MobileNursePlanPO" >
+    <result column="CUSTOM_ID" property="customId" jdbcType="INTEGER" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="NURSE_PLAN_TITLE" property="nursePlanTitle" jdbcType="VARCHAR" />
+    <result column="NURSE_PLAN_BEGIN_DATE" property="nursePlanBeginDate" jdbcType="DATE" />
+    <result column="NURSE_PLAN_CONTENT" property="nursePlanContent" jdbcType="LONGVARCHAR" />
+    <result column="NURSE_PLAN_STATUS" property="nursePlanStatus" jdbcType="TINYINT" />
+    <result column="NURSE_PLAN_TYPE" property="nursePlanType" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="NursePlanManageResultMap" type="cn.com.dbridge.lifecare.dao.po.NursePlanManageResPO" >
+    <id column="NURSE_PLAN_ID" property="nursePlanId" jdbcType="INTEGER" />
+    <result column="USER_NUMBER" property="userNumber" jdbcType="VARCHAR" />
+    <result column="CUSTOM_ID" property="customId" jdbcType="INTEGER" />
+    <result column="NURSE_PLAN_TYPE" property="nursePlanType" jdbcType="TINYINT" />
+    <result column="NURSE_PLAN_TITLE" property="nursePlanTitle" jdbcType="VARCHAR" />
+    <result column="NURSE_PLAN_BEGIN_DATE" property="nursePlanBeginDate" jdbcType="DATE" />
+    <result column="BACKEND_PERSON_ID" property="backendPersonId" jdbcType="INTEGER" />
+    <result column="DRAFT_DATE" property="draftDate" jdbcType="TIMESTAMP" />
+    <result column="USE_TYPE" property="useType" jdbcType="TINYINT" />
+    <result column="NURSE_PLAN_TYPE" property="nursePlanType" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 根据主键删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from 
+        t_nurse_plan
+    where 
+        NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteNursePlan" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO">
+  	delete from 
+  		t_nurse_plan 
+  	<where>
+      <if test="nursePlanId != null and nursePlanId != ''">
+        NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+      </if>
+      <if test="customId != null and customId != ''" >
+        and CUSTOM_ID = #{customId,jdbcType=INTEGER}
+      </if>
+      <if test="backendPersonId != null and backendPersonId != ''" >
+        and BACKEND_PERSON_ID = #{backendPersonId,jdbcType=INTEGER}
+      </if>
+      <if test="nursePlanContent != null and nursePlanContent != ''" >
+        and NURSE_PLAN_CONTENT = #{nursePlanContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="nursePlanTitle != null and nursePlanTitle != ''" >
+        and NURSE_PLAN_TITLE = #{nursePlanTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="nursePlanBeginDate != null">
+        and NURSE_PLAN_BEGIN_DATE = #{nursePlanBeginDate,jdbcType=TIME}
+      </if>
+      <if test="nursePlanType != null and nursePlanType != ''" >
+       	and NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=TINYINT}
+	  </if>
+	  <if test="nursePlanStatus != null and nursePlanStatus != ''" >
+	    and NURSE_PLAN_STATUS = #{nursePlanStatus,jdbcType=TINYINT}
+	  </if>
+	  <if test="useType != null and useType != ''" >
+	    and USE_TYPE = #{useType,jdbcType=TINYINT}
+	  </if>
+      <if test="draftDate != null" >
+        and DRAFT_DATE = #{draftDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null and createBy != ''" >
+        and CREATE_BY = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null and updateTime != ''" >
+        and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null and updateBy != ''" >
+        and UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+      </if>
+      <if test="nursePlanType != null and nursePlanType != ''">
+    	and NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </delete>
+  
+  <!-- 添加 -->
+  <insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="nursePlanId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into 
+        t_nurse_plan (
+            CUSTOM_ID,
+            BACKEND_PERSON_ID, 
+            NURSE_PLAN_CONTENT,
+            NURSE_PLAN_TITLE,
+            NURSE_PLAN_BEGIN_DATE,
+            NURSE_PLAN_TYPE,
+	        NURSE_PLAN_STATUS,
+	        USE_TYPE,
+            DRAFT_DATE, 
+            CREATE_TIME, 
+            CREATE_BY, 
+            UPDATE_TIME, 
+            UPDATE_BY
+        ) values (
+            #{customId,jdbcType=INTEGER}, 
+            #{backendPersonId,jdbcType=INTEGER},
+            #{nursePlanContent,jdbcType=LONGVARCHAR},
+            #{nursePlanTitle,jdbcType=VARCHAR}, 
+            #{nursePlanBeginDate,jdbcType=DATE},
+            #{nursePlanType,jdbcType=TINYINT},
+            #{nursePlanStatus,jdbcType=TINYINT},
+            #{useType,jdbcType=TINYINT},
+            #{draftDate,jdbcType=TIMESTAMP}, 
+            #{createTime,jdbcType=TIMESTAMP}, 
+            #{createBy,jdbcType=INTEGER}, 
+            #{updateTime,jdbcType=TIMESTAMP}, 
+            #{updateBy,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <!-- 根据主键修改 -->
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO" >
+    update 
+        t_nurse_plan
+    <set>
+    	<if test="customId != null" >
+       	 CUSTOM_ID = #{customId,jdbcType=INTEGER},
+      	</if>
+      	<if test="backendPersonId != null" >
+       	 BACKEND_PERSON_ID = #{backendPersonId,jdbcType=INTEGER},
+      	</if>
+      	<if test="nursePlanContent != null" >
+       	  NURSE_PLAN_CONTENT = #{nursePlanContent,jdbcType=LONGVARCHAR},
+      	</if>
+      	<if test="nursePlanTitle != null" >
+       	  NURSE_PLAN_TITLE = #{nursePlanTitle,jdbcType=VARCHAR},
+      	</if>
+      	<if test="nursePlanBeginDate != null" >
+       	   NURSE_PLAN_BEGIN_DATE = #{nursePlanBeginDate,jdbcType=DATE},
+      	</if>
+      	<if test="nursePlanType != null" >
+       	   NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=TINYINT},
+      	</if>
+      	<if test="nursePlanStatus != null" >
+       	   NURSE_PLAN_STATUS = #{nursePlanStatus,jdbcType=TINYINT},
+      	</if>
+      	<if test="useType != null" >
+       	   USE_TYPE = #{useType,jdbcType=TINYINT},
+      	</if>
+      	<if test="draftDate != null" >
+       	   DRAFT_DATE = #{draftDate,jdbcType=TIMESTAMP},
+      	</if>
+      	<if test="createTime != null" >
+       	    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      	</if>
+      	<if test="createBy != null" >
+       	    CREATE_BY = #{createBy,jdbcType=INTEGER},
+      	</if>
+      	<if test="updateTime != null" >
+       	    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      	</if>
+      	<if test="updateBy != null" >
+       	    UPDATE_BY = #{updateBy,jdbcType=INTEGER},
+      	</if>
+      	<if test="nursePlanType != null">
+      		NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=INTEGER}
+      	</if>
+    </set>
+    WHERE NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据主键查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+	    NURSE_PLAN_ID, 
+	    CUSTOM_ID, 
+	    BACKEND_PERSON_ID, 
+	    NURSE_PLAN_CONTENT,
+	    NURSE_PLAN_TITLE, 
+	    NURSE_PLAN_BEGIN_DATE,
+	    NURSE_PLAN_TYPE,
+        NURSE_PLAN_STATUS,
+        USE_TYPE,
+	    DRAFT_DATE, 
+	    CREATE_TIME, 
+	    CREATE_BY, 
+	    UPDATE_TIME, 
+	    UPDATE_BY
+    from 
+        t_nurse_plan
+    where 
+        NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 获取全部 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select NURSE_PLAN_ID, CUSTOM_ID, BACKEND_PERSON_ID, NURSE_PLAN_CONTENT, NURSE_PLAN_TITLE, 
+    NURSE_PLAN_BEGIN_DATE, NURSE_PLAN_TYPE, NURSE_PLAN_STATUS, USE_TYPE, DRAFT_DATE, 
+    CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY
+    from t_nurse_plan
+  </select>
+  
+  <!-- 获取照护方案 -->
+   <select id="selectNursePlan" resultMap="BaseResultMap" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO">
+    select 
+        NURSE_PLAN_ID, 
+        CUSTOM_ID, 
+        BACKEND_PERSON_ID, 
+        NURSE_PLAN_CONTENT,
+        NURSE_PLAN_TITLE, 
+        NURSE_PLAN_BEGIN_DATE,
+        NURSE_PLAN_TYPE,
+        NURSE_PLAN_STATUS,
+        USE_TYPE,
+        DRAFT_DATE, 
+        CREATE_TIME, 
+        CREATE_BY, 
+        UPDATE_TIME, 
+        UPDATE_BY,
+        NURSE_PLAN_TYPE
+    from t_nurse_plan
+    <where>
+      <if test="nursePlanId != null and nursePlanId != ''">
+        NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+      </if>
+      <if test="customId != null and customId != ''" >
+        and CUSTOM_ID = #{customId,jdbcType=INTEGER}
+      </if>
+      <if test="backendPersonId != null and backendPersonId != ''" >
+        and BACKEND_PERSON_ID = #{backendPersonId,jdbcType=INTEGER}
+      </if>
+      <if test="nursePlanContent != null and nursePlanContent != ''" >
+        and NURSE_PLAN_CONTENT = #{nursePlanContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="nursePlanTitle != null and nursePlanTitle != ''" >
+        and NURSE_PLAN_TITLE = #{nursePlanTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="nursePlanBeginDate != null">
+        and NURSE_PLAN_BEGIN_DATE = #{nursePlanBeginDate,jdbcType=TIME}
+      </if>
+      <if test="nursePlanType != null and nursePlanType != ''" >
+       	and NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=TINYINT}
+	  </if>
+	  <if test="nursePlanStatus != null and nursePlanStatus != ''" >
+	    and NURSE_PLAN_STATUS = #{nursePlanStatus,jdbcType=TINYINT}
+	  </if>
+	  <if test="useType != null and useType != ''" >
+	    and USE_TYPE = #{useType,jdbcType=TINYINT}
+	  </if>
+      <if test="draftDate != null" >
+        and DRAFT_DATE = #{draftDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null and createBy != ''" >
+        and CREATE_BY = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null and updateTime != ''" >
+        and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null and updateBy != ''" >
+        and UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+      </if>
+      <if test="nursePlanType != null and nursePlanType != ''">
+    	and NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  
+  <!-- 获取方案数量 -->
+  <select id="selectNursePlanCount" resultType="java.lang.Integer" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO">
+    select 
+        count(*)
+    from t_nurse_plan
+    <where>
+      <if test="nursePlanId != null and nursePlanId != ''">
+        NURSE_PLAN_ID = #{nursePlanId,jdbcType=INTEGER}
+      </if>
+      <if test="customId != null and customId != ''" >
+        and CUSTOM_ID = #{customId,jdbcType=INTEGER}
+      </if>
+      <if test="backendPersonId != null and backendPersonId != ''" >
+        and BACKEND_PERSON_ID = #{backendPersonId,jdbcType=INTEGER}
+      </if>
+      <if test="nursePlanContent != null and nursePlanContent != ''" >
+        and NURSE_PLAN_CONTENT = #{nursePlanContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="nursePlanTitle != null and nursePlanTitle != ''" >
+        and NURSE_PLAN_TITLE = #{nursePlanTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="nursePlanBeginDate != null">
+        and NURSE_PLAN_BEGIN_DATE = #{nursePlanBeginDate,jdbcType=TIME}
+      </if>
+      <if test="nursePlanType != null and nursePlanType != ''" >
+       	and NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=TINYINT},
+	  </if>
+	  <if test="nursePlanStatus != null and nursePlanStatus != ''" >
+	    and NURSE_PLAN_STATUS = #{nursePlanStatus,jdbcType=TINYINT}
+	  </if>
+	  <if test="useType != null and useType != ''" >
+	    and USE_TYPE = #{useType,jdbcType=TINYINT},
+	  </if>
+      <if test="draftDate != null" >
+        and DRAFT_DATE = #{draftDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null and createBy != ''" >
+        and CREATE_BY = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null and updateTime != ''" >
+        and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null and updateBy != ''" >
+        and UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  
+  <!-- 获取小于今天的照护方案页信息 -->
+  <select id="selectNurserPlanl" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO" resultMap="NursePlanResultMap" >
+    select
+        np.CUSTOM_ID,
+		u.IMG,
+		u.REAL_NAME,
+		np.NURSE_PLAN_TITLE,
+		np.NURSE_PLAN_BEGIN_DATE,
+		np.NURSE_PLAN_CONTENT
+	from
+	   t_nurse_plan np
+	left join t_user u on np.CUSTOM_ID = u.USER_ID
+    WHERE NURSE_PLAN_STATUS = 1 AND USE_TYPE = 0
+		<if test="customId != null and customId != ''" >
+			And CUSTOM_ID = #{customId,jdbcType=INTEGER}
+		</if>
+		<if test="nursePlanType != null and nursePlanType != ''" >
+			And NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=INTEGER}
+		</if>
+		AND np.NURSE_PLAN_BEGIN_DATE &lt; now()
+	ORDER BY np.NURSE_PLAN_BEGIN_DATE DESC
+	LIMIT 1
+  </select>
+  
+   <!-- 获取小于今天的照护方案页信息 -->
+  <select id="selectNurserPlanR" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanPO" resultMap="NursePlanResultMap" >
+    select
+        np.CUSTOM_ID,
+		u.IMG,
+		u.REAL_NAME,
+		np.NURSE_PLAN_TITLE,
+		np.NURSE_PLAN_BEGIN_DATE,
+		np.NURSE_PLAN_CONTENT
+	from
+	   t_nurse_plan np
+	left join t_user u on np.CUSTOM_ID = u.USER_ID
+	WHERE NURSE_PLAN_STATUS = 1 AND USE_TYPE = 0
+		<if test="customId != null and customId != ''" >
+			And CUSTOM_ID = #{customId,jdbcType=INTEGER}
+		</if>
+		<if test="nursePlanType != null and nursePlanType != ''" >
+			And NURSE_PLAN_TYPE = #{nursePlanType,jdbcType=INTEGER}
+		</if>
+		AND np.NURSE_PLAN_BEGIN_DATE &gt; now()
+	ORDER BY np.NURSE_PLAN_BEGIN_DATE ASC
+	LIMIT 1
+  </select>
+  
+  <!-- 获取方案管理页信息 -->
+  <select id="selectNursePlanManage" parameterType="cn.com.dbridge.lifecare.dao.po.NursePlanManagePO" resultMap="NursePlanManageResultMap">
+    select 
+        np.NURSE_PLAN_ID,
+        u.USER_NUMBER,
+        np.CUSTOM_ID,
+        np.NURSE_PLAN_TYPE,
+        np.NURSE_PLAN_TITLE,
+        np.NURSE_PLAN_BEGIN_DATE,
+        np.BACKEND_PERSON_ID,
+        np.DRAFT_DATE,
+        np.USE_TYPE 
+	from
+	    t_nurse_plan np left join t_user u on np.CUSTOM_ID = u.USER_ID and u.USER_TYPE = 1
+    <where>
+        <if test="userNumber != null and userNumber != ''">
+           and u.USER_NUMBER like CONCAT(CONCAT('%',#{userNumber,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="idCard != null and idCard != ''">
+           and u.ID_CARD = #{idCard,jdbcType=VARCHAR}
+        </if>
+        <if test="realName != null and realName != ''">
+           and u.REAL_NAME = #{realName,jdbcType=VARCHAR}
+        </if>
+        <if test="mobile != null and mobile != ''">
+           and u.MOBILE = #{mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="birthday != null">
+           and u.BIRTHDAY = #{birthday,jdbcType=DATE}
+        </if>
+        <if test="userLevel != null and userLevel != ''">
+           and u.USER_LEVEL = #{userLevel,jdbcType=VARCHAR}
+        </if>
+        <if test="nursePlanStatus != null">
+           and np.NURSE_PLAN_STATUS = #{nursePlanStatus,jdbcType=TINYINT}
+        </if>
+    </where>
+    order by u.REAL_NAME_PINYIN asc ,np.NURSE_PLAN_BEGIN_DATE desc
+  </select>
+</mapper>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>服务任务管理</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- 引入bootstrap-table样式 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/task/service-task-management.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <!-- 引入中文语言包 -->
+    <script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+		<!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>服务任务管理</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">任务编号</label>
+                      <div class="col-md-2">
+                         <input type="text" class="form-control" name="orderNo" id="orderNo">
+                      </div>
+                      <label class="col-md-4 control-label">服务类别</label>
+                      <div class="col-md-4">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="serviceCategoryCodes" value="A"> 生活助理
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="serviceCategoryCodes" value="B"> 老龄照护
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="serviceCategoryCodes" value="C"> 临床管理
+                        </label>                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">客户编号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="customUserNumber" id="customUserNumber">              
+                      </div>
+                      <label class="col-md-4 control-label">服务人员工号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="servicePersonUserNumber" id="servicePersonUserNumber">                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">客户姓名</label>
+                      <div class="col-md-2">
+                        <input class="form-control" name="customRealName" id="customRealName">
+                      </div>
+                      <label class="col-md-4 control-label">服务人员姓名</label>
+                      <div class="col-md-2">
+                        <input class="form-control" name="servicePersonRealName" id="servicePersonRealName">                        
+                      </div> 
+                      </div>
+                      <div class="form-group">
+                      <label class="col-md-2 control-label">客户生日</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control dateinput dateicon" name="customBirthday" id="customBirthday">
+                       
+                      </div>
+                      <label class="col-md-4 control-label">服务人员生日</label>
+                      <div class="col-md-2">
+                      <input type="text" class="form-control dateinput dateicon" name="servicePersonBirthday" id="servicePersonBirthday">
+                                    
+                      </div> 
+                      </div> 
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">客户身份证号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="customIdCard" id="customIdCard">              
+                      </div>
+                      <label class="col-md-4 control-label">服务人员身份证号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="servicePersonIdCard" id="servicePersonIdCard">                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">客户手机号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="customMobile" id="customMobile">              
+                      </div>
+                      <label class="col-md-4 control-label">服务人员手机号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="servicePersonMobile" id="servicePersonMobile">                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">任务状态</label>
+                      <div class="col-sm-4">
+                        <label class="checkbox-inline">
+                          <input type="checkbox" name="orderStatus" value="1">待分配
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox"name="orderStatus" value="2">待完成
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="orderStatus" value="3">已完成
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="orderStatus" value="4">取消
+                        </label>          
+                      </div>
+                     </div>
+                     <div class="form-group">
+                      <label class="col-md-2 control-label" style="padding-left: 0px;">预约日期</label>
+                      <div class="col-md-2">
+                       <input type="text" class="form-control dateinput dateicon" name="orderDateFrom" id="orderDateFrom">
+                      </div>
+                      <span class="float-left">-</span>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control dateinput dateicon" name="orderDateTo" id="orderDateTo">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">服务时长</label>
+                      <div class="col-sm-1">
+                           <input type="text" class="form-control" name="orderDurationFrom" id="orderDurationFrom">  
+                      </div>
+                      <span class="float-left hour">小时&nbsp;</span>
+                       <span class="float-left">-</span>
+                      <div class="col-sm-1">
+                           <input type="text" class="form-control" name="orderDurationTo" id="orderDurationTo">  
+                      </div>
+                      <span class="float-left hour">小时</span>
+                      </div>
+                       <div class="form-group">
+                      <label class="col-md-2 control-label">预约时间</label>
+                      <div class="col-md-2">
+
+                            <input type="text" class="form-control dateinput dateicon" name="orderBeginTimeFrom" id="orderBeginTimeFrom">
+                      </div>
+                      <span class="float-left">-</span>
+                      <div class="col-md-2">
+                            <input type="text" class="form-control dateinput dateicon" name="orderBeginTimeTo" id="orderBeginTimeTo">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">异常状态任务</label>
+                      <div class="col-md-2">
+                         <label class="checkbox-inline">
+                          <input type="checkbox" name="abnormalOrder" value="1">是
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="abnormalOrder" value="0">否
+                        </label>         
+                      </div>
+                      <label class="col-md-4 control-label">超过预约时间10分钟未开始或者未结束的订单</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" id="totalOrderDuration" ></label>
+                      <label class="col-md-3 control-label" id="totalServiceDuration" ></label>
+                      <div class="col-md-4 control-label">
+                       <button type="button" class="btn btn-primary search">查询</button>
+                       </div>
+                    </div>
+                        <table id="table">
+                        <!--    <tr class="info">
+                            <th>任务编号</th>
+                            <th>服务类型</th>
+                            <th>预约开始时间</th>
+                            <th>服务时长</th>
+                            <th>实际时长</th>
+                            <th>客户名称</th>
+                            <th>服务人员名称</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>A20181220-0001</td>
+                            <td>生活助理</td>
+                            <td>2018/08/10 8:30</td>
+                            <td>6小时25分钟</td>
+                            <td>6小时05分钟</td>
+                            <td><a>客户甲</a></td> 
+                            <td><a>服务甲</a></td>
+                            <td><button type="button" class="btn btn-default top0" onclick="window.open('')">编辑</button></td>
+                          </tr>
+                          <tr>
+                            <td>B20181220-0001</td>
+                            <td>老龄照护</td>
+                            <td>2018/08/10 8:30</td>
+                            <td>45分钟</td>
+                            <td>40分钟</td>
+                            <td><a>客户乙</a></td>
+                            <td><a>服务乙</a></td>
+                            <td><button type="button" class="btn btn-default top0" onclick="window.open('')">编辑</button></td>
+                          </tr>-->
+                        </table>  
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=1;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

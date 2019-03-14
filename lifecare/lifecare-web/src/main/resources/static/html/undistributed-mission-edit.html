@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>未分配任务编辑</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/task/undistributed-mission-edit.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+   
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+		<!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>未分配任务编辑</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form" name="form">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">任务编号</label>
+                      <div class="col-md-2 control-label">
+                         <input type="text" class="form-control" name="orderNo"  id="orderNo" readonly>
+                           <input type="hidden" class="form-control" name="id"  id="id" >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <hr>
+                    </div>
+                       <div class="form-group clearfix">
+                   
+                      <label class="col-md-3 control-label">客户编号</label>
+                        <div class="col-md-2 input-group" style="display:flex;flex-wrap:wrap"> 
+                          <input type="text" class="form-control" readonly="readonly"  id="userNumber"name="userNumber" style="flex:0 0 62%">        
+                          <span class="input-group-btn" style="flex:0 0 35%">                                                     
+                            <button class="btn btn-default btn-border-radius select" type="button">选择</button> 
+                          </span>  
+                                           
+                      </div>
+                      
+                      <i class="must-float must-fill">*</i>
+                       <input type="hidden" class="form-control" id="customId" name="customId" > 
+                       <input type="hidden" class="form-control" id="backendPersonId" name="backendPersonId" >               
+                      <label class="col-md-2 control-label">客户姓名</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="realName" id="realName" readonly="readonly"> 
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">客户手机号</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" name="mobile"id="mobile" readonly="readonly">                        
+                      </div>
+                      <label class="col-md-2 control-label" >客户星级</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" id="userLevel" name="userLevel" readonly="readonly">                        
+                      </div>
+                               
+                    </div>
+                       <div class="form-group">
+                      <label class="col-md-3 control-label">客户年龄</label>
+                      <div class="col-md-2">
+                       
+                        <input type="text" class="form-control" id="age"  name="age"readonly="readonly">                        
+                      </div>
+                      <label class="col-md-2 control-label" >客户性别</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control"  id="sex"  name="sex"readonly="readonly">                        
+                      </div>
+                               
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">预约地址</label>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" readonly="readonly" name="orderAddr" id="userAddr">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                     <label class="col-md-3 control-label">性别要求</label>
+                      <div class="col-md-2">
+                        <select class="form-control" name="sexRequire">
+                          <option value="0">不限</option>
+                          <option value="1">男</option>
+                          <option value="2">女</option>
+                        </select>
+                        <span class="errorSpan"></span>
+                      </div> 
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">预约日期</label>
+                      <div class="col-md-2">
+                       <input type="text" class="form-control dateinput dateicon" name="orderDate" id="orderDate">
+                      </div>
+                       <i class="must-float must-fill">*</i>   
+                     </div>
+                     <div class="form-group">                   
+                      <label class="col-md-3 control-label">预约时间</label>
+                        <div class="col-md-2">
+                         <input type="text" class="form-control dateinput dateicon" name="orderBeginTime" id="orderBeginTime">
+                        </div>
+                        <span class="float-left">-</span>
+                        <div class="col-md-2">
+                         <input type="text" class="form-control dateinput dateicon" name="orderEndTime" id="orderEndTime">
+                          
+                        <span class="errorSpan"></span>
+                        </div>
+                        <i class="must-float must-fill">*</i>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">服务类别</label>
+                      <div class="col-md-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode"  value="A" checked>生活助理
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode"   value="B">老龄照护
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode"   value="C">临床护理
+                        </label>
+                      </div>
+                    
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">服务内容</label>
+                      <div class="col-md-6">
+                          <textarea class="form-control" name="content" id="content" rows="8"></textarea>
+                      </div>
+                       <i class="must-float must-fill">*</i>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">预约备注</label>
+                      <div class="col-md-6">
+                          <textarea class="form-control"  name="remark" id="remark"rows="4"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="checkbox-inline col-md-3 control-label">
+                          <input type="checkbox"  id="other" name="orderStatus"  value="4">取消服务
+                      </label>
+                    </div> 
+                     <div class="form-group" id="stoptxt">
+                      <div class="col-md-offset-2 col-md-7">
+                          <textarea class="form-control" name="cancelReson" id="cancelReson" rows="4" placeholder="请输入取消服务原因"></textarea>
+                      </div> 
+                      <i class="must-float must-fill">*</i>
+                     </div> 
+                    <div class="form-group">
+                      <button type="button" class="col-md-offset-4 btn btn-primary col-md-1 save">保存</button>
+                      <button type="button" class="btn btn-primary col-md-1 col-md-offset-1 back">返回</button>
+                    </div>      
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=1;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

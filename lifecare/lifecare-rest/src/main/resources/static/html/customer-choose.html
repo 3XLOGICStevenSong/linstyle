@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>选择客户</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+     <link href="../css/bootstrap-table.min.css" rel="stylesheet">
+     <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/information/customer-choose.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../js/common/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../js/common/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/jedate.js"></script>
+   
+    </head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+             <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>选择客户</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                   <input type="hidden" id="userId" name="userId">
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户编号</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                         <input type="text" class="form-control" id="userNumber" name="userNumber" >
+                      </div>
+                     <label class="col-md-2 col-xs-2 col-sm-2 control-label" >客户身份证号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" id="idCard" name="idCard" >                        
+                      </div>                    
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户姓名</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control" id="realName" name="realName" >              
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户手机号</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" id="mobile" name="mobile"  >                        
+                      </div>    
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户生日</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control dateinput dateicon" id="birthday"  name="birthday" readonly>
+                        
+                      </div>
+                        <label class="col-md-2 col-xs-2 col-sm-2 control-label">星级</label>
+                        <div class="col-md-1 col-xs-1 col-sm-1" >
+                        <select class="form-control" id="userLevel" name="userLevel" >
+                          <option value=""></option> 
+                            <option value="1">1</option>           
+                            <option value="2">2</option> 
+                            <option value="3">3</option> 
+                            <option value="4">4</option>           
+                            <option value="5">5</option>                          
+                        </select>                       
+                      </div>                     
+                      <div class="col-md-2 col-xs-2 col-sm-2 control-label">
+                        <button type="button" class="btn btn-primary" id="search" name="search">查询</button>
+                      </div>           
+                    </div>
+                        <table class="table table-bordered table-hover" id="table">
+ <!--                         <tr class="info">
+                            <th>客户编号</th>
+                            <th>客户姓名</th>
+                            <th>手机</th>
+                            <th>地址</th>
+                            <th>生日</th>
+                            <th>性别</th>
+                            <th>星级</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>ZQM00001</td>
+                            <td>客户甲</td>
+                            <td>13900009999</td>
+                            <td>中山区黄浦路101号</td>
+                            <td>2018-12-20</td>
+                            <td>男</td>
+                            <td>1</td>
+                            <td>启用</td>
+                            <td><button type="button" class="btn btn-primary btn-size">选择</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ZQM00002</td>
+                            <td>客户乙</td>
+                            <td>15900008888</td>
+                            <td>高新区胜利路81号</td>
+                            <td>2018-12-20</td>
+                            <td>女</td>
+                            <td>1</td>
+                            <td>停用</td>
+                            <td><button type="button" class="btn btn-primary btn-size">选择</button>
+                            </td>
+                          </tr>-->
+                        </table>  
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</div>
+
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //基本信息管理
+    window.sidebar_menu_id=2;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

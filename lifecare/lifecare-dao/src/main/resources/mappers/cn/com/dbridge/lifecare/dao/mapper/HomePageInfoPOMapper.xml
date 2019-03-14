@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.HomePageInfoPOMapper">
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TITLE1" jdbcType="VARCHAR" property="title1" />
+    <result column="TITLE2" jdbcType="VARCHAR" property="title2" />
+    <result column="TITLE3" jdbcType="VARCHAR" property="title3" />
+    <result column="TITLE4" jdbcType="VARCHAR" property="title4" />
+    <result column="CONTENT1" jdbcType="VARCHAR" property="content1" />
+    <result column="CONTENT2" jdbcType="VARCHAR" property="content2" />
+    <result column="CONTENT3" jdbcType="VARCHAR" property="content3" />
+    <result column="CONTENT4" jdbcType="VARCHAR" property="content4" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TITLE1, TITLE2, TITLE3, TITLE4, CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <sql id="Blob_Column_List">
+    CONTENT1, CONTENT2, CONTENT3, CONTENT4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_home_page_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_home_page_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    insert into t_home_page_info (ID, TITLE1, TITLE2, 
+      TITLE3, TITLE4, CREATE_TIME, 
+      CREATE_BY, UPDATE_TIME, UPDATE_BY, 
+      CONTENT1, CONTENT2, CONTENT3, 
+      CONTENT4)
+    values (#{id,jdbcType=INTEGER}, #{title1,jdbcType=VARCHAR}, #{title2,jdbcType=VARCHAR}, 
+      #{title3,jdbcType=VARCHAR}, #{title4,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, 
+      #{content1,jdbcType=LONGVARCHAR}, #{content2,jdbcType=LONGVARCHAR}, #{content3,jdbcType=LONGVARCHAR}, 
+      #{content4,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    insert into t_home_page_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="title1 != null">
+        TITLE1,
+      </if>
+      <if test="title2 != null">
+        TITLE2,
+      </if>
+      <if test="title3 != null">
+        TITLE3,
+      </if>
+      <if test="title4 != null">
+        TITLE4,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="content1 != null">
+        CONTENT1,
+      </if>
+      <if test="content2 != null">
+        CONTENT2,
+      </if>
+      <if test="content3 != null">
+        CONTENT3,
+      </if>
+      <if test="content4 != null">
+        CONTENT4
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title1 != null">
+        #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="title3 != null">
+        #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="title4 != null">
+        #{title4,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="content1 != null">
+        #{content1,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="content3 != null">
+        #{content3,jdbcType=VARCHAR},
+      </if>
+      <if test="content4 != null">
+        #{content4,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    update t_home_page_info
+    <set>
+      <if test="title1 != null">
+        TITLE1 = #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        TITLE2 = #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="title3 != null">
+        TITLE3 = #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="title4 != null">
+        TITLE4 = #{title4,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="content1 != null">
+        CONTENT1 = #{content1,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        CONTENT2 = #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="content3 != null">
+        CONTENT3 = #{content3,jdbcType=VARCHAR},
+      </if>
+      <if test="content4 != null">
+        CONTENT4 = #{content4,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    update t_home_page_info
+    set TITLE1 = #{title1,jdbcType=VARCHAR},
+      TITLE2 = #{title2,jdbcType=VARCHAR},
+      TITLE3 = #{title3,jdbcType=VARCHAR},
+      TITLE4 = #{title4,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=INTEGER},
+      CONTENT1 = #{content1,jdbcType=VARCHAR},
+      CONTENT2 = #{content2,jdbcType=VARCHAR},
+      CONTENT3 = #{content3,jdbcType=VARCHAR},
+      CONTENT4 = #{content4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO">
+    update t_home_page_info
+    set TITLE1 = #{title1,jdbcType=VARCHAR},
+      TITLE2 = #{title2,jdbcType=VARCHAR},
+      TITLE3 = #{title3,jdbcType=VARCHAR},
+      TITLE4 = #{title4,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="getCountHomePageInfo" resultMap="BaseResultMap" >
+   SELECT 
+    ID, TITLE1, TITLE2, TITLE3, TITLE4, CONTENT1, CONTENT2, CONTENT3, CONTENT4,
+    CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY
+   FROM
+    t_home_page_info
+  </select>
+  
+  <update id="updateHomePageInfo" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO" >
+     update t_home_page_info
+    <set>
+      <if test="title1 != null">
+        TITLE1 = #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        TITLE2 = #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="title3 != null">
+        TITLE3 = #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="title4 != null">
+        TITLE4 = #{title4,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="content1 != null">
+        CONTENT1 = #{content1,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        CONTENT2 = #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="content3 != null">
+        CONTENT3 = #{content3,jdbcType=VARCHAR},
+      </if>
+      <if test="content4 != null">
+        CONTENT4 = #{content4,jdbcType=VARCHAR}
+      </if>
+     </set>
+     WHERE ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <insert id="insertHomePageInfo" parameterType="cn.com.dbridge.lifecare.dao.po.HomePageInfoPO" >
+   insert into t_home_page_info
+   <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="title1 != null">
+        TITLE1,
+      </if>
+      <if test="title2 != null">
+        TITLE2,
+      </if>
+      <if test="title3 != null">
+        TITLE3,
+      </if>
+      <if test="title4 != null">
+        TITLE4,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="content1 != null">
+        CONTENT1,
+      </if>
+      <if test="content2 != null">
+        CONTENT2,
+      </if>
+      <if test="content3 != null">
+        CONTENT3,
+      </if>
+      <if test="content4 != null">
+        CONTENT4
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title1 != null">
+        #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="title3 != null">
+        #{title3,jdbcType=VARCHAR},
+      </if>
+      <if test="title4 != null">
+        #{title4,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="content1 != null">
+        #{content1,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="content3 != null">
+        #{content3,jdbcType=VARCHAR},
+      </if>
+      <if test="content4 != null">
+        #{content4,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 郭健用 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, TITLE1,CONTENT1, TITLE2,CONTENT2, TITLE3,CONTENT3, TITLE4,CONTENT4, CREATE_TIME, CREATE_BY, UPDATE_TIME, UPDATE_BY
+    from t_home_page_info order by UPDATE_TIME desc 
+  </select>
+</mapper>

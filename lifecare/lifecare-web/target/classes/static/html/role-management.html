@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>角色管理</title>
+<meta name="keyword" content="">
+<meta name="description" content="">
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- 引入bootstrap-table样式 -->
+<link
+	href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="../css/mystyle.css">
+<link href="../css/nav.css" rel="stylesheet" type="text/css">
+<link href="../css/popup.css" rel="stylesheet" type="text/css">
+<!-- bootstrap-table.min.js -->
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+<script
+	src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<!--<script src="../js/bootstrap.min.js"></script>-->
+
+<script src="../js/common/myjs.js"></script>
+<script src="../js/permisson/role-management.js"></script>
+<script src="../js/common/exception.js"></script>
+</head>
+<body>
+	<div id="wrap" style="height: auto; min-height: 100%;">
+		<!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+		<!--右侧内容开始-->
+		<div class="content" id="content">
+			<div class="main">
+				<div class="r_btn">
+					<button type="button" class="btn btn-success addRole">追加角色</button>
+				</div>
+
+				<h4 th:text="Hello!'">
+					<strong>角色管理</strong>
+				</h4>
+				<p class="ok" style="display: none"></p>
+				<p class="error" style="display: none"></p>
+				<table id="table">
+					<!--  <thead>
+						<tr class="info">
+							<th>角色名称</th>
+							<th>角色描述</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>调度室</td>
+							<td>xxx</td>
+							<td><button type="button" class="btn btn-primary btn-size">设置</button>
+								<button type="button" class="btn btn-primary btn-size btn-pos">编辑</button>
+								<button type="button" class="btn btn-default btn-size btn-pos"
+									onClick="launchModal(this)">删除</button></td>
+						</tr>
+						<tr class="active">
+							<td>管理部</td>
+							<td>xxx</td>
+							<td><button type="button" class="btn btn-primary btn-size">设置</button>
+								<button type="button" class="btn btn-primary btn-size btn-pos">编辑</button>
+								<button type="button" class="btn btn-default btn-size btn-pos"
+									onClick="launchModal(this)">删除</button></td>
+						</tr>
+					</tbody>-->
+				</table>
+			</div>
+
+			<!--右侧内容结束-->
+			<!-- 对话框开始 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">提示</h4>
+						</div>
+						<div class="modal-body">你确定要删除吗？</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary sure">确定</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 对话框结束 -->
+		</div>
+	</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=4;
+$("#sidebar").load("sidebar.html");
+</script>
+
+</html>

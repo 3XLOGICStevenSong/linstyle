@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <script src="../js/common/jquery-3.3.1.min.js"></script>
+  <script src="../js/common/login.js"></script>
+  
+   
+</head>
+<body id="login">
+  <div class="login-logo">
+    <span style="margin-left:12px"><img src="../images/logo.png" width="100" height="100"></span>
+  </div>
+  <h2 class="form-heading" style="margin-left:10px">至&nbsp;亲&nbsp;久&nbsp;久<br><font class="en-title">Joy Full 99</font></h2>
+  
+  <div class="app-cam">	
+        <label class="login-label">登录名</label>
+		<input type="text" class="text" placeholder="请输入工号" id="userNumber" name="userNumber">
+  </div>
+  <div class="app-cam" style="margin:1em auto auto auto">	
+		<label class="login-label">密码</label>
+		<input type="password" placeholder="请输入密码" name="password"id="password">
+        <div class="checkbox checkbox-login" style="margin-left:14%;margin-bottom:25px">
+          <label class="radio-inline"><input type="checkbox" id="check_box" checked>记住登录名密码</label>
+        </div>
+         <p class="ok" style="display:none">您的信息保存成功!</p>
+         <p class="login-error" style="display:none"></p>
+         <button type="button" class="btn btn-primary btn-login add">登录</button>
+  </div>
+        
+</body>
+</html>

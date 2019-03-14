@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.com.dbridge</groupId>
+		<artifactId>lifecare</artifactId>
+		<version>1.0.3</version>
+	</parent>
+	<artifactId>lifecare-service</artifactId>
+	<name>lifecare-service</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<!-- 模块间依赖 lifecare-dao -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-dao</artifactId>
+			<version>${lifecare.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- 模块间依赖 lifecare-framework -->
+		<dependency>
+			<groupId>cn.com.dbridge</groupId>
+			<artifactId>lifecare-framework</artifactId>
+			<version>${lifecare.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Spring Boot Web开发依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>${pagehelper-spring-boot-starter}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		 <dependency>
+		    <groupId>com.belerweb</groupId>
+		    <artifactId>pinyin4j</artifactId>
+		    <version>${pinyin4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.com.dbridge</groupId>
+            <artifactId>lifecare-upload-plugin</artifactId>
+            <version>${lifecare.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

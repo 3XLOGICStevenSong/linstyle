@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>添加未发布服务方案</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <!--时间相关  -->
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+     <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+     <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/exception.js"></script>
+    <script src="../js/information/care-plan-common.js"></script>
+    <script src="../js/information/unpublished-care-plan-add.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>添加未发布服务方案</strong></h4>
+                <div class="space clearfix">
+              <form class="form-horizontal" id="missionForm">
+
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">客户编号</label>
+                  <input type="hidden" class="form-control" id="customId" name="customId"  >
+                  <div class="col-md-4 col-xs-4 col-sm-4" style="position:relative">
+                      <input type="text" class="form-control" readonly="readonly" id="customNumber" name="customNumber">
+                         <button class="btn btn-default btn-border-radius" type="button" id = "customChoose" tabIndex="1" style="position: absolute;top: 0px;right:15px;z-index:999">选择</button>                                          
+                  </div> 
+                  <i class="must-float must-fill">*</i>
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">客户姓名</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="customRealName" name="customRealName">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">客户性别</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="customSex" name="customSex">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">客户年龄</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="customAge" name="customAge">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">客户星级</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="userLevel" name="userLevel">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">服务方案类型</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <select class="form-control" id="nursePlanType" name="nursePlanType" tabIndex="2">
+                            <option value="1">生活助理</option>           
+                            <option value="2">老龄照护</option> 
+                            <option value="3">临床护理</option> 
+                        </select> 
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">服务方案标题</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control" id="nursePlanTitle" name="nursePlanTitle" tabIndex="3">
+                  </div>
+                  <i class="must-float must-fill">*</i>
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">                   
+                      <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">方案开始日期</label>
+                        <div class="col-md-4 col-xs-4 col-sm-4">
+                          <input type="text" class="form-control dateinput dateicon" id="nursePlanBeginDate" name="nursePlanBeginDate"  tabIndex="4">
+                          <!-- <input class="form-control laydate-icon" onclick="laydate()" id=nursePlanBeginDate name="nursePlanBeginDate" > -->
+                        </div>
+                        <!-- 
+                        <span class="float-left">-</span>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                          <input class="form-control laydate-icon" onclick="laydate()">
+                        </div>
+                         -->
+                        <i class="must-float must-fill">*</i>
+                    </div>
+                 <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                    <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">服务方案内容</label>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <textarea class="form-control" rows="18" id=nursePlanContent name="nursePlanContent" placeholder="大文本" tabIndex="5"></textarea>
+                    </div>
+                    <i class="must-float must-fill">*</i>
+                 </div>      
+                 <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                    <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">制定人员工号</label>
+                    <input type="hidden" class="form-control" id="backatageUserId" name="backatageUserId"  value="1">
+                    <div class="col-md-4 col-xs-4 col-sm-4 input-group" style="display:flex;flex-wrap:wrap">
+                      <input type="text" class="form-control" readonly="readonly" id="backatageUserNumber" name="backatageUserNumber" placeholder="后台用户选择" style="flex:0 0 84%">
+                      <span class="input-group-btn" style="flex:0 0 15%">
+                          <button class="btn btn-default" type="button" id = "userChoose" tabIndex="6">选择</button>
+                      </span>
+                    </div>
+                    <i class="must-float must-fill">*</i>
+                 </div>
+                 <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">制定人员姓名</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control" readonly="readonly" id="backatageUserName" name="backatageUserName" >
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">制定日期</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input type="text" class="form-control dateinput dateicon" id="draftDate" name="draftDate" placeholder="YYYY-MM-DD" readonly="readonly" tabIndex="7">
+                    <!-- <input class="form-control laydate-icon" onClick="laydate()" id="draftDate" name="draftDate"> -->
+                  </div>
+                  <i class="must-float must-fill">*</i>
+                </div>
+                <!-- 
+                <div class=" col-md-offset-3">
+                    <div class="checkbox checkbox-status">
+                        <label class="radio-inline"><input type="checkbox" id="nursePlanStatus" value="0" onclick="this.value=(this.value==0)?1:0">发布</label>
+                    </div>
+                </div>
+                 -->
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">状态</label>
+                  <div class="col-md-6">
+                    <div class="col-md-3 col-xs-3 col-sm-3">
+                      <label class="radio-inline">
+                        <input type="radio" id="useType" name="useType"  value=0  checked="checked" tabIndex="8"> 启用
+                      </label>
+                    </div>
+                    <div class="col-md-3 col-xs-3 col-sm-3">
+                      <label class="radio-inline">
+                        <input type="radio" id="useType" name="useType" value=1 tabIndex="9"> 停用
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <input type="hidden" class="form-control" id="enteringPersonId" name="enteringPersonId" >
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">录入员工号</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="enteringPersonNumber" name="enteringPersonNumber">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+                <div class="form-group col-md-offset-4 col-xs-offset-4 col-sm-offset-4">
+                  <label class="col-md-2 col-xs-2 col-sm-2 col-md-offset-2 control-label">录入员姓名</label>
+                  <div class="col-md-4 col-xs-4 col-sm-4">
+                    <input class="form-control"  readonly="readonly" id="enteringPersonName" name="enteringPersonName">
+                  </div>
+                  <!-- 
+                  <i class="must-float must-fill">*</i>
+                   -->
+                </div>
+              </form>
+            <div class="form-group">
+              <button type="button" class="col-md-offset-4 col-xs-offset-2 col-sm-offset-2 btn btn-primary col-md-1 col-xs-1 col-sm-1 save" tabIndex="10">保存</button>
+              <button type="button" class="btn btn-primary col-md-1 col-xs-1 col-sm-1 col-md-offset-1 col-xs-offset-1 col-sm-offset-1 back" tabIndex="11">返回</button>
+            </div>    
+          </div>      
+        </div>
+      </div>     
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //权限管理
+    window.sidebar_menu_id=2;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

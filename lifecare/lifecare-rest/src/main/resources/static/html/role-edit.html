@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>权限角色编辑</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+     <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/permisson/role-edit.js"></script>
+     <script src="../js/common/popup.js"></script>
+     <script src="../js/common/common.js"></script>
+    
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+
+ <!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+       <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>权限角色编辑</strong></h4>               
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 col-xs-2 col-sm-2 control-label col-md-offset-2">角色名称</label>
+                      <div class="col-md-3 col-xs-3 col-sm-3">
+                        <input type="text" class="form-control" id="roleName" name="roleName">
+                      </div>
+                      <i class="must-float must-fill">*</i>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 col-xs-2 col-sm-2 col-xs-2 col-sm-2 control-label col-md-offset-2 nei">角色描述</label>
+                      <div class="col-md-5 col-xs-5 col-sm-5">
+                        <textarea class="form-control" rows="4" id="memo" name="memo">
+                        </textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="col-md-offset-4 col-xs-offset-2 col-sm-offset-2 btn btn-primary col-md-1 col-xs-1 col-sm-1 save" >保存</button>
+                      <button type="button" class="btn btn-primary col-md-1 col-xs-1 col-sm-1 col-md-offset-1 col-xs-offset-1 col-sm-offset-1 back">返回</button>
+                    </div>   
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->     
+    </div>
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=3;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

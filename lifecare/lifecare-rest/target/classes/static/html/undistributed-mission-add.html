@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>未分配任务添加</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+     <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/task/undistributed-mission-add.js"></script>
+    <script src="../js/common/common.js"></script>
+</head>
+
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+ <!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>未分配任务添加</strong></h4>
+                <div class="form-group" style="margin-left:28%">
+                  <p class="col-md-12 col-xs-12 col-sm-12" style="text-align:left">
+                  任务编号:保存后将自动生成任务编号格式为 [1][2]-[3]：A181220-0001
+                  </p>
+                  <p class="col-md-12 col-xs-12 col-sm-12" style="text-align:left">1表示服务类别，2表示预约日期年月日，3为1-9999的递增数值
+                  </p>
+                  <p class="col-md-12 col-xs-12 col-sm-12" style="text-align:left">任务编号生成后不再改变，即使预约日期或者服务类型改变任务编号也不变
+                  </p>                
+                </div>
+                 <hr size="2"  style="height:1px">
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="form">
+                   <p class="ok" style="display:none"></p>
+                   <p class="error" style="display:none"></p>                 
+                    <div class="form-group clearfix">                
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户编号</label>
+                        <div class="col-12" style="position:relative"> 
+                          <input type="text" class="form-control"  readonly="readonly"id="userNumber"name="userNumber">                                                           
+                            <button class="btn btn-default btn-border-radius select" type="button" tabIndex="1" style="position: absolute;top: 0px;right: 0;">选择</button>                                           
+                      </div>                     
+                      <i class="must-float must-fill">*</i>
+                       <input type="hidden" class="form-control" id="customId" name="customId" > 
+                       <input type="hidden" class="form-control" id="backendPersonId" name="backendPersonId" >                          
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label">客户姓名</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control"  id="realName" readonly="readonly"> 
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户手机号</label>
+                      <div class="col-12">
+                        <input type="text" class="form-control" id="mobile"  readonly="readonly">                        
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label" >客户星级</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control" id="userLevel"   readonly="readonly">                        
+                      </div>
+                               
+                    </div>
+                       <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户年龄</label>
+                      <div class="col-12">
+                        <input type="text" class="form-control" id="age"  readonly="readonly">                        
+                      </div>
+                      <label class="col-md-2 col-xs-2 col-sm-2 control-label" >客户性别</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control"  id="sex"   readonly="readonly">                        
+                      </div>
+                               
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">预约地址</label>
+                      <div class="col-13">
+                        <input type="text" class="form-control" readonly="readonly" name="orderAddr" id="userAddr">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                     <label class="col-md-3 col-xs-3 col-sm-3 control-label">性别要求</label>
+                      <div class="col-12">
+                        <select class="form-control" name="sexRequire" tabIndex="2">
+                          <option value="0">不限</option>
+                          <option value="1">男</option>
+                          <option value="2">女</option>
+                        </select>
+                        <span class="errorSpan"></span>
+                      </div>
+                      <i class="must-float must-fill">*</i> 
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">预约日期</label>
+                      <div class="col-12">
+                    <input type="text" class="form-control dateinput dateicon" name="orderDate" id="orderDate"   tabIndex="3">
+
+                    <!--  <div class="" onclick="jeDate('#orderDate',{trigger:false,format: 'YYYY-MM-DD',isinitVal: true})"></div>-->
+                      <!--   <input class="form-control laydate-icon" id="orderDate" name="orderDate" onclick="laydate()"> -->
+                      </div>
+                       <i class="must-float must-fill">*</i>   
+                     </div>
+                     <div class="form-group">                   
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">预约时间</label>
+                        <div class="col-12">
+                          <input type="text" class="form-control dateinput dateicon" id="orderBeginTime" name="orderBeginTime"  readonly tabIndex="4">
+ <!--   <input class="form-control time-style"  id="orderBeginTime"name="orderBeginTime"type="time">-->
+                        </div>
+                        <span class="float-left">-</span>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                         <input type="text" class="form-control dateinput dateicon" id="orderEndTime" name="orderEndTime"  readonly tabIndex="5">
+                          
+                        <span class="errorSpan"></span>
+                        </div>
+                        <i class="must-float must-fill">*</i>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">服务类别</label>
+                      <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode" id="serviceCategoryCode" value="A" checked tabIndex="6">生活助理
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode" id="serviceCategoryCode"  value="B" tabIndex="7">老龄照护
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="serviceCategoryCode" id="serviceCategoryCode"  value="C" tabIndex="8">临床护理
+                        </label>
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">服务内容</label>
+                      <div class="col-md-6 col-xs-6 col-sm-6">
+                          <textarea class="form-control" name="content" id="content" rows="8" tabIndex="9" placeholder="大文本"></textarea>
+                      </div>
+                       <i class="must-float must-fill">*</i>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">备注</label>
+                      <div class="col-md-6 col-xs-6 col-sm-6">
+                          <textarea class="form-control"  name="remark" id="remark"rows="4" tabIndex="10"></textarea>
+                      </div>
+                    </div>                   
+                    <div class="form-group">
+                      <label class="col-md-3 col-xs-3 col-sm-3 control-label">保存份数</label>
+                      <div class="col-md-2 col-xs-2 col-sm-2">
+                        <input type="text" class="form-control" id="saveCnt" name="saveCnt" value="1" tabIndex="11">                        
+                      </div>
+                      <i class="must-float must-fill">*</i>
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="col-md-offset-4 col-xs-offset-4 col-sm-offset-4 btn btn-primary col-md-1 col-xs-1 col-sm-1 save" tabIndex="12">保存</button>
+                      <button type="button" class="btn btn-primary col-md-1 col-xs-1 col-sm-1 col-md-offset-1 col-xs-offset-1 col-sm-offset-1 back" tabIndex="13">返回</button>
+                    </div>     
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+</div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=1;
+$("#sidebar").load("sidebar.html");</script>
+
+
+</html>

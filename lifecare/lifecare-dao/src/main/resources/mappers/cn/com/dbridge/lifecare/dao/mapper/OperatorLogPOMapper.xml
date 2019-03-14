@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.OperatorLogPOMapper">
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.OperatorLogPO">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MODULE" jdbcType="VARCHAR" property="module" />
+    <result column="METHOD" jdbcType="VARCHAR" property="method" />
+    <result column="STATUS_DESC" jdbcType="VARCHAR" property="statusDesc" />
+    <result column="EXCEPTION_INFO" jdbcType="VARCHAR" property="exceptionInfo" />
+    <result column="CODE" jdbcType="TINYINT" property="code" />
+    <result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ARGS" jdbcType="LONGVARCHAR" property="args" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, `MODULE`, `METHOD`, STATUS_DESC, EXCEPTION_INFO, CODE, USER_CODE, IP, CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ARGS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_operator_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_operator_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.com.dbridge.lifecare.dao.po.OperatorLogPO">
+    insert into t_operator_log (ID, `MODULE`, `METHOD`, 
+      STATUS_DESC, EXCEPTION_INFO, CODE, 
+      USER_CODE, IP, CREATE_TIME, 
+      ARGS)
+    values (#{id,jdbcType=BIGINT}, #{module,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{statusDesc,jdbcType=VARCHAR}, #{exceptionInfo,jdbcType=VARCHAR}, #{code,jdbcType=TINYINT}, 
+      #{userCode,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{args,jdbcType=LONGVARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="cn.com.dbridge.lifecare.dao.po.OperatorLogPO">
+    insert into t_operator_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="module != null">
+        `MODULE`,
+      </if>
+      <if test="method != null">
+        `METHOD`,
+      </if>
+      <if test="statusDesc != null">
+        STATUS_DESC,
+      </if>
+      <if test="exceptionInfo != null">
+        EXCEPTION_INFO,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="userCode != null">
+        USER_CODE,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="args != null">
+        ARGS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDesc != null">
+        #{statusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionInfo != null">
+        #{exceptionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=TINYINT},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="args != null">
+        #{args,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectLogInfo" resultMap="BaseResultMap" parameterType="cn.com.dbridge.lifecare.dao.po.OperatorLogPO">
+    select
+      ID, `MODULE`, `METHOD`, STATUS_DESC, EXCEPTION_INFO, CODE, ARGS,USER_CODE, IP, CREATE_TIME
+    from t_operator_log
+    <where>
+      <if test="module != null and module != ''">
+        AND `MODULE` = #{module,jdbcType=VARCHAR}
+      </if>
+      <if test="method != null and method != ''">
+        AND `METHOD` = #{method,jdbcType=VARCHAR}
+      </if>
+      <if test="statusDesc != null and statusDesc != ''">
+        AND STATUS_DESC = #{statusDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="exceptionInfo != null and exceptionInfo != ''">
+        AND EXCEPTION_INFO = #{exceptionInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="code == 0">
+        AND CODE = 0
+      </if>
+      <if test="code == 1">
+        AND CODE = 1
+      </if>
+      <if test="userCode != null and userCode != ''">
+        AND USER_CODE = #{userCode,jdbcType=VARCHAR}
+      </if>
+      <if test="ip != null and ip != ''">
+        AND IP = #{ip,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+        AND date_format(CREATE_TIME,'%Y-%m-%d %T') <![CDATA[>=]]> date_format(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d %T')
+      </if>
+      <if test="endTime != null">
+        AND date_format(CREATE_TIME,'%Y-%m-%d %T') <![CDATA[<=]]> date_format(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d %T')
+      </if>
+      <if test="args != null">
+        AND ARGS = #{args,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+    ORDER BY CREATE_TIME DESC
+  </select>
+
+</mapper>

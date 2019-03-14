@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>信息</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css"> 
+     <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css"> 
+  <script src="../js/common/jquery-3.3.1.min.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+     <!-- 弹窗插件sweetalert2 -->
+    <script src="../js/common/sweetalert2.js"></script>
+    <!-- sweetalert2兼容IE浏览器文件 -->
+    <script src="../js/common/es6-promise.auto.min.js"></script>
+    <script src="../js/common/jquery.validate.min.js"></script>
+    <script src="../js/common/messages_zh.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/information/home-message.js"></script>
+
+</head>
+<body>
+     <div id="wrap" style="height: auto; min-height: 100%;">
+              <!--头部开始-->
+        <div id="header"></div>
+        <!--头部结束-->
+        <!--左侧导航开始-->
+        <div id="sidebar"></div>
+        <!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong >信息</strong></h4>
+            <!--   <p class="ok">您的信息保存成功!</p>
+               <p class="error">真实姓名不可包含字母、数字、特殊符号和非法词汇。</p> --> 
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="missionForm">
+                    <input type="hidden" id="loginUserId" name="loginUserId">
+                    <input type="hidden" id="userId" name="userId">
+                    <div class="form-group " >
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                          <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <input  class="group btn-size home-message-title form-control" placeholder="请输入信息标题" id="title1" name="title1">
+	                      </div>  
+	                        <i class="must-float must-fill">*</i>
+	                      <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <textarea class="form-control"  rows="25"  placeholder="请输入信息内容" id="content1" name="content1"></textarea>
+	                      </div>  
+                        </div>
+
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                          <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <input class="group btn-size home-message-title form-control" placeholder="请输入信息标题" id="title2" name="title2">
+	                      </div> 
+	                      <i class="must-float must-fill">*</i>
+	                      <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <textarea class="form-control" rows="25"   placeholder="请输入信息内容" id="content2" name="content2"></textarea>
+	                      </div> 
+                        </div>
+           
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                          <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <input class="group btn-size home-message-title form-control" placeholder="请输入信息标题" id="title3" name="title3">
+	                      </div>  
+	                        <i class="must-float must-fill">*</i>
+	                      <div class="col-md-12 col-xs-12 col-sm-12">  
+	                        <textarea class="form-control" rows="25"  placeholder="请输入信息内容" id="content3" name="content3"></textarea>
+	                      </div>  
+                        </div>
+
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                          <div class="col-md-12 col-xs-12 col-sm-12">
+	                        <input class="group btn-size home-message-title form-control" placeholder="请输入信息标题" id="title4" name="title4">
+	                      </div>  
+	                        <i class="must-float must-fill">*</i>
+	                      <div class="col-md-12 col-xs-12 col-sm-12">  
+	                        <textarea class="form-control" rows="25"  placeholder="请输入信息内容" id="content4" name="content4"></textarea>
+	                      </div>  
+                        </div>
+ 
+                    </div>
+                    
+                    <div class="form-group">
+                      <button type="button" class="col-md-offset-5 col-xs-offset-5 col-sm-offset-5 btn btn-primary col-md-1 col-xs-1 col-sm-1 save" style="display:none" >保存</button>
+                   </div>
+                  </form>   
+               </div>     
+        </div> 
+      </div>
+        <!--右侧内容结束-->      
+    </div>
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+    //系统功能
+    window.sidebar_menu_id=4;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>

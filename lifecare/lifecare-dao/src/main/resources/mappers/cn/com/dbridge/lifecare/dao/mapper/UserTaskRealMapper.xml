@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.dbridge.lifecare.dao.respository.UserTaskRealMapper">
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="TASK_ID" jdbcType="INTEGER" property="taskId" />
+    <result column="SHOW_TIME" jdbcType="TIMESTAMP" property="showTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, `TYPE`, TASK_ID, SHOW_TIME
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_task_real
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_task_real
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO" useGeneratedKeys="true">
+    insert into t_user_task_real (USER_ID, `TYPE`, TASK_ID, 
+      SHOW_TIME)
+    values (#{userId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{taskId,jdbcType=INTEGER}, 
+      #{showTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO" useGeneratedKeys="true">
+    insert into t_user_task_real
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="type != null">
+        `TYPE`,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="showTime != null">
+        SHOW_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="showTime != null">
+        #{showTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO">
+    update t_user_task_real
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `TYPE` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="showTime != null">
+        SHOW_TIME = #{showTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO">
+    update t_user_task_real
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      `TYPE` = #{type,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=INTEGER},
+      SHOW_TIME = #{showTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 确认订单是否已读 -->
+  <select id="selectReadOrNot" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO" resultMap="BaseResultMap">
+    select 
+        id 
+    from
+        t_user_task_real
+    <where>
+        <if test="taskId != null">
+           TASK_ID = #{taskId,jdbcType=INTEGER}
+        </if>
+        <if test="userId != null">
+           and USER_ID = #{userId,jdbcType=INTEGER}
+        </if>
+        <if test="type != null">
+           and TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByTaskId" parameterType="java.lang.Integer">
+    delete from t_user_task_real
+    where TASK_ID = #{taskId,jdbcType=INTEGER}
+    <!-- and TYPE = 0 -->
+  </delete>
+  
+  <delete id="deleteUserTaskReal" parameterType="cn.com.dbridge.lifecare.dao.po.UserTaskRealPO">
+    delete from 
+    	t_user_task_real
+    <where>
+      <if test="id != null">
+        ID = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null">
+        and USER_ID = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="type != null">
+        and TYPE = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="taskId != null">
+        and TASK_ID = #{taskId,jdbcType=INTEGER}
+      </if>
+      <if test="showTime != null">
+        and SHOW_TIME = #{showTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </delete>
+</mapper>

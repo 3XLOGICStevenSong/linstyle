@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">                               
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>服务人员选择</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/mystyle.css">
+    <link href="../css/nav.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/jeDate-test.css" rel="stylesheet" type="text/css">
+    <link href="../skin/jedate.css" rel="stylesheet" type="text/css">
+    <!-- 引入bootstrap-table样式 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/common/popup.js"></script>
+    <script src="../js/common/myjs.js"></script>
+    <script src="../js/common/jedate.js"></script>
+    <script src="../js/information/servicePersion.js"></script>
+	<script src="../js/common/exception.js"></script>
+	<script src="../js/information/service-person-choose.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <!-- 弹窗插件sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+</head>
+<body>
+    <div id="wrap" style="height: auto; min-height: 100%;">
+        <!--头部开始-->
+		<div id="header"></div>
+		<!--头部结束-->
+		<!--左侧导航开始-->
+		<div id="sidebar"></div>
+		<!--左侧导航结束-->
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <h4><strong>服务人员选择</strong></h4>
+                <div class="space clearfix">
+                  <form class="form-horizontal" id="servicePersionForm">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">服务人员工号</label>
+                      <div class="col-md-2">
+                         <input type="text" class="form-control" id="userNumber"  name="userNumber" >
+                      </div>
+                     <label class="col-md-2 control-label">服务人员身份证号</label>
+                      <div class="col-md-3">
+                        <input type="text" class="form-control" id="idCard" name="idCard" >                        
+                      </div>                    
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">服务人员姓名</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" id="realName" name="realName" >              
+                      </div>
+                      <label class="col-md-2 control-label">服务人员手机号</label>
+                      <div class="col-md-3">
+                        <input type="text" class="form-control" id="mobile" name="mobile" >                        
+                      </div>    
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">服务人员生日</label>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control dateinput dateicon" id="birthday" name="birthday" >
+                      </div>
+                      <label class="col-md-2 control-label">等级</label>
+                        <div class="col-md-1">
+                        <select class="form-control" id="userLevel" name="userLevel">
+                            <option value=""  selected="selected"></option> 
+                            <option value="A">A</option>           
+                            <option value="B">B</option> 
+                            <option value="C">C</option> 
+                            <option value="D">D</option>           
+                            <option value="E">E</option>                          
+                        </select>                       
+                      </div> 
+                      <div class="col-md-2 control-label">
+                        <button type="button" class="btn btn-primary query" >查询</button>
+                      </div>           
+                    </div>
+                    
+                        <table class="table table-bordered table-hover" id="table">
+                          <!-- <tr class="info">
+                            <th>服务人员工号</th>
+                            <th>服务人员名称</th>
+                            <th>手机</th>
+                            <th>地址</th>
+                            <th>生日</th>
+                            <th>性别</th>
+                            <th>等级</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr >
+                            <td>A00001</td>
+                            <td>服务甲</td>
+                            <td>13900009999</td>
+                            <td>中山区黄浦路101号</td>
+                            <td>2018-12-20</td>
+                            <td>男</td>
+                            <td>A</td>
+                            <td>启用</td>
+                            <td><button type="button" class="btn btn-primary btn-size">选择</button></td>
+                          </tr>
+                          <tr>
+                            <td>B00002</td>
+                            <td>服务乙</td>
+                            <td>15900008888</td>
+                            <td>高新区胜利路81号</td>
+                            <td>2018-12-20</td>
+                            <td>女</td>
+                            <td>B</td>
+                            <td>停用</td>
+                            <td><button type="button" class="btn btn-primary btn-size">选择</button></td>
+                          </tr> -->
+                        </table>
+                  </form>   
+              </div> 
+         </div>
+        <!--右侧内容结束-->      
+    </div>
+
+</body>
+<script>
+//加载页面布局的header,sidebar的内容
+$("#header").load("header.html");
+	//权限管理
+	window.sidebar_menu_id=3;
+$("#sidebar").load("sidebar.html");
+</script>
+</html>
