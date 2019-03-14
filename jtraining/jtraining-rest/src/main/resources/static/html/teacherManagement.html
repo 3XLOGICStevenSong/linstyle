@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>教師の管理</title>
+  <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <link href="../css/nav.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../js/excepetion.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/myjs.js"></script>
+  <script src="../js/teacherManagements.js"></script>
+  <script src="../laydate/laydate.js"></script>
+  </head>
+  <body>
+<!--右侧内容开始-->
+<div class="content" >
+  <div class="main">
+    <span class="title">教師リスト</span>
+      <form class="form-horizontal">
+        <div class="space clearfix">
+          <div class="col-md-3 input-space">
+            <input type="text" class="form-control" placeholder="" id="querySearch">
+          </div>
+          <button type="button" class="btn btn-training btn-pos" id="teacherSearch">検索</button>
+          <div class="form-group">
+            <button type="button" class="btn btn-training btn-pos addMemberBtn" id="addMemberBtn">教師を追加</button>
+            <span>総計教師の人数：<span id="count"></span>人</span>
+          </div>
+        </div>
+        <table class="table table-bordered space">
+          <tr class="train-bg">
+            <th>番号</th>
+            <th>名前</th>
+            <th>トレーニング種別</th>
+            <th>年齢</th>
+            <th>性別</th>
+            <th>エントリーの日付</th>
+            <th>職歴(年)</th>
+            <th>備考</th>
+            <th colspan="2">操作</th>
+          </tr>
+        </table>
+       <!-- 页码开始 -->
+             <nav class="page" aria-label="...">
+              <ul class="pagination">
+              </ul>
+            </nav> 
+       <!-- 页码结束  -->
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="MemberModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content left180">
+    <p id="message"></p>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">番号：</label>
+          <div class="col-md-3 input-space">
+            <input class="form-control" type="text" value="XS003" readonly id="no">
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">名前：</label>
+          <div class="col-md-3 input-space">
+          <input class="form-control" type="text" value="" id="name" maxlength="10">
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">エントリーの日付：</label>
+          <div class="col-md-3 input-space">
+            <input class="form-control laydate-icon demo-input" type="text" value="" id="applyDate">
+          </div>
+      </div>
+        <script>
+	      laydate.render({
+	          elem: '#applyDate' //指定元素
+	        });
+	  </script>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">誕生日：</label>
+          <div class="col-md-3 input-space">
+            <input class="form-control laydate-icon demo-input" type="text" value="" id="birthday">
+          </div> 
+      </div>
+  <script>
+      laydate.render({
+          elem: '#birthday' //指定元素
+        });
+  </script>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">性別：</label>
+          <div class="col-md-3 input-space">
+            <select id="pro" class="form-control">
+               <option value="0">男</option>
+               <option value="1">女</option>
+            </select>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable" >職歴：</label>
+          <div class="col-md-3 input-space">
+          <input class="form-control" type="text" value="" id="vocational" maxlength="255">
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-md-3 control-label train-lable">備考：</label>
+          <div class="col-md-8 input-space">        
+       <!--  字数限制在0 ~ 50         -->
+          <textarea class="form-control" maxlength="50" id="remarks"></textarea>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニング種別：</label>
+          <div class="col-md-3 input-space">
+            <select id="trainType" class="form-control">
+            </select>
+          </div>
+      </div>
+        <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニングの画像:</label>
+        <div class="inputfileDiv"> <img id="preview" class="pic-size" src="../images/pic-bg.png">             
+            <a href='javascript:void(0);' class="btn btn-training blueButton">選択</a>
+            <input type="file" name="myfile" class="myFileUpload" onchange="imgPreview(this)" />
+            <div class="show"></div>
+            <div class="col-md-10 padding-top50">
+            </div>
+          </div>
+      </div>
+        <div class="form-group col-md-offset-3">
+        <div class="col-md-2 col-md-offset-4 control-label">
+            <button type="button" class="btn btn-training top0" id="checkBtn">アップロード</button>
+          </div>
+        <div class="col-md-2 control-label">
+            <button type="button" class="btn btn-training top0 dlTrainBtn" id="dlTrainBtn">キャンセル</button>
+          </div>
+      </div>
+      </div>
+  </div>
+  </div>
+  </form>
+  </div>
+ </div>
+</body>
+</html>

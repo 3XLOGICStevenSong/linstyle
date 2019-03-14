@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.StudentEvaluatePOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.StudentEvaluatePO" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="evaluate" property="evaluate" jdbcType="VARCHAR" />
+    <result column="evaluate_time" property="evaluateTime" jdbcType="TIMESTAMP" />
+    <result column="use_status" property="useStatus" jdbcType="TINYINT" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_student_evaluate
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.StudentEvaluatePO" >
+    insert into t_student_evaluate (teacher_id, student_id, evaluate, 
+      evaluate_time, use_status, insert_date, 
+      insert_person, update_date, update_person
+      )
+    values (#{teacherId,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
+      #{evaluateTime,jdbcType=TIMESTAMP}, #{useStatus,jdbcType=TINYINT}, #{insertDate,jdbcType=TIMESTAMP}, 
+      #{insertPerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.StudentEvaluatePO" >
+    update t_student_evaluate
+    set evaluate = #{evaluate,jdbcType=VARCHAR},
+      evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP},
+      use_status = #{useStatus,jdbcType=TINYINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 后台 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select teacher_id, student_id, evaluate, evaluate_time, use_status, insert_date, 
+    insert_person, update_date, update_person
+    from t_student_evaluate
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select teacher_id, student_id, evaluate, evaluate_time, use_status, insert_date, 
+    insert_person, update_date, update_person
+    from t_student_evaluate
+  </select>
+  <select id="selectEvaluate" resultMap="BaseResultMap" parameterType="cn.com.dbridge.jtraining.dao.po.StudentEvaluatePO">
+    select 
+        evaluate
+    from
+        t_student_evaluate
+    where 
+        teacher_id = #{teacherId,jdbcType=VARCHAR}
+    and 
+        student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.TrainItemPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.TrainItemPO" >
+    <id column="train_id" property="trainId" jdbcType="INTEGER" />
+    <result column="train_type" property="trainType" jdbcType="INTEGER" />
+    <result column="train_teacher" property="trainTeacher" jdbcType="VARCHAR" />
+    <result column="train_title" property="trainTitle" jdbcType="VARCHAR" />
+    <result column="train_desc" property="trainDesc" jdbcType="VARCHAR" />
+    <result column="train_draw" property="trainDraw" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultListMap" type="cn.com.dbridge.jtraining.dao.po.TrainInformationPO" >
+    <id column="train_id" property="trainId" jdbcType="INTEGER" />
+    <result column="train_teacher" property="trainTeacher" jdbcType="VARCHAR" />
+    <result column="train_title" property="trainTitle" jdbcType="VARCHAR" />
+    <result column="train_desc" property="trainDesc" jdbcType="VARCHAR" />
+    <result column="train_draw" property="trainDraw" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultNameListMap" type="cn.com.dbridge.jtraining.dao.po.TecherPO" >
+    <id column="no" property="no" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="TrainMaterialListMap" type="cn.com.dbridge.jtraining.dao.po.TrainMaterialPO">
+    <id column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_type_name" property="sourceTypeName" jdbcType="VARCHAR" />
+    <result column="source_title" property="sourceTitle" jdbcType="VARCHAR" />
+    <result column="source_desc" property="sourceDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="TrainInfoResultMap" type="cn.com.dbridge.jtraining.dao.po.TrainInfoPO">
+    <id column="train_id" property="trainId" jdbcType="INTEGER" />
+    <result column="train_teacher" property="trainTeacher" jdbcType="VARCHAR" />
+    <result column="train_title" property="trainTitle" jdbcType="VARCHAR" />
+    <result column="train_desc" property="trainDesc" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="person_draw" property="personDraw" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 后台 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_train_item
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 后台 -->
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.TrainItemPO" useGeneratedKeys="true" keyProperty="trainId">
+    insert into t_train_item (train_type, train_teacher, train_title, 
+      train_desc, train_draw, insert_date, 
+      insert_person, update_date, update_person
+      )
+    values (#{trainType,jdbcType=INTEGER}, #{trainTeacher,jdbcType=VARCHAR}, #{trainTitle,jdbcType=VARCHAR}, 
+      #{trainDesc,jdbcType=VARCHAR}, #{trainDraw,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP}, 
+      #{insertPerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <!-- 后台 -->
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.TrainItemPO" >
+    update t_train_item
+    <set>
+	    <if test="trainType!=null">
+	       train_type = #{trainType,jdbcType=INTEGER},
+	    </if>
+	    <if test="trainTeacher!=null and trainTeacher!=''">
+	      train_teacher = #{trainTeacher,jdbcType=VARCHAR},
+	    </if>
+	    <if test="trainTitle!=null and trainTitle!=''">
+	      train_title = #{trainTitle,jdbcType=VARCHAR},
+	    </if>
+	    <if test="trainDesc!=null and trainDesc!=''">
+	      train_desc = #{trainDesc,jdbcType=VARCHAR},
+	    </if>
+	    <if test="trainDraw!=null and trainDraw!=''">
+	      train_draw = #{trainDraw,jdbcType=VARCHAR},
+	    </if>
+	    <if test="insertDate!=null">
+	      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+	     </if>
+	     <if test="insertPerson!=null and insertPerson!=''">
+	      insert_person = #{insertPerson,jdbcType=VARCHAR},
+	     </if>
+	     <if test="updateDate!=null">
+	      update_date = #{updateDate,jdbcType=TIMESTAMP},
+	     </if>
+	     <if test="updatePerson!=null and updatePerson!=''">
+	      update_person = #{updatePerson,jdbcType=VARCHAR}
+	     </if>
+	</set>
+	where train_id = #{trainId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 后台 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select train_id, train_type, train_teacher, train_title, train_desc, train_draw, 
+    insert_date, insert_person, update_date, update_person
+    from t_train_item
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+	    a.train_id,
+	    a.train_title, 
+	    a.train_desc, 
+	    a.train_draw, 
+	    a.update_date
+    from t_train_item a 
+    left join t_train_category b on a.train_type=b.train_type
+    where b.use_status='0'
+  </select>
+  
+  <!-- 自己 -->
+  <select id="selectAllTrainItem" resultMap="BaseResultMap">
+    select
+        train_id,
+        train_title,
+        train_desc,
+        train_draw
+    from
+        t_train_item
+    order by
+        update_date desc
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectList" resultMap="BaseResultListMap" parameterType="cn.com.dbridge.jtraining.dao.po.TrainItemQueryPO">
+    select 
+	    a.train_id,
+	    a.train_title, 
+	    a.train_desc, 
+	    a.train_draw,
+	    a.update_date 
+    from t_train_item a 
+    left join t_train_category b on a.train_type=b.train_type
+    <where>
+        b.use_status='0'
+        <if test="trainType!=null and trainType!=''">
+           and a.train_type=#{trainType,jdbcType=INTEGER}
+        </if>
+        <if test="stratTime!=null">
+          and DATE(a.update_date) <![CDATA[>= ]]> DATE(#{stratTime,jdbcType=TIMESTAMP})
+        </if>
+        <if test="endTime!=null">
+          and DATE(a.update_date) <![CDATA[<= ]]>DATE(#{endTime,jdbcType=TIMESTAMP})
+        </if>
+    </where>
+  </select> 
+  
+  <!-- 后台 -->
+  <select id="selectNameList" resultMap="BaseResultNameListMap" parameterType="int">
+    select no,name from t_user where train_type=#{trainType,jdbcType=INTEGER} and type='1'
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectTrainMaterialList" resultMap="TrainMaterialListMap" parameterType="int">
+    select 
+        c.source_no,
+        c.source_type,
+        c.source_title,
+        c.source_desc
+    from t_train_source_ralation a 
+        left join t_train_item b on a.train_id=b.train_id
+        left join t_train_source c on a.source_no=c.source_no
+    where b.train_id = #{trainId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectCheckTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+	    train_id,
+	    train_type, 
+	    train_teacher, 
+	    train_desc, 
+	    train_draw, 
+	    insert_date, 
+	    insert_person, 
+	    update_date, 
+	    update_person
+    from t_train_item
+    where train_title=#{trainTitle,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select train_id, train_type, train_teacher, train_title, train_desc, train_draw, 
+    insert_date, insert_person, update_date, update_person
+    from t_train_item
+    where train_teacher = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 陈军 -->
+  <select id="selectTrainInfo" resultMap="TrainInfoResultMap" parameterType="java.lang.Integer" >
+    select A.train_id, A.train_teacher, A.train_title, A.train_desc, B.name, B.remarks, B.person_draw
+    from t_train_item A
+    left join t_user B on A.train_teacher = B.no
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </select>
+</mapper>

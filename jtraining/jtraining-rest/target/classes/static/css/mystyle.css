@@ -1,0 +1,373 @@
+html{}
+/* 非衬线体（游ゴシック）通常可以做如下设置：*/
+body {height: 100%;font-family: "-apple-system", BlinkMacSystemFont, "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "Noto Sans Japanese", "ヒラギノ角ゴ Pro W3", "メイリオ", "Hiragino Kaku Gothic ProN", "MS PGothic", Osaka, "sans-serif";
+}
+#wrap{min-width:1220px;height:100%;color:#fff;line-height:24px;background-color:#fff;}
+.clearfix:after{content:"";display:block;clear:both;}
+.col-1{float:left;width:12%;line-height:30px}
+.col-2{float:left;width:18%;}
+.col-3{float:left;line-height:30px}
+.col-4{float:left;width:18%;margin-left:15px}
+.col-5{float:left;width:10%;margin-left:15px}
+.col-6{float:left;width:13%;margin-left:15px}
+
+input[type=checkbox],input[type=radio]{vertical-align:top;margin-right:2px}
+/*头部*/
+.top{background:url(../images/top_bg.png) repeat-x;width:100%;height:70px;position:fixed;z-index:1000;color:#fff;}
+.top span{line-height:70px;font-size:20px;font-weight:700}
+.top .logo{margin-left:20px;font-size:28px;}
+.top img{margin:20px 0 20px 30px}
+.top a{position:absolute;right:20px;top:15px}
+.top .help i{display: inline-block;margin-right:60px;background:url(../images/help.png) no-repeat;width:40px;height:41px}
+.top .out i{display: inline-block;background:url(../images/out.png) no-repeat;width:40px;height:41px}
+/*左侧导航*/
+.left_nav{color:#fff;position: fixed;top: 0;left: 0;margin-top:70px;min-height: 100%;width: 230px;z-index: 810;background-color: #335a8f;font-size:13px;line-height:24px;}
+.user{margin:18px 25px;position:relative}
+.user_icon{position:absolute;left:-48px;top:-18px;padding:2px 30px;background-color:#ebbe3a;transform:rotate(-45deg);overflow:hidden}
+.user img{border-radius:70px;border:2px solid #52a1d5}
+.user .user_text{float:left;height:66px}
+.user .user_text font{margin-left:10px;font-size:1.5em;}
+/*右侧内容*/
+.content{margin-left:230px;margin-top:70px;color:#000;overflow-x:hidden;overflow-y:auto}
+.main{margin:10px 20px 50px 20px;position:relative;}
+.title{display:block;padding:4px 0 14px;border-bottom:1px solid #e0e0e0;font-size:16px;font-weight:700}
+.space{width:100%;margin:20px 0 20px 0}
+.table{text-align:center;margin-bottom:10px}
+.table th{text-align:center}
+.table>tbody>tr>td{vertical-align:middle}
+.page{position: relative;left:30%;}
+.train-lable{font-weight:100}/* label字体变细 */
+.input-space{padding:0}/* 输入框左右间隙 */
+.form-group{margin:20px 0}
+.train-bg{background-color:#e4f2ff}/* 表格头背景 */
+.modal-dialog{margin:180px auto;padding:20px 0}/* 对话框位置 */
+.btn-space{margin:0 20px}/* 按钮左右间隙 */
+/* 评论对话框居中 */ td input.clearStyle{border:0;background:none;text-align: center;box-shadow:none }
+.content .main td input{width: 100%; max-width: 100%;}
+.train-detail{padding:0;overflow:hidden;color: #666}
+.train-date{padding:0;color:#999}
+.border-bt{padding-bottom:15px;border-bottom:1px solid #e0e0e0;}
+.paddingtop30{padding-top:30px}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{ color: #fff;
+    background-color: #519ee9;
+    border-color: #4a8ddf;}
+.title-middle{text-align:center;font-weight:700}/* 评论对话框居中 */
+.password-border{border:1px solid #ddd;background:#e4f2ff;padding:30px}/* 密码修改背景 */
+.content .main .edit-detail{display:none;}/*培训详情和编辑切换*/
+.detail-lineheight{line-height:38px}/*培训详情行高*/
+
+/* 按钮 */
+.btn-training{
+    color: #fff;
+    background-color: #519ee9;
+    border-color: #4a8ddf;
+}
+.btn-training:hover,.btn-training:focus{color: #fff; background-color: #4490d9;}
+.inputfileDiv {
+    float: left;
+    width: 60%;
+    display: flex;
+}
+/*蓝色按钮,绝对定位*/
+.blueButton {
+    position: absolute;
+    display: block;
+    margin-left: 160px;
+    margin-top:62px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+/*自定义上传,位置大小都和a完全一样,而且完全透明*/
+
+.myFileUpload {
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 40px;
+    margin-left: 160px;
+    margin-top:62px;
+    opacity: 0;
+    cursor: pointer;
+}
+.myFile{
+    position: absolute;
+    top:-10px;
+    display: block;
+    width: 100px;
+    height: 40px;
+    margin-left: 0px;
+    opacity: 0;
+    cursor: pointer;
+}
+.jiaocai{margin-top:0px;margin-left:250px}/*弹出框上传教材*/
+/*显示上传文件夹名的Div*/
+.show {
+    top: 40px;
+    width: 50%;
+    height: 30px;
+    margin-top: 40px;
+    font: normal normal normal 14px/30px 'Microsoft YaHei';
+}
+.showfile{
+    margin-top: -30px;
+    width: 50%;
+    height: 30px;
+    margin-left:110px;
+    font: normal normal normal 14px/30px 'Microsoft YaHei';
+}
+
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+width:10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+border-radius:10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+border-radius:10px;
+background:#cccccc;
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background:rgba(255,0,0,0.4);
+}
+::-webkit-scrollbar {
+width:10px;
+}
+/* 滚动槽 */
+::-moz-scrollbar-track {
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+border-radius:10px;
+}
+/* 滚动条滑块 */
+::-moz-scrollbar-thumb {
+border-radius:10px;
+background:#1685cb;
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-moz-scrollbar-thumb:window-inactive {
+background:rgba(255,0,0,0.4);
+}
+/*login*/
+#login{
+    background:none;
+    padding:0;
+    margin:6em 0 0 0;
+}
+.login-logo {
+  margin: 0;
+  text-align: center;
+  color: #000;
+  font-size: 40px;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100%;
+  padding: 50px 0;
+  font-weight:700;
+}
+h2.form-heading {
+  margin: 0;
+  text-align: center;
+  color:#000;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100%;
+}
+body#login{
+  background: url(../images/bg.jpg)no-repeat;
+  background-size:cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  -ms-background-size:cover;
+  min-height:850px;
+}
+.app-cam {
+  width:22%;
+  margin:3em auto auto auto;
+}
+.app-cam input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  color: #000;
+  outline: none;
+  font-weight: 300;
+  border: none;
+  background:#fff;
+  margin:0 0 1em 0;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  border:1px solid #949494
+}
+.app-cam input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  color:#000;
+  outline: none;
+  font-weight: 300;
+  border: none;
+  background:#fff;
+  margin:0 0 1em 0;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  -o-border-radius: 2px;
+  border:1px solid #949494
+}
+
+.btn-width{width:100%;padding:10px 0}
+/*login*/
+/*右侧内容——通知一览，活动一览，报名一览,人员信息一览*/
+.r_btn{position:absolute;right:10px;top:0px}
+.t_list{margin-bottom:100px}
+.pro-space{padding-left:0}
+.person-info{display:none}
+/*成功错误提示信息*/
+.ok {
+    background: url(../images/msg_icon_15x15_8.png) no-repeat 10px 200px;
+    padding: 0 10px 0 32px;
+    line-height:30px;
+    border: 1px solid #CEDBA0;
+    background-color: #FCFFE0;
+    background-position: -50px 8px;
+    color: #8DAE1A;
+    }
+.error {
+    background: url(../images/msg_icon_15x15_8.png) no-repeat 10px 200px;
+    padding: 0 10px 0 32px;
+    line-height:30px;
+    border: 1px solid #F7E3B3;
+    background-color: #FFFBDE;
+    background-position: 10px -52px;
+    color: #FF8500;
+}
+/*刘铭代码*/
+.top0{
+    top:0px;
+}
+.top10{
+    margin-top: 10px;
+}
+.padding-left-none{
+    padding-left: 0px;
+}
+.padding-top50{
+    padding-top: 50px;
+    margin-left:-40px
+}
+.float-left{
+    float: left;
+}
+.border-none{
+    border: none!important;
+}
+.borderline{
+    border: 1px solid #888;
+    padding:10px;
+    text-align: center;
+}
+#liSpan{
+	float:left;
+	padding:8px;
+}
+/* 表格名字种别td */
+.nametd{
+	width:8%;
+}
+/* 日付td */
+.applyDatetd{
+	width:11%;
+}
+/* 操作按钮td */
+.operatetd{
+	width:14%;
+}
+/* 介绍履历td */
+.linetd{
+	width:20%;
+	max-width:200px ;
+	word-wrap:break-word;
+}
+  /* 日历样式 */
+  /* body{padding: 20px;} */
+  .demo-input{
+	  padding-left: 10px; 
+	  height: 38px;  
+	  line-height: 38px; 
+	  border: 1px solid #e6e6e6;  
+	  background-color: #fff;  
+	  border-radius: 2px;
+  }
+/*刘铭代码*/
+/*宁旭代码*/
+.juli{
+    margin-top:5px;
+}
+.juli1{
+    padding-right:0px;
+}
+.ali{
+    padding:0px;
+    
+}
+.top{
+    top:0px;
+}
+.pos{
+    position:absolute;
+    left:60%;
+    top:11%;
+}
+.pic-size{
+    height:100px;
+    width:150px;
+}
+textarea{
+    resize:none;
+}
+.btn-size{
+    top:0px;
+    left:0px;
+}
+.group{
+    margin-bottom:20px;
+}
+.btn-pos{
+    top:0px;
+    margin-left:15px;
+}
+.left100{
+	margin-left:100px;
+}
+.showpos{
+	font-size:18px;
+	margin-top:5px;
+}
+.left180{
+    margin-left:180px;
+}
+.left80{
+	margin-left:80px;
+}
+.overshow{
+    -moz-binding: url('ellipsis.xml#ellipsis');
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp:2;
+     height:38px;
+     margin-bottom:13px;
+}
+/*宁旭代码*/

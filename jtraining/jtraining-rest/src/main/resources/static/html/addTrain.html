@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>トレーニング追加</title>
+  <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" type="text/css" href="../css/webuploader.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <link href="../css/nav.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/excepetion.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/myjs.js"></script>
+  <script src="../laydate/laydate.js"></script>
+  </head>
+  <body>
+
+<!--右侧内容开始-->
+<div class="content" >
+  <div class="main">
+  <span class="title">トレーニング追加</span>
+  <div class="space clearfix">
+  
+  <p id="message"></p>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニング種別:</label>
+           <div class="col-md-3 input-space">
+             <select id="trainType" class="form-control">
+            </select>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニング教師:</label>
+        <div class="col-md-3 input-space">         
+            <!-- 培训类别和培训教师是关联数据 -->       
+            <select id="teacher" class="form-control">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニングタイトル:</label>
+        <div class="col-md-8 input-space">     
+        <!-- 字数限制在0 ~ 25 -->    
+          <input class="form-control" type="text" maxlength="25" id="trainTitle" placeholder="25ワード以内">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニングの紹介:</label>
+        <div class="col-md-8 input-space">        
+        <!-- 字数限制在0 ~ 255 -->        
+        <textarea class="form-control" maxlength="255" id="trainDesc" placeholder="255ワード以内"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニングの画像:</label>
+        <div class="inputfileDiv"> <img id="preview" class="pic-size" src="../images/pic-bg.png">        
+        <a href='javascript:void(0);' class="btn btn-training blueButton">選択</a>
+        <input type="file" name="myfile" class="myFileUpload" onchange="imgPreview(this)" id="trainDraw"/>
+        <div class="show"></div>
+      </div>
+      </div>
+    <div class="form-group">
+        <div class="col-md-2 col-md-offset-1 control-label">
+            <button type="button" class="btn btn-training top0 col-md-10 saveBtn">保存する</button>
+            <button type="button" class="btn btn-training top0 col-md-10 updateBtn" style="display:none">変更</button>
+        </div>
+    </div>
+   <div class="form-group list">
+       <div class="col-md-10 col-md-offset-1">
+        <table class="table table-bordered space">
+          <tr>
+            <th class="train-bg" colspan="4">トレーニング資料リスト</th>
+          </tr>
+          <tr class="train-bg">
+            <th>種別</th>
+            <th>タイトル</th>
+            <th>绍介</th>
+            <th>操作</th>
+          </tr>
+          </table>
+      </div>
+      </div>
+
+<!-- 对话框开始 -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">プロンプト</h4>
+      </div>
+        <div class="modal-body">削除してもよろしいですか？</div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary deleteTr">確定する</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+      </div>
+      </div>
+  </div>
+  </div>
+
+<!-- 对话框结束 --> 
+
+<!-- 对话框开始 -->
+
+<div class="modal fade" id="upDateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content left80">
+    <p id="message1"></p>
+        <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニング資料種別:</label>
+            <div class="col-md-3 input-space">
+            <select id="sourceType" class="form-control">
+                <option value="1">ビデオ</option>
+                <option value="2">テキスト</option>
+              </select>
+          </div>
+      </div>
+        <div class="form-group">
+        <label class="col-md-3 control-label train-lable">トレーニングの画像:</label>
+        <div class="inputfileDiv"> <img id="preview1" class="pic-size" src="">             
+            <a href='javascript:void(0);' class="btn btn-training blueButton">選択</a>
+            <input type="file" name="myfile" class="myFileUpload" onchange="imgPreview1(this)" id="sourceDraw"/>
+            <div class="show"></div>
+          </div>
+      </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label train-lable">トレーニングタイトル:</label>
+          <div class="col-md-8 input-space">     
+        <!-- 字数限制在0 ~ 25 -->    
+          <input class="form-control" type="text" maxlength="25" id="sourceTitle" placeholder="25ワード以内">
+        </div>
+      </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label train-lable">トレーニングの紹介:</label>
+          <div class="col-md-8 input-space">        
+        <!-- 字数限制在0 ~ 255 -->        
+          <textarea class="form-control" maxlength="255" id="sourceDesc" placeholder="255ワード以内"></textarea>
+      </div>
+      </div>
+      <div class="form-group showMessage">
+        <label class="col-md-3 control-label train-lable">教材のパス:</label>
+        <div id="thelist" class=" uploader-list col-md-8 showpos"></div>
+      </div> 
+      <div class="form-group message">
+        <label class="col-md-3 control-label train-lable">教材のパス:</label>
+		<div id="picker">选择大文件</div>
+      </div>
+        <div class="form-group col-md-offset-3">
+        <div class="col-md-2 col-md-offset-4 control-label">
+            <button type="button" class="btn btn-training top0 save" >アップロード</button>
+        </div>
+        <div class="col-md-2 control-label">
+            <button type="button" class="btn btn-training top0 dlTrainBtn">キャンセル</button>
+        </div>
+      </div>
+      </div>
+  </div>
+  </div>
+
+<!-- 对话框结束 -->
+ <div class="form-group">
+    <button type="button" class="btn btn-training appendBtn col-md-2 col-md-offset-1" style="display:none">トレーニング教材を追加</button>
+ </div>
+ </form>   
+</div>
+ <script src="../js/webuploader.min.js"></script>
+ <script src="../js/addTrain.js"></script>
+</div>
+</div>
+</body>
+</html>

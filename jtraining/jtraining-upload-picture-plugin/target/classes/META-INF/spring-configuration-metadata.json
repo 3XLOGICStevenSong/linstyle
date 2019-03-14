@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.com.dbridge.jtraining.upload.picture.service.impl.StorageProperties",
+      "name": "storage",
+      "type": "cn.com.dbridge.jtraining.upload.picture.service.impl.StorageProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.com.dbridge.jtraining.upload.picture.service.impl.StorageProperties",
+      "name": "storage.location",
+      "type": "java.lang.String"
+    }
+  ]
+}

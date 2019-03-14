@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>ホームページ</title>
+    <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <link href="../css/nav.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/myjs.js"></script>
+  <script src="../laydate/laydate.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+<body>
+<div id="wrap">
+<!--头部开始-->
+  <div class="top">
+    <span class="logo"><img src="../images/logo-web.png" width="50"></span>       
+    <a class="out" href="http://49.4.109.191:8080/jtrain/html/login.html"><i></i></a>    
+  </div>
+<!--头部结束--> 
+<!--左侧导航开始-->
+  <div class="left_nav"> 
+   <div class="user">
+    <div class="user_icon"><i class="glyphicon glyphicon-user"></i></div>      
+    <div class="user_text">
+      <img src="../images/user.png" width="50" height="50">
+      <font>Admin</font>
+   </div>
+  </div> 
+<!--nav 代码 开始 -->    
+    <div class="subNavBox">
+    <div class="subNav"><i class="glyphicon glyphicon-blackboard"></i> &nbsp;人事の管理 <i class="right_icon"></i></div>
+    <ul class="navContent">
+        <li> <a href="studentManagement.html" target="right"><i class="sub_left_icon"></i>学生の管理 </a> </li>
+        <li> <a href="teacherManagement.html" target="right"><i class="sub_left_icon"></i>教師の管理 </a> </li>
+    </ul>
+    <div class="subNav"><i class="glyphicon glyphicon-blackboard"></i> &nbsp;トレーニング管理 <i class="right_icon"></i></div>
+    <ul class="navContent">
+        <li> <a href="trainManagement.html" target="right"><i class="sub_left_icon"></i>トレーニング管理</a> </li>
+        <li> <a href="addTrain.html" target="right"><i class="sub_left_icon"></i>トレーニング追加</a> </li>
+        <li> <a href="trainCategory.html" target="right"><i class="sub_left_icon"></i>トレーニング種別</a> </li>
+    </ul>
+    <div class="subNav"> <i class="glyphicon glyphicon-cog"></i> &nbsp;パスワード管理 <i class="right_icon"></i> </div>
+    <ul class="navContent">
+        <li> <a href="systemAdmin.html" target="right"><i class="sub_left_icon"></i>システム管理者</a> </li>
+        <li> <a href="passwordManagement.html" target="right"><i class="sub_left_icon"></i>パスワードをリセットする</a> </li>
+    </ul>
+  </div>    
+    <!--nav 代码 结束 --> 
+</div>
+
+<!--左侧导航结束-->
+	<iframe  id="iframe" name="right" src="studentManagement.html" style="width:100%;min-height:900px;height:100%;border: 0; position: absolute;overflow:none "></iframe>
+
+
+</div>
+</body>
+
+</html>

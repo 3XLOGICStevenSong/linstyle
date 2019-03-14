@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>トレーニング管理</title>
+  <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <link href="../css/nav.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../js/excepetion.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/myjs.js"></script>
+  <script src="../js/trainManagement.js"></script>
+  <script src="../laydate/laydate.js"></script>
+  </head>
+  <body>
+  <div class="content" >
+    <div class="main">
+    <span class="title">トレーニングリスト</span>
+      <div class="space clearfix">
+       <div class="col-3">トレーニング種別：</div>
+          <div class="col-md-3">
+            <select class="form-control " id="select">
+            </select>
+          </div>
+          <div class="col-3">発売日：</div>
+          <div class="col-md-2">
+            <input type="text" class="form-control demo-input" placeholder="" id="startTime">
+          </div>
+            <script>
+		      laydate.render({
+		          elem: '#startTime' //指定元素
+		        });
+		  </script>
+          <span class="col-3">&nbsp;へ&nbsp;</span>
+          <div class="col-md-2">
+            <input type="text" class="form-control demo-input" placeholder="" id="endTime">
+          </div>
+            <script>
+		      laydate.render({
+		          elem: '#endTime' //指定元素
+		        });
+		  </script>
+           <button type="button" class="btn btn-training btn-pos search">検索</button>
+       </div>
+      <span class="title">トレーニングリスト</span>
+      <p id="message"></p>
+      <!--图片列表1-->
+      <div class="categoryItemVOList">
+      </div>        
+      <!--图片列表4-->  
+       <!--页码开始-->
+             <nav class="page" aria-label="...">
+              <ul class="pagination">
+              </ul>
+            </nav> 
+            <!--页码结束-->   
+  
+<!-- 对话框开始 -->
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">プロンプト</h4>
+      </div>
+        <div class="modal-body">削除してもよろしいですか？</div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary deleteTr1">確定する</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+      </div>
+      </div>
+  </div>
+  </div>
+<!-- 对话框结束 --> 
+</div>
+</div>
+</body>
+</html>

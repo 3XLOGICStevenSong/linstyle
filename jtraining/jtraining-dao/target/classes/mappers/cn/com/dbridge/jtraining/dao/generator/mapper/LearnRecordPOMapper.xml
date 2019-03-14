@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.LearnRecordPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.LearnRecordPO" >
+    <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <id column="train_id" property="trainId" jdbcType="INTEGER" />
+    <id column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <id column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="source_length" property="sourceLength" jdbcType="INTEGER" />
+    <result column="source_learn_length" property="sourceLearnLength" jdbcType="INTEGER" />
+    <result column="learn_percent" property="learnPercent" jdbcType="DECIMAL" />
+    <result column="use_status" property="useStatus" jdbcType="TINYINT" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="SourceResultMap" type="cn.com.dbridge.jtraining.dao.po.TrainSourceItemPO" >
+    <result column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_path" property="sourcePath" jdbcType="VARCHAR" />
+    <result column="source_title" property="sourceTitle" jdbcType="VARCHAR" />
+    <result column="source_desc" property="sourceDesc" jdbcType="VARCHAR" />
+    <result column="source_draw" property="sourceDraw" jdbcType="VARCHAR" />
+    <result column="source_length" property="sourceLength" jdbcType="INTEGER" />
+    <result column="source_learn_length" property="sourceLearnLength" jdbcType="INTEGER" />
+    <result column="learn_percent" property="learnPercent" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="LearningSourceMap" type="cn.com.dbridge.jtraining.dao.po.LearningSourcePO" >
+    <result column="train_id" property="trainId" jdbcType="INTEGER" />
+    <result column="train_title" property="trainTitle" jdbcType="VARCHAR" />
+    <result column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_title" property="sourceTitle" jdbcType="VARCHAR" />
+    <result column="source_path" property="sourcePath" jdbcType="VARCHAR" />
+    <result column="source_draw" property="sourceDraw" jdbcType="VARCHAR" />
+    <result column="source_length" property="sourceLength" jdbcType="INTEGER" />
+    <result column="source_learn_length" property="sourceLearnLength" jdbcType="INTEGER" />
+    <result column="learn_percent" property="learnPercent" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="LearnedSourceMap" type="cn.com.dbridge.jtraining.dao.po.LearnedSourcePO" >
+    <result column="train_id" property="trainId" jdbcType="INTEGER" />
+    <result column="train_title" property="trainTitle" jdbcType="VARCHAR" />
+    <result column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_title" property="sourceTitle" jdbcType="VARCHAR" />
+    <result column="source_path" property="sourcePath" jdbcType="VARCHAR" />
+    <result column="source_desc" property="sourceDesc" jdbcType="VARCHAR" />
+    <result column="source_draw" property="sourceDraw" jdbcType="VARCHAR" />    
+    <result column="source_length" property="sourceLength" jdbcType="INTEGER" />
+    <result column="learn_percent" property="learnPercent" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_learn_record
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and train_id = #{trainId,jdbcType=INTEGER}
+      and source_type = #{sourceType,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 手机 -->
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.LearnRecordPO" >
+    insert into t_learn_record (student_id, train_id,
+      source_type, source_no, source_length, 
+      source_learn_length, learn_percent, 
+      use_status, insert_date, insert_person, 
+      update_date, update_person)
+    values (#{studentId,jdbcType=VARCHAR}, #{trainId,jdbcType=INTEGER}, 
+      #{sourceType,jdbcType=INTEGER}, #{sourceNo,jdbcType=INTEGER}, #{sourceLength,jdbcType=INTEGER}, 
+      #{sourceLearnLength,jdbcType=INTEGER}, #{learnPercent,jdbcType=DECIMAL}, 
+      #{useStatus,jdbcType=TINYINT}, #{insertDate,jdbcType=TIMESTAMP}, #{insertPerson,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 手机 -->
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.LearnRecordPO" >
+    update t_learn_record
+    set source_length = #{sourceLength,jdbcType=INTEGER},
+      source_learn_length = #{sourceLearnLength,jdbcType=INTEGER},
+      learn_percent = #{learnPercent,jdbcType=DECIMAL},
+      use_status = #{useStatus,jdbcType=TINYINT},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      insert_person = #{insertPerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and train_id = #{trainId,jdbcType=INTEGER}
+      and source_type = #{sourceType,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByNo" parameterType="cn.com.dbridge.jtraining.dao.po.LearnRecordPO" >
+    update t_learn_record
+    set source_length = #{sourceLength,jdbcType=INTEGER},
+      source_learn_length = #{sourceLearnLength,jdbcType=INTEGER},
+      learn_percent = #{learnPercent,jdbcType=DECIMAL},
+      use_status = #{useStatus,jdbcType=TINYINT},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      insert_person = #{insertPerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and train_id = #{trainId,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select student_id, train_id, source_type, source_no, source_length, 
+    source_learn_length, learn_percent, use_status, insert_date, insert_person, 
+    update_date, update_person
+    from t_learn_record
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and train_id = #{trainId,jdbcType=INTEGER}
+      and source_type = #{sourceType,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </select>
+  <select id="selectByNo" resultMap="BaseResultMap" parameterType="map" >
+    select A.student_id, A.train_id, A.source_type, A.source_no,
+    A.source_length,A.source_learn_length, A.learn_percent, A.use_status,
+    A.insert_date, A.insert_person,A.update_date, A.update_person
+    from t_learn_record A
+    where A.student_id = #{studentId,jdbcType=VARCHAR}
+      and A.train_id = #{trainId,jdbcType=INTEGER}
+      and A.source_no = #{sourceNo,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select student_id, train_id, source_type, source_no, source_length, 
+    source_learn_length, learn_percent, use_status, insert_date, insert_person, 
+    update_date, update_person
+    from t_learn_record
+  </select>
+  
+  <!-- 陈军 -->
+  <select id="selectSource" resultMap="SourceResultMap" parameterType="cn.com.dbridge.jtraining.dao.po.TrainListQueryPO" >
+    select A.source_no, A.source_type, A.source_path, A.source_title, A.source_desc, A.source_draw,
+           C.source_length, C.source_learn_length, C.learn_percent
+    from t_train_source A
+    inner join (select B.source_no, B.source_length, B.source_learn_length, B.learn_percent from t_learn_record B
+                where B.student_id = #{studentId,jdbcType=VARCHAR}
+                      and B.train_id = #{trainId,jdbcType=INTEGER}
+                      and B.source_type = #{sourceType,jdbcType=INTEGER}
+                      and B.update_date is not null
+                      and B.update_date = (select max(D.update_date) from t_learn_record D
+                                           where D.student_id = #{studentId,jdbcType=VARCHAR}
+                                                 and D.train_id = #{trainId,jdbcType=INTEGER}
+                                                 and D.source_type = #{sourceType,jdbcType=INTEGER})) C on A.source_no = C.source_no
+  </select>
+  <select id="checkSourceNo" resultMap="BaseResultMap" parameterType="int">
+    select 
+	    student_id, 
+	    train_id, 
+	    source_type, 
+	    source_no, 
+	    source_length, 
+	    source_learn_length, 
+	    learn_percent, 
+	    use_status, 
+	    insert_date, 
+	    insert_person, 
+	    update_date, 
+	    update_person
+    from t_learn_record
+    where source_no=#{sourceNo,jdbcType=TINYINT}
+  </select>
+  <!-- 陈军 -->
+  <select id="selectLearningSource" resultMap="LearningSourceMap" parameterType="cn.com.dbridge.jtraining.dao.po.LearnSourceQueryPO" >
+    select A.train_id, C.train_title, A.source_no, B.source_type, B.source_title, 
+    B.source_path, B.source_draw, A.learn_percent, A.source_length, A.source_learn_length
+    from t_learn_record A
+    inner join t_train_source B on A.source_no = B.source_no
+    inner join t_train_item C on A.train_id = C.train_id
+    where A.student_id = #{studentId,jdbcType=VARCHAR}
+          and A.learn_percent != #{learnPercent,jdbcType=DECIMAL}
+  </select>
+  <!-- 陈军 -->
+  <select id="selectLearnedSource" resultMap="LearnedSourceMap" parameterType="cn.com.dbridge.jtraining.dao.po.LearnSourceQueryPO" >
+    select A.train_id, C.train_title, A.source_no, B.source_type, B.source_title, 
+    B.source_path, B.source_desc, B.source_draw, A.learn_percent, A.source_length
+    from t_learn_record A
+    inner join t_train_source B on A.source_no = B.source_no
+    inner join t_train_item C on A.train_id = C.train_id
+    where A.student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+    <delete id="deleteByStudentId" parameterType="string" >
+    delete from t_learn_record
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

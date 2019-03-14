@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.OperatorLogPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.OperatorLogPO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="status_desc" property="statusDesc" jdbcType="VARCHAR" />
+    <result column="args" property="args" jdbcType="VARCHAR" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_operator_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.OperatorLogPO" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_operator_log (module, method, status_desc, 
+      args, user_code, ip, 
+      create_time)
+    values (#{module,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{statusDesc,jdbcType=VARCHAR}, 
+      #{args,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.OperatorLogPO" >
+    update t_operator_log
+    set module = #{module,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      status_desc = #{statusDesc,jdbcType=VARCHAR},
+      args = #{args,jdbcType=VARCHAR},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, module, method, status_desc, args, user_code, ip, create_time
+    from t_operator_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, module, method, status_desc, args, user_code, ip, create_time
+    from t_operator_log
+  </select>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.TrainSourceRalationPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.TrainSourceRalationPO" >
+    <id column="train_id" property="trainId" jdbcType="INTEGER" />
+    <id column="source_no" property="sourceNo" jdbcType="INTEGER" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 后台 -->
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_train_source_ralation
+    where source_no = #{sourceNo,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 后台 -->
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.TrainSourceRalationPO" >
+    insert into t_train_source_ralation (train_id, source_no, insert_date, 
+      insert_person, update_date, update_person
+      )
+    values (#{trainId,jdbcType=INTEGER}, #{sourceNo,jdbcType=INTEGER}, #{insertDate,jdbcType=TIMESTAMP}, 
+      #{insertPerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.TrainSourceRalationPO" >
+    update t_train_source_ralation
+      set insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      insert_person = #{insertPerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where train_id = #{trainId,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select train_id, source_no, insert_date, insert_person, update_date, update_person
+    from t_train_source_ralation
+    where train_id = #{trainId,jdbcType=INTEGER}
+      and source_no = #{sourceNo,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select train_id, source_no, insert_date, insert_person, update_date, update_person
+    from t_train_source_ralation
+  </select>
+  
+  <!-- 陈军 -->
+  <select id="selectByTrainId" resultMap="BaseResultMap" parameterType="int" >
+    select train_id, source_no, insert_date, insert_person, update_date, update_person
+    from t_train_source_ralation
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </select>
+</mapper>

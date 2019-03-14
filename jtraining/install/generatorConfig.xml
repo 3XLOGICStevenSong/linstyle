@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="MySqlDev" targetRuntime="MyBatis3Simple">
+		<property name="javaFileEncoding" value="UTF-8" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://210.76.163.54:3306/train" userId="root"
+			password="Win2012@djbsql">
+			<property name="useInformationSchema" value="true" />
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator
+			targetPackage="cn.com.dbridge.jtraining.dao.po"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/jtraining/jtraining-dao/src/main/java" />
+		<sqlMapGenerator targetPackage="mappers.cn.com.dbridge.jtraining.dao.generator.mapper"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/jtraining/jtraining-dao/src/main/resources" />
+		<javaClientGenerator
+			targetPackage="cn.com.dbridge.jtraining.dao.respository"
+			targetProject="D:/dev_tools_20181027/eclipse-jee-2018-09-win32/eclipse/workspace/jtraining/jtraining-dao/src/main/java"
+			type="XMLMAPPER" />
+
+		<!--<table schema="" tableName="t_user" domainObjectName="UserPO">
+		   <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
+		</table>
+		<table schema="" tableName="t_train_item" domainObjectName="TrainItemPO">
+           <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table schema="" tableName="t_train_category" domainObjectName="TrainCategoryPO">
+           <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table schema="" tableName="t_train" domainObjectName="TrainPO">
+           <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+         <table schema="" tableName="t_student_evaluate" domainObjectName="StudentEvaluatePO">
+           <generatedKey column="student_id" sqlStatement="MySql" identity="true"/>
+        </table>
+         <table schema="" tableName="t_learn_record" domainObjectName="LearnRecordPO">
+           <generatedKey column="student_id" sqlStatement="MySql" identity="true"/>
+        </table>-->
+         <table schema="" tableName="t_chat_record" domainObjectName="ChatRecordPO">
+        </table>
+		
+	</context>
+</generatorConfiguration>
+

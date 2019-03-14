@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.UserPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    <id column="no" property="no" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="train_type" property="trainType" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="apply_date" property="applyDate" jdbcType="DATE" />
+    <result column="vocational" property="vocational" jdbcType="VARCHAR" />
+    <result column="person_draw" property="personDraw" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="use_status" property="useStatus" jdbcType="TINYINT" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="MyBaseResultMap" type="cn.com.dbridge.jtraining.dao.po.MyUserPO" >
+    <id column="no" property="no" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="person_draw" property="personDraw" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 后台 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user
+    where no = #{no,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 后台 -->
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    insert into t_user (no, password, name, 
+      train_type ,sex, birthday, apply_date,
+      vocational, introduction, remarks, 
+      type, use_status, insert_date,
+      insert_person, update_date, update_person, 
+      person_draw)
+    values (#{no,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{trainType,jdbcType=INTEGER}, #{sex,jdbcType=TINYINT}, #{birthday,jdbcType=DATE}, #{applyDate,jdbcType=DATE}, 
+      #{vocational,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{useStatus,jdbcType=TINYINT}, #{insertDate,jdbcType=TIMESTAMP}, 
+      #{insertPerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{personDraw,jdbcType=LONGVARBINARY})
+  </insert>
+  
+  <!-- 后台 -->
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    update t_user
+    set password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      apply_date = #{applyDate,jdbcType=DATE},
+      vocational = #{vocational,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      use_status = #{useStatus,jdbcType=TINYINT},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      insert_person = #{insertPerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      person_draw = #{personDraw,jdbcType=VARCHAR}
+    where no = #{no,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 后台 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select no, password, name, sex, birthday, apply_date, vocational, introduction, 
+    remarks, type, use_status, insert_date, insert_person, update_date, update_person, 
+    person_draw,train_type
+    from t_user
+    where no = #{no,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Byte">
+    select no, password, name, sex, birthday, apply_date, vocational, introduction, 
+    remarks, type, use_status, insert_date, insert_person, update_date, update_person, 
+    person_draw,train_type
+    from t_user
+    <where>
+        type = #{type,jdbcType=TINYINT}
+    </where>
+    ORDER BY no ASC
+  </select>
+
+    <!-- 后台 -->
+  <select id="selectByUser" resultMap="BaseResultMap" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO">
+    select no, password, name, sex, birthday, apply_date, vocational, introduction, 
+    remarks, type, use_status, insert_date, insert_person, update_person, 
+    person_draw,train_type
+    from t_user
+    <where>
+        <if test="type != null and type != ''">
+            type = #{type,jdbcType=TINYINT}
+        </if>
+        <if test="noOrName != null and noOrName != ''">
+          and ( no = #{noOrName,jdbcType=VARCHAR} or name like "%"#{noOrName,jdbcType=VARCHAR}"%")
+        </if>
+    </where>
+    ORDER BY no ASC
+  </select>
+  
+  <!-- 后台  -->
+  <select id="selectMaxWorkNo" parameterType="java.lang.Byte" resultType="java.lang.String">
+    select max(subNo) AS maxNo from(select Substr(no,2) subNo,type from t_user) subNoList
+    where type = #{type,jdbcType=TINYINT}
+  </select>
+  
+  <!-- 后台  -->
+  <select id="selectUserByNoOrName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select no, password, name, sex, birthday, apply_date, vocational, introduction, 
+    remarks, type, use_status, insert_date, insert_person, update_person, train_type,
+    person_draw
+    from t_user
+    <where>
+        <if test="noOrName != null and noOrName != ''">
+            no = #{noOrName,jdbcType=VARCHAR} or name = #{noOrName,jdbcType=VARCHAR}
+        </if>
+    </where>
+  </select>
+  
+  <select id="selectAllByType" resultMap="BaseResultMap" parameterType="byte">
+    select 
+	    no, password, name, train_type, sex, birthday, apply_date, vocational, 
+	    person_draw, introduction, remarks, type, use_status, insert_date, insert_person, 
+	    update_date, update_person
+    from 
+        t_user
+    where
+        type = #{type,jdbcType=TINYINT}
+  </select>
+
+    <!-- 后台  -->
+  <update id="updatePasswordByNo" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    update
+        t_user
+    <set>
+        <if test="password!=null">
+            password = #{password,jdbcType=VARCHAR}
+        </if>
+    </set> 
+        
+    where 
+        no = #{no,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectByNoPassword" resultMap="BaseResultMap" parameterType="cn.com.dbridge.jtraining.dao.po.UserQueryPO">
+    select 
+        no, password, name, train_type, sex, birthday, apply_date, vocational, 
+        person_draw, introduction, remarks, type, use_status, insert_date, insert_person, 
+        update_date, update_person
+    from 
+        t_user
+    where
+        no = #{no,jdbcType=VARCHAR}
+        and password = #{password,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 后台  -->
+  <update id="updateByNo" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    update t_user
+    <set>
+      <if test="name != null">
+          name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+          birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="personDraw != null">
+          person_draw = #{personDraw,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where no = #{no,jdbcType=VARCHAR}
+  </update>
+
+   <!-- 自己 -->
+  <select id="selectAllTeachers" resultMap="MyBaseResultMap">
+    select 
+        no, name, remarks, person_draw, type_name
+    from 
+        t_user u left join t_train_category tc on u.train_type = tc.train_type 
+    where 
+        u.type = 1
+        and u.use_status = 0
+  </select>
+  
+    <!-- 自己 -->
+    <select id="selectAllStudents" resultMap="BaseResultMap">
+    select 
+        no, name, sex, person_draw, birthday
+    from 
+        t_user
+    where
+        type = 2
+  </select>
+  
+  <!-- 自己 -->
+  <select id="selectPersonByTypeName" resultMap="BaseResultMap" parameterType="string">
+    select
+        no, name, remarks, person_draw
+    from
+        t_user u left join t_train_category tc on u.train_type = tc.train_type
+    where
+        tc.type_name = #{typeName,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 自己 -->
+  <select id="selectPersonByNo" resultMap="BaseResultMap" parameterType="string">
+    select 
+        no, name, birthday, sex, person_draw
+    from 
+        t_user
+    where
+        no = #{no,jdbcType=VARCHAR}
+  </select>
+  <!-- 后台 -->
+    <update id="updateByKey" parameterType="cn.com.dbridge.jtraining.dao.po.UserPO" >
+    update t_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      apply_date = #{applyDate,jdbcType=DATE},
+      <if test="vocational!=null">
+        vocational = #{vocational,jdbcType=VARCHAR},
+      </if>
+      <if test="trainType!=null">
+        train_type = #{trainType,jdbcType=INTEGER},
+      </if>
+      <if test="introduction!=null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="personDraw!=null and personDraw!='' ">
+        person_draw = #{personDraw,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks!=null">
+        remarks = #{remarks,jdbcType=VARCHAR}
+      </if>
+    </set> 
+    where no = #{no,jdbcType=VARCHAR}
+  </update>
+  <select id="selectName" resultType="string" parameterType="string">
+    select 
+        name
+    from 
+        t_user
+    where
+        name like #{name,jdbcType=VARCHAR}"%"
+  </select>
+  <update id="updateStatusOnByKey" parameterType="string" >
+    update
+        t_user
+    set
+        use_status = 0
+    where 
+        no = #{no,jdbcType=VARCHAR}
+  </update>
+    <update id="updateStatusOffByKey" parameterType="string" >
+    update
+        t_user
+    set
+        use_status = 1
+    where 
+        no = #{no,jdbcType=VARCHAR}
+  </update>
+</mapper>

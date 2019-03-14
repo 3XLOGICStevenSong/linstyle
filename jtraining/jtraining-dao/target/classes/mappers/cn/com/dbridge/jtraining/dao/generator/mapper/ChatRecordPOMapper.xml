@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.ChatRecordPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.ChatRecordPO" >
+    <id column="no" property="no" jdbcType="VARCHAR" />
+    <id column="from_user_id" property="fromUserId" jdbcType="VARCHAR" />
+    <id column="to_user_id" property="toUserId" jdbcType="VARCHAR" />
+    <result column="sign_flag" property="signFlag" jdbcType="TINYINT" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapForSel" type="cn.com.dbridge.jtraining.dao.po.MyChatRecordPO" >
+    <id column="no" property="no" jdbcType="VARCHAR" />
+    <id column="from_user_id" property="fromUserId" jdbcType="VARCHAR" />
+    <id column="sender_name" property="senderName" jdbcType="VARCHAR" />
+    <id column="person_draw" property="personDraw" jdbcType="VARCHAR" />
+    <id column="to_user_id" property="toUserId" jdbcType="VARCHAR" />
+    <result column="sign_flag" property="signFlag" jdbcType="TINYINT" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_chat_record
+    where no = #{no,jdbcType=VARCHAR}
+      and from_user_id = #{fromUserId,jdbcType=VARCHAR}
+      and to_user_id = #{toUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.ChatRecordPO" >
+    insert into t_chat_record (no,from_user_id, to_user_id, sign_flag, 
+      msg, insert_date, insert_person, 
+      update_date, update_person)
+    values (#{no,jdbcType=VARCHAR},#{fromUserId,jdbcType=VARCHAR}, #{toUserId,jdbcType=VARCHAR}, #{signFlag,jdbcType=TINYINT}, 
+      #{msg,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP}, #{insertPerson,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateChatRecordReceived" parameterType="cn.com.dbridge.jtraining.dao.po.ChatRecordReceivedPO" >
+    update t_chat_record
+    <set> 
+	    <if test="signFlag != null">
+	        sign_flag = #{signFlag,jdbcType=TINYINT},
+	    </if>
+      </set>
+    where no in
+    <foreach collection="noList" item="no" open="(" close=")" separator=",">
+         #{no}
+    </foreach>
+  </update>
+  <select id="selectBySignFlagAndToUserId" resultMap="BaseResultMapForSel" parameterType="cn.com.dbridge.jtraining.dao.po.ChatRecordPO">
+    select
+	    a.no,
+	    a.from_user_id,
+	    b.name as sender_name,
+	    a.to_user_id,
+	    a.sign_flag,
+	    a.msg,
+	    a.insert_date,
+	    a.insert_person,
+	    a.update_date,
+	    a.update_person,
+	    b.no as sender_id,
+	    b.person_draw
+    from
+	    t_chat_record a
+	    inner join ( select no, name, person_draw from t_user ) b on a.sign_flag = #{signFlag,jdbcType=TINYINT} and a.to_user_id = #{toUserId,jdbcType=VARCHAR} and a.from_user_id = b.no
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select no, from_user_id, to_user_id, sign_flag, msg, insert_date, insert_person, 
+    update_date, update_person
+    from t_chat_record
+    where no = #{no,jdbcType=VARCHAR}
+      and from_user_id = #{fromUserId,jdbcType=VARCHAR}
+      and to_user_id = #{toUserId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select no, from_user_id, to_user_id, sign_flag, msg, insert_date, insert_person, 
+    update_date, update_person
+    from t_chat_record
+  </select>
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.dbridge.jtraining.dao.respository.TrainCategoryPOMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.dbridge.jtraining.dao.po.TrainCategoryPO" >
+    <id column="train_type" property="trainType" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="use_status" property="useStatus" jdbcType="TINYINT" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="insert_person" property="insertPerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultListMap" type="cn.com.dbridge.jtraining.dao.po.TrainCategoryInformationPO">
+    <id column="train_type" property="trainType" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_train_category
+    where train_type = #{trainType,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 后台 -->
+  <insert id="insert" parameterType="cn.com.dbridge.jtraining.dao.po.TrainCategoryPO" >
+    insert into t_train_category (type_name, insert_time, use_status, 
+      insert_date, insert_person, update_date, 
+      update_person)
+    values (#{typeName,jdbcType=VARCHAR}, #{insertTime,jdbcType=DATE}, #{useStatus,jdbcType=TINYINT}, 
+      #{insertDate,jdbcType=TIMESTAMP}, #{insertPerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 后台 -->
+  <update id="updateByPrimaryKey" parameterType="cn.com.dbridge.jtraining.dao.po.TrainCategoryPO" >
+    update t_train_category
+    <set>
+        <if test="typeName!=null and typeName!=''">
+          type_name = #{typeName,jdbcType=VARCHAR},
+        </if>
+        <if test="insertTime!=null">
+          insert_time = #{insertTime,jdbcType=DATE},
+        </if>
+        <if test="useStatus!=null">
+          use_status = #{useStatus,jdbcType=TINYINT},
+        </if>
+        <if test="insertDate!=null">
+          insert_date = #{insertDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="insertPerson!=null and insertPerson!=''">
+          insert_person = #{insertPerson,jdbcType=VARCHAR},
+        </if>
+        <if test="updateDate!=null">
+          update_date = #{updateDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="updatePerson!=null and updatePerson!=''">
+          update_person = #{updatePerson,jdbcType=VARCHAR}
+        </if>
+    </set>
+    where train_type = #{trainType,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 后台 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select train_type, type_name, insert_time, use_status, insert_date, insert_person, 
+    update_date, update_person
+    from t_train_category
+    where train_type = #{trainType,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select train_type, type_name, insert_time, use_status, insert_date, insert_person, 
+    update_date, update_person
+    from t_train_category
+  </select>
+  <select id="selectAllName" resultMap="BaseResultListMap" >
+    select train_type, type_name from t_train_category
+    where use_status = '0'
+  </select>
+  
+  <!-- 后台 -->
+  <select id="selectCheck" resultMap="BaseResultMap" parameterType="string">
+    select 
+	    train_type, 
+	    type_name, 
+	    insert_time, 
+	    use_status, 
+	    insert_date, 
+	    insert_person, 
+	    update_date, 
+	    update_person
+    from t_train_category
+    where type_name=#{typeName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectTypeNameByTrainType" resultType="java.lang.String" parameterType="java.lang.Integer">
+	  select type_name
+	  from t_train_category
+	  where train_type = #{trainType,jdbcType=INTEGER}
+  </select>
+</mapper>

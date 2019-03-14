@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>システム管理者</title>
+  <meta name="keyword" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/mystyle.css">
+  <link href="../css/nav.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../js/excepetion.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/myjs.js"></script>
+  <script src="../js/systemAdmin.js"></script>
+  <script src="../laydate/laydate.js"></script>
+  </head>
+  <body>
+
+<!--右侧内容开始-->
+<div class="content" >
+  <div class="main">
+<span class="title">パスワード管理----システム管理者</span>
+<p id="message"></p>
+   <form class="form-horizontal">
+   <div class="space clearfix">
+     <div class="password-border">
+      <div class="form-group">
+        <label class="col-md-4 control-label train-lable">管理者:</label>
+          <div class="col-md-4 input-space">       
+            <input class="form-control noOrName" type="text" value="Admin" readonly>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label train-lable">古いパスワード:</label>
+          <div class="col-md-4 input-space">       
+            <input class="form-control" type="password" value="" id="oldPassword">
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label train-lable">新しいパスワード:</label>
+          <div class="col-md-4 input-space">       
+            <input class="form-control" type="password" value="" id="newPassword">
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label train-lable">新しいパスワードを確認する:</label>
+          <div class="col-md-4 input-space">       
+            <input class="form-control" type="password" value="" id="confirmPassword">
+          </div>
+      </div>
+  <div class="form-group">
+    <button type="button" class="col-md-offset-5 btn btn-training update">変更</button>
+    <button type="button" class="btn btn-training btn-space cancel">キャンセル</button>
+  </div>
+  </div>
+  </div>
+  </form>
+  </div>
+  </div>
+</body>
+</html>
