@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.UserSupportEntity">
+	<resultMap id="UserSupportResult" type="com.djb.highway.user.entity.UserSupportEntity">
+		<id column="us_id" property="us_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="udp_id" property="udp_id" jdbcType="INTEGER" />
+		<association property="userEntity"
+			javaType="com.djb.highway.user.entity.UserEntity" resultMap="userResult" />
+	</resultMap>
+
+	<resultMap type="com.djb.highway.user.entity.UserEntity" id="userResult">
+		<id column="u_id" jdbcType="INTEGER" property="u_id" />
+		<result column="u_code" jdbcType="VARCHAR" property="u_code" />
+		<result column="u_name" jdbcType="VARCHAR" property="u_name" />
+		<result column="u_password" jdbcType="VARCHAR" property="u_password" />
+		<result column="u_type" jdbcType="VARCHAR" property="u_type" />
+		<result column="u_tel" jdbcType="VARCHAR" property="u_tel" />
+		<result column="u_mail" jdbcType="VARCHAR" property="u_mail" />
+		<result column="u_memo" jdbcType="VARCHAR" property="u_memo" />
+		<result column="u_reg_time" jdbcType="TIMESTAMP" property="u_reg_time" />
+	</resultMap>
+
+	<sql id="User_Column_List">
+		u.u_id, u.u_code, u.u_name, u.u_password, u.u_type,
+		u.u_tel, u.u_mail,
+		u_memo, u_reg_time
+	</sql>
+
+	<sql id="UserSupport_Column_List">
+		us.us_id, us.u_id, us.udp_id
+	</sql>
+
+
+	<sql id="orderByUserClause">
+		ORDER BY u.u_id DESC
+	</sql>
+
+
+	<sql id="UserSupportWhereClause">
+		<if test="us_id!=null">and us.us_id=#{us_id} </if>
+		<if test="u_id!=null">and us.u_id=#{u_id} </if>
+		<if test="udp_id!=null">and us.udp_id=#{udp_id} </if>
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.UserSupportEntity"
+		resultMap="UserSupportResult">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserSupport_Column_List" />
+		from user_support us, user u
+		where 1=1
+		and us.u_id=u.u_id
+		<include refid="UserSupportWhereClause" />
+	</select>
+
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.UserSupportEntity">
+		insert into user_support
+		(us_id, u_id, udp_id)
+		values (#{us_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{udp_id,jdbcType=INTEGER})
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.UserSupportEntity">
+		insert into user_support
+		(us_id, u_id, udp_id)
+		values (#{us_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{udp_id,jdbcType=INTEGER})
+	</insert>
+
+
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.UserSupportEntity">
+		DELETE FROM user_support
+		WHERE
+		us_id=#{us_id}
+
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.UserSupportEntity">
+		DELETE FROM user_support
+		WHERE
+		us_id=#{us_id}
+
+	</delete>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.UserSupportEntity"
+		resultType="com.djb.highway.user.entity.UserSupportEntity">
+		select
+		<include refid="UserSupport_Column_List" />
+		from user_support us
+		where 1=1
+		<include refid="UserSupportWhereClause" />
+	</select>
+
+
+</mapper>

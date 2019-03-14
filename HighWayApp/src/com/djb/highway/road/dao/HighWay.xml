@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.HighWayEntity">
+	<resultMap id="HighWayResultMap" type="com.djb.highway.road.entity.HighWayEntity">
+		<id column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="start_stake_id" property="start_stake_id"
+			jdbcType="VARCHAR" />
+		<result column="end_stake_id" property="end_stake_id" jdbcType="VARCHAR" />
+		<result column="h_desc" property="h_desc" jdbcType="VARCHAR" />
+		<result column="length" property="length" jdbcType="VARCHAR" />
+		<result column="h_type" property="h_type" jdbcType="CHAR" />
+		<result column="h_status" property="h_status" jdbcType="CHAR" />
+		<result column="plaz_list" property="plaz_list" jdbcType="VARCHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="HighWay_Column_List">
+		h_id, h_code, h_name, start_stake_id, end_stake_id, h_desc,
+		length, h_type,
+		h_status,
+		plaz_list, create_time, update_time
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.HighWayEntity"
+		resultMap="HighWayResultMap">
+		select
+		<include refid="HighWay_Column_List" />
+		from highway hw
+		where 1=1
+		<if test="h_id !=null">and hw.h_id=#{h_id} </if>
+		<if test="h_code !=null">and hw.h_code=#{h_code} </if>
+	</select>
+
+	<select id="selectMap" parameterType="com.djb.highway.road.entity.HighWayEntity"
+		resultMap="HighWayResultMap">
+		select
+		<include refid="HighWay_Column_List" />
+		from highway
+	</select>
+
+</mapper>

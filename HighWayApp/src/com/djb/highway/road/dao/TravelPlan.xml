@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.TravelPlanEntity">
+	<resultMap id="TravelPlanResult" type="com.djb.highway.road.entity.TravelPlanEntity">
+		<id column="tp_id" property="tp_id" jdbcType="INTEGER" />
+		<id column="entry_plaz_code" property="entry_plaz_code" jdbcType="VARCHAR" />
+		<id column="exit_plaz_code" property="exit_plaz_code" jdbcType="VARCHAR" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="entry_plaz_id" property="entry_plaz_id"
+			jdbcType="INTEGER" />
+		<result column="exit_plaz_id" property="exit_plaz_id" jdbcType="INTEGER" />
+		<result column="travel_time" property="travel_time" jdbcType="VARCHAR" />
+		<result column="road_length" property="road_length" jdbcType="VARCHAR" />
+		<result column="road_line" property="road_line" jdbcType="VARCHAR" />
+		<result column="car_type" property="car_type" jdbcType="CHAR" />
+		<result column="truckType1" property="truckType1" jdbcType="CHAR" />
+		<result column="truckType2" property="truckType2" jdbcType="CHAR" />
+		<result column="truckType3" property="truckType3" jdbcType="CHAR" />
+		<result column="fare" property="fare" jdbcType="INTEGER" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="unit_no" property="unit_no" jdbcType="CHAR" />
+	</resultMap>
+
+	<sql id="TravelPlan_Column_List">
+		tp_id, entry_plaz_code, exit_plaz_code, h_id,
+		entry_plaz_id, exit_plaz_id,
+		travel_time,
+		road_length, road_line,
+		car_type, truckType1, truckType2, truckType3, fare,
+		create_time,
+		update_time, direction, unit_no
+	</sql>
+
+
+	<sql id="orderByTravelPlanClause">
+		<!-- ORDER BY tp_id -->
+	</sql>
+
+
+	<sql id="TravelPlanWhereClause">
+		<if test="tp_id != null">and tp_id=#{tp_id} </if>
+		<if test="entry_plaz_code != null">and entry_plaz_code=#{entry_plaz_code} </if>
+		<if test="exit_plaz_code != null">and exit_plaz_code=#{exit_plaz_code} </if>
+		<if test="entry_plaz_id != null">and entry_plaz_id=#{entry_plaz_id} </if>
+		<if test="exit_plaz_id != null">and exit_plaz_id=#{exit_plaz_id} </if>
+		<if test="car_type != null">and car_type=#{car_type} </if>
+		<if test="truckType1 != null">and truckType1=#{truckType1} </if>
+		<if test="truckType2 != null">and truckType2=#{truckType2} </if>
+		<if test="truckType3 != null">and truckType3=#{truckType3} </if>
+		<if test="fare != null">and fare=#{fare} </if>
+		<if test="direction != null">and direction=#{direction} </if>
+		<if test="unit_no != null">and unit_no=#{unit_no} </if>
+
+		<!-- 取得需要更新行驶时间的条件（绕城收费站code数组） -->
+		<if test="travelTimePlazaCodeArgs !=null">
+			and entry_plaz_code in
+			<foreach item="item" index="index" collection="travelTimePlazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			and exit_plaz_code in
+			<foreach item="item" index="index" collection="travelTimePlazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="plazaCodeArgs !=null">
+			and entry_plaz_code in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			and exit_plaz_code in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.TravelPlanEntity"
+		resultMap="TravelPlanResult">
+		select
+		<include refid="TravelPlan_Column_List" />
+		from travel_plan
+		where 1=1
+		<include refid="TravelPlanWhereClause" />
+		<include refid="orderByTravelPlanClause" />
+	</select>
+
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.TravelPlanEntity"
+		resultMap="TravelPlanResult">
+		select
+		<include refid="TravelPlan_Column_List" />
+		from travel_plan
+		where 1=1
+		<include refid="TravelPlanWhereClause" />
+	</select>
+
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.TravelPlanEntity">
+		delete from travel_plan
+		<!-- where tp_id = #{tp_id,jdbcType=INTEGER} and entry_plaz_code = #{entry_plaz_code,jdbcType=VARCHAR} 
+			and exit_plaz_code = #{exit_plaz_code,jdbcType=VARCHAR} -->
+		where 1=1
+		<include refid="TravelPlanWhereClause" />
+	</delete>
+
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.TravelPlanEntity">
+		insert into travel_plan
+		(tp_id, entry_plaz_code, exit_plaz_code,
+		h_id, entry_plaz_id,
+		exit_plaz_id,
+		travel_time, road_length, road_line,
+		car_type, truckType1,
+		truckType2,
+		truckType3, fare, create_time,
+		update_time, direction,
+		unit_no)
+		values (#{tp_id,jdbcType=INTEGER},
+		#{entry_plaz_code,jdbcType=VARCHAR},
+		#{exit_plaz_code,jdbcType=VARCHAR},
+		#{h_id,jdbcType=INTEGER},
+		#{entry_plaz_id,jdbcType=INTEGER}, #{exit_plaz_id,jdbcType=INTEGER},
+		#{travel_time,jdbcType=VARCHAR}, #{road_length,jdbcType=VARCHAR},
+		#{road_line,jdbcType=VARCHAR},
+		#{car_type,jdbcType=CHAR},
+		#{truckType1,jdbcType=CHAR}, #{truckType2,jdbcType=CHAR},
+		#{truckType3,jdbcType=CHAR}, #{fare,jdbcType=INTEGER},
+		#{create_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{direction,jdbcType=CHAR}, #{unit_no,jdbcType=CHAR})
+	</insert>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.TravelPlanEntity">
+		update travel_plan
+		<set>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="entry_plaz_id != null">
+				entry_plaz_id = #{entry_plaz_id,jdbcType=INTEGER},
+			</if>
+			<if test="exit_plaz_id != null">
+				exit_plaz_id = #{exit_plaz_id,jdbcType=INTEGER},
+			</if>
+			<if test="travel_time != null">
+				travel_time = #{travel_time,jdbcType=VARCHAR},
+			</if>
+			<if test="road_length != null">
+				road_length = #{road_length,jdbcType=VARCHAR},
+			</if>
+			<if test="road_line != null">
+				road_line = #{road_line,jdbcType=VARCHAR},
+			</if>
+			<if test="car_type != null">
+				car_type = #{car_type,jdbcType=CHAR},
+			</if>
+			<if test="truckType1 != null">
+				truckType1 = #{truckType1,jdbcType=CHAR},
+			</if>
+			<if test="truckType2 != null">
+				truckType2 = #{truckType2,jdbcType=CHAR},
+			</if>
+			<if test="truckType3 != null">
+				truckType3 = #{truckType3,jdbcType=CHAR},
+			</if>
+			<if test="fare != null">
+				fare = #{fare,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=CHAR},
+			</if>
+			<if test="unit_no != null">
+				unit_no = #{unit_no,jdbcType=CHAR}
+			</if>
+		</set>
+		where tp_id = #{tp_id,jdbcType=INTEGER}
+		and entry_plaz_code =
+		#{entry_plaz_code,jdbcType=VARCHAR}
+		and exit_plaz_code =
+		#{exit_plaz_code,jdbcType=VARCHAR}
+	</update>
+
+
+</mapper>

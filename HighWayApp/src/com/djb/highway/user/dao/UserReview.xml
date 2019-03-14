@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.UserReviewEntity">
+	<resultMap id="UserReviewResult" type="com.djb.highway.user.entity.UserReviewEntity">
+		<id column="ur_id" property="ur_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="udp_id" property="udp_id" jdbcType="INTEGER" />
+		<result column="ur_status" property="ur_status" jdbcType="INTEGER" />
+		<result column="ur_content" property="ur_content" jdbcType="VARCHAR" />
+		<result column="reply_u_id" property="reply_u_id" jdbcType="INTEGER" />
+		<result column="ur_deploy_time" property="ur_deploy_time"
+			jdbcType="TIMESTAMP" />
+		<association property="userEntity"
+			javaType="com.djb.highway.user.entity.UserEntity" resultMap="userResult" />
+		<association property="userDeployPicEntity"
+			javaType="com.djb.highway.user.entity.UserDeployPicEntity" resultMap="userDeployPicResult" />
+	</resultMap>
+
+    <resultMap type="com.djb.highway.user.entity.UserEntity" id="userResult">
+        <id column="u_id" jdbcType="INTEGER" property="u_id" />
+        <result column="u_code" jdbcType="VARCHAR" property="u_code" />
+        <result column="u_name" jdbcType="VARCHAR" property="u_name" />
+        <result column="u_password" jdbcType="VARCHAR" property="u_password" />
+        <result column="u_type" jdbcType="VARCHAR" property="u_type" />
+        <result column="u_tel" jdbcType="VARCHAR" property="u_tel" />
+        <result column="u_mail" jdbcType="VARCHAR" property="u_mail" />
+        <result column="u_memo" jdbcType="VARCHAR" property="u_memo" />
+        <result column="u_reg_time" jdbcType="TIMESTAMP" property="u_reg_time" />
+    </resultMap>
+    
+    <resultMap type="com.djb.highway.user.entity.UserDeployPicEntity" id="userDeployPicResult">
+        <id column="udp_id" property="udp_id" jdbcType="INTEGER" />
+        <result column="u_id" property="u_id" jdbcType="INTEGER" />
+        <result column="section_id" property="section_id" jdbcType="BIGINT" />
+        <result column="udp_pic_path" property="udp_pic_path" jdbcType="VARCHAR" />
+        <result column="deploy_msg" property="deploy_msg" jdbcType="VARCHAR" />
+        <result column="commend_count" property="commend_count"
+            jdbcType="INTEGER" />
+        <result column="udp_deploy_time" property="udp_deploy_time"
+            jdbcType="TIMESTAMP" />
+        <result column="udp_longitude" property="udp_longitude"
+            jdbcType="INTEGER" />
+        <result column="udp_latitude" property="udp_latitude" jdbcType="INTEGER" />
+        <result column="udp_share_type" property="udp_share_type" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="User_Column_List">
+        u.u_id, u.u_code, u.u_name, u.u_password, u.u_type,
+        u.u_tel, u.u_mail,
+        u_memo, u_reg_time
+    </sql>
+
+    <sql id="UserReview_Column_List">
+        ur.ur_id, ur.u_id, ur.udp_id, ur.ur_status, ur.ur_content, ur.ur_deploy_time,ur.reply_u_id
+    </sql>
+    
+    <sql id="UserDeployPic_Column_List">
+        udp.udp_id, udp.u_id, udp.section_id, udp.udp_pic_path, udp.deploy_msg,
+        udp.commend_count,
+        udp.udp_deploy_time, udp.udp_longitude,
+        udp.udp_latitude,udp.udp_share_type
+    </sql>
+
+    <sql id="orderByUserClause">
+        ORDER BY u.u_id DESC
+    </sql>
+    
+    <sql id="orderByUserDeployPicClause">
+        ORDER BY udp.udp_deploy_time DESC
+    </sql>
+
+    <sql id="orderByUserReviewClause">
+        ORDER BY ur.ur_deploy_time
+    </sql>
+
+    <sql id="UserReviewWhereClause">
+        <if test="ur_id!=null">and ur.ur_id=#{ur_id} </if>
+        <if test="u_id!=null">and ur.u_id=#{u_id} </if>
+        <if test="udp_id!=null">and ur.udp_id=#{udp_id} </if>
+        <if test="ur_status!=null">and ur.ur_status=#{ur_status} </if>
+        <if test="ur_content!=null">and ur.ur_content=#{ur_content} </if>
+        <if test="ur_deploy_time!=null">and ur.ur_deploy_time=#{ur_deploy_time} </if>
+    </sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.UserReviewEntity"
+		resultMap="UserReviewResult">
+		select
+		<include refid="UserReview_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		,
+		<include refid="User_Column_List" />
+		from user_review ur, user_deploy_pic udp, user u
+        where 1=1
+        and ur.u_id=u.u_id and ur.udp_id=udp.udp_id
+        <include refid="UserReviewWhereClause" />
+	</select>
+
+	
+	<select id="findListByCondition" resultType="com.djb.highway.user.entity.UserReviewEntity">
+        select
+        <include refid="UserReview_Column_List" />
+        ,
+        <include refid="UserDeployPic_Column_List" />
+        ,
+        <include refid="User_Column_List" />
+        from user_review ur, user_deploy_pic udp, user u
+        where 1=1
+        and ur.u_id=u.u_id and ur.udp_id=udp.udp_id
+        <include refid="UserReviewWhereClause" />
+		<include refid="orderByUserReviewClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.UserReviewEntity">
+		insert into user_review (ur_id, u_id, udp_id, ur_status,
+		ur_content, ur_deploy_time,reply_u_id)
+		values (#{ur_id,jdbcType=INTEGER}, #{u_id,jdbcType=INTEGER},
+		#{udp_id,jdbcType=INTEGER}, #{ur_status,jdbcType=INTEGER},
+		#{ur_content,jdbcType=VARCHAR}, #{ur_deploy_time,jdbcType=TIMESTAMP},#{reply_u_id,jdbcType=INTEGER})
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.UserReviewEntity">
+        insert into user_review (ur_id, u_id, udp_id, ur_status,
+        ur_content, ur_deploy_time,reply_u_id)
+        values (#{ur_id,jdbcType=INTEGER}, #{u_id,jdbcType=INTEGER},
+        #{udp_id,jdbcType=INTEGER}, #{ur_status,jdbcType=INTEGER},
+        #{ur_content,jdbcType=VARCHAR}, #{ur_deploy_time,jdbcType=TIMESTAMP},#{reply_u_id,jdbcType=INTEGER})
+    </insert>
+
+
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.UserReviewEntity">
+		DELETE FROM user_review WHERE
+		ur_id=#{ur_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.UserReviewEntity">
+        DELETE FROM user_review WHERE
+        ur_id=#{ur_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.UserReviewEntity">
+		UPDATE user
+		<set>
+			<if test="ur_id != null">
+				ur_id = #{ur_id,jdbcType=INTEGER},
+			</if>
+			<if test="u_id != null">
+				u_id = #{u_id,jdbcType=INTEGER},
+			</if>
+			<if test="udp_id != null">
+				udp_id = #{udp_id,jdbcType=INTEGER},
+			</if>
+			<if test="ur_status!=null">
+                ur_status = #{ur_status,jdbcType=INTEGER},
+			</if>
+			<if test="ur_content != null">
+				ur_content = #{ur_content,jdbcType=VARCHAR},
+			</if>
+			<if test="ur_deploy_time != null">
+				ur_deploy_time = #{ur_deploy_time,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+        WHERE 1=1
+		<include refid="UserReviewWhereClause" />
+	</update>
+
+	<select id="findList" resultType="com.djb.highway.user.entity.UserReviewEntity">
+        select
+        <include refid="UserReview_Column_List" />
+        ,
+        <include refid="UserDeployPic_Column_List" />
+        ,
+        <include refid="User_Column_List" />
+        from user_review ur, user_deploy_pic udp, user u
+        where 1=1
+        and ur.u_id=u.u_id and ur.udp_id=udp.udp_id
+        <include refid="UserReviewWhereClause" />
+        <include refid="orderByUserReviewClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.UserReviewEntity"
+		parameterType="com.djb.highway.user.entity.UserReviewEntity">
+        select
+        <include refid="UserReview_Column_List" />
+        ,
+        <include refid="UserDeployPic_Column_List" />
+        ,
+        <include refid="User_Column_List" />
+        from user_review ur, user_deploy_pic udp, user u
+        where 1=1
+        and ur.u_id=u.u_id and ur.udp_id=udp.udp_id
+        <include refid="UserReviewWhereClause" />
+        <include refid="orderByUserReviewClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*)
+		from user_review ur, user_deploy_pic udp, user u
+		where 1=1
+		and ur.u_id=u.u_id and ur.udp_id=udp.udp_id
+        <include refid="UserReviewWhereClause" />
+	</select>
+
+</mapper>

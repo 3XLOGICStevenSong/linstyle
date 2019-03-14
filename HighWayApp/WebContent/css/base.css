@@ -1,0 +1,76 @@
+
+
+
+/* =Template
+-------------------------------------------------------------- */
+#wrapper {
+    width:100%;
+    margin:0 auto;
+}
+
+#main {
+	background-color:#fff;
+	padding:30px 0;
+}
+
+
+
+/* =Top Bar
+-------------------------------------------------------------- */
+#top-bar {
+	background-color:rgb(100,150,200);
+}
+#top-bar a {
+	color:#fff;
+	font-size:14px;
+	text-transform:uppercase;
+	display:inline-block;
+	margin:0;
+	padding:10px;
+}
+#top-bar a:hover{
+	background-color:rgb(150,200,250);
+}
+span.all-labs,
+span.back-to-tutorial {
+	display:block;
+	width:50%;
+}
+span.all-labs {
+	float:left;
+	text-align:left;
+}
+span.back-to-tutorial {
+	float:right;
+	text-align:right;
+}
+
+/* =Header
+-------------------------------------------------------------- */
+
+#title {
+	width:100%;
+	text-align:center;
+}
+#title h1 {
+	color:#fff;
+	font-size: 30px;
+	margin-bottom:10px;
+}
+#title h2 {
+	color:rgb(200,200,200);
+	font-size:20px;
+
+}
+
+
+
+/* =Extras
+-------------------------------------------------------------- */
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.highway.road.entity.VersionMstEntity">
+	<resultMap id="VersionMstResult" type="com.djb.highway.road.entity.VersionMstEntity">
+		<id column="camera_version" property="camera_version" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="VersionMst_Column_List">
+		camera_version
+	</sql>
+
+	<sql id="VersionMstWhereClause">
+		<if test="camera_version != null">and camera_version=#{camera_version} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.VersionMstEntity"
+		resultMap="VersionMstResult">
+		select
+		<include refid="VersionMst_Column_List" />
+		from version_mst
+		where 1=1
+		<include refid="VersionMstWhereClause" />
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from version_mst
+		where
+		camera_version = #{camera_version,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.VersionMstEntity">
+		insert into version_mst
+		(camera_version)
+		values (#{camera_version,jdbcType=INTEGER})
+	</insert>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.VersionMstEntity">
+		update version_mst
+		<set>
+			<if test="camera_version != null">
+				camera_version = #{camera_version,jdbcType=INTEGER}
+				<!-- camera_version = camera_version + 1 -->
+			</if>
+		</set>
+	</update>
+</mapper>

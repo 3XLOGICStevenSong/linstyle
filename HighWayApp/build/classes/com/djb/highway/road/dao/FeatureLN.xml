@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.FeatureLNEntity">
+	<resultMap id="FeatureLNResult" type="com.djb.highway.road.entity.FeatureLNEntity">
+		<id column="ad_id" property="ad_id" jdbcType="INTEGER" />
+		<result column="ad_city_id" property="ad_city_id" jdbcType="INTEGER" />
+		<result column="ad_type" property="ad_type" jdbcType="CHAR" />
+		<result column="ad_title" property="ad_title" jdbcType="VARCHAR" />
+		<result column="ad_pic" property="ad_pic" jdbcType="VARCHAR" />
+		<result column="ad_content" property="ad_content" jdbcType="VARCHAR" />
+		<result column="ad_pic_list" property="ad_pic_list" jdbcType="VARCHAR" />
+		<result column="ad_road_line" property="ad_road_line" jdbcType="VARCHAR" />
+		<result column="ad_create_time" property="ad_create_time"
+			jdbcType="TIMESTAMP" />
+		<result column="ad_end_time" property="ad_end_time" jdbcType="TIMESTAMP" />
+		<result column="ad_status" property="ad_status" jdbcType="CHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="ad_sum_content" property="ad_sum_content"
+			jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="FeatureLN_Column_List">
+		ad_id, ad_city_id, ad_type, ad_title, ad_pic, ad_content,
+		ad_pic_list,
+		ad_road_line,ad_create_time,
+		ad_end_time, ad_status,
+		memo,
+		ad_sum_content, level
+
+	</sql>
+
+	<sql id="orderByFeatureLNClause">
+		ORDER BY level,ad_id,ad_create_time
+	</sql>
+
+	<sql id="FeatureLNWhereClause">
+		<if test="ad_id!=null">and ad_id=#{ad_id} </if>
+		<if test="ad_city_id!=null">and ad_city_id=#{ad_city_id} </if>
+		<if test="ad_type!=null">and ad_type=#{ad_type} </if>
+		<if test="ad_title!=null">and ad_title=#{ad_title} </if>
+		<if test="ad_pic!=null">and ad_pic=#{ad_pic} </if>
+		<if test="ad_content!=null">and ad_content=#{ad_content} </if>
+		<if test="ad_pic_list!=null">and ad_pic_list=#{ad_pic_list} </if>
+		<if test="ad_road_line!=null">and ad_road_line=#{ad_road_line} </if>
+		<if test="ad_create_time !=null">and ad_create_time=#{ad_create_time} </if>
+		<if test="ad_end_time !=null">and ad_end_time=#{ad_end_time} </if>
+		<if test="ad_status !=null">and ad_status=#{ad_status} </if>
+		<if test="memo !=null">and memo=#{memo} </if>
+		<if test="ad_sum_content !=null">and ad_sum_content=#{ad_sum_content} </if>
+		<if test="level !=null">and level=#{level} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.FeatureLNEntity"
+		resultMap="FeatureLNResult">
+		select
+		<include refid="FeatureLN_Column_List" />
+		from lnts_ad
+		where 1=1
+		<include refid="FeatureLNWhereClause" />
+		<include refid="orderByFeatureLNClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.FeatureLNEntity"
+		resultMap="FeatureLNResult">
+		select
+		<include refid="FeatureLN_Column_List" />
+		from lnts_ad
+		where 1=1
+		<include refid="FeatureLNWhereClause" />
+		<include refid="orderByFeatureLNClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.FeatureLNEntity">
+		insert into lnts_ad (ad_id,
+		ad_city_id, ad_type, ad_title, ad_pic, ad_content, ad_pic_list,
+		ad_road_line,ad_create_time,
+		ad_end_time, ad_status,
+		memo,
+		ad_sum_content, level
+		)
+		values
+		(#{ad_id,jdbcType=INTEGER},
+		#{ad_city_id,jdbcType=INTEGER},
+		#{ad_type,jdbcType=CHAR},
+		#{ad_title,jdbcType=VARCHAR},
+		#{ad_pic,jdbcType=VARCHAR},
+		#{ad_content,jdbcType=VARCHAR},
+		#{ ad_pic_list,jdbcType=VARCHAR},
+		#{ad_road_line,jdbcType=VARCHAR},
+		#ad_create_time,jdbcType=TIMESTAMP},
+		#{ad_end_time,jdbcType=TIMESTAMP}, #{ad_status,jdbcType=CHAR},
+		#{memo,jdbcType=VARCHAR},
+		#{ad_sum_content,jdbcType=VARCHAR},
+		#{level,jdbcType=CHAR}
+		)
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.road.entity.FeatureLNEntity">
+		insert into lnts_ad
+		(ad_id, ad_city_id, ad_type, ad_title, ad_pic, ad_content,
+		ad_pic_list,
+		ad_road_line,ad_create_time,
+		ad_end_time, ad_status,
+		memo,
+		ad_sum_content, level
+		)
+		values
+		(#{ad_id,jdbcType=INTEGER},
+		#{ad_city_id,jdbcType=INTEGER},
+		#{ad_type,jdbcType=CHAR},
+		#{ad_title,jdbcType=VARCHAR},
+		#{ad_pic,jdbcType=VARCHAR},
+		#{ad_content,jdbcType=VARCHAR},
+		#{ ad_pic_list,jdbcType=VARCHAR},
+		#{ad_road_line,jdbcType=VARCHAR},
+		#{ad_create_time,jdbcType=TIMESTAMP},
+		#{ad_end_time,jdbcType=TIMESTAMP}, #{ad_status,jdbcType=CHAR},
+		#{memo,jdbcType=VARCHAR},
+		#{ad_sum_content,jdbcType=VARCHAR},
+		#{level,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.FeatureLNEntity">
+		DELETE FROM lnts_ad WHERE
+		ad_id=#{ad_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.road.entity.FeatureLNEntity">
+		DELETE FROM lnts_ad WHERE
+		ad_id=#{ad_id}
+	</delete>
+
+
+</mapper>

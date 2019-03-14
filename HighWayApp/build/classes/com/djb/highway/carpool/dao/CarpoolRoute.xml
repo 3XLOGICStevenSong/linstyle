@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+	<resultMap id="CarpoolRouteResult"
+		type="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		<id column="cr_id" property="cr_id" jdbcType="INTEGER" />
+		<result column="pr_id" property="pr_id" jdbcType="INTEGER" />
+		<result column="dr_id" property="dr_id" jdbcType="INTEGER" />
+		<result column="insure_id" property="insure_id" jdbcType="VARCHAR" />
+		<result column="lottery_id" property="lottery_id" jdbcType="VARCHAR" />
+		<result column="aboard_longitude" property="aboard_longitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_latitude" property="aboard_latitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_longitude" property="debus_longitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_latitude" property="debus_latitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_time" property="aboard_time" jdbcType="TIMESTAMP" />
+		<result column="debus_time" property="debus_time" jdbcType="TIMESTAMP" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="CarpoolRoute_Column_List">
+		cr_id, pr_id, dr_id, insure_id, lottery_id,
+		aboard_longitude,
+		aboard_latitude, debus_longitude,
+		debus_latitude,
+		aboard_time, debus_time, status_flg, memo, insert_time, update_time
+	</sql>
+	<sql id="CarpoolRouteWhereClause">
+		<if test="cr_id!=null">and cr_id=#{cr_id} </if>
+		<if test="pr_id!=null">and pr_id=#{pr_id} </if>
+		<if test="dr_id!=null">and dr_id=#{dr_id} </if>
+		<if test="insure_id!=null">and insure_id=#{insure_id} </if>
+		<if test="lottery_id!=null">and lottery_id=#{lottery_id} </if>
+		<if test="aboard_longitude!=null">and aboard_longitude=#{aboard_longitude} </if>
+		<if test="aboard_latitude!=null">and aboard_latitude=#{aboard_latitude} </if>
+		<if test="debus_longitude!=null">and debus_longitude=#{debus_longitude} </if>
+		<if test="debus_latitude!=null">and debus_latitude=#{debus_latitude} </if>
+		<if test="aboard_time!=null">and aboard_time=#{aboard_time} </if>
+		<if test="debus_time!=null">and debus_time=#{debus_time} </if>
+		<if test="status_flg!=null">and status_flg=#{status_flg} </if>
+		<if test="memo!=null">and memo=#{memo} </if>
+		<if test="insert_time!=null">and insert_time=#{insert_time} </if>
+		<if test="update_time!=null">and update_time=#{update_time} </if>
+	</sql>
+
+	<sql id="orderByCarpoolRouteClause">
+		ORDER BY cr_id
+	</sql>
+	
+		<select id="getObject" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity"
+		resultMap="CarpoolRouteResult">
+		select
+		<include refid="CarpoolRoute_Column_List" />
+		from carpool_route
+		where 1=1
+		<include refid="CarpoolRouteWhereClause" />
+		<include refid="orderByCarpoolRouteClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity"
+		resultMap="CarpoolRouteResult">
+		select
+		<include refid="CarpoolRoute_Column_List" />
+		from carpool_route
+		where 1=1
+		<include refid="CarpoolRouteWhereClause" />
+		<include refid="orderByCarpoolRouteClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		select
+		<include refid="CarpoolRoute_Column_List" />
+		from carpool_route
+		<include refid="orderByCarpoolRouteClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.carpool.entity.CarpoolRouteEntity"
+		parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		select
+		<include refid="CarpoolRoute_Column_List" />
+		from carpool_route
+		<include refid="CarpoolRouteWhereClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findList_count" resultType="int">
+		SELECT count(*) from
+		carpool_route
+	</select>
+
+<insert id="insert" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		insert into carpool_route
+		(cr_id, pr_id, dr_id,
+		insure_id, lottery_id, aboard_longitude,
+		aboard_latitude, debus_longitude, debus_latitude,
+		aboard_time,
+		debus_time, status_flg,
+		memo, insert_time, update_time
+		)
+		values
+		(#{cr_id,jdbcType=INTEGER}, #{pr_id,jdbcType=INTEGER},
+		#{dr_id,jdbcType=INTEGER},
+		#{insure_id,jdbcType=VARCHAR},
+		#{lottery_id,jdbcType=VARCHAR}, #{aboard_longitude,jdbcType=VARCHAR},
+		#{aboard_latitude,jdbcType=VARCHAR},
+		#{debus_longitude,jdbcType=VARCHAR},
+		#{debus_latitude,jdbcType=VARCHAR},
+		#{aboard_time,jdbcType=TIMESTAMP},
+		#{debus_time,jdbcType=TIMESTAMP}, #{status_flg,jdbcType=CHAR},
+		#{memo,jdbcType=VARCHAR}, #{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<delete id="delete" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		DELETE FROM carpool_route
+		WHERE
+		cr_id=#{cr_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		DELETE FROM
+		carpool_route
+		WHERE
+		cr_id=#{cr_id}
+	</delete>
+<update id="update" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		update carpool_route
+		<set>
+			<if test="pr_id != null">
+				pr_id = #{pr_id,jdbcType=INTEGER},
+			</if>
+			<if test="dr_id != null">
+				dr_id = #{dr_id,jdbcType=INTEGER},
+			</if>
+			<if test="insure_id != null">
+				insure_id = #{insure_id,jdbcType=VARCHAR},
+			</if>
+			<if test="lottery_id != null">
+				lottery_id = #{lottery_id,jdbcType=VARCHAR},
+			</if>
+			<if test="aboard_longitude != null">
+				aboard_longitude = #{aboard_longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="aboard_latitude != null">
+				aboard_latitude = #{aboard_latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="debus_longitude != null">
+				debus_longitude = #{debus_longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="debus_latitude != null">
+				debus_latitude = #{debus_latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="aboard_time != null">
+				aboard_time = #{aboard_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="debus_time != null">
+				debus_time = #{debus_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status_flg != null">
+				status_flg = #{status_flg,jdbcType=CHAR},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				insert_time = #{insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where cr_id = #{cr_id}
+	</update>
+	<select id="findValidList" parameterType="com.djb.highway.carpool.entity.CarpoolRouteEntity"
+		resultMap="CarpoolRouteResult">
+		select
+		<include refid="CarpoolRoute_Column_List" />
+		from carpool_route
+		where 1=1
+		<include refid="CarpoolRouteWhereClause" />
+		<include refid="orderByCarpoolRouteClause" />
+	</select>
+</mapper>

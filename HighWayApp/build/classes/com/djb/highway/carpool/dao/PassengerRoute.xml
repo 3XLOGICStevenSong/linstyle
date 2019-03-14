@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.carpool.entity.PassengerRouteEntity">
+	<resultMap id="PassengerRouteResult"
+		type="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		<id column="pr_id" property="pr_id" jdbcType="INTEGER" />
+		<result column="cu_id" property="cu_id" jdbcType="INTEGER" />
+		<result column="start_time" property="start_time" jdbcType="TIMESTAMP" />
+		<result column="people_count" property="people_count" jdbcType="INTEGER" />
+		<result column="start_city" property="start_city" jdbcType="VARCHAR" />
+		<result column="start_area" property="start_area" jdbcType="VARCHAR" />
+		<result column="end_city" property="end_city" jdbcType="VARCHAR" />
+		<result column="end_area" property="end_area" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="charter_flg" property="charter_flg" jdbcType="CHAR" />
+		<result column="price" property="price" jdbcType="REAL" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+		<result column="pr_memo" property="pr_memo" jdbcType="VARCHAR" />
+		<result column="pr_insert_time" property="pr_insert_time"
+			jdbcType="TIMESTAMP" />
+		<result column="pr_update_time" property="pr_update_time"
+			jdbcType="TIMESTAMP" />
+		<association property="carpoolRouteEntity"
+			javaType="com.djb.highway.carpool.entity.CarpoolRouteEntity"
+			resultMap="CarpoolRouteResult" />
+		<association property="carpoolUserEntity" column="cu_id"
+			javaType="com.djb.highway.carpool.entity.CarpoolUserEntity"
+			resultMap="CarpoolUserResult" />
+
+	</resultMap>
+
+	<resultMap id="CarpoolRouteResult"
+		type="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		<id column="cr_id" property="cr_id" jdbcType="INTEGER" />
+		<result column="pr_id" property="pr_id" jdbcType="INTEGER" />
+		<result column="dr_id" property="dr_id" jdbcType="INTEGER" />
+		<result column="insure_id" property="insure_id" jdbcType="VARCHAR" />
+		<result column="lottery_id" property="lottery_id" jdbcType="VARCHAR" />
+		<result column="aboard_longitude" property="aboard_longitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_latitude" property="aboard_latitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_longitude" property="debus_longitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_latitude" property="debus_latitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_time" property="aboard_time" jdbcType="TIMESTAMP" />
+		<result column="debus_time" property="debus_time" jdbcType="TIMESTAMP" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<resultMap id="CarpoolUserResult"
+		type="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		<id column="cu_id" jdbcType="INTEGER" property="cu_id" />
+		<result column="cu_name" jdbcType="VARCHAR" property="cu_name" />
+		<result column="cu_nick" jdbcType="VARCHAR" property="cu_nick" />
+		<result column="id_number" jdbcType="VARCHAR" property="id_number" />
+		<result column="driving_license_pic" jdbcType="VARCHAR"
+			property="driving_license_pic" />
+		<result column="car_license_pic" jdbcType="VARCHAR" property="car_license_pic" />
+		<result column="people_license" jdbcType="VARCHAR" property="people_license" />
+		<result column="cu_tel" jdbcType="VARCHAR" property="cu_tel" />
+		<result column="car_brand" jdbcType="VARCHAR" property="car_brand" />
+		<result column="car_type" jdbcType="VARCHAR" property="car_type" />
+		<result column="car_color" jdbcType="VARCHAR" property="car_color" />
+		<result column="car_num" jdbcType="VARCHAR" property="car_num" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="level" jdbcType="CHAR" property="level" />
+		<result column="car_seat_num" jdbcType="INTEGER" property="car_seat_num" />
+		<result column="d_success_count" jdbcType="INTEGER" property="d_success_count" />
+		<result column="d_fail_count" jdbcType="INTEGER" property="d_fail_count" />
+		<result column="p_success_count" jdbcType="INTEGER" property="p_success_count" />
+		<result column="p_fail_count" jdbcType="INTEGER" property="p_fail_count" />
+		<result column="status_flg" jdbcType="CHAR" property="status_flg" />
+		<result column="memo" jdbcType="VARCHAR" property="memo" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insert_time" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+	</resultMap>
+	<sql id="PassengerRoute_Column_List">
+		pr.pr_id, pr.cu_id, pr.start_time, pr.people_count,
+		pr.start_city,
+		pr.start_area, pr.end_city,
+		pr.end_area,
+		pr.state,
+		pr.charter_flg, pr.price, pr.status_flg,
+		pr.pr_memo, pr.pr_insert_time,
+		pr.pr_update_time
+	</sql>
+	<sql id="CarpoolRoute_Column_List">
+		cr.cr_id, cr.pr_id, cr.dr_id, cr.insure_id, cr.lottery_id,
+		cr.aboard_longitude,
+		cr.aboard_latitude, cr.debus_longitude,
+		cr.debus_latitude,
+		cr.aboard_time, cr.debus_time, cr.status_flg,
+		cr.memo, cr.insert_time, cr.update_time
+	</sql>
+	<sql id="CarpoolUser_Column_List">
+		cu.cu_id, cu.cu_name, cu.cu_nick, cu.id_number,
+		cu.driving_license_pic,
+		cu.car_license_pic,
+		cu.people_license,
+		cu.cu_tel, cu.car_brand, cu.car_type, cu.car_color,
+		cu.car_num,
+		cu.longitude, cu.latitude, level,
+		cu.car_seat_num,
+		cu.d_success_count,
+		cu.d_fail_count, cu.p_success_count, cu.p_fail_count,
+		cu.status_flg,cu.memo,
+		cu.insert_time, cu.update_time
+	</sql>
+	<sql id="orderByPassengerRouteClause">
+		ORDER BY pr.start_time DESC,pr.pr_id
+	</sql>
+	<sql id="orderByTimeClause">
+		ORDER BY pr.start_time DESC,pr_id DESC
+	</sql>
+	<sql id="PassengerRouteWhereClause">
+		<if test="pr_id!=null">and pr.pr_id=#{pr_id} </if>
+		<if test="cu_id!=null">and pr.cu_id=#{cu_id} </if>
+		<if test="start_time!=null">and pr.start_time=#{start_time} </if>
+		<if test="people_count!=null">and pr.people_count=#{people_count} </if>
+		<if test="start_city!=null">and pr.start_city=#{start_city} </if>
+		<if test="start_area!=null">and pr.start_area=#{start_area} </if>
+		<if test="end_city!=null">and pr.end_city=#{end_city} </if>
+		<if test="end_area!=null">and pr.end_area=#{end_area} </if>
+		<if test="state!=null">and pr.state=#{state} </if>
+		<if test="charter_flg!=null">and pr.charter_flg=#{charter_flg} </if>
+		<if test="price!=null">and pr.price=#{price} </if>
+		<if test="status_flg!=null">and pr.status_flg=#{status_flg} </if>
+		<if test="pr_memo!=null">and pr.pr_memo=#{pr_memo} </if>
+		<if test="pr_insert_time!=null">and pr.pr_insert_time=#{pr_insert_time} </if>
+		<if test="pr_update_time!=null">and pr.pr_update_time=#{pr_update_time} </if>
+		<if test="begin_time != null and end_time != null">
+			and pr.start_time >= #{begin_time} and pr.start_time &lt;=
+			#{end_time}
+		</if>
+			<if test="begin_time != null and end_time == null">
+			and pr.start_time >= #{begin_time} 
+		</if>
+			<if test="end_time != null and begin_time != null">
+		     and pr.start_time &lt;=#{end_time}
+		</if>
+		
+		
+
+	</sql>
+	<select id="getObject" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		resultMap="PassengerRouteResult">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		,
+		<include refid="CarpoolUser_Column_List" />
+		from passenger_route pr,carpool_user cu
+		where 1=1
+		and pr.cu_id=cu.cu_id
+		<include refid="PassengerRouteWhereClause" />
+
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		resultMap="PassengerRouteResult">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		from passenger_route pr
+		where 1=1
+		<include refid="PassengerRouteWhereClause" />
+		<include refid="orderByPassengerRouteClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		from passenger_route pr
+		<include refid="orderByPassengerRouteClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		from passenger_route pr
+		<include refid="PassengerRouteWhereClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*) from
+		passenger_route
+	</select>
+
+
+	<insert id="insert" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		insert into passenger_route
+		(pr_id, cu_id, start_time,
+		people_count, start_city, start_area,
+		end_city, end_area, state,
+		charter_flg, price, status_flg,
+		pr_memo,
+		pr_insert_time, pr_update_time
+		)
+		values (#{pr_id,jdbcType=INTEGER},
+		#{cu_id,jdbcType=INTEGER},
+		#{start_time,jdbcType=TIMESTAMP},
+		#{people_count,jdbcType=INTEGER}, #{start_city,jdbcType=VARCHAR},
+		#{start_area,jdbcType=VARCHAR},
+		#{end_city,jdbcType=VARCHAR},
+		#{end_area,jdbcType=VARCHAR},
+		#{state,jdbcType=CHAR},
+		#{charter_flg,jdbcType=CHAR}, #{price,jdbcType=REAL},
+		#{status_flg,jdbcType=CHAR},
+		#{pr_memo,jdbcType=VARCHAR},
+		#{pr_insert_time,jdbcType=TIMESTAMP},
+		#{pr_update_time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertBatch" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		insert into
+		passenger_route (pr_id, cu_id, start_time,
+		people_count,
+		start_city,
+		start_area,
+		end_city, end_area, state,
+		charter_flg, price,
+		status_flg,
+		pr_memo, pr_insert_time, pr_update_time
+		)
+		values
+		(#{pr_id,jdbcType=INTEGER},
+		#{cu_id,jdbcType=INTEGER},
+		#{start_time,jdbcType=TIMESTAMP},
+		#{people_count,jdbcType=INTEGER},
+		#{start_city,jdbcType=VARCHAR},
+		#{start_area,jdbcType=VARCHAR},
+		#{end_city,jdbcType=VARCHAR},
+		#{end_area,jdbcType=VARCHAR},
+		#{state,jdbcType=CHAR},
+		#{charter_flg,jdbcType=CHAR},
+		#{price,jdbcType=REAL},
+		#{status_flg,jdbcType=CHAR},
+		#{pr_memo,jdbcType=VARCHAR},
+		#{pr_insert_time,jdbcType=TIMESTAMP},
+		#{pr_update_time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<delete id="delete" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		DELETE FROM passenger_route
+		WHERE
+		pr_id=#{pr_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		DELETE FROM
+		passenger_route WHERE
+		pr_id=#{pr_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity">
+		update passenger_route
+		<set>
+			<if test="cu_id != null">
+				cu_id = #{cu_id,jdbcType=INTEGER},
+			</if>
+			<if test="start_time != null">
+				start_time = #{start_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="people_count != null">
+				people_count = #{people_count,jdbcType=INTEGER},
+			</if>
+			<if test="start_city != null">
+				start_city = #{start_city,jdbcType=VARCHAR},
+			</if>
+			<if test="start_area != null">
+				start_area = #{start_area,jdbcType=VARCHAR},
+			</if>
+			<if test="end_city != null">
+				end_city = #{end_city,jdbcType=VARCHAR},
+			</if>
+			<if test="end_area != null">
+				end_area = #{end_area,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=CHAR},
+			</if>
+			<if test="charter_flg != null">
+				charter_flg = #{charter_flg,jdbcType=CHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=REAL},
+			</if>
+			<if test="status_flg != null">
+				status_flg = #{status_flg,jdbcType=CHAR},
+			</if>
+			<if test="pr_memo != null">
+				pr_memo = #{pr_memo,jdbcType=VARCHAR},
+			</if>
+			<if test="pr_insert_time != null">
+				pr_insert_time = #{pr_insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pr_update_time != null">
+				pr_update_time = #{pr_update_time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where pr_id = #{pr_id,jdbcType=INTEGER}
+	</update>
+
+	<select id="findListBySearch" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		resultMap="PassengerRouteResult">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		,
+		<include refid="CarpoolUser_Column_List" />
+		from passenger_route pr,carpool_user cu
+		where 1=1
+		and pr.cu_id=cu.cu_id
+		and pr.state ='0'
+		<include refid="PassengerRouteWhereClause" />
+		<include refid="orderByPassengerRouteClause" />
+	</select>
+
+	<select id="getObjectByState" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		resultMap="PassengerRouteResult">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		,
+		<include refid="CarpoolRoute_Column_List" />
+		from passenger_route pr,carpool_route cr
+		where 1=1
+		and pr.pr_id=cr.pr_id
+		<include refid="PassengerRouteWhereClause" />
+	</select>
+	
+	<select id="findListOrderByTime" parameterType="com.djb.highway.carpool.entity.PassengerRouteEntity"
+		resultMap="PassengerRouteResult">
+		select
+		<include refid="PassengerRoute_Column_List" />
+		from passenger_route pr
+		where 1=1
+		<include refid="PassengerRouteWhereClause" />
+		<include refid="orderByTimeClause" />
+	</select>
+	
+</mapper>

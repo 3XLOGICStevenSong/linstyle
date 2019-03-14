@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.bus.entity.BusUserEntity">
+
+	<resultMap id="BusUserResult" type="com.djb.highway.bus.entity.BusUserEntity">
+		<id column="buser_id" jdbcType="INTEGER" property="buser_id" />
+		<id column="group_id" jdbcType="INTEGER" property="group_id" />
+		<result column="buser_name" jdbcType="VARCHAR" property="buser_name" />
+		<result column="buser_tel" jdbcType="VARCHAR" property="buser_tel" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+	</resultMap>
+
+	<sql id="Bus_User_Column_List">
+		bu.buser_id,bu.group_id,bu.buser_name,bu.buser_tel,bu.longitude,bu.latitude,bu.insert_time,bu.update_time,bu.status_flg
+	</sql>
+
+	<sql id="orderByBusUserClause">
+		ORDER BY bu.buser_id DESC
+	</sql>
+
+	<sql id="busUserWhereClause">
+		<if test="buser_id!=null">and bu.buser_id=#{buser_id} </if>
+		<if test="group_id!=null">and bu.group_id=#{group_id} </if>
+		<if test="buser_name!=null">and bu.buser_name=#{buser_name} </if>
+		<if test="buser_tel!=null">and bu.buser_tel=#{buser_tel} </if>
+		<if test="longitude!=null">and bu.longitude=#{longitude} </if>
+		<if test="latitude!=null">and bu.latitude=#{latitude} </if>
+		<if test="insert_time !=null">and bu.insert_time=#{insert_time} </if>
+		<if test="update_time !=null">and bu.update_time=#{update_time} </if>
+		<if test="status_flg !=null">and bu.status_flg=#{status_flg} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.bus.entity.BusUserEntity"
+		resultMap="BusUserResult">
+		select
+		<include refid="Bus_User_Column_List" />
+		from bus_user bu
+		where 1=1
+		<include refid="busUserWhereClause" />
+		<include refid="orderByBusUserClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.bus.entity.BusUserEntity"
+		resultMap="BusUserResult">
+		select
+		<include refid="Bus_User_Column_List" />
+		from bus_user bu
+		where 1=1
+		<include refid="busUserWhereClause" />
+		<include refid="orderByBusUserClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		insert into bus_user (
+		buser_id,group_id,buser_name,buser_tel,longitude,latitude,insert_time,update_time,status_flg
+		)
+		values
+		(#{buser_id,jdbcType=INTEGER},
+		#{group_id,jdbcType=INTEGER},
+		#{buser_name,jdbcType=VARCHAR},
+		#{buser_tel,jdbcType=VARCHAR},
+		#{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR},#{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},#{status_flg,jdbcType=CHAR}
+		)
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		insert into bus_user (
+		buser_id,group_id,buser_name,buser_tel,longitude,latitude,insert_time,update_time,status_flg
+		)
+		values
+		(#{buser_id,jdbcType=INTEGER},
+		#{group_id,jdbcType=INTEGER},
+		#{buser_name,jdbcType=VARCHAR},
+		#{buser_tel,jdbcType=VARCHAR},
+		#{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR},#{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},#{status_flg,jdbcType=CHAR}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		DELETE FROM bus_user WHERE
+		buser_id=#{buser_id}
+	</delete>
+
+	<delete id="deleteBatch" parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		DELETE FROM bus_user
+		WHERE
+		buser_id=#{buser_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		UPDATE bus_user
+		<set>
+			<if test="buser_id != null">
+				buser_id = #{buser_id,jdbcType=INTEGER},
+			</if>
+			<if test="group_id != null">
+				group_id = #{group_id,jdbcType=INTEGER},
+			</if>
+			<if test="buser_name != null">
+				buser_name = #{buser_name,jdbcType=VARCHAR},
+			</if>
+			<if test="buser_tel != null">
+				buser_tel = #{buser_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				insert_time = #{insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status_flg != null">
+				status_flg = #{status_flg,jdbcType=CHAR},
+			</if>
+		</set>
+		where 1=1
+		<if test="buser_id != null">and buser_id = #{buser_id}</if>
+
+	</update>
+
+	<select id="findList" resultType="com.djb.highway.bus.entity.BusUserEntity">
+		select
+		<include refid="Bus_User_Column_List" />
+		from bus_user bu
+		<include refid="orderByBusUserClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.bus.entity.BusUserEntity"
+		parameterType="com.djb.highway.bus.entity.BusUserEntity">
+		select
+		<include refid="Bus_User_Column_List" />
+		from bus_user bu
+		<include refid="orderByBusUserClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+</mapper>

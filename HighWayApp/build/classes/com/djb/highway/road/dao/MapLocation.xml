@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.MapLocationEntity">
+	<resultMap id="ResultMap" type="com.djb.highway.road.entity.MapLocationEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="u_code" property="u_code" jdbcType="VARCHAR" />
+		<result column="u_tel" property="u_tel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="calltime" property="calltime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="CHAR" />
+	</resultMap>
+
+
+	<sql id="location_Column_List">
+		id, u_id, u_code, u_tel, longitude, latitude, calltime,
+		status
+	</sql>
+	<sql id="orderByLocationClause">
+		ORDER BY calltime DESC
+	</sql>
+
+	<sql id="locationWhereClause">
+		<if test="id != null">and id=#{id} </if>
+		<if test="u_id != null">and u_id=#{u_id} </if>
+		<if test="u_code != null">and u_code=#{u_code} </if>
+		<if test="u_tel != null">and u_tel=#{u_tel} </if>
+		<if test="longitude != null">and longitude=#{longitude} </if>
+		<if test="latitude != null">and latitude=#{latitude} </if>
+		<if test="calltime != null">and calltime=#{calltime} </if>
+		<if test="status != null">and status=#{status} </if>
+
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.MapLocationEntity"
+		resultMap="ResultMap">
+		select
+		<include refid="location_Column_List" />
+		from map_location
+		where 1=1
+		<include refid="locationWhereClause" />
+		<include refid="orderByLocationClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.MapLocationEntity"
+		resultMap="ResultMap">
+		select
+		<include refid="location_Column_List" />
+		from map_location
+		where 1=1
+		<include refid="locationWhereClause" />
+		<include refid="orderByLocationClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.MapLocationEntity">
+
+		insert into map_location
+		(u_id,
+		u_code, u_tel,
+		longitude, latitude, calltime,
+		status)
+		values
+		(#{u_id,jdbcType=INTEGER},
+		#{u_code,jdbcType=VARCHAR},
+		#{u_tel,jdbcType=VARCHAR},
+		#{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR},
+		#{calltime,jdbcType=TIMESTAMP},
+		#{status,jdbcType=CHAR})
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.MapLocationEntity">
+		DELETE FROM map_location WHERE
+		id=#{id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.road.entity.MapLocationEntity">
+		DELETE FROM map_location
+		WHERE
+		id=#{id}
+	</delete>
+
+
+
+
+</mapper>

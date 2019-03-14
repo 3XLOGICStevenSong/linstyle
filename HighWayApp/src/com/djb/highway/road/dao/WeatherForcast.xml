@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.WeatherForcastEntity">
+	<resultMap id="WeatherForcastResult"
+		type="com.djb.highway.road.entity.WeatherForcastEntity">
+		<id column="wf_id" property="wf_id" jdbcType="INTEGER" />
+		<result column="cityname" property="cityname" jdbcType="VARCHAR" />
+		<result column="citycode" property="citycode" jdbcType="VARCHAR" />
+		<result column="temperature" property="temperature" jdbcType="VARCHAR" />
+		<result column="day_pic_name" property="day_pic_name" jdbcType="VARCHAR" />
+		<result column="night_pic_name" property="night_pic_name"
+			jdbcType="VARCHAR" />
+		<result column="weather" property="weather" jdbcType="VARCHAR" />
+		<result column="wind" property="wind" jdbcType="VARCHAR" />
+		<result column="curr_temperature" property="curr_temperature"
+			jdbcType="VARCHAR" />
+		<result column="wf_date" property="wf_date" jdbcType="DATE" />
+		<result column="city_id" property="city_id" jdbcType="INTEGER" />
+		<result column="weekday" property="weekday" jdbcType="VARCHAR" />
+		<result column="weather_deploy_time" property="weather_deploy_time"
+			jdbcType="TIMESTAMP" />
+
+	</resultMap>
+
+	<sql id="WeatherForcast_Column_List">
+		wf_id, cityname, citycode, temperature, day_pic_name,
+		night_pic_name,
+		weather, wind,
+		curr_temperature, wf_date, city_id,
+		weekday,weather_deploy_time
+	</sql>
+
+	<sql id="orderByWeatherForcastClause">
+		ORDER BY city_id, wf_date
+	</sql>
+
+	<sql id="WeatherForcastWhereClause">
+		<if test="wf_id != null">and wf_id=#{wf_id} </if>
+		<if test="cityname != null">and cityname=#{cityname} </if>
+		<if test="citycode != null">and citycode=#{citycode} </if>
+		<if test="temperature != null">and temperature=#{temperature} </if>
+		<if test="day_pic_name != null">and day_pic_name=#{day_pic_name} </if>
+		<if test="night_pic_name != null">and night_pic_name=#{night_pic_name} </if>
+		<if test="weather != null">and weather=#{weather} </if>
+		<if test="wind != null">and wind=#{wind} </if>
+		<if test="curr_temperature != null">and curr_temperature=#{curr_temperature} </if>
+		<if test="wf_date != null">and wf_date=#{wf_date} </if>
+		<if test="city_id != null">and city_id=#{city_id} </if>
+		<if test="weekday != null">and weekday=#{weekday} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.WeatherForcastEntity"
+		resultMap="WeatherForcastResult">
+		select
+		<include refid="WeatherForcast_Column_List" />
+		from weather_forcast
+		where 1=1
+		<include refid="WeatherForcastWhereClause" />
+		<include refid="orderByWeatherForcastClause" />
+	</select>
+
+	<select id="getCurDateObject" parameterType="com.djb.highway.road.entity.WeatherForcastEntity"
+		resultMap="WeatherForcastResult">
+		select
+		<include refid="WeatherForcast_Column_List" />
+		from weather_forcast
+		where 1=1
+		and wf_date=CURDATE()
+		<include refid="WeatherForcastWhereClause" />
+		<include refid="orderByWeatherForcastClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.WeatherForcastEntity">
+		select
+		<include refid="WeatherForcast_Column_List" />
+		from weather_forcast
+		where 1=1
+		<include refid="WeatherForcastWhereClause" />
+		<include refid="orderByWeatherForcastClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.WeatherForcastEntity"
+		resultMap="WeatherForcastResult">
+		select
+		<include refid="WeatherForcast_Column_List" />
+		from weather_forcast
+		where 1=1
+		<include refid="WeatherForcastWhereClause" />
+		<include refid="orderByWeatherForcastClause" />
+	</select>
+
+	<delete id="deleteAll">
+		delete from weather_forcast
+	</delete>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.WeatherForcastEntity">
+		delete from weather_forcast
+		where 1=1
+		<include refid="WeatherForcastWhereClause" />
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.WeatherForcastEntity">
+		insert into weather_forcast
+		(wf_id, cityname, citycode,
+		temperature,
+		day_pic_name, night_pic_name,
+		weather, wind,
+		curr_temperature,
+		wf_date,
+		city_id, weekday
+		,weather_deploy_time
+		)
+		values
+		(#{wf_id,jdbcType=INTEGER},
+		#{cityname,jdbcType=VARCHAR},
+		#{citycode,jdbcType=VARCHAR},
+		#{temperature,jdbcType=VARCHAR},
+		#{day_pic_name,jdbcType=VARCHAR},
+		#{night_pic_name,jdbcType=VARCHAR},
+		#{weather,jdbcType=VARCHAR},
+		#{wind,jdbcType=VARCHAR},
+		#{curr_temperature,jdbcType=VARCHAR},
+		#{wf_date,jdbcType=DATE},
+		#{city_id,jdbcType=INTEGER},
+		#{weekday,jdbcType=VARCHAR},#{weather_deploy_time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.WeatherForcastEntity">
+		update weather_forcast
+		<set>
+			<if test="wf_id != null">
+				wf_id = #{wf_id,jdbcType=INTEGER},
+			</if>
+			<if test="cityname != null">
+				cityname = #{cityname,jdbcType=VARCHAR},
+			</if>
+			<if test="citycode != null">
+				citycode = #{citycode,jdbcType=VARCHAR},
+			</if>
+			<if test="temperature != null">
+				temperature = #{temperature,jdbcType=VARCHAR},
+			</if>
+			<if test="day_pic_name != null">
+				day_pic_name = #{day_pic_name,jdbcType=VARCHAR},
+			</if>
+			<if test="night_pic_name != null">
+				night_pic_name = #{night_pic_name,jdbcType=VARCHAR},
+			</if>
+			<if test="weather != null">
+				weather = #{weather,jdbcType=VARCHAR},
+			</if>
+			<if test="wind != null">
+				wind = #{wind,jdbcType=VARCHAR},
+			</if>
+			<if test="curr_temperature != null">
+				curr_temperature = #{curr_temperature,jdbcType=VARCHAR},
+			</if>
+			<if test="wf_date != null">
+				wf_date = #{wf_date,jdbcType=DATE},
+			</if>
+			<if test="city_id != null">
+				city_id = #{city_id,jdbcType=INTEGER},
+			</if>
+			<if test="weekday != null">
+				weekday = #{weekday,jdbcType=VARCHAR},
+			</if>
+			<if test="weather_deploy_time != null">
+				weather_deploy_time = #{weather_deploy_time,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+		where wf_id = #{wf_id,jdbcType=INTEGER}
+	</update>
+
+</mapper>

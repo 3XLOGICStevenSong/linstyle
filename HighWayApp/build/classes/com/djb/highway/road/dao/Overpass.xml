@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.OverpassEntity">
+	<resultMap id="OverpassResult" type="com.djb.highway.road.entity.OverpassEntity">
+		<id column="o_id" property="o_id" jdbcType="INTEGER" />
+		<result column="o_code" property="o_code" jdbcType="VARCHAR" />
+		<result column="o_name" property="o_name" jdbcType="VARCHAR" />
+		<result column="o_city" property="o_city" jdbcType="VARCHAR" />
+		<result column="o_desc" property="o_desc" jdbcType="VARCHAR" />
+		<result column="o_length" property="o_length" jdbcType="VARCHAR" />
+		<result column="o_type" property="o_type" jdbcType="CHAR" />
+		<result column="o_cross_type" property="o_cross_type" jdbcType="CHAR" />
+		<result column="o_status" property="o_status" jdbcType="CHAR" />
+		<result column="o_pic_1" property="o_pic_1" jdbcType="VARCHAR" />
+		<result column="o_pic_2" property="o_pic_2" jdbcType="VARCHAR" />
+		<result column="o_pic_3" property="o_pic_3" jdbcType="VARCHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+
+		<collection property="overpassDetailEntitys" column="o_id"
+			ofType="com.djb.highway.road.entity.OverpassDetailEntity" resultMap="OverpassDetailResult" />
+
+	</resultMap>
+
+	<resultMap id="OverpassDetailResult"
+		type="com.djb.highway.road.entity.OverpassDetailEntity">
+		<id column="od_id" property="od_id" jdbcType="INTEGER" />
+		<id column="entry_plaz_code" property="entry_plaz_code" jdbcType="VARCHAR" />
+		<id column="exit_plaz_code" property="exit_plaz_code" jdbcType="VARCHAR" />
+		<result column="o_id" property="o_id" jdbcType="INTEGER" />
+		<result column="ob_name" property="ob_name" jdbcType="VARCHAR" />
+		<result column="ob_desc" property="ob_desc" jdbcType="VARCHAR" />
+		<result column="ob_length" property="ob_length" jdbcType="VARCHAR" />
+		<result column="ob_status" property="ob_status" jdbcType="CHAR" />
+		<result column="ob_pic" property="ob_pic" jdbcType="VARCHAR" />
+		<result column="entry_plaz_id" property="entry_plaz_id"
+			jdbcType="INTEGER" />
+		<result column="exit_plaz_id" property="exit_plaz_id" jdbcType="INTEGER" />
+		<result column="entry_stake_id" property="entry_stake_id"
+			jdbcType="VARCHAR" />
+		<result column="exit_stake_id" property="exit_stake_id"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="entry_highway_id" property="entry_highway_id"
+			jdbcType="INTEGER" />
+		<result column="entry_highway_code" property="entry_highway_code"
+			jdbcType="VARCHAR" />
+		<result column="entry_highway_name" property="entry_highway_name"
+			jdbcType="VARCHAR" />
+		<result column="exit_highway_id" property="exit_highway_id"
+			jdbcType="INTEGER" />
+		<result column="exit_highway_code" property="exit_highway_code"
+			jdbcType="VARCHAR" />
+		<result column="exit_highway_name" property="exit_highway_name"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Overpass_Column_List">
+		o.o_id, o.o_code, o.o_name, o.o_city, o.o_desc, o.o_length,
+		o.o_type,
+		o.o_cross_type,
+		o.o_status, o.o_pic_1,
+		o.o_pic_2, o.o_pic_3,
+		o.create_time,
+		o.update_time, o.o_corss_line
+	</sql>
+
+	<sql id="OverpassDetail_Column_List">
+		od.od_id, od.entry_plaz_code, od.exit_plaz_code, od.o_id,
+		od.ob_name,
+		od.ob_desc, od.ob_length,
+		od.ob_status,
+		od.ob_pic,
+		od.entry_plaz_id, od.exit_plaz_id,
+		od.entry_stake_id, od.exit_stake_id,
+		od.exit_stake_id,
+		od.exit_stake_id,
+		od.exit_stake_id,
+		od.exit_stake_id,
+		od.exit_stake_id,
+		od.exit_stake_id,
+		od.create_time,
+		od.update_time,
+		od.entry_highway_id, od.entry_highway_code, od.entry_highway_name,
+		od.exit_highway_id,
+		od.exit_highway_code, od.exit_highway_name
+	</sql>
+
+	<sql id="orderByOverpassClause">
+		ORDER BY o.o_id
+	</sql>
+
+	<sql id="orderByOverpassDetailClause">
+		ORDER BY od.entry_stake_id+0 , od.od_id
+	</sql>
+
+	<sql id="OverpassWhereClause">
+		<if test="o_id !=null">and o.o_id=#{o_id} </if>
+		<if test="o_code !=null">and o.o_code=#{o_code} </if>
+		<if test="o_name !=null">and o.o_name=#{o_name} </if>
+		<if test="o_city !=null">and o.o_city=#{o_city} </if>
+		<if test="o_desc !=null">and o.o_desc=#{o_desc} </if>
+		<if test="o_length !=null">and o.o_length=#{o_length} </if>
+		<if test="o_type !=null">and o.o_type=#{o_type} </if>
+		<if test="o_cross_type !=null">and o.o_cross_type=#{o_cross_type} </if>
+		<if test="o_status !=null">and o.o_status=#{o_status} </if>
+		<if test="o_pic_1 !=null">and o.o_pic_1=#{o_pic_1} </if>
+		<if test="o_pic_2 !=null">and o.o_pic_2=#{o_pic_2} </if>
+		<if test="o_pic_3 !=null">and o.o_pic_3=#{o_pic_3} </if>
+		<if test="create_time !=null">and o.create_time=#{create_time} </if>
+		<if test="update_time !=null">and o.update_time=#{update_time} </if>
+
+	</sql>
+
+	<sql id="OverpassDetailWhereClause">
+		<if test="o_id !=null">and od.o_id=#{o_id} </if>
+		<if test="entry_plaz_code !=null">and od.entry_plaz_code=#{entry_plaz_code} </if>
+		<if test="exit_plaz_code !=null">and od.exit_plaz_code=#{exit_plaz_code} </if>
+		<if test="plazaCodeArgs !=null">
+			and entry_plaz_code in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			and exit_plaz_code in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.OverpassEntity"
+		resultMap="OverpassResult">
+		select
+		<include refid="Overpass_Column_List" />
+		from overpass o
+		where 1=1
+		<include refid="OverpassWhereClause" />
+		<include refid="orderByOverpassClause" />
+	</select>
+
+	<select id="getOverpassDetailObject" parameterType="com.djb.highway.road.entity.OverpassEntity"
+		resultMap="OverpassResult">
+		select
+		<include refid="Overpass_Column_List" />
+		,
+		<include refid="OverpassDetail_Column_List" />
+		from overpass o, overpass_detail od
+		where 1=1
+		and o.o_id=od.o_id
+		<include refid="OverpassWhereClause" />
+		<include refid="OverpassDetailWhereClause" />
+		<include refid="orderByOverpassDetailClause" />
+	</select>
+
+	<select id="findOverpassDetailListByCondition" parameterType="com.djb.highway.road.entity.OverpassEntity"
+		resultType="com.djb.highway.road.entity.OverpassDetailEntity">
+		select
+		<include refid="Overpass_Column_List" />
+		,
+		<include refid="OverpassDetail_Column_List" />
+		from overpass o, overpass_detail od
+		where 1=1
+		and o.o_id=od.o_id
+		<include refid="OverpassWhereClause" />
+		<include refid="OverpassDetailWhereClause" />
+		<include refid="orderByOverpassDetailClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.OverpassEntity"
+		resultMap="OverpassResult">
+		select
+		<include refid="Overpass_Column_List" />
+		,
+		<include refid="OverpassDetail_Column_List" />
+		from overpass o, overpass_detail od
+		where 1=1
+		and o.o_id=od.o_id
+		<include refid="OverpassWhereClause" />
+		<include refid="OverpassDetailWhereClause" />
+		<include refid="orderByOverpassDetailClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.OverpassEntity">
+		insert into overpass (o_id,
+		o_code, o_name,
+		o_city, o_desc, o_length,
+		o_type, o_cross_type,
+		o_status,
+		o_pic_1, o_pic_2, o_pic_3,
+		create_time, update_time,
+		o_corss_line
+		)
+		values (#{o_id,jdbcType=INTEGER},
+		#{o_code,jdbcType=VARCHAR},
+		#{o_name,jdbcType=VARCHAR},
+		#{o_city,jdbcType=VARCHAR}, #{o_desc,jdbcType=VARCHAR},
+		#{o_length,jdbcType=VARCHAR},
+		#{o_type,jdbcType=CHAR},
+		#{o_cross_type,jdbcType=CHAR},
+		#{o_status,jdbcType=CHAR},
+		#{o_pic_1,jdbcType=VARCHAR}, #{o_pic_2,jdbcType=VARCHAR},
+		#{o_pic_3,jdbcType=VARCHAR},
+		#{create_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{o_corss_line,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.road.entity.OverpassEntity">
+		insert into overpass
+		(o_id, o_code, o_name,
+		o_city, o_desc, o_length,
+		o_type, o_cross_type,
+		o_status,
+		o_pic_1, o_pic_2, o_pic_3,
+		create_time, update_time,
+		o_corss_line
+		)
+		values (#{o_id,jdbcType=INTEGER},
+		#{o_code,jdbcType=VARCHAR},
+		#{o_name,jdbcType=VARCHAR},
+		#{o_city,jdbcType=VARCHAR}, #{o_desc,jdbcType=VARCHAR},
+		#{o_length,jdbcType=VARCHAR},
+		#{o_type,jdbcType=CHAR},
+		#{o_cross_type,jdbcType=CHAR},
+		#{o_status,jdbcType=CHAR},
+		#{o_pic_1,jdbcType=VARCHAR}, #{o_pic_2,jdbcType=VARCHAR},
+		#{o_pic_3,jdbcType=VARCHAR},
+		#{create_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{o_corss_line,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.OverpassEntity">
+		DELETE FROM overpass
+		where 1=1
+		<include refid="OverpassWhereClause" />
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.road.entity.OverpassEntity">
+		DELETE FROM overpass
+		where 1=1
+		<include refid="OverpassWhereClause" />
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.OverpassEntity">
+		update overpass
+		<set>
+			<if test="o_code != null">
+				o_code = #{o_code,jdbcType=VARCHAR},
+			</if>
+			<if test="o_name != null">
+				o_name = #{o_name,jdbcType=VARCHAR},
+			</if>
+			<if test="o_city != null">
+				o_city = #{o_city,jdbcType=VARCHAR},
+			</if>
+			<if test="o_desc != null">
+				o_desc = #{o_desc,jdbcType=VARCHAR},
+			</if>
+			<if test="o_length != null">
+				o_length = #{o_length,jdbcType=VARCHAR},
+			</if>
+			<if test="o_type != null">
+				o_type = #{o_type,jdbcType=CHAR},
+			</if>
+			<if test="o_cross_type != null">
+				o_cross_type = #{o_cross_type,jdbcType=CHAR},
+			</if>
+			<if test="o_status != null">
+				o_status = #{o_status,jdbcType=CHAR},
+			</if>
+			<if test="o_pic_1 != null">
+				o_pic_1 = #{o_pic_1,jdbcType=VARCHAR},
+			</if>
+			<if test="o_pic_2 != null">
+				o_pic_2 = #{o_pic_2,jdbcType=VARCHAR},
+			</if>
+			<if test="o_pic_3 != null">
+				o_pic_3 = #{o_pic_3,jdbcType=VARCHAR},
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="o_corss_line != null">
+				o_corss_line = #{o_corss_line,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where o_id = #{o_id,jdbcType=INTEGER}
+	</update>
+</mapper>

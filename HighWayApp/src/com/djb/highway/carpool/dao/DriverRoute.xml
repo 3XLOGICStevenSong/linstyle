@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.carpool.entity.DriverRouteEntity">
+	<resultMap id="DriverRouteResult" type="com.djb.highway.carpool.entity.DriverRouteEntity">
+		<id column="dr_id" property="dr_id" jdbcType="INTEGER" />
+		<result column="cu_id" property="cu_id" jdbcType="INTEGER" />
+		<result column="start_time" property="start_time" jdbcType="TIMESTAMP" />
+		<result column="start_city" property="start_city" jdbcType="VARCHAR" />
+		<result column="end_city" property="end_city" jdbcType="VARCHAR" />
+		<result column="charter_flg" property="charter_flg" jdbcType="CHAR" />
+		<result column="total_num" property="total_num" jdbcType="INTEGER" />
+		<result column="total_price " property="total_price " jdbcType="REAL" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+		<result column="dr_memo" property="dr_memo" jdbcType="VARCHAR" />
+		<result column="dr_insert_time" property="dr_insert_time" jdbcType="TIMESTAMP" />
+		<result column="dr_update_time" property="dr_update_time" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="end_time" jdbcType="TIMESTAMP" />
+		<collection property="carpoolRouteEntitys" 
+			ofType="com.djb.highway.carpool.entity.CarpoolRouteEntity" resultMap="CarpoolRouteResult" />
+	</resultMap>
+
+	<resultMap id="CarpoolRouteResult"
+		type="com.djb.highway.carpool.entity.CarpoolRouteEntity">
+		<id column="cr_id" property="cr_id" jdbcType="INTEGER" />
+		<result column="pr_id" property="pr_id" jdbcType="INTEGER" />
+		<result column="dr_id" property="dr_id" jdbcType="INTEGER" />
+		<result column="insure_id" property="insure_id" jdbcType="VARCHAR" />
+		<result column="lottery_id" property="lottery_id" jdbcType="VARCHAR" />
+		<result column="aboard_longitude" property="aboard_longitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_latitude" property="aboard_latitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_longitude" property="debus_longitude"
+			jdbcType="VARCHAR" />
+		<result column="debus_latitude" property="debus_latitude"
+			jdbcType="VARCHAR" />
+		<result column="aboard_time" property="aboard_time" jdbcType="TIMESTAMP" />
+		<result column="debus_time" property="debus_time" jdbcType="TIMESTAMP" />
+		<result column="status_flg" property="status_flg" jdbcType="CHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="DriverRoute_Column_List">
+		dr.dr_id, dr.cu_id, dr.start_time, dr.start_city,dr.end_city,
+		dr.charter_flg, dr.total_num,
+		dr.total_price,
+		dr.status_flg, dr.dr_memo, dr.dr_insert_time,
+		dr.dr_update_time,dr.end_time
+	</sql>
+	<sql id="CarpoolRoute_Column_List">
+		cr.cr_id, cr.pr_id, cr.dr_id, cr.insure_id, cr.lottery_id,
+		cr.aboard_longitude,
+		cr.aboard_latitude, cr.debus_longitude,
+		cr.debus_latitude,
+		cr.aboard_time, cr.debus_time, cr.status_flg, cr.memo, cr.insert_time, cr.update_time
+	</sql>
+	<sql id="DriverRouteWhereClause">
+		<if test="dr_id!=null">and dr.dr_id=#{dr_id} </if>
+		<if test="cu_id!=null">and dr.cu_id=#{cu_id} </if>
+		<if test="start_time!=null">and dr.start_time=#{start_time} </if>
+		<if test="start_city!=null">and dr.start_city=#{start_city} </if>
+		<if test="end_city!=null">and dr.end_city=#{end_city} </if>
+		<if test="charter_flg!=null">and dr.charter_flg=#{charter_flg} </if>
+		<if test="total_num!=null">and dr.total_num=#{total_num} </if>
+		<if test="total_price !=null">and dr.total_price =#{total_price } </if>
+		<if test="status_flg!=null">and dr.status_flg=#{status_flg} </if>
+		<if test="dr_memo!=null">and dr.dr_memo=#{dr_memo} </if>
+		<if test="dr_insert_time!=null">and dr.dr_insert_time=#{dr_insert_time} </if>
+		<if test="dr_update_time!=null">and dr.dr_update_time=#{dr_update_time} </if>
+		<if test="end_time!=null">and dr.end_time=#{end_time} </if>
+	</sql>
+
+	<sql id="orderByDriverRouteClause">
+		ORDER BY  dr.start_time  DESC
+	</sql>
+	<sql id="orderByCarpoolRouteClause">
+		ORDER BY  cr.pr_id DESC
+	</sql>
+	<select id="getObject" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity"
+		resultMap="DriverRouteResult">
+		select
+		<include refid="DriverRoute_Column_List" />
+		from driver_route dr
+		where 1=1
+		<include refid="DriverRouteWhereClause" />
+		<include refid="orderByDriverRouteClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity"
+		resultMap="DriverRouteResult">
+		select
+		<include refid="DriverRoute_Column_List" />
+		,
+		<include refid="CarpoolRoute_Column_List" />
+		from driver_route dr, carpool_route cr
+		where 1=1
+		and dr.dr_id=cr.dr_id
+		<include refid="DriverRouteWhereClause" />
+		<include refid="orderByDriverRouteClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.carpool.entity.DriverRouteEntity">
+		select
+		<include refid="DriverRoute_Column_List" />
+		from driver_route dr
+		<include refid="orderByDriverRouteClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.carpool.entity.DriverRouteEntity"
+		parameterType="com.djb.highway.carpool.entity.DriverRouteEntity">
+		select
+		<include refid="DriverRoute_Column_List" />
+		from driver_route dr
+		<include refid="DriverRouteWhereClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*) from
+		driver_route dr
+	</select>
+
+
+	<delete id="delete" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity">
+		delete from driver_route
+		where
+		dr_id = #{dr_id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity">
+		insert into driver_route
+		(dr_id, cu_id, start_time,
+		start_city, end_city, charter_flg,
+		total_num, total_price , status_flg,
+		dr_memo, dr_insert_time, dr_update_time,end_time
+		)
+		values
+		(#{dr_id,jdbcType=INTEGER}, #{cu_id,jdbcType=INTEGER},
+		#{start_time,jdbcType=TIMESTAMP},
+		#{start_city,jdbcType=VARCHAR},
+		#{end_city,jdbcType=VARCHAR}, #{charter_flg,jdbcType=CHAR},
+		#{total_num,jdbcType=INTEGER}, #{total_price ,jdbcType=REAL},
+		#{status_flg,jdbcType=CHAR},
+		#{dr_memo,jdbcType=VARCHAR},
+		#{dr_insert_time,jdbcType=TIMESTAMP}, #{dr_update_time,jdbcType=TIMESTAMP},#{end_time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity">
+		update driver_route
+		<set>
+			<if test="cu_id != null">
+				cu_id = #{cu_id,jdbcType=INTEGER},
+			</if>
+			<if test="start_time != null">
+				start_time = #{start_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="start_city != null">
+				start_city = #{start_city,jdbcType=VARCHAR},
+			</if>
+			<if test="end_city != null">
+				end_city = #{end_city,jdbcType=VARCHAR},
+			</if>
+			<if test="charter_flg != null">
+				charter_flg = #{charter_flg,jdbcType=CHAR},
+			</if>
+			<if test="total_num != null">
+				total_num = #{total_num,jdbcType=INTEGER},
+			</if>
+			<if test="total_price != null">
+				total_price  = #{total_price ,jdbcType=REAL},
+			</if>
+			<if test="status_flg != null">
+				status_flg = #{status_flg,jdbcType=CHAR},
+			</if>
+			<if test="dr_memo != null">
+				dr_memo = #{dr_memo,jdbcType=VARCHAR},
+			</if>
+			<if test="dr_insert_time != null">
+				dr_insert_time = #{dr_insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dr_update_time != null">
+				dr_update_time = #{dr_update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="end_time != null">
+				end_time = #{end_time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where dr_id = #{dr_id,jdbcType=INTEGER}
+	</update>
+  	<select id="getValidList" parameterType="com.djb.highway.carpool.entity.DriverRouteEntity"
+		resultMap="DriverRouteResult">
+		select
+		<include refid="DriverRoute_Column_List" />
+		from driver_route dr
+		where 1=1 and  dr.charter_flg='0'
+		 <if test="from_time != null and to_time != null">
+			and dr.start_time >= #{from_time} and dr.start_time  &lt;=
+			#{to_time}
+		</if>
+		<include refid="DriverRouteWhereClause" />
+		<include refid="orderByDriverRouteClause" />
+	</select>
+</mapper>

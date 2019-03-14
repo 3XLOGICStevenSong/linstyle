@@ -1,0 +1,24 @@
+
+a.closeBtn{position:absolute;top:0px;right:5px;display:block;padding:0 4px;text-align:center;color:#333;}
+a.closeBtn:hover{color:#fff;border:1px solid #85B6E2;}
+h1{color:#85B6E2;text-align:center;padding-top:20px;}
+
+.blk{width:80%;height:auto;margin:0 auto}
+.blk .head{padding-left:4px;}
+.blk .main{border-radius:5px;position:relative;background:#fff;}
+.blk .main h2{font:bold 22px "微软雅黑","arial";padding:10px 20px 2px;color:#000000;text-align:center}
+
+
+
+/* 自定义样式 */
+.t5 .blk{width:100%;}
+.t5 .blk h2{color:#aaa;}
+.t5 .blk .main ul li a{color:#aaa;}
+.t5 .blk .head, .t5 .blk .head-right, .t5 .blk .foot, .t5 .blk .foot-right{background:url(images/pop_up_bg2.png);}
+
+/**/
+* html .popup_iframe{
+	width:expression(this.previousSibling.style.width);
+	height:expression(this.previousSibling.style.height);
+}
+

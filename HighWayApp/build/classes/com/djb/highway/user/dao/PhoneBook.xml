@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.PhoneBookEntity">
+	<resultMap id="PhoneBookResult" type="com.djb.highway.user.entity.PhoneBookEntity">
+		<id column="p_id" property="p_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="tel_num" property="tel_num" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.PhoneBookEntity"
+		resultMap="PhoneBookResult">
+		select
+		<include refid="PhoneBook_Column_List" />
+		from opinion
+		where 1=1
+		<include refid="PhoneBookWhereClause" />
+	</select>
+
+	<sql id="PhoneBook_Column_List">
+		p_id, u_id, tel_num, insert_time,update_time,memo
+	</sql>
+
+	<sql id="orderByClause">
+		ORDER BY p_id DESC
+	</sql>
+
+	<sql id="PhoneBookWhereClause">
+		<if test="p_id !=null">and p_id=#{p_id} </if>
+		<if test="u_id !=null">and u_id=#{u_id} </if>
+		<if test="tel_num !=null">and tel_num=#{tel_num} </if>
+		<if test="insert_time !=null">and insert_time=#{insert_time} </if>
+		<if test="update_time !=null">and update_time=#{update_time} </if>
+		<if test="memo!=null">and memo=#{memo} </if>
+	</sql>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.PhoneBookEntity"
+		resultMap="PhoneBookResult">
+		select
+		<include refid="PhoneBook_Column_List" />
+		from phone_book
+		where 1=1
+		<include refid="PhoneBookWhereClause" />
+		<include refid="orderByClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.PhoneBookEntity">
+		insert into phone_book
+		(p_id,
+		u_id, tel_num, insert_time,update_time,memo)
+		values
+		(#{p_id,jdbcType=INTEGER}, #{u_id,jdbcType=INTEGER},
+		#{tel_num,jdbcType=VARCHAR},
+		#{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR})
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.PhoneBookEntity">
+		insert into phone_book
+		(p_id, u_id, tel_num, insert_time,update_time,memo)
+		values
+		(#{p_id,jdbcType=INTEGER}, #{u_id,jdbcType=INTEGER},
+		#{tel_num,jdbcType=VARCHAR},
+		#{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR})
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.PhoneBookEntity">
+		DELETE FROM
+		phone_book
+		WHERE
+		u_id=#{u_id} and tel_num=#{tel_num} and memo=#{memo}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.PhoneBookEntity">
+		UPDATE phone_book
+		<set>
+			<if test="p_id != null">
+				p_id = #{p_id,jdbcType=INTEGER},
+			</if>
+			<if test="u_id!= null">
+				u_id = #{u_id,jdbcType=VARCHAR},
+			</if>
+			<if test="tel_num != null">
+				tel_num = #{tel_num,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				insert_time = #{insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where 1=1
+		and p_id=#{p_id}
+	</update>
+
+
+	<select id="findList" resultType="com.djb.highway.user.entity.PhoneBookEntity">
+		SELECT
+		<include refid="PhoneBook_Column_List" />
+		FROM phone_book
+		ORDER BY p_id DESC
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.PhoneBookEntity"
+		parameterType="com.djb.highway.user.entity.PhoneBookEntity">
+		SELECT
+		<include refid="PhoneBook_Column_List" />
+		FROM phone_book
+		ORDER BY p_id DESC
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*)
+		FROM
+		phone_book
+	</select>
+
+</mapper>

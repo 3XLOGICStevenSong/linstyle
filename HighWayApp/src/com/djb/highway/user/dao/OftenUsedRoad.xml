@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.OftenUsedRoadEntity">
+	<resultMap id="OftenUsedRoadResult"
+		type="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		<id column="our_id" property="our_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="plaz_id_start" property="plaz_id_start"
+			jdbcType="INTEGER" />
+		<result column="plaz_id_end" property="plaz_id_end" jdbcType="INTEGER" />
+		<result column="our_road_name" property="our_road_name"
+			jdbcType="CHAR" />
+		<result column="our_direction" property="our_direction"
+			jdbcType="CHAR" />
+		<result column="our_memo" property="our_memo" jdbcType="VARCHAR" />
+		<result column="our_reg_time" property="our_reg_time" jdbcType="TIMESTAMP" />
+		<result column="road_type" property="road_type" jdbcType="VARCHAR" />
+		<result column="car_type" property="car_type" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity"
+		resultMap="OftenUsedRoadResult">
+		select
+		<include refid="OftenUsedRoad_Column_List" />
+		from often_used_road
+		where 1=1
+		<include refid="OftenUsedRoadWhereClause" />
+	</select>
+
+	<sql id="OftenUsedRoad_Column_List">
+		our_id, u_id, h_id, plaz_id_start,
+		plaz_id_end,plaz_code_start,
+		plaz_code_end,our_road_name,
+		our_direction, our_memo,
+		our_reg_time,road_type,car_type
+	</sql>
+
+	<sql id="orderByClause">
+		ORDER BY our_id DESC
+	</sql>
+
+	<sql id="OftenUsedRoadWhereClause">
+		<if test="our_id!=null">and our_id=#{our_id} </if>
+		<if test="u_id!=null">and u_id=#{u_id} </if>
+		<if test="h_id!=null">and h_id=#{h_id} </if>
+		<if test="plaz_id_start!=null">and plaz_id_start=#{plaz_id_start} </if>
+		<if test="plaz_id_end!=null">and plaz_id_end=#{plaz_id_end} </if>
+		<if test="plaz_code_start!=null">and plaz_code_start=#{plaz_code_start} </if>
+		<if test="plaz_code_end!=null">and plaz_code_end=#{plaz_code_end} </if>
+		<if test="our_road_name!=null">and our_road_name=#{our_road_name} </if>
+		<if test="our_direction!=null">and our_direction=#{our_direction} </if>
+		<if test="our_memo!=null">and our_memo=#{our_memo} </if>
+		<if test="our_reg_time!=null">and our_reg_time=#{our_reg_time} </if>
+		<if test="road_type!=null">and road_type=#{road_type} </if>
+		<if test="car_type!=null">and car_type=#{car_type} </if>
+	</sql>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity"
+		resultMap="OftenUsedRoadResult">
+		select
+		<include refid="OftenUsedRoad_Column_List" />
+		from often_used_road
+		where 1=1
+		<include refid="OftenUsedRoadWhereClause" />
+		<include refid="orderByClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		insert into often_used_road
+		(our_id, u_id, h_id,
+		plaz_id_start, plaz_id_end,
+		plaz_code_start,plaz_code_end,
+		our_road_name,
+		our_direction,
+		our_memo,
+		our_reg_time,road_type,car_type)
+		values
+		(#{our_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{h_id,jdbcType=INTEGER},
+		#{plaz_id_start,jdbcType=INTEGER},
+		#{plaz_id_end,jdbcType=INTEGER},
+		#{plaz_code_start,jdbcType=CHAR},
+		#{plaz_code_end,jdbcType=CHAR},
+		#{our_road_name,jdbcType=CHAR},
+		#{our_direction,jdbcType=CHAR},
+		#{our_memo,jdbcType=VARCHAR},
+		#{our_reg_time,jdbcType=TIMESTAMP},
+		#{road_type,jdbcType=VARCHAR},
+		#{car_type,jdbcType=VARCHAR})
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		insert into
+		often_used_road (our_id, u_id, h_id,
+		plaz_id_start, plaz_id_end,
+		plaz_code_start,plaz_code_end,
+		our_road_name,
+		our_direction,
+		our_memo,
+		our_reg_time,road_type,car_type)
+		values
+		(#{our_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{h_id,jdbcType=INTEGER},
+		#{plaz_id_start,jdbcType=INTEGER},
+		#{plaz_id_end,jdbcType=INTEGER},
+		#{plaz_code_start,jdbcType=CHAR},
+		#{plaz_code_end,jdbcType=CHAR},
+		#{our_road_name,jdbcType=CHAR},#{our_direction,jdbcType=CHAR},
+		#{our_memo,jdbcType=VARCHAR}, #{our_reg_time,jdbcType=TIMESTAMP},
+		#{road_type,jdbcType=VARCHAR},#{car_type,jdbcType=VARCHAR})
+	</insert>
+
+
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		DELETE FROM often_used_road
+		WHERE
+		u_id=#{u_id} and plaz_code_start=#{plaz_code_start} and
+		plaz_code_end
+		=#{plaz_code_end} and road_type=#{road_type}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		DELETE FROM
+		often_used_road WHERE
+		u_id=#{u_id}and
+		plaz_code_start=#{plaz_code_start}and plaz_code_end
+		=#{plaz_code_start} and road_type=#{road_type}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		UPDATE often_used_road
+		<set>
+			<if test="our_id != null">
+				our_id = #{our_id,jdbcType=INTEGER},
+			</if>
+			<if test="u_id != null">
+				u_id = #{u_id,jdbcType=INTEGER},
+			</if>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="plaz_id_start != null">
+				plaz_id_start = #{plaz_id_start,jdbcType=INTEGER},
+			</if>
+			<if test="plaz_id_end != null">
+				plaz_id_end = #{plaz_id_end,jdbcType=INTEGER},
+			</if>
+
+			<if test="plaz_code_start != null">
+				plaz_code_start = #{plaz_code_start,jdbcType=CHAR},
+			</if>
+			<if test="plaz_end_start != null">
+				plaz_end_start = #{plaz_end_start,jdbcType=CHAR},
+			</if>
+
+			<if test="our_road_name != null">
+				our_road_name = #{our_road_name,jdbcType=CHAR},
+			</if>
+			<if test="our_direction != null">
+				our_direction = #{our_direction,jdbcType=CHAR},
+			</if>
+			<if test="our_memo != null">
+				our_memo = #{our_memo,jdbcType=VARCHAR},
+			</if>
+			<if test="our_reg_time != null">
+				our_reg_time = #{our_reg_time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="road_type != null">
+				road_type = #{road_type,jdbcType=VARCHAR},
+			</if>
+			<if test="car_type != null">
+				car_type = #{car_type,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where 1=1
+		and our_id=#{our_id}
+	</update>
+
+
+	<select id="findList" resultType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		SELECT
+		<include refid="OftenUsedRoad_Column_List" />
+		FROM often_used_road
+		ORDER BY our_id
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.OftenUsedRoadEntity"
+		parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		SELECT
+		<include refid="OftenUsedRoad_Column_List" />
+		FROM often_used_road
+		ORDER BY our_id
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*)
+		FROM
+		often_used_road
+	</select>
+
+
+	<select id="getOftenUsedRoadListByTimeStamp" resultType="com.djb.highway.user.entity.OftenUsedRoadEntity"
+		parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		SELECT
+		<include refid="OftenUsedRoad_Column_List" />
+		FROM often_used_road our
+		WHERE 1=1
+		<if test="u_id!=null">and u_id=#{u_id} </if>
+		<if test="our_version_time!=null">and our.our_reg_time > #{our_version_time} </if>
+		ORDER BY our_id
+	</select>
+
+
+
+
+	<select id="getMaxTimeStampObject" parameterType="com.djb.highway.user.entity.OftenUsedRoadEntity"
+		resultMap="OftenUsedRoadResult">
+		select
+		MAX(our.our_reg_time) AS our_reg_time, our.our_id,
+		u_id, h_id,
+		plaz_id_start,
+		plaz_id_end,plaz_code_start,
+		plaz_code_end,our_road_name,
+		our_direction, our_memo,
+		road_type
+		FROM
+		`often_used_road` our
+		where 1=1
+		<include refid="OftenUsedRoadWhereClause" />
+	</select>
+
+
+</mapper>

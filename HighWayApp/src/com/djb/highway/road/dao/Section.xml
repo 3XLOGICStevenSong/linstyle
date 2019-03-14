@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.highway.road.entity.SectionEntity">
+	<resultMap id="SectionResult" type="com.djb.highway.road.entity.SectionEntity">
+		<id column="section_id" property="section_id" jdbcType="INTEGER" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="section_name" property="section_name" jdbcType="VARCHAR" />
+		<result column="section_type" property="section_type" jdbcType="CHAR" />
+		<result column="section_status" property="section_status"
+			jdbcType="CHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="speed" property="speed" jdbcType="REAL" />
+		<result column="volumn" property="volumn" jdbcType="REAL" />
+		<result column="level" property="level" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<sql id="Section_Column_List">
+		section_id, h_id, h_code, h_name, section_name, section_type, section_status,
+		create_time,
+		update_time, direction, speed, volumn, level
+	</sql>
+
+	<sql id="orderBySectionClause">
+		ORDER BY section_id
+	</sql>
+
+	<sql id="SectionWhereClause">
+		<if test="section_id != null">and section_id=#{section_id} </if>
+		<if test="h_id != null">and h_id=#{h_id} </if>
+		<if test="h_code != null">and h_code=#{h_code} </if>
+		<if test="h_name != null">and h_name=#{h_name} </if>
+		<if test="section_name != null">and section_name=#{section_name} </if>
+		<if test="section_type != null">and section_type=#{section_type} </if>
+		<if test="section_status != null">and section_status=#{section_status} </if>
+		<if test="direction != null">and direction=#{direction} </if>
+		<if test="speed != null">and speed=#{speed} </if>
+		<if test="volumn != null">and volumn=#{volumn} </if>
+		<if test="level != null">and level=#{level} </if>
+		<if test="create_time != null">and create_time=#{create_time} </if>
+		<if test="update_time != null">and update_time=#{update_time} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.SectionEntity"
+		resultMap="SectionResult">
+		select
+		<include refid="Section_Column_List" />
+		from section
+		where 1=1
+		<include refid="SectionWhereClause" />
+		<include refid="orderBySectionClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.SectionEntity"
+		resultMap="SectionResult">
+		select
+		<include refid="Section_Column_List" />
+		from section
+		where 1=1
+		<include refid="SectionWhereClause" />
+		<include refid="orderBySectionClause" />
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from section
+		where
+		section_id = #{section_id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.SectionEntity">
+		insert into section (section_id, h_id, h_code,
+		h_name, section_name, section_type,
+		section_status, create_time, update_time,
+		direction, speed, volumn, level
+		)
+		values (#{section_id,jdbcType=INTEGER}, #{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR}, #{section_name,jdbcType=VARCHAR}, #{section_type,jdbcType=CHAR},
+		#{section_status,jdbcType=CHAR}, #{create_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{direction,jdbcType=CHAR}, #{speed,jdbcType=REAL}, #{volumn,jdbcType=REAL},
+		#{level,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.SectionEntity">
+		update section
+		<set>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="h_code != null">
+				h_code = #{h_code,jdbcType=VARCHAR},
+			</if>
+			<if test="h_name != null">
+				h_name = #{h_name,jdbcType=VARCHAR},
+			</if>
+			<if test="section_name != null">
+				section_name = #{section_name,jdbcType=VARCHAR},
+			</if>
+			<if test="section_type != null">
+				section_type = #{section_type,jdbcType=CHAR},
+			</if>
+			<if test="section_status != null">
+				section_status = #{section_status,jdbcType=CHAR},
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=CHAR},
+			</if>
+			<if test="speed != null">
+				speed = #{speed,jdbcType=REAL},
+			</if>
+			<if test="volumn != null">
+				volumn = #{volumn,jdbcType=REAL},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where section_id = #{section_id,jdbcType=INTEGER}
+	</update>
+</mapper>

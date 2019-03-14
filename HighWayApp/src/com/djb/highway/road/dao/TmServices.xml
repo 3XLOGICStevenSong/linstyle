@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.TmServicesEntity">
+	<resultMap id="TmServicesResult" type="com.djb.highway.road.entity.TmServicesEntity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="sa_id" jdbcType="INTEGER" property="sa_id" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="service_time" jdbcType="VARCHAR" property="service_time" />
+		<result column="service_name" jdbcType="VARCHAR" property="service_name" />
+		<result column="intro" jdbcType="VARCHAR" property="intro" />
+		<result column="tel" jdbcType="VARCHAR" property="tel" />
+		<result column="pic" jdbcType="VARCHAR" property="pic" />
+		<result column="introduction" jdbcType="VARCHAR" property="introduction" />
+		<collection property="tmServicesDetailsEntitys"
+			ofType="com.djb.highway.road.entity.TmServicesDetailsEntity"
+			resultMap="TmServicesDetailsResult" />
+	</resultMap>
+
+	<resultMap id="TmServicesDetailsResult"
+		type="com.djb.highway.road.entity.TmServicesDetailsEntity">
+		<id column="sd_id" jdbcType="INTEGER" property="sd_id" />
+		<result column="service_id" jdbcType="INTEGER" property="service_id" />
+		<result column="details_num" jdbcType="VARCHAR" property="details_num" />
+		<result column="details_name" jdbcType="VARCHAR" property="details_name" />
+		<result column="details_pic" jdbcType="VARCHAR" property="details_pic" />
+		<result column="details_1" jdbcType="VARCHAR" property="details_1" />
+		<result column="details_type" jdbcType="VARCHAR" property="details_type" />
+	</resultMap>
+
+	<sql id="TmServices_Column_List">
+		ts.id,ts.sa_id,ts.type,ts.service_time,
+		ts.service_name,ts.intro,ts.tel,ts.pic,ts.introduction
+	</sql>
+	<sql id="TmServicesDetails_Column_List">
+		tsd.sd_id,tsd.service_id,tsd.details_num,tsd.details_name,tsd.details_pic,
+		tsd.details_1,tsd.details_type
+	</sql>
+
+	<sql id="TmServicesWhereClause">
+		<if test="id != null">and ts.id=#{id} </if>
+		<if test="sa_id != null">and ts.sa_id=#{sa_id} </if>
+		<if test="type != null">and ts.type=#{type} </if>
+		<if test="service_time != null">and ts.service_time=#{service_time} </if>
+		<if test="service_name != null">and ts.service_name=#{service_name} </if>
+		<if test="intro != null">and ts.intro=#{intro} </if>
+		<if test="tel != null">and ts.tel=#{tel} </if>
+		<if test="pic != null">and ts.pic=#{pic} </if>
+		<if test="introduction != null">and ts.introduction=#{introduction} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.TmServicesEntity"
+		resultMap="TmServicesResult">
+		select
+		<include refid="TmServices_Column_List" />
+		,
+		<include refid="TmServicesDetails_Column_List" />
+		from tm_services ts,tm_services_details tsd
+		where 1=1
+		and tsd.service_id
+		= ts.id
+		<include refid="TmServicesWhereClause" />
+	</select>
+
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.TmServicesEntity"
+		resultMap="TmServicesResult">
+		select
+		<include refid="TmServices_Column_List" />
+		from tm_services ts
+		where 1=1
+		<include refid="TmServicesWhereClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.TmServicesEntity">
+		select
+		<include refid="TmServices_Column_List" />
+		from tm_services ts
+	</select>
+
+
+
+</mapper>

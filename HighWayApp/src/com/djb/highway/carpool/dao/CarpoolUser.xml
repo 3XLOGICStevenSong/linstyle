@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.highway.carpool.entity.CarpoolUserEntity">
+	<resultMap id="CarpoolUserResultMap"
+		type="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		<id column="cu_id" jdbcType="INTEGER" property="cu_id" />
+		<result column="cu_name" jdbcType="VARCHAR" property="cu_name" />
+		<result column="cu_nick" jdbcType="VARCHAR" property="cu_nick" />
+		<result column="id_number" jdbcType="VARCHAR" property="id_number" />
+		<result column="driving_license_pic" jdbcType="VARCHAR"
+			property="driving_license_pic" />
+		<result column="car_license_pic" jdbcType="VARCHAR" property="car_license_pic" />
+		<result column="people_license" jdbcType="VARCHAR" property="people_license" />
+		<result column="cu_tel" jdbcType="VARCHAR" property="cu_tel" />
+		<result column="car_brand" jdbcType="VARCHAR" property="car_brand" />
+		<result column="car_type" jdbcType="VARCHAR" property="car_type" />
+		<result column="car_color" jdbcType="VARCHAR" property="car_color" />
+		<result column="car_num" jdbcType="VARCHAR" property="car_num" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="level" jdbcType="CHAR" property="level" />
+		<result column="car_seat_num" jdbcType="INTEGER" property="car_seat_num" />
+		<result column="d_success_count" jdbcType="INTEGER" property="d_success_count" />
+		<result column="d_fail_count" jdbcType="INTEGER" property="d_fail_count" />
+		<result column="p_success_count" jdbcType="INTEGER" property="p_success_count" />
+		<result column="p_fail_count" jdbcType="INTEGER" property="p_fail_count" />
+		<result column="status_flg" jdbcType="CHAR" property="status_flg" />
+		<result column="memo" jdbcType="VARCHAR" property="memo" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insert_time" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+		<result column="cu_code" jdbcType="VARCHAR" property="cu_code" />
+		<result column="cu_password" jdbcType="VARCHAR" property="cu_password" />
+		<result column="cu_question" jdbcType="VARCHAR" property="cu_question" />
+		<result column="cu_answer" jdbcType="VARCHAR" property="cu_answer" />
+	
+	</resultMap>
+
+	<sql id="CarpoolUser_Column_List">
+		cu_id, cu_name, cu_nick, id_number, driving_license_pic,
+		car_license_pic, people_license,
+		cu_tel, car_brand, car_type,
+		car_color, car_num, longitude, latitude, level,
+		car_seat_num,
+		d_success_count, d_fail_count, p_success_count, p_fail_count,
+		status_flg, memo,
+		insert_time,
+		update_time,cu_code,cu_password,cu_question,cu_answer
+	</sql>
+
+	<sql id="orderByCarpoolUserClause">
+		ORDER BY cu_id DESC
+	</sql>
+
+	<sql id="carpoolUserWhereClause">
+		<if test="cu_id !=null">and cu_id=#{cu_id} </if>
+		<if test="cu_name !=null">and cu_name=#{cu_name} </if>
+		<if test="cu_nick !=null">and cu_code=#{cu_code} </if>
+		<if test="id_number !=null">and id_number=#{id_number} </if>
+		<if test="driving_license_pic !=null">and driving_license_pic=#{driving_license_pic} </if>
+		<if test="car_license_pic !=null">and car_license_pic=#{car_license_pic} </if>
+		<if test="people_license !=null">and people_license=#{people_license} </if>
+		<if test="cu_tel !=null">and cu_tel=#{cu_tel} </if>
+		<if test="car_brand !=null">and car_brand=#{car_brand} </if>
+		<if test="car_type !=null">and car_type=#{car_type} </if>
+		<if test="car_color !=null">and car_color=#{car_color} </if>
+		<if test="car_num !=null">and car_num=#{car_num} </if>
+		<if test="longitude !=null">and longitude=#{longitude} </if>
+		<if test="latitude !=null">and latitude=#{latitude} </if>
+		<if test="level !=null">and level=#{level} </if>
+		<if test="car_seat_num !=null">and car_seat_num=#{car_seat_num} </if>
+		<if test="d_success_count !=null">and d_success_count=#{d_success_count} </if>
+		<if test="d_fail_count !=null">and d_fail_count=#{d_fail_count} </if>
+		<if test="p_success_count !=null">and p_success_count=#{p_success_count} </if>
+		<if test="p_fail_count !=null">and p_fail_count=#{p_fail_count} </if>
+		<if test="status_flg !=null">and status_flg=#{status_flg} </if>
+		<if test="memo !=null">and memo=#{memo} </if>
+		<if test="insert_time !=null">and insert_time=#{insert_time} </if>
+		<if test="update_time !=null">and update_time=#{update_time} </if>
+		<if test="cu_code !=null">and cu_code=#{cu_code} </if>
+		<if test="cu_password !=null">and cu_password=#{cu_password} </if>
+		<if test="cu_question !=null">and cu_question=#{cu_question} </if>
+		<if test="cu_answer !=null">and cu_answer=#{cu_answer} </if>
+	
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity"
+		resultMap="CarpoolUserResultMap">
+		select
+		<include refid="CarpoolUser_Column_List" />
+		from carpool_user
+		where 1=1
+		<if test="cu_id!=null">and cu_id=#{cu_id} </if>
+		<if test="cu_code!=null">and cu_code=#{cu_code} </if>
+		<include refid="orderByCarpoolUserClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity"
+		resultMap="CarpoolUserResultMap">
+		select
+		<include refid="CarpoolUser_Column_List" />
+		from carpool_user
+		where 1=1
+		<include refid="carpoolUserWhereClause" />
+		<include refid="orderByCarpoolUserClause" />
+	</select>
+	<insert id="insert" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		insert into carpool_user
+		(cu_id, cu_name, cu_nick,
+		id_number, driving_license_pic,
+		car_license_pic,
+		people_license, cu_tel, car_brand,
+		car_type, car_color,
+		car_num,
+		longitude, latitude, level,
+		car_seat_num, d_success_count,
+		d_fail_count,
+		p_success_count, p_fail_count, status_flg,
+		memo,
+		insert_time, update_time,cu_code,cu_password,cu_question,cu_answer
+		)
+		values (#{cu_id,jdbcType=INTEGER},
+		#{cu_name,jdbcType=VARCHAR},
+		#{cu_nick,jdbcType=VARCHAR},
+		#{id_number,jdbcType=VARCHAR},
+		#{driving_license_pic,jdbcType=VARCHAR},
+		#{car_license_pic,jdbcType=VARCHAR},
+		#{people_license,jdbcType=VARCHAR}, #{cu_tel,jdbcType=VARCHAR},
+		#{car_brand,jdbcType=VARCHAR},
+		#{car_type,jdbcType=VARCHAR},
+		#{car_color,jdbcType=VARCHAR}, #{car_num,jdbcType=VARCHAR},
+		#{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR},
+		#{level,jdbcType=CHAR},
+		#{car_seat_num,jdbcType=INTEGER},
+		#{d_success_count,jdbcType=INTEGER},
+		#{d_fail_count,jdbcType=INTEGER},
+		#{p_success_count,jdbcType=INTEGER}, #{p_fail_count,jdbcType=INTEGER},
+		#{status_flg,jdbcType=CHAR},
+		#{memo,jdbcType=VARCHAR},
+		#{insert_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},
+		#{cu_code,jdbcType=VARCHAR}, #{cu_password,jdbcType=VARCHAR},
+		#{cu_question,jdbcType=VARCHAR}, #{cu_answer,jdbcType=VARCHAR}
+
+		)
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		insert into carpool_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cu_id != null">
+				cu_id,
+			</if>
+			<if test="cu_name != null">
+				cu_name,
+			</if>
+			<if test="cu_nick != null">
+				cu_nick,
+			</if>
+			<if test="id_number != null">
+				id_number,
+			</if>
+			<if test="driving_license_pic != null">
+				driving_license_pic,
+			</if>
+			<if test="car_license_pic != null">
+				car_license_pic,
+			</if>
+			<if test="people_license != null">
+				people_license,
+			</if>
+			<if test="cu_tel != null">
+				cu_tel,
+			</if>
+			<if test="car_brand != null">
+				car_brand,
+			</if>
+			<if test="car_type != null">
+				car_type,
+			</if>
+			<if test="car_color != null">
+				car_color,
+			</if>
+			<if test="car_num != null">
+				car_num,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="car_seat_num != null">
+				car_seat_num,
+			</if>
+			<if test="d_success_count != null">
+				d_success_count,
+			</if>
+			<if test="d_fail_count != null">
+				d_fail_count,
+			</if>
+			<if test="p_success_count != null">
+				p_success_count,
+			</if>
+			<if test="p_fail_count != null">
+				p_fail_count,
+			</if>
+			<if test="status_flg != null">
+				status_flg,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="insert_time != null">
+				insert_time,
+			</if>
+			<if test="update_time != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cu_id != null">
+				#{cu_id,jdbcType=INTEGER},
+			</if>
+			<if test="cu_name != null">
+				#{cu_name,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_nick != null">
+				#{cu_nick,jdbcType=VARCHAR},
+			</if>
+			<if test="id_number != null">
+				#{id_number,jdbcType=VARCHAR},
+			</if>
+			<if test="driving_license_pic != null">
+				#{driving_license_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="car_license_pic != null">
+				#{car_license_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="people_license != null">
+				#{people_license,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_tel != null">
+				#{cu_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="car_brand != null">
+				#{car_brand,jdbcType=VARCHAR},
+			</if>
+			<if test="car_type != null">
+				#{car_type,jdbcType=VARCHAR},
+			</if>
+			<if test="car_color != null">
+				#{car_color,jdbcType=VARCHAR},
+			</if>
+			<if test="car_num != null">
+				#{car_num,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=CHAR},
+			</if>
+			<if test="car_seat_num != null">
+				#{car_seat_num,jdbcType=INTEGER},
+			</if>
+			<if test="d_success_count != null">
+				#{d_success_count,jdbcType=INTEGER},
+			</if>
+			<if test="d_fail_count != null">
+				#{d_fail_count,jdbcType=INTEGER},
+			</if>
+			<if test="p_success_count != null">
+				#{p_success_count,jdbcType=INTEGER},
+			</if>
+			<if test="p_fail_count != null">
+				#{p_fail_count,jdbcType=INTEGER},
+			</if>
+			<if test="status_flg != null">
+				#{status_flg,jdbcType=CHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				#{insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				#{update_time,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		DELETE FROM carpool_user WHERE
+		cu_id=#{cu_id}
+	</delete>
+
+	<delete id="deleteBatch" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		DELETE FROM carpool_user
+		WHERE
+		cu_id=#{cu_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		update carpool_user
+		<set>
+			<if test="cu_id != null">
+				cu_id = #{cu_id,jdbcType=INTEGER},
+			</if>
+			<if test="cu_name != null">
+				cu_name = #{cu_name,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_nick != null">
+				cu_nick = #{cu_nick,jdbcType=VARCHAR},
+			</if>
+			<if test="id_number != null">
+				id_number = #{id_number,jdbcType=VARCHAR},
+			</if>
+			<if test="driving_license_pic != null">
+				driving_license_pic =
+				#{driving_license_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="car_license_pic != null">
+				car_license_pic =
+				#{car_license_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="people_license != null">
+				people_license =
+				#{people_license,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_tel != null">
+				cu_tel = #{cu_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="car_brand != null">
+				car_brand = #{car_brand,jdbcType=VARCHAR},
+			</if>
+			<if test="car_type != null">
+				car_type = #{car_type,jdbcType=VARCHAR},
+			</if>
+			<if test="car_color != null">
+				car_color = #{car_color,jdbcType=VARCHAR},
+			</if>
+			<if test="car_num != null">
+				car_num = #{car_num,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=CHAR},
+			</if>
+			<if test="car_seat_num != null">
+				car_seat_num = #{car_seat_num,jdbcType=INTEGER},
+			</if>
+			<if test="d_success_count != null">
+				d_success_count =
+				#{d_success_count,jdbcType=INTEGER},
+			</if>
+			<if test="d_fail_count != null">
+				d_fail_count = #{d_fail_count,jdbcType=INTEGER},
+			</if>
+			<if test="p_success_count != null">
+				p_success_count =
+				#{p_success_count,jdbcType=INTEGER},
+			</if>
+			<if test="p_fail_count != null">
+				p_fail_count = #{p_fail_count,jdbcType=INTEGER},
+			</if>
+			<if test="status_flg != null">
+				status_flg = #{status_flg,jdbcType=CHAR},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				insert_time = #{insert_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP},
+			</if>
+				<if test="cu_code != null">
+				cu_code = #{cu_code,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_password != null">
+				cu_password = #{cu_password,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_question != null">
+				cu_question = #{cu_question,jdbcType=VARCHAR},
+			</if>
+			<if test="cu_answer != null">
+				cu_answer = #{cu_answer,jdbcType=VARCHAR},
+			</if>
+			
+			
+		</set>
+		where 1=1
+		<if test="cu_id != null">and cu_id = #{cu_id}</if>
+	</update>
+
+	<select id="findList" resultType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		select
+		<include refid="CarpoolUser_Column_List" />
+		from carpool_user
+		<include refid="orderByCarpoolUserClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.carpool.entity.CarpoolUserEntity"
+		parameterType="com.djb.highway.carpool.entity.CarpoolUserEntity">
+		select
+		<include refid="CarpoolUser_Column_List" />
+		from carpool_user
+		<include refid="orderByCarpoolUserClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+	<select id="countCarpoolUserNumber" resultType="int">
+		SELECT count(*)
+		from carpool_user
+	</select>
+</mapper>

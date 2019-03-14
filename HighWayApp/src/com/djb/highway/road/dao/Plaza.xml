@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.PlazaEntity">
+	<resultMap id="PlazaResult" type="com.djb.highway.road.entity.PlazaEntity">
+		<id column="plaz_id" property="plaz_id" jdbcType="INTEGER" />
+		<result column="plaz_code" property="plaz_code" jdbcType="VARCHAR" />
+		<result column="plaz_name" property="plaz_name" jdbcType="VARCHAR" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="stake_id" property="stake_id" jdbcType="VARCHAR" />
+		<result column="plaz_city" property="plaz_city" jdbcType="VARCHAR" />
+		<result column="location_desc" property="location_desc"
+			jdbcType="VARCHAR" />
+		<result column="entry_all" property="entry_all" jdbcType="VARCHAR" />
+		<result column="exit_all" property="exit_all" jdbcType="VARCHAR" />
+		<result column="etc_flg" property="etc_flg" jdbcType="CHAR" />
+		<result column="plaz_exit_place" property="plaz_exit_place"
+			jdbcType="VARCHAR" />
+		<result column="plaz_enter_place" property="plaz_enter_place"
+			jdbcType="VARCHAR" />
+		<result column="entry_pass_condition" property="entry_pass_condition"
+			jdbcType="VARCHAR" />
+		<result column="exit_pass_condition" property="exit_pass_condition"
+			jdbcType="VARCHAR" />
+		<result column="longitude_a" property="longitude_a" jdbcType="VARCHAR" />
+		<result column="latitude_a" property="latitude_a" jdbcType="VARCHAR" />
+		<result column="longitude_b" property="longitude_b" jdbcType="VARCHAR" />
+		<result column="latitude_b" property="latitude_b" jdbcType="VARCHAR" />
+		<result column="c_id" property="c_id" jdbcType="INTEGER" />
+		<result column="pic_url" property="pic_url" jdbcType="VARCHAR" />
+		<result column="plaz_status" property="plaz_status" jdbcType="CHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+		<result column="manage_code" property="manage_code" jdbcType="VARCHAR" />
+		<result column="manage_name" property="manage_name" jdbcType="VARCHAR" />
+		<result column="city_code" property="city_code" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<sql id="Plaza_Column_List">
+		plaz_id, plaz_code, plaz_name, h_id, h_code, h_name,
+		stake_id, plaz_city,
+		location_desc,
+		entry_all, exit_all, etc_flg,
+		plaz_exit_place, plaz_enter_place,
+		entry_pass_condition,
+		exit_pass_condition, longitude_a, latitude_a, longitude_b, latitude_b,
+		c_id, pic_url,
+		plaz_status, create_time,
+		update_time,manage_code,manage_name,city_code
+	</sql>
+
+
+	<sql id="orderByPlazaClause">
+		ORDER BY h_code,stake_id
+	</sql>
+
+	<sql id="PlazaWhereClause">
+		<if test="plaz_id !=null">and plaz_id=#{plaz_id} </if>
+		<if test="plaz_name != null">and plaz_name=#{plaz_name} </if>
+		<if test="plaz_code != null">and plaz_code=#{plaz_code} </if>
+		<if test="h_id != null">and h_id=#{h_id} </if>
+		<if test="h_code != null">and h_code=#{h_code} </if>
+		<if test="etc_flg != null">and etc_flg=#{etc_flg} </if>
+		<if test="plaz_status != null">and plaz_status=#{plaz_status} </if>
+		<if test="manage_code != null">and manage_code=#{manage_code} </if>
+		<if test="manage_name != null">and manage_name=#{manage_name} </if>
+		<if test="city_code != null">and city_code=#{city_code} </if>
+
+		<if test="plazaCodeArgs !=null">
+			and plaz_code in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.PlazaEntity"
+		resultMap="PlazaResult">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza
+		where 1=1
+		<include refid="PlazaWhereClause" />
+		<include refid="orderByPlazaClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.PlazaEntity">
+		insert into plaza (plaz_id,
+		plaz_code, plaz_name,
+		h_id, h_code, h_name,
+		stake_id, plaz_city,
+		location_desc,
+		entry_all, exit_all, etc_flg,
+		plaz_exit_place,
+		plaz_enter_place, entry_pass_condition,
+		exit_pass_condition,
+		longitude_a, latitude_a,
+		longitude_b, latitude_b, c_id,
+		pic_url,
+		plaz_status, create_time,
+		update_time,city_code)
+		values
+		(#{plaz_id,jdbcType=INTEGER}, #{plaz_code,jdbcType=VARCHAR},
+		#{plaz_name,jdbcType=VARCHAR},
+		#{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR}, #{h_name,jdbcType=VARCHAR},
+		#{stake_id,jdbcType=VARCHAR}, #{plaz_city,jdbcType=VARCHAR},
+		#{location_desc,jdbcType=VARCHAR},
+		#{entry_all,jdbcType=VARCHAR},
+		#{exit_all,jdbcType=VARCHAR}, #{etc_flg,jdbcType=CHAR},
+		#{plaz_exit_place,jdbcType=VARCHAR},
+		#{plaz_enter_place,jdbcType=VARCHAR},
+		#{entry_pass_condition,jdbcType=VARCHAR},
+		#{exit_pass_condition,jdbcType=VARCHAR},
+		#{longitude_a,jdbcType=VARCHAR}, #{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR}, #{latitude_b,jdbcType=VARCHAR},
+		#{c_id,jdbcType=INTEGER},
+		#{pic_url,jdbcType=VARCHAR},
+		#{plaz_status,jdbcType=CHAR}, #{create_time,jdbcType=TIMESTAMP},
+		#{update_time,jdbcType=TIMESTAMP},#{city_code,jdbcType=VARCHAR})
+	</insert>
+
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.PlazaEntity">
+		delete from plaza
+		<!-- where plaz_id = #{plaz_id,jdbcType=INTEGER} -->
+		where 1=1
+		<include refid="PlazaWhereClause" />
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.PlazaEntity">
+		update plaza
+		<set>
+			<if test="plaz_code != null">
+				plaz_code = #{plaz_code,jdbcType=VARCHAR},
+			</if>
+			<if test="plaz_name != null">
+				plaz_name = #{plaz_name,jdbcType=VARCHAR},
+			</if>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="h_code != null">
+				h_code = #{h_code,jdbcType=VARCHAR},
+			</if>
+			<if test="h_name != null">
+				h_name = #{h_name,jdbcType=VARCHAR},
+			</if>
+			<if test="stake_id != null">
+				stake_id = #{stake_id,jdbcType=VARCHAR},
+			</if>
+			<if test="plaz_city != null">
+				plaz_city = #{plaz_city,jdbcType=VARCHAR},
+			</if>
+			<if test="location_desc != null">
+				location_desc = #{location_desc,jdbcType=VARCHAR},
+			</if>
+			<if test="entry_all != null">
+				entry_all = #{entry_all,jdbcType=VARCHAR},
+			</if>
+			<if test="exit_all != null">
+				exit_all = #{exit_all,jdbcType=VARCHAR},
+			</if>
+			<if test="etc_flg != null">
+				etc_flg = #{etc_flg,jdbcType=CHAR},
+			</if>
+			<if test="plaz_exit_place != null">
+				plaz_exit_place = #{plaz_exit_place,jdbcType=VARCHAR},
+			</if>
+			<if test="plaz_enter_place != null">
+				plaz_enter_place = #{plaz_enter_place,jdbcType=VARCHAR},
+			</if>
+			<if test="entry_pass_condition != null">
+				entry_pass_condition =
+				#{entry_pass_condition,jdbcType=VARCHAR},
+			</if>
+			<if test="exit_pass_condition != null">
+				exit_pass_condition =
+				#{exit_pass_condition,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude_a != null">
+				longitude_a = #{longitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_a != null">
+				latitude_a = #{latitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude_b != null">
+				longitude_b = #{longitude_b,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_b != null">
+				latitude_b = #{latitude_b,jdbcType=VARCHAR},
+			</if>
+			<if test="c_id != null">
+				c_id = #{c_id,jdbcType=INTEGER},
+			</if>
+			<if test="pic_url != null">
+				pic_url = #{pic_url,jdbcType=VARCHAR},
+			</if>
+			<if test="plaz_status != null">
+				plaz_status = #{plaz_status,jdbcType=CHAR},
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update_time != null">
+				update_time = #{update_time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="city_code != null">
+				city_code = #{city_code,jdbcType=VARCHAR}
+			</if>
+
+
+		</set>
+		where plaz_id = #{plaz_id,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectMap" parameterType="com.djb.highway.road.entity.PlazaEntity"
+		resultMap="PlazaResult">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza
+		where 1=1
+		<include refid="PlazaWhereClause" />
+		<include refid="orderByPlazaClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.PlazaEntity"
+		resultMap="PlazaResult">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza
+		where 1=1
+		<include refid="PlazaWhereClause" />
+		<include refid="orderByPlazaClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.PlazaEntity">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza
+		where 1=1
+		<include refid="orderByPlazaClause" />
+	</select>
+
+
+	<select id="findListByRoadNames" parameterType="com.djb.highway.road.entity.PlazaEntity"
+		resultMap="PlazaResult">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza
+		where 1=1
+		<if test="roadNames !=null">
+			and plaz_code in
+			<foreach item="item" index="index" collection="roadNames"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="roadNames !=null">
+			order by
+			<foreach item="item" index="index" collection="roadNames"
+				open="field(plaz_code," separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+
+		<include refid="PlazaWhereClause" />
+	</select>
+
+
+	<select id="findHighWayNumByRoadNames" parameterType="com.djb.highway.road.entity.PlazaEntity"
+		resultMap="PlazaResult">
+		select
+		<include refid="Plaza_Column_List" />
+		from plaza pa
+		where 1=1
+		<if test="roadNames !=null">
+			and pa.plaz_code in
+			<foreach item="item" index="index" collection="roadNames"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<include refid="PlazaWhereClause" />
+		GROUP BY pa.manage_code
+		<include refid="orderByPlazaClause" />
+	</select>
+
+
+	<select id="getPlazaPointList" parameterType="com.djb.highway.road.entity.PlazaEntity"
+	resultMap="PlazaResult">
+	select
+	<include refid="Plaza_Column_List" />
+	from plaza pa
+	where
+	1=1 and longitude_b !='' and latitude_b !='' 
+	<if test="h_code != null">
+		and h_code = #{h_code,jdbcType=VARCHAR}
+	</if>
+	<if test="longitude_b!=null and latitude_b!=null">
+		and (longitude_b + 0 between (#{longitude_b}-1)
+		and(#{longitude_b}+1))
+		and
+		(latitude_b +
+		0 between (#{latitude_b}-1)
+		and(#{latitude_b}+1))
+		and
+		((sqrt(
+		(
+		((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+		*
+		((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+		)
+		+
+		(
+		((#{latitude_b}-latitude_b)*PI()*12656/180)
+		*
+		((#{latitude_b}-latitude_b)*PI()*12656/180)
+		)
+		)) + 0 between 0 and 80)
+	</if>
+
+</select>
+
+	<!-- <select id="getPlazListForCameraStake" parameterType="com.djb.highway.road.entity.PlazaEntity" 
+		resultMap="PlazaResult"> SELECT plaz_code, stake_id,plaz_name FROM plaza 
+		where 1=1 <if test="h_code != null and stake_id != null"> (stake_id + 0) 
+		>= (SELECT max(stake_id + 0) FROM plaza where stake_id + 0 <= #{stake_id} 
+		and h_code LIKE #{h_code}) and (stake_id + 0) <= (SELECT min(stake_id + 0) 
+		FROM plaza where stake_id + 0 >= #{stake_id} and h_code LIKE #{h_code}) and 
+		h_code LIKE #{h_code} </if> order by stake_id + 0 </select> -->
+
+</mapper>

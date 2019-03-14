@@ -1,0 +1,233 @@
+/* CSS Document */
+ body,hr, p, a, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td{margin:0;padding:0; list-style-type:none;text-decoration:none}
+html, body {width: 100%;height: 100%;}
+input, select{font-family:"arial", "微软雅黑";}
+h3{color:#fff;text-align:center;font-weight:100;display:block;margin:0 auto;}
+body {
+  margin: 0 ;
+  font-family:"arial", "微软雅黑";
+  font-size: 1.2rem;
+  line-height: 32px;
+  color: #333333;
+  background-color: #fff;
+  width: 100%;
+ /** -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-overflow-scrolling: touch;**/
+  background-color: #e8e8e8;
+  overflow:scroll;
+  webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+input,select,a{outline:none;border:none}
+.page1{
+  position: relative;
+  width: 100%;
+  /*overflow-x: hidden;*/
+  margin:0 auto;
+  height: 100%;
+
+}
+
+header {
+  width: 100%;
+  display: -webkit-box;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-bottom:1px solid #d0d0d0;
+  margin:0 auto;
+  height:30px;
+  position:fixed;
+  top:0;
+  z-index:999;
+  display:block
+     
+}
+
+
+header .back{float:right;background-image
+: url(../images/icon1.png);background-repeat:no-repeat;background-size:30px;background-position:10px -34px;width:40px;height:30px;position:absolute;right:25px;top:12px}
+
+header .back:hover{background-image: url(../images/icon1.png);backround-repeat:no-repeat;background-size:30px;background-position:10px -101px;}
+header .admin{float:left;background-image
+: url(../images/icon1.png);background-repeat:no-repeat;background-size:30px;background-position:0px 0px;width:40px;height:32px;position:absolute;left:10px;top:12px}
+header .admin:hover{background-image: url(../images/icon1.png);backround-repeat:no-repeat;background-size:30px;background-position:0px -67px;}
+
+header .switch{clear:both;text-align: center;color:#000;text-indent:-36px;display:in-block;}
+header .switch i{font-size:28px;position:relative;top:0px;left:0px;vertical-align:middle;margin:0 auto;color:#777777;}
+
+.logo{width:100%;margin:0 auto;}
+.logo i{background-image: url(../images/logo.png);
+background-repeat:no-repeat;
+    outline: 0;
+    border-radius: 0.3em;
+    z-index: 2;
+    display:block;
+	background-size:180px;
+	width:180px;
+	height:124px;
+	margin:0 auto;
+	overflow:inherit
+    
+   }
+.button{width:80%;margin:0 auto;}
+.button a{line-height:40px;background:#0086ff;border-radius:5px;text-align:center;margin:20px auto;color:#fff;display:block}
+.button .in1{border:1px solid #ababab;background:#f4f4f4;color:#0086ff;}
+.button a:hover{line-height:40px;background:#0086ff;border-radius:5px;text-align:center;margin:20px auto;color:#fff;display:block}
+.content{padding:50px 0 0 0;border-bottom:1px solid #d0d0d0;font-size:16px;}
+.content1{padding:50px 0 30px 0;font-size:16px;}
+
+.text{width:100%;background:#FFF;padding:10px 20px 10px;line-height:32px;overflow:hidden;border-bottom:1px solid #d0d0d0;}
+.text input{border:none;background:#dfdfdf;border-radius:3px;line-height:26px;font-size:16px;width:60%}
+.text .t{float:left;width:70%;line-height:30px; vertical-align:middle;}
+.text .t .text1{white-space: nowrap;text-overflow: ellipsis;overflow:hidden}
+.text .t .text1 .icon-admin{font-size:22px;color:#47b915; vertical-align: middle;padding-right:5px;}
+.text .t .text2 .icon-mobile{font-size:22px;color:#47b915; vertical-align: inherit;padding-right:5px}
+.text .button1{float:right;line-height:24px;background:#72cf49;padding:6px 8px;border-radius:6px;color:#fff;text-align:center;margin:8px 35px 5px 10px}
+.text .button1 a{color:#fff;}
+.text .button1:hover{background:#60c533}
+.list1{margin-top:15px}
+.list1 li{background-color:#fff;border-top:1px solid #d0d0d0; padding:5px 20px;font-size:20px ;}
+.list1 li:hover{background:#f8f8f8;}
+.list1 a{color:#000;background:#fff;display:block}
+.list1 li i{position: absolute;right: 10px;width: 8px;height: 8px;border-bottom: 3px solid #666;border-right: 3px solid #666;
+-webkit-transform: rotate(-45deg);margin-top:10px}
+.list1 .icon-file-text2{color:#878787;padding-right:5px;vertical-align: inherit}
+.list1 .icon-user-check{color:#878787;padding-right:5px;vertical-align: inherit}
+.list1 .icon-file-text2{color:#878787;padding-right:5px;vertical-align: inherit}
+.list1 .icon-meter{color:#878787;padding-right:5px;vertical-align: inherit}
+.title{width:100%;padding:0 0 10px 0;overflow:hidden}
+.title span{width:50%;display:block;float:left;text-align:center;padding:10px 0;background-color:#fff}
+.title .one{border-bottom:4px solid #0086ff;color:#0086ff}
+.title .one .t-one{position:absolute;top:92px;background-color:#0086ff;border-radius:50px;color:#fff;line-height:20px;text-align:center;width:20px;font-size:14px;left:24%}
+.title .one .t-two{position:absolute;top:92px;background-color:#0086ff;border-radius:50px;color:#fff;line-height:20px;text-align:center;width:20px;font-size:14px;left:74%}
+.title .two{border-bottom:4px solid #b9b9b9;color:#808080}
+.title .two .t-two{position:absolute;top:92px;background-color:#b9b9b9;border-radius:50px;color:#fff;line-height:20px;text-align:center;width:20px;font-size:14px;left:74%}
+.title .two .t-one{position:absolute;top:92px;background-color:#b9b9b9;border-radius:50px;color:#fff;line-height:20px;text-align:center;width:20px;font-size:14px;left:24%}
+.main{padding:10px 20px;overflow:hidden;margin:0 auto}
+.main h4{text-align:center;font-size:18px;color:#383838;line-height:28px}
+
+.select{padding:8px;overflow:hidden}
+.select .hr{width:100%;overflow:hidden;background-color:#e8e8e8;text-align:center; vertical-align:middle;margin:0 auto;font-size:14px}
+.select .hr font{text-align:center;position: relative;left:0;overflow:hidden;color:#a2a2a2;line-height:36px}
+.select .hr .one{width:34%;border-bottom:1px solid #b4b4b4;display:block;float:left;text-align:center;padding:10px 0px;}
+.select .hr .two{width:34%;float:right;border-bottom:1px solid #b4b4b4;color:#0086ff;padding:10px 0px;}
+.select .xian{display:block;position: absolute;left:49%;overflow:hidden; margin-top:6px}
+.select .icon-to{font-size:26px; vertical-align:middle;color:#2c2c2c;width:32px;height:50px;display:block;position: absolute;left:46%;overflow:hidden;line-height:40px}
+
+.select .select1{border:1px solid #8a8a8a;border-radius:8px;background-color:#fff;margin:0 0 6px 0;width:44%;line-height:40px;float:left;padding:4px 2px 6px 4px}
+.select .select1 select{border:none;display:block;line-height:30px;height:30px}
+.select .select1 input{border:none;display:block;font-size:16px;color:#0086ff}
+.select .select1 .qidian{padding:0;border:none;text-align: left;width:100%}
+.select .select1 .qidian select{background:none;border:none;line-height:30px;color:#0086ff;font-size:16px;text-align:left;padding:0;width:100%;}
+.select .select1 .qidian i{background:url(../images/down.png) no-repeat;width:17px;height:12px;display:block;float:right;margin:12px 4px 0 0}
+.select .select1 .zhongdian{float:right;padding:4px 2px 4px 2px;border:none;text-align: left;width:100%;line-height:40px}
+.select .select1 .zhongdian select{background:none;border:none;line-height:36px;color:#0086ff;font-size:16px;text-align:left;padding:0;width:100%;}
+.select .select1 .qidian input[value]{text-align:left;display:block;line-height:24px;overflow:hidden;padding-left:4px}
+
+
+.select .checkbox{border-radius:8px;margin:0;width:40%;text-align:center;display:block;overflow:hidden;position: relative;left:30%;top:60px}
+
+  
+.select .button{background-color:#0086ff;padding:5px;text-align:center;color:#fff;border-radius:5px;font-size:18px;width:90%;margin:0 auto;display:block;clear:both}
+.select .button:hover{background-color:#007ae9;}
+
+.main .icon-right{color:#0086ff;font-size:50px}
+.main .main1{border:1px solid #8a8a8a;border-radius:8px;background-color:#fff;margin:0 0 20px 0}
+.main .main1 p{padding:8px 12px;border:none;}
+.main .main1 .m-top{border-bottom:1px solid #8a8a8a;}
+.main .main1 .m-top a{float:right;background:#72cf4a;font-size:12px;line-height:30px;padding:0px 3px;border-radius:5px;color:#fff;overflow:hidden;display:block}
+.main .main1 .m-top a:hover{background:#53b42a}
+.main .main1 .m-top input{width:45%}
+.main .main1 .m-top select{font-size:16px;color:#0086ff;width:62%}
+.main .main1 .m-top1{border-bottom:1px solid #8a8a8a;}
+.main .main1 input{border:none;width:50%;line-height:30px;}
+.main .main1 input[placeholder]{font-size:16px;color: #333; font-family:"arial", "微软雅黑";}
+.main .main1 p i{float:right;margin-top:8px;background:url(../images/next.png);background-size:13px;width:13px;height:20px}
+.main .main1 a{font-size:16px;color:#333333;}
+.main .main1 a font{color:#a9a9a9}
+
+
+
+.main .button{background-color:#0086ff;padding:5px;text-align:center;color:#fff;border-radius:5px;font-size:18px;width:90%;margin:0 auto;display:block;}
+.main .button:hover{background-color:#007ae9;}
+.main .button1{width:100%;}
+.main .button1 span{width:48%;background-color:#0086ff;text-align:center;color:#fff;border-radius:5px;font-size:18px;padding:5px 0;}
+.main .button1 span:hover{background-color:#007ae9;}
+.main .pic1{float:right;padding:6px;border:1px solid #c6c6c6;text-align:center;background-color:#fff;margin-right:5px;margin-bottom:10px}
+.main .pic1 a{color:#424242}
+.main .pic1 font{background-color:#505153;border-radius:10px;width:110px;height:80px;margin:0 auto;display:block;line-height:36px;padding:5px;color:#fff;font-family:"arial", "宋体";font-weight:700;color:#ffe878; vertical-align:middle}
+.main .pic2{float:left;padding:6px;border:1px solid #c6c6c6;text-align:center;background-color:#fff;margin-left:5px}
+.main .pic2 a{color:#424242}
+.main .pic2 font{background-color:#2457aa;border-radius:10px;width:110px;height:80px;margin:0 auto;display:block;line-height:36px;padding:5px;color:#fff;font-family:"arial", "宋体";font-weight:700;color:#ffe878; vertical-align:middle}
+.main .pic3{clear:both;overflow:hidden;height:100%;padding:10px;border:1px solid #c6c6c6;text-align:center;background-color:#fff;margin:0 auto;max-width:280px}
+.main .pic3 a{color:#424242;background-color:#eaeaea;}
+.main .pic3 img{background-color:#eaeaea;width:100%;height:100%;overflow:hidden;display:block}
+
+.detail{border:1px solid #8a8a8a;border-radius:8px;background-color:#fff;margin:0;}
+.detail p{padding:6px 12px;border:none;}
+.detail .m-top{border-bottom:1px solid #8a8a8a;}
+.detail input{border:none;width:68%;line-height:30px;margin:0;}
+.detail input[placeholder]{font-size:16px;color: #999; font-family:"arial", "微软雅黑";}
+.detail input[value]{color:#0086ff;}
+
+.top1{width:100%;margin:0 auto;display:block;padding:3px 0 ;font-size:16px;line-height:32px;overflow: hidden;background-color: #fff;color:#404040;border-top:1px solid #dfdfdf}
+.top1 font{padding:0 3px;font-weight:100 }
+.top1 p{font-size:14px;padding:0 5px;line-height:24px;color:#0086ff;font-weight:100;}
+.top1 img{padding:0px}
+.top1 .start{background-color:#6C3;font-size:16px;color:#fff;border-radius:5px;vertical-align:middle;padding:5px;margin:0 5px;font-weight:100}
+.top1 .end{background-color:#e01500;font-size:16px;color:#fff;border-radius:5px;vertical-align:middle;padding:5px;margin:0 5px;font-weight:100}
+.top1 .icon-to{font-size:40px; vertical-align:middle;color:#2c2c2c}
+
+.top{width:100%;margin:0 auto;display:block;text-align:center;padding:10px 0 0 0;font-size:18px;position:fixed;top:50px;overflow: hidden;background-color: #e8e8e8;  z-index:999;}
+.top font{padding:0 10px;font-weight:700 }
+.top p{font-size:14px;text-indent:10px;line-height:20px}
+.top img{padding:0 5px}
+.top .start{background-color:#6C3;font-size:16px;color:#fff;border-radius:5px;vertical-align:middle;padding:5px;margin:0 5px;font-weight:100}
+.top .end{background-color:#e01500;font-size:16px;color:#fff;border-radius:5px;vertical-align:middle;padding:5px;margin:0 5px;font-weight:100}
+.top .icon-to{font-size:40px; vertical-align:middle;color:#2c2c2c}
+.list{background-color:#e8e8e8;border:none;margin:72px 0 0 0;font-size:12px;width:100%;float:left;} 
+.list ul{width:100%;overflow:hidden;}
+.list li a{color:#000;}
+.list li{width:100%;margin:4px auto;line-height:28px;background-color:#fff;font-size:18px;padding:3px 0 0 0;overflow:hidden}
+.list li:hover{color:#000;background-color:#fafafa;}
+.list li i{float:right;margin-top:8px;background:url(../images/next.png);background-size:13px;width:13px;height:20px}
+.list li .qiangdan{width:100%;padding:0px;margin:0 auto;background-color:#f8f8f8;font-size:16px;}
+
+.list li .qiangdan font{font-size:14px;color:#8c8c8c;position: absolute;right:5%}
+.list li .qiangdan .ck{width:40px;background-color:#ff9c00;font-size:10px;color:#fff;border-radius:5px;vertical-align:middle;padding:3px 5px;margin:0 5px;font-weight:100;position:relative;right:0}
+
+.list li .title{border-bottom:1px solid #b8b8b8;width:100%;padding:0px;margin:0 auto;text-indent:10px;line-height:32px}
+.list li .title .ck{width:40px;background-color:#ff9c00;font-size:10px;color:#fff;border-radius:5px;vertical-align:middle;padding:3px 5px;margin:0 5px;font-weight:100;position:relative;right:0}
+.list li .bc{width:40px;background-color:#41ce02;font-size:10px;color:#fff;border-radius:5px;vertical-align:middle;padding:3px 5px;margin:0 5px;font-weight:100;position:relative;right:0}
+
+.list li .title font{font-size:14px;color:#8c8c8c;position: absolute;right:3%}
+.list li .position{text-indent:6px;float:left;width:100%;padding:5px 0 0 0;margin:0 auto;font-size:16px}
+.list li .position .icon-to{font-size:30px; vertical-align:middle;color:#2c2c2c}
+.list li .position .qi{color:#6C3;font-size:16px; vertical-align:middle;padding:0 5px;}
+.list li .position .zhong{color:#e01500;font-size:16px; vertical-align:middle;padding:0 5px;}
+
+.list li .main a{font-size:20px;color:#fff;float:right;background-color:#0086ff;border-radius:5px;padding:3px 10px;font-weight:300;}
+.list li .main .bc{width:40px;background-color:#41ce02;font-size:10px;color:#fff;border-radius:5px;vertical-align:middle;padding:3px 5px;margin:0 5px;font-weight:100;position:relative;right:0}
+.list li .main{width:96%;padding:0 0 5px 0;margin:0 auto;font-size:14px;display:block}
+
+
+.bottom{clear:both;width:100%;height:32px;position:fixed;bottom:0px;margin:0 auto; font-size:12px;text-align:center;border:none;color:#8d8d8d;background-color: #e8e8e8;}
+.list .last{margin-bottom:32px}
+
+
+footer{float:left;width:100%;height:76px;position:fixed;bottom:0px;margin:0 auto; font-size:12px;position:fixed;text-align:center;border:none;background:none;color:#8d8d8d}
+footer a{display:block}
+footer span{width:100%;display:block;text-align:center;background:#f1f1f1;border-top:1px solid #cacaca;height:50px;font-size:16px;color:#2f2f2f;text-indent:36px;}
+footer span font{display:block;position:relative;top:-14px;font-size:18px}
+footer .icon-clipboard{display:block;font-size:22px;position:relative;top:12px;left:-60px;vertical-align:middle;margin:0 auto;color:#0086ff}
+
+.footer{float:left;;width:100%;height:45px;margin:0 auto;position:relative;bottom:10px;text-align:center;font-size:16px;color:#333}
+.footer a{display:inline-block;margin:0 5px;color:#333}
+.footer a:hover{color:#0086ff}
+
+.btn-upload{position: relative; display:inline-block;height:90px; *display:inline;overflow:hidden;vertical-align:middle;cursor:pointer}
+.upload-url{cursor: pointer}
+.input-file{position:absolute; right:0; top:0; cursor: pointer; z-index:1; font-size:30em; *font-size:30px;opacity:0;filter: alpha(opacity=0)}
+.btn-upload .input-text{ width:auto;}
+.form-group .upload-btn{ margin-left:-1px}
+

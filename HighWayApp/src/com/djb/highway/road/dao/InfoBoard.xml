@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djb.highway.road.entity.InfoBoardEntity">
+	<resultMap id="InfoBoardResult" type="com.djb.highway.road.entity.InfoBoardEntity">
+		<id column="ib_id" property="ib_id" jdbcType="INTEGER" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="section_id" property="section_id" jdbcType="INTEGER" />
+		<result column="ib_addr" property="ib_addr" jdbcType="VARCHAR" />
+		<result column="stake_id" property="stake_id" jdbcType="VARCHAR" />
+		<result column="ib_status" property="ib_status" jdbcType="CHAR" />
+		<result column="longitude_a" property="longitude_a" jdbcType="VARCHAR" />
+		<result column="latitude_a" property="latitude_a" jdbcType="VARCHAR" />
+		<result column="longitude_b" property="longitude_b" jdbcType="VARCHAR" />
+		<result column="latitude_b" property="latitude_b" jdbcType="VARCHAR" />
+		<result column="ib_content" property="ib_content" jdbcType="VARCHAR" />
+		<result column="pic_path" property="pic_path" jdbcType="VARCHAR" />
+		<result column="deploy_time" property="deploy_time" jdbcType="TIMESTAMP" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="visible" property="visible" jdbcType="CHAR" />
+		<result column="is_public" property="is_public" jdbcType="CHAR" />
+		<result column="type" property="type" jdbcType="CHAR" />
+		<result column="location_type" property="location_type"
+			jdbcType="CHAR" />
+		<result column="location_id" property="location_id" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="InfoBoard_Column_List">
+		ib_id, h_id, h_code, h_name, section_id, ib_addr, stake_id,
+		ib_status,
+		longitude_a,
+		latitude_a, longitude_b, latitude_b, ib_content,
+		pic_path, deploy_time,
+		direction,
+		visible,
+		is_public,type,location_type,location_id
+	</sql>
+
+	<sql id="orderByInfoBoardClause">
+		ORDER BY stake_id
+	</sql>
+
+	<sql id="InfoBoardWhereClause">
+		and ib_status='1'
+		<if test="ib_id !=null">and ib_id=#{ib_id} </if>
+		<if test="h_id != null">and h_id=#{h_id} </if>
+		<if test="h_code != null">and h_code=#{h_code} </if>
+		<if test="section_id != null">and section_id=#{section_id} </if>
+		<if test="stake_id != null">and stake_id=#{stake_id} </if>
+		<!-- <if test="ib_status != null">and ib_status=#{ib_status} </if> -->
+		<if test="deploy_time != null">and deploy_time=#{deploy_time} </if>
+		<if test="pic_path != null">and pic_path=#{pic_path} </if>
+		<if test="direction !=null">and direction=#{direction} </if>
+		<if test="visible !=null">and visible=#{visible} </if>
+		<if test="is_public !=null">and is_public=#{is_public} </if>
+		<if test="type !=null">and type=#{type} </if>
+		<if test="location_id !=null">and location_id=#{location_id} </if>
+		<if test="location_type !=null">and location_type=#{location_type} </if>
+
+		<if test="h_codeArgs !=null">
+			and h_code in
+			<foreach item="item" index="index" collection="h_codeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="stakeIdStart != null and stakeIdEnd != null">
+			and ((stake_id + 0 between #{stakeIdStart} and
+			#{stakeIdEnd}) or (stake_id + 0 between #{stakeIdEnd} and
+			#{stakeIdStart}))
+		</if>
+
+		<if test="idsAgs !=null">
+			and ib_id in
+			<foreach item="item" index="index" collection="idsAgs" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.InfoBoardEntity"
+		resultMap="InfoBoardResult">
+		select
+		<include refid="InfoBoard_Column_List" />
+		from info_board
+		where 1=1
+		<include refid="InfoBoardWhereClause" />
+		<include refid="orderByInfoBoardClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		insert into info_board (ib_id,
+		h_id, h_code,
+		h_name, section_id, ib_addr,
+		stake_id, ib_status,
+		longitude_a,
+		latitude_a, longitude_b, latitude_b,
+		ib_content, pic_path,
+		deploy_time,
+		direction, visible,
+		is_public,type,location_type,location_id
+		)
+		values
+		(#{ib_id,jdbcType=INTEGER}, #{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR},
+		#{section_id,jdbcType=INTEGER}, #{ib_addr,jdbcType=VARCHAR},
+		#{stake_id,jdbcType=VARCHAR}, #{ib_status,jdbcType=CHAR},
+		#{longitude_a,jdbcType=VARCHAR},
+		#{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR}, #{latitude_b,jdbcType=VARCHAR},
+		#{ib_content,jdbcType=VARCHAR}, #{pic_path,jdbcType=VARCHAR},
+		#{deploy_time,jdbcType=TIMESTAMP},
+		#{direction,jdbcType=CHAR},
+		#{visible,jdbcType=CHAR}, #{is_public,jdbcType=CHAR},
+		#{type,jdbcType=CHAR}, #{location_type,jdbcType=CHAR},
+		#{location_id,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		insert into info_board
+		(ib_id, h_id, h_code,
+		h_name, section_id, ib_addr,
+		stake_id, ib_status,
+		longitude_a,
+		latitude_a, longitude_b, latitude_b,
+		ib_content, pic_path,
+		deploy_time,
+		direction, visible, is_public,type,location_type
+		)
+		values
+		(#{ib_id,jdbcType=INTEGER}, #{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR},
+		#{section_id,jdbcType=INTEGER}, #{ib_addr,jdbcType=VARCHAR},
+		#{stake_id,jdbcType=VARCHAR}, #{ib_status,jdbcType=CHAR},
+		#{longitude_a,jdbcType=VARCHAR},
+		#{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR}, #{latitude_b,jdbcType=VARCHAR},
+		#{ib_content,jdbcType=VARCHAR}, #{pic_path,jdbcType=VARCHAR},
+		#{deploy_time,jdbcType=TIMESTAMP},
+		#{direction,jdbcType=CHAR},
+		#{visible,jdbcType=CHAR}, #{is_public,jdbcType=CHAR},
+		#{type,jdbcType=CHAR},#{location_type,jdbcType=CHAR},
+		#{location_id,jdbcType=INTEGER}
+
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		delete from info_board
+		<!-- where ib_id = #{ib_id,jdbcType=INTEGER} -->
+		where 1=1
+		<include refid="InfoBoardWhereClause" />
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		delete from info_board
+		<!-- where ib_id = #{ib_id,jdbcType=INTEGER} -->
+		where 1=1
+		<include refid="InfoBoardWhereClause" />
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		update info_board
+		<set>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="h_code != null">
+				h_code = #{h_code,jdbcType=VARCHAR},
+			</if>
+			<if test="h_name != null">
+				h_name = #{h_name,jdbcType=VARCHAR},
+			</if>
+			<if test="section_id != null">
+				section_id = #{section_id,jdbcType=INTEGER},
+			</if>
+			<if test="ib_addr != null">
+				ib_addr = #{ib_addr,jdbcType=VARCHAR},
+			</if>
+			<if test="stake_id != null">
+				stake_id = #{stake_id,jdbcType=VARCHAR},
+			</if>
+			<if test="ib_status != null">
+				ib_status = #{ib_status,jdbcType=CHAR},
+			</if>
+			<if test="longitude_a != null">
+				longitude_a = #{longitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_a != null">
+				latitude_a = #{latitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude_b != null">
+				longitude_b = #{longitude_b,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_b != null">
+				latitude_b = #{latitude_b,jdbcType=VARCHAR},
+			</if>
+			<if test="ib_content != null">
+				ib_content = #{ib_content,jdbcType=VARCHAR},
+			</if>
+			<if test="pic_path != null">
+				pic_path = #{pic_path,jdbcType=VARCHAR},
+			</if>
+			<if test="deploy_time != null">
+				deploy_time = #{deploy_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=CHAR},
+			</if>
+			<if test="visible != null">
+				visible = #{visible,jdbcType=CHAR},
+			</if>
+			<if test="is_public != null">
+				is_public = #{is_public,jdbcType=CHAR}
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=CHAR}
+			</if>
+			<if test="location_type != null">
+				location_type = #{location_type,jdbcType=CHAR}
+			</if>
+			<if test="location_id != null">
+				location_id = #{location_id,jdbcType=INTEGER}
+			</if>
+		</set>
+		where ib_id = #{ib_id,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.InfoBoardEntity"
+		resultMap="InfoBoardResult">
+		select
+		<include refid="InfoBoard_Column_List" />
+		from info_board
+		where 1=1
+		<include refid="InfoBoardWhereClause" />
+		<include refid="orderByInfoBoardClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.InfoBoardEntity">
+		select
+		<include refid="InfoBoard_Column_List" />
+		from info_board
+		<include refid="orderByInfoBoardClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.road.entity.InfoBoardEntity"
+		parameterType="com.djb.highway.road.entity.InfoBoardEntity">
+		select
+		<include refid="InfoBoard_Column_List" />
+		from info_board
+		<include refid="orderByInfoBoardClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*) from
+		info_board
+	</select>
+	
+	<select id="getInfoBoardPointList" parameterType="com.djb.highway.road.entity.InfoBoardEntity"
+	resultMap="InfoBoardResult">
+	select
+	<include refid="InfoBoard_Column_List" />
+	from info_board where
+	1=1 and ib_status='1' and longitude_b !='' and latitude_b !='' 
+	<if test="h_code != null">
+		and h_code = #{h_code,jdbcType=VARCHAR}
+	</if>
+	<if test="longitude_b!=null and latitude_b!=null">
+		and (longitude_b + 0 between (#{longitude_b}-1)
+		and(#{longitude_b}+1))
+		and
+		(latitude_b + 0 between (#{latitude_b}-1)
+		and(#{latitude_b}+1)) and
+		((sqrt(
+		(
+		((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+		*
+		((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+		) + ( ((#{latitude_b}-latitude_b)*PI()*12656/180) *
+		((#{latitude_b}-latitude_b)*PI()*12656/180)
+		) )) + 0 between 0 and 80)
+	</if>
+</select>
+
+</mapper>

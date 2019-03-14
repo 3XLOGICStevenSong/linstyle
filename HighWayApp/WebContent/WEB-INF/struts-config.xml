@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="UserForm" type="com.djb.highway.user.dto.UserDTO" />
+		<form-bean name="UserDeployPicForm" type="com.djb.highway.user.dto.UserDeployPicDTO" />
+		<form-bean name="UserReviewForm" type="com.djb.highway.user.dto.UserReviewDTO" />
+		<form-bean name="TmPlazForm" type="com.djb.highway.road.dto.TmPlazDTO" />
+		<form-bean name="PlazaForm" type="com.djb.highway.road.dto.PlazaDTO" />
+		<form-bean name="MSplitConstUsedDataForm"
+			type="com.djb.highway.road.dto.MSplitConstUsedDataDTO" />
+		<form-bean name="PFareTableForm" type="com.djb.highway.road.dto.PFareTableDTO" />
+		<form-bean name="SectionForm" type="com.djb.highway.road.dto.SectionDTO" />
+		<form-bean name="ServiceAreaForm" type="com.djb.highway.road.dto.ServiceAreaDTO" />
+		<form-bean name="WeatherForcastForm" type="com.djb.highway.road.dto.WeatherForcastDTO" />
+		<form-bean name="TravelPlanForm" type="com.djb.highway.road.dto.TravelPlanDTO" />
+		<form-bean name="RoadControlInfoForm"
+			type="com.djb.highway.road.dto.RoadControlInfoDTO" />
+		<form-bean name="TransportBlogForm" type="com.djb.highway.user.dto.TransportBlogDTO" />
+		<form-bean name="PhoneBookForm" type="com.djb.highway.user.dto.PhoneBookDTO" />
+		<form-bean name="CameraForm" type="com.djb.highway.road.dto.CameraDTO" />
+		<form-bean name="InOutSchematicForm" type="com.djb.highway.road.dto.InOutSchematicDTO" />
+		<form-bean name="OpinionForm" type="com.djb.highway.user.dto.OpinionDTO" />
+		<form-bean name="InfoBoardForm" type="com.djb.highway.road.dto.InfoBoardDTO" />
+		<form-bean name="UserSupportForm" type="com.djb.highway.user.dto.UserSupportDTO" />
+		<form-bean name="CheckApkForm" type="com.djb.highway.user.dto.CheckApkDTO" />
+		<form-bean name="OftenUsedRoadForm" type="com.djb.highway.user.dto.OftenUsedRoadDTO" />
+		<form-bean name="RoadInfoForm" type="com.djb.highway.road.dto.RoadInfoDTO" />
+		<form-bean name="TravelPlanRoadInfoForm"
+			type="com.djb.highway.road.dto.TravelPlanRoadInfoDTO" />
+		<form-bean name="PushForm" type="com.djb.highway.user.dto.PushDTO" />
+		<form-bean name="OverpassForm" type="com.djb.highway.road.dto.OverpassDTO" />
+		<form-bean name="TravelPlanParamForm"
+			type="com.djb.highway.road.dto.travel.TravelPlanParamDTO" />
+		<form-bean name="TmServicesForm" type="com.djb.highway.road.dto.TmServicesDTO" />
+		<form-bean name="MenuPageForm" type="com.djb.highway.road.dto.MenuPageDTO" />
+		<form-bean name="FeatureLNForm" type="com.djb.highway.road.dto.FeatureLNDTO" />
+		<form-bean name="MapLocationForm" type="com.djb.highway.road.dto.MapLocationDTO" />
+		<form-bean name="VersionMstForm" type="com.djb.highway.road.dto.VersionMstDTO" />
+		<form-bean name="BusGroupForm" type="com.djb.highway.bus.dto.BusGroupDTO" />
+	    <form-bean name="BusUserForm" type="com.djb.highway.bus.dto.BusUserDTO" />
+	  	<form-bean name="CarpoolUserForm" type="com.djb.highway.carpool.dto.CarpoolUserDTO" />
+		<form-bean name="CarpoolDriverForm" type="com.djb.highway.carpool.dto.DriverRouteDTO" />
+		<form-bean name="CarpoolPassengerForm"
+			type="com.djb.highway.carpool.dto.PassengerRouteDTO" />
+	     
+</form-beans>
+	<global-forwards>
+		<forward name="User" path="/User.do" redirect="false" />
+		<forward name="tokenErr" path="/WEB-INF/jsp/common/tokenErr.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+
+
+		<action path="/User"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetUserReviewListByCondition,doGetUserReviewList,doGetUserDeployPicList,doGetUserList,
+,doSearch,doInsert,doUpdate,doDelete,doUserRegister,doDeleteBatch,doUpdateBatch,editView,doLogin,doGenerateVerificationCode,doUpdatePassword,doRetrievePassword,doForgotPassword,doVerificationCodeRetrievePassword,doUpdateUserName,generateUserCode,doRegisterUser,doUpdateUserTel,doCreateVerificationCode,doFindPassword,doFindCarpoolPassword,default=doLogin"
+			name="UserForm" scope="request">
+		</action>
+
+		<action path="/UserDeployPic"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMoreUserDeployPicPageList,doGetMoreUserDeployPicByHId,doGetUserDeployPicByPageList,
+			doPublish,initMoreUserDeployPicScreen,doDelete,doGetUserDeployPicPageList,doUpdate,doGetUserDeployPicPointList,doGetUserDeployInfoById,doGetMoreUserDeployPicforHome"
+			name="UserDeployPicForm" scope="request">
+		</action>
+
+		<action path="/UserReview"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetUserReviewList,doSearch,doInsert,doUpdate,doDelete,doDeleteBatch,doUpdateBatch,editView,doInsertReview,doReplyReview,default=doGetUserReviewList"
+			name="UserReviewForm" scope="request">
+		</action>
+
+		<action path="/TmPlaz"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTmPlaz,default=doGetTmPlaz" name="TmPlazForm" scope="request">
+		</action>
+		<action path="/Plaza"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPlazaByCode,doGetPlazaListForState,doGetPlazPointList,doGetPlazaById,default=doGetPlazaByCode"
+			name="PlazaForm" scope="request">
+		</action>
+		<action path="/MSplitConstUsedData"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMSplitConstUsedData,default=doGetMSplitConstUsedData"
+			name="MSplitConstUsedDataForm" scope="request">
+		</action>
+		<action path="/PFareTable"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetPFareTable,doGetPFareTableList,default=doGetPFareTableList"
+			name="PFareTableForm" scope="request">
+		</action>
+		<action path="/FeatureLN"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetFeatureLNList,doGetFeatureLNDetail,default=doGetFeatureLNList"
+			name="FeatureLNForm" scope="request">
+		</action>
+		<action path="/Section"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetSectionList,default=doGetSectionList" name="SectionForm"
+			scope="request">
+		</action>
+
+
+		<action path="/ServiceArea"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetServiceAreaByLinkCode,doGetServiceAreaListByLinkCode,doGetServiceAreaList,doGetServiceAreaPointList,doGetServiceAreaById"
+			name="ServiceAreaForm" scope="request">
+		</action>
+
+		<action path="/WeatherForcast"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsertWeather,doGetWeatherForcastList,doGetWeatherForcastListByCityName,doGetWeatherForcast,doGetWeatherForcastByCityName,default=doGetWeatherForcastByCityName"
+			name="WeatherForcastForm" scope="request">
+		</action>
+
+		<action path="/TravelPlan"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTmPlazList,doGetTravelPlanData,default=doGetTravelPlanData"
+			name="TravelPlanForm" scope="request">
+		</action>
+		<action path="/RoadControlInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetRoadControlInfoList,getControlInfoBySectionId,doGetRoadControlInfoLiveList,getShowRciList,doGetRoadControlInfoListByIds,doPushRoadControlInfo,getShowRciListNewOne,default=doGetRoadControlInfoList"
+			name="RoadControlInfoForm" scope="request">
+		</action>
+		<action path="/InfoBoardInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetSchematicPicList,default=doGetSchematicPicList" name="InfoBoardForm"
+			scope="request">
+		</action>
+		<action path="/Camera"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetCamera,getShowCameraList,getCameraListBySecId,doGetCameraPointList,doUpdateCamera,default=doGetCamera"
+			name="CameraForm" scope="request">
+		</action>
+
+		<action path="/Opinion"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert,default=doInsert" name="OpinionForm" scope="request">
+		</action>
+		<action path="/Push"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert,doGetPushList,doDelete,default=doGetPushList"
+			name="PushForm" scope="request">
+		</action>
+		<action path="/PhoneBook"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert,doGetPhoneBookList,doDelete,doUpdate,default=doInsert"
+			name="PhoneBookForm" scope="request">
+		</action>
+		<action path="/TransportBlog"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTransportBlogList,default=doGetTransportBlogList"
+			name="TransportBlogForm" scope="request">
+		</action>
+
+
+		<action path="/InfoBoard"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="getShowInfoBoardList,getInfoBoardListBySecId,getInfoBoardListById,doGetInfoBoardPointList,getInfoBoardById"
+			name="InfoBoardForm" scope="request">
+		</action>
+
+		<action path="/UserSupport"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert,doDeleteSupport,doDeleteBatch,doGetUserSupportList,default=doGetUserSupportList"
+			name="UserSupportForm" scope="request">
+		</action>
+
+		<action path="/CheckApk"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doCheckApkForUpdate,default=doCheckApkForUpdate" name="CheckApkForm"
+			scope="request">
+		</action>
+
+		<action path="/OftenUsedRoad"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetOftenUsedRoadList,doInsert,doDelete,default=doGetOftenUsedRoadList"
+			name="OftenUsedRoadForm" scope="request">
+		</action>
+
+		<action path="/RoadInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetRoadInfoList,default=doGetRoadInfoList" name="RoadInfoForm"
+			scope="request">
+		</action>
+
+		<action path="/TravelPlanRoadInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTravelPlanData,default=doGetTravelPlanData" name="TravelPlanParamForm"
+			scope="request">
+		</action>
+
+		<action path="/InOutSchematic"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetSchematicPicList,default=doGetSchematicPicList" name="InOutSchematicForm"
+			scope="request">
+		</action>
+
+		<action path="/TravelPlan"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTravelPlanRoadInfoList,default=doGetTravelPlanRoadInfoList"
+			name="TravelPlanRoadInfoForm" scope="request">
+		</action>
+
+		<action path="/Overpass"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetOverpass,default=doGetOverpass" name="OverpassForm"
+			scope="request">
+		</action>
+		<action path="/TmServices"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetTmServicesList,doGetTmServices,default=doGetTmServices"
+			name="TmServicesForm" scope="request">
+		</action>
+
+		<action path="/MenuPage"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doGetMenuPageLiveList,default=doGetMenuPageLiveList" name="MenuPageForm"
+			scope="request">
+		</action>
+
+		<action path="/MapLocation"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doInsert" name="MapLocationForm" scope="request">
+		</action>
+
+        <action path="/VersionMst"
+            type="org.springframework.web.struts.DelegatingActionProxy"
+            parameter="getCameraVersionMst" name="VersionMstForm" scope="request">
+        </action>
+		
+		
+		<action path="/BusGroup"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="getGroupList,addGroup,searchGroup,updateGroup,getGroupDetail,default=getGroupList"
+			name="BusGroupForm" scope="request">
+		</action>
+		<action path="/BusUser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="uL,addUser,updateUser,getUserDetail,gGL,joinGroup,getGroupUsers,default=addUser"
+			name="BusUserForm" scope="request">
+		</action>	
+		<action path="/CarpoolUser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="doLogin,addCarpoolUser,modifyCarpoolUserDetail,getVerifyPassengerDetail,getVerifyDriverDetail,getCarpoolUserDetail,verifyPassenger,verifyDriver,doVerifyPassenger,
+			doVerifyDriver,doInitRole,doModifyPassenger,doModifyDriver,verifyDriverSecondStep,doChangeRole,doCarpoolUserRegister,doCreateVerificationCode,generateUserCode,init,doBackToLogin,doVerifGenerate,findCarpoolPassword,doUpdateUserPassword,changeToPassword,doUpdatePassword,doLogout,backToUserInfo,backToRetrivePassword,backToPage,doChangeToAgreement,doChangeToRegister,default=doLogin"
+			name="CarpoolUserForm" scope="request">
+	        <forward name="loginSuccess" path="/WEB-INF/jsp/user/initRole.jsp" />				
+			<forward name="initDriverSuccess" path="/WEB-INF/jsp/route/driver_search.jsp" />
+			<forward name="initPassengerSuccess" path="/WEB-INF/jsp/route/passenger_publish.jsp" />		
+			<forward name="addCarpoolUser" path="/WEB-INF/jsp/user/addCarpoolUser.jsp" />			
+			<forward name="gotoModifyPassenger" path="/WEB-INF/jsp/user/modifyPassenger.jsp" />
+			<forward name="gotoModifyDriver" path="/WEB-INF/jsp/user/modifyDriver.jsp" />
+			<forward name="getPassengerSuccess" path="/WEB-INF/jsp/user/passengerInfo.jsp" />
+			<forward name="getDriverSuccess" path="/WEB-INF/jsp/user/driverInfo.jsp" />
+			<forward name="verifyPassenger" path="/WEB-INF/jsp/user/verifyPassenger.jsp" />			
+			<forward name="verifyPassengerSuccess" path="/CarpoolUser.do?getVerifyPassengerDetail=" />
+			<forward name="getVerifyPassengerSuccess" path="/WEB-INF/jsp/user/verifyPassengerSuccess.jsp" />			
+			<forward name="verifyDriver" path="/WEB-INF/jsp/user/verifyDriverFirstStep.jsp" />
+			<forward name="verifyDriverSecondStep" path="/WEB-INF/jsp/user/verifyDriverSecondStep.jsp" />
+			<forward name="verifyDriverSuccess"  path="/CarpoolUser.do?getVerifyDriverDetail=" />
+			<forward name="getVerifyDriverSuccess" path="/WEB-INF/jsp/user/verifyDriverSuccess.jsp" />
+			<forward name="registererror" path="/WEB-INF/jsp/user/register.jsp" />
+			<forward name="registerSuccess" path="/WEB-INF/jsp/user/login.jsp" />
+			<forward name="retrieveError" path="/WEB-INF/jsp/user/retrieve_password.jsp" />	
+			<forward name="retrieveSuccess" path="/WEB-INF/jsp/user/update_password.jsp" />	
+			<forward name="changePassword" path="/WEB-INF/jsp/user/change_password.jsp" />	
+			<forward name="updatePassword" path="/CarpoolUser.do?getCarpoolUserDetail=" />	
+			<forward name="agreement" path="/WEB-INF/jsp/user/agreement.jsp" />				
+	     </action>
+		<action path="/CarpoolDriver"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="getDriverRouteList,createDriverRoute,getValidRoute,joinDriverRoute,cancelDriverRoute,nextVerfDriver,driverVerifInfo,backToVerfDriver,default=getDriverRouteList" name="CarpoolDriverForm"
+			scope="request">
+			<forward name="joinSuccess"  path="/CarpoolDriver.do?getDriverRouteList=" /> 
+			<forward name="validRoute" path="/WEB-INF/jsp/route/valid_route.jsp" />
+			<forward name="getDriverRoute" path="/WEB-INF/jsp/route/driver_route.jsp" />
+			<forward name="createError" path="/WEB-INF/jsp/route/valid_route.jsp" />		
+			<forward name="login" path="/WEB-INF/jsp/user/login.jsp" />
+			<forward name="verfDriver" path="/WEB-INF/jsp/route/verify_driver_1.jsp" />
+		    <forward name="validInfoError" path="/WEB-INF/jsp/route/verify_driver_2.jsp" />
+			<forward name="getValidInfo"  path="/CarpoolDriver.do?getValidRoute=" /> 
+			<forward name="getUserInfo"  path="/CarpoolUser.do?getCarpoolUserDetail=" /> 	
+					
+		</action>
+		<action path="/CarpoolPassenger"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="searchCarpoolList,getPassengerRouteList,publishPassengerRoute,cancelPassengerRoute,changeToPassenger,backToSearch,updateRouteStatus,changeToDriver,deletePassengerRoute,default=searchCarpoolList" name="CarpoolPassengerForm"
+			scope="request">
+			<forward name="searchSuccess" path="/WEB-INF/jsp/route/search_result.jsp" />
+			<forward name="searchError" path="/WEB-INF/jsp/route/driver_search.jsp" />
+			<forward name="changetoPassenger" path="/WEB-INF/jsp/route/passenger_publish.jsp" />
+			<forward name="backToSearch" path="/WEB-INF/jsp/route/driver_search.jsp" />
+			<forward name="getPassengerRoute" path="/CarpoolPassenger.do?getPassengerRouteList=" /> 
+			<forward name="backToDriver" path="/WEB-INF/jsp/route/driver_search.jsp" />	
+		    <forward name="getPassengerRouteInfoSuccess" path="/WEB-INF/jsp/route/passenger_route.jsp" />
+			<forward name="login" path="/WEB-INF/jsp/user/login.jsp" />
+		
+			
+</action>		
+	</action-mappings>
+
+	<controller processorClass="com.djb.highway.framework.action.GsRequestProcessor"></controller>
+	<message-resources parameter="messages" />
+
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation" value="/WEB-INF/applicationContext.xml" />
+	</plug-in>
+</struts-config>

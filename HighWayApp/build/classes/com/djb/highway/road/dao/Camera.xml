@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.CameraEntity">
+	<resultMap id="CameraResult" type="com.djb.highway.road.entity.CameraEntity">
+		<id column="c_id" property="c_id" jdbcType="INTEGER" />
+		<result column="c_code" property="c_code" jdbcType="VARCHAR" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="section_id" property="section_id" jdbcType="INTEGER" />
+		<result column="c_type" property="c_type" jdbcType="CHAR" />
+		<result column="c_status" property="c_status" jdbcType="CHAR" />
+		<result column="c_name" property="c_name" jdbcType="VARCHAR" />
+		<result column="c_addr" property="c_addr" jdbcType="VARCHAR" />
+		<result column="c_ip" property="c_ip" jdbcType="VARCHAR" />
+		<result column="stake_id" property="stake_id" jdbcType="VARCHAR" />
+		<result column="longitude_a" property="longitude_a" jdbcType="VARCHAR" />
+		<result column="latitude_a" property="latitude_a" jdbcType="VARCHAR" />
+		<result column="longitude_b" property="longitude_b" jdbcType="VARCHAR" />
+		<result column="latitude_b" property="latitude_b" jdbcType="VARCHAR" />
+		<result column="c_memo" property="c_memo" jdbcType="VARCHAR" />
+		<result column="pic_path" property="pic_path" jdbcType="VARCHAR" />
+		<result column="shoot_time" property="shoot_time" jdbcType="TIMESTAMP" />
+		<result column="direction" property="direction" jdbcType="CHAR" />
+		<result column="visible" property="visible" jdbcType="CHAR" />
+		<result column="is_public" property="is_public" jdbcType="CHAR" />
+		<result column="location_id" property="location_id" jdbcType="INTEGER" />
+		<result column="location_type" property="location_type"
+			jdbcType="CHAR" />
+	</resultMap>
+
+	<sql id="Camera_Column_List">
+		c_id, c_code, h_id, h_code, h_name, section_id, c_type,
+		c_status, c_name,
+		c_addr,
+		c_ip, stake_id, longitude_a, latitude_a,
+		longitude_b, latitude_b, c_memo,
+		pic_path,
+		shoot_time, direction,
+		visible, is_public, location_id, location_type
+	</sql>
+
+	<sql id="orderByCameraClause">
+		ORDER BY stake_id, direction, h_id, c_id
+	</sql>
+
+	<sql id="CameraWhereClause">
+		<if test="c_id!=null">and c_id=#{c_id} </if>
+		<if test="c_code!=null">and c_code=#{c_code} </if>
+		<if test="h_id!=null">and h_id=#{h_id} </if>
+		<if test="section_id!=null">and section_id=#{section_id} </if>
+		<if test="c_type!=null">and c_type=#{c_type} </if>
+		<if test="c_status!=null">and c_status=#{c_status} </if>
+		<if test="stake_id!=null">and stake_id=#{stake_id} </if>
+		<if test="c_ip!=null">and c_ip=#{c_ip} </if>
+		<if test="direction !=null">and direction=#{direction} </if>
+		<if test="visible !=null">and visible=#{visible} </if>
+		<if test="is_public !=null">and is_public=#{is_public} </if>
+		<if test="location_id !=null">and location_id=#{location_id} </if>
+		<if test="location_type !=null">and location_type=#{location_type} </if>
+
+		<if test="h_codeArgs !=null">
+			and h_code in
+			<foreach item="item" index="index" collection="h_codeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+
+		<if test="stakeIdStart != null and stakeIdEnd != null">
+			and ((stake_id + 0 between #{stakeIdStart} and
+			#{stakeIdEnd}) or (stake_id + 0 between #{stakeIdEnd} and
+			#{stakeIdStart}))
+		</if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.CameraEntity"
+		resultMap="CameraResult">
+		select
+		<include refid="Camera_Column_List" />
+		from camera
+		where 1=1 and c_status = '1'
+		<include refid="CameraWhereClause" />
+		<include refid="orderByCameraClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.CameraEntity"
+		resultMap="CameraResult">
+		select
+		<include refid="Camera_Column_List" />
+		from camera
+		where 1=1
+		and c_status = '1'
+		<include refid="CameraWhereClause" />
+		<include refid="orderByCameraClause" />
+	</select>
+
+	<select id="findList" resultMap="CameraResult">
+		select
+		<include refid="Camera_Column_List" />
+		from camera
+		<!-- where c_status in('0','1') -->
+		order by c_id
+	</select>
+
+	<!-- <select id="getcameralistforplaz" parameterType="com.djb.highway.road.entity.CameraEntity" 
+		resultMap="CameraResult"> select <include refid="Camera_Column_List" /> from 
+		camera where 1=1 <include refid="CameraWhereClause" /> <if test="stake_id!=null">and 
+		stake_id >= (#{stake_id}- 0.5) and stake_id <= (#{stake_id}+ 0.5) </if> <include 
+		refid="orderByCameraClause" /> </select> -->
+
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.CameraEntity">
+		insert into camera (c_id,
+		c_code, h_id,
+		h_code, h_name, section_id,
+		c_type, c_status, c_name,
+		c_addr, c_ip, stake_id,
+		longitude_a, latitude_a, longitude_b,
+		latitude_b, c_memo, pic_path,
+		shoot_time, direction, visible,
+		is_public, location_id, location_type
+		)
+		values
+		(#{c_id,jdbcType=INTEGER}, #{c_code,jdbcType=VARCHAR},
+		#{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR}, #{section_id,jdbcType=INTEGER},
+		#{c_type,jdbcType=CHAR}, #{c_status,jdbcType=CHAR},
+		#{c_name,jdbcType=VARCHAR},
+		#{c_addr,jdbcType=VARCHAR},
+		#{c_ip,jdbcType=VARCHAR}, #{stake_id,jdbcType=VARCHAR},
+		#{longitude_a,jdbcType=VARCHAR}, #{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR},
+		#{latitude_b,jdbcType=VARCHAR},
+		#{c_memo,jdbcType=VARCHAR}, #{pic_path,jdbcType=VARCHAR},
+		#{shoot_time,jdbcType=TIMESTAMP}, #{direction,jdbcType=CHAR},
+		#{visible,jdbcType=CHAR},
+		#{is_public,jdbcType=CHAR},
+		#{location_id,jdbcType=INTEGER}, #{location_type,jdbcType=CHAR}
+		)
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.djb.highway.road.entity.CameraEntity">
+		insert into camera (c_id,
+		c_code, h_id,
+		h_code, h_name, section_id,
+		c_type, c_status, c_name,
+		c_addr, c_ip, stake_id,
+		longitude_a, latitude_a, longitude_b,
+		latitude_b, c_memo, pic_path,
+		shoot_time, direction, visible,
+		is_public, location_id, location_type
+		)
+		values
+		(#{c_id,jdbcType=INTEGER}, #{c_code,jdbcType=VARCHAR},
+		#{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR}, #{section_id,jdbcType=INTEGER},
+		#{c_type,jdbcType=CHAR}, #{c_status,jdbcType=CHAR},
+		#{c_name,jdbcType=VARCHAR},
+		#{c_addr,jdbcType=VARCHAR},
+		#{c_ip,jdbcType=VARCHAR}, #{stake_id,jdbcType=VARCHAR},
+		#{longitude_a,jdbcType=VARCHAR}, #{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR},
+		#{latitude_b,jdbcType=VARCHAR},
+		#{c_memo,jdbcType=VARCHAR}, #{pic_path,jdbcType=VARCHAR},
+		#{shoot_time,jdbcType=TIMESTAMP}, #{direction,jdbcType=CHAR},
+		#{visible,jdbcType=CHAR},
+		#{is_public,jdbcType=CHAR},
+		#{location_id,jdbcType=INTEGER}, #{location_type,jdbcType=CHAR}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.CameraEntity">
+		DELETE FROM camera WHERE
+		c_id=#{c_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.road.entity.CameraEntity">
+		DELETE FROM camera WHERE
+		c_id=#{c_id}
+	</delete>
+<!-- 
+    <update id="update" parameterType="com.djb.highway.road.entity.CameraEntity">
+        update camera
+        <set>
+            <if test="h_id != null">
+                h_id = #{h_id,jdbcType=INTEGER},
+            </if>
+            <if test="c_code != null">
+                c_code = #{c_code,jdbcType=VARCHAR},
+            </if>
+            <if test="h_code != null">
+                h_code = #{h_code,jdbcType=VARCHAR},
+            </if>
+            <if test="h_name != null">
+                h_name = #{h_name,jdbcType=VARCHAR},
+            </if>
+            <if test="section_id != null">
+                section_id = #{section_id,jdbcType=INTEGER},
+            </if>
+            <if test="c_type != null">
+                c_type = #{c_type,jdbcType=CHAR},
+            </if>
+            <if test="c_status != null">
+                c_status = #{c_status,jdbcType=CHAR},
+            </if>
+            <if test="c_name != null">
+                c_name = #{c_name,jdbcType=VARCHAR},
+            </if>
+            <if test="c_addr != null">
+                c_addr = #{c_addr,jdbcType=VARCHAR},
+            </if>
+            <if test="c_ip != null">
+                c_ip = #{c_ip,jdbcType=VARCHAR},
+            </if>
+            <if test="stake_id != null">
+                stake_id = #{stake_id,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude_a != null">
+                longitude_a = #{longitude_a,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude_a != null">
+                latitude_a = #{latitude_a,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude_b != null">
+                longitude_b = #{longitude_b,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude_b != null">
+                latitude_b = #{latitude_b,jdbcType=VARCHAR},
+            </if>
+            <if test="c_memo != null">
+                c_memo = #{c_memo,jdbcType=VARCHAR},
+            </if>
+            <if test="pic_path != null">
+                pic_path = #{pic_path,jdbcType=VARCHAR},
+            </if>
+            <if test="shoot_time != null">
+                shoot_time = #{shoot_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=CHAR},
+            </if>
+            <if test="visible != null">
+                visible = #{visible,jdbcType=CHAR},
+            </if>
+            <if test="is_public != null">
+                is_public = #{is_public,jdbcType=CHAR},
+            </if>
+            <if test="location_id != null">
+                location_id = #{location_id,jdbcType=INTEGER},
+            </if>
+            <if test="location_type != null">
+                location_type = #{location_type,jdbcType=CHAR}
+            </if>
+        </set>
+        where 1=1
+        <if test="c_id!=null">and c_id=#{c_id} </if>
+        <if test="c_codeArgs !=null">
+            
+            <if test="c_status == '0' or c_status == '1'">
+                and c_code in
+                <foreach item="item" index="index" collection="c_codeArgs"
+                    open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="c_status == '9'">
+                and (c_code !='' and c_code is not null) and c_code not in
+                <foreach item="item" index="index" collection="c_codeArgs"
+                    open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            
+            <choose>
+                <when test="c_status == '0'">
+                    and c_code in
+                    <foreach item="item" index="index" collection="c_codeArgs"
+                        open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </when>
+                <when test="c_status == '1'">
+                    and c_code in
+                    <foreach item="item" index="index" collection="c_codeArgs"
+                        open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </when>
+                
+                <when test="c_status == '9'">
+                    and (c_code !='' and c_code is not null) and c_code not in
+                    <foreach item="item" index="index" collection="c_codeArgs"
+                        open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </when>
+                
+                <otherwise>
+                    and (c_code !='' and c_code is not null) and c_code not in
+                    <foreach item="item" index="index" collection="c_codeArgs"
+                        open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </otherwise>
+            </choose> 
+        </if>
+    </update>
+ -->
+ 
+    <update id="update" parameterType="com.djb.highway.road.entity.CameraEntity">
+        update camera
+        <set>
+            <if test="h_id != null">
+                h_id = #{h_id,jdbcType=INTEGER},
+            </if>
+            <if test="c_code != null">
+                c_code = #{c_code,jdbcType=VARCHAR},
+            </if>
+            <if test="h_code != null">
+                h_code = #{h_code,jdbcType=VARCHAR},
+            </if>
+            <if test="h_name != null">
+                h_name = #{h_name,jdbcType=VARCHAR},
+            </if>
+            <if test="section_id != null">
+                section_id = #{section_id,jdbcType=INTEGER},
+            </if>
+            <if test="c_type != null">
+                c_type = #{c_type,jdbcType=CHAR},
+            </if>
+            <if test="c_status != null">
+                c_status = #{c_status,jdbcType=CHAR},
+            </if>
+            <if test="c_name != null">
+                c_name = #{c_name,jdbcType=VARCHAR},
+            </if>
+            <if test="c_addr != null">
+                c_addr = #{c_addr,jdbcType=VARCHAR},
+            </if>
+            <if test="c_ip != null">
+                c_ip = #{c_ip,jdbcType=VARCHAR},
+            </if>
+            <if test="stake_id != null">
+                stake_id = #{stake_id,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude_a != null">
+                longitude_a = #{longitude_a,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude_a != null">
+                latitude_a = #{latitude_a,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude_b != null">
+                longitude_b = #{longitude_b,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude_b != null">
+                latitude_b = #{latitude_b,jdbcType=VARCHAR},
+            </if>
+            <if test="c_memo != null">
+                c_memo = #{c_memo,jdbcType=VARCHAR},
+            </if>
+            <if test="pic_path != null">
+                pic_path = #{pic_path,jdbcType=VARCHAR},
+            </if>
+            <if test="shoot_time != null">
+                shoot_time = #{shoot_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=CHAR},
+            </if>
+            <if test="visible != null">
+                visible = #{visible,jdbcType=CHAR},
+            </if>
+            <if test="is_public != null">
+                is_public = #{is_public,jdbcType=CHAR},
+            </if>
+            <if test="location_id != null">
+                location_id = #{location_id,jdbcType=INTEGER},
+            </if>
+            <if test="location_type != null">
+                location_type = #{location_type,jdbcType=CHAR}
+            </if>
+        </set>
+        where 1=1
+        <if test="c_id !=null">and c_id=#{c_id} </if>
+        <if test="c_id ==null">and c_code !='' and c_code is not null</if>
+        <if test="c_codeArgs !=null">
+            and c_code in
+            <foreach item="item" index="index" collection="c_codeArgs"
+                open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </update>
+
+	<select id="getcameraPointList" parameterType="com.djb.highway.road.entity.CameraEntity"
+		resultMap="CameraResult">
+		select
+		<include refid="Camera_Column_List" />
+		from camera
+		where
+		1=1 and c_status = '1'
+		and longitude_b !='' and latitude_b !='' 
+		<if test="h_code != null">
+			and h_code = #{h_code,jdbcType=VARCHAR}
+		</if>
+
+		<if test="longitude_b!=null and latitude_b!=null">
+			and (longitude_b + 0 between (#{longitude_b}-1)
+			and(#{longitude_b}+1))
+			and
+			(latitude_b + 0 between (#{latitude_b}-1)
+			and(#{latitude_b}+1)) and
+			((sqrt(
+			(
+			((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+			*
+			((#{longitude_b}-longitude_b)*PI()*12656*cos(((#{latitude_b}+latitude_b)/2)*PI()/180)/180)
+			) + ( ((#{latitude_b}-latitude_b)*PI()*12656/180) *
+			((#{latitude_b}-latitude_b)*PI()*12656/180)
+			) )) + 0 between 0 and
+			100)
+		</if>
+
+		<include refid="orderByCameraClause" />
+
+	</select>
+
+</mapper>

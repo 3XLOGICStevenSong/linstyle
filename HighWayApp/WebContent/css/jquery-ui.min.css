@@ -1,0 +1,97 @@
+
+.ui-tabs {
+	padding: 0;
+	font-size:0.875em;
+	line-height:28px
+	
+	
+}
+.ui-tabs .ui-tabs-nav {
+	margin: 0 auto;
+	padding: 0;
+    background:#CCC;
+	width:100%;	
+	position: fixed;
+	z-index:998;
+
+
+}
+.ui-tabs .ui-tabs-nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0;
+	margin:0;
+	border-bottom-width: 0;
+	padding: 0;
+	white-space: nowrap;
+	overflow:hidden;
+	width:50%;
+	background:#eeeeee;
+	line-height:42px;
+	font-size:18px;
+	
+		
+	
+}
+.ui-tabs .ui-tabs-nav li a{color:#333}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	float: left;
+	padding: 0;
+	text-decoration: none;
+	border-bottom:2px solid #CCC;
+	border-top:1px solid #CCC;
+	border-left:1px solid #CCC;
+	border-right:1px solid #CCC;
+	width:100%;
+	display:block;
+	text-align:center;
+	
+	
+
+	
+	
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus{outline:none}
+
+
+.ui-tabs .ui-tabs-nav li a{border:0;-webkit-tap-highlight-color:rgba(0,0,0,0); }
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	
+	border:0;
+	background:#eeeeee;
+	border-bottom:4px solid #0086ff;
+	color:#0086ff;
+	
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+	cursor: text;
+	border-top:0px solid #ff5400;
+	border-bottom:0;
+	color:#0086ff;
+	
+	
+}
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding: 0em 0 1em 0.1em;
+	background: none;
+	position: relative;
+	top:46px;
+	overflow: scroll
+}
+
+body .ui-tooltip {
+	border-width: 2px;
+}
+
+
+
+

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.OpinionEntity">
+	<resultMap id="OpinionResult" type="com.djb.highway.user.entity.OpinionEntity">
+		<id column="opinion_id" property="opinion_id" jdbcType="INTEGER" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="user_code" property="user_code" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.OpinionEntity"
+		resultMap="OpinionResult">
+		select
+		<include refid="Opinion_Column_List" />
+		from opinion
+		where 1=1
+		<include refid="OpinionWhereClause" />
+	</select>
+
+	<sql id="Opinion_Column_List">
+		opinion_id, user_id, user_code, content, insert_time
+	</sql>
+
+	<sql id="orderByClause">
+		ORDER BY insert_time DESC
+	</sql>
+
+	<sql id="OpinionWhereClause">
+		<if test="opinion_id !=null">and opinion_id=#{opinion_id} </if>
+		<if test="user_id !=null">and user_id=#{user_id} </if>
+		<if test="user_code !=null">and user_code=#{user_code} </if>
+		<if test="content !=null">and content=#{content} </if>
+		<if test="insert_time !=null">and insert_time=#{insert_time} </if>
+	</sql>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.OpinionEntity"
+		resultMap="OpinionResult">
+		select
+		<include refid="Opinion_Column_List" />
+		from opinion
+		where 1=1
+		<include refid="OpinionWhereClause" />
+		<include refid="orderByClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.OpinionEntity">
+		insert into opinion
+		(opinion_id, user_id, user_code,
+		content, insert_time)
+		values
+		(#{opinion_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER},
+		#{user_code,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{insert_time,jdbcType=TIMESTAMP})
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.OpinionEntity">
+		insert into opinion (opinion_id, user_id, user_code,
+		content, insert_time)
+		values (#{opinion_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER},
+		#{user_code,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{insert_time,jdbcType=TIMESTAMP})
+	</insert>
+
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.OpinionEntity">
+		DELETE FROM
+		opinion WHERE
+		opinion_id=#{opinion_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.OpinionEntity">
+		UPDATE opinion
+		<set>
+			<if test="user_id != null">
+				user_id = #{user_id,jdbcType=INTEGER},
+			</if>
+			<if test="user_code != null">
+				user_code = #{user_code,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="insert_time != null">
+				insert_time = #{insert_time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where 1=1
+		and opinion_id=#{opinion_id}
+	</update>
+
+
+	<select id="findList" resultType="com.djb.highway.user.entity.OpinionEntity">
+		SELECT
+		<include refid="Opinion_Column_List" />
+		FROM opinion
+		ORDER BY insert_time DESC
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.OpinionEntity"
+		parameterType="com.djb.highway.user.entity.OpinionEntity">
+		SELECT
+		<include refid="Opinion_Column_List" />
+		FROM opinion
+		ORDER BY insert_time DESC
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*)
+		FROM
+		opinion
+	</select>
+
+</mapper>

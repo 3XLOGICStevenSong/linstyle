@@ -1,0 +1,91 @@
+/* 弹出层 */
+.box,.box1{
+	position:absolute;
+	height:auto;
+	z-index:100;
+	background-color: #333;
+	overflow: hidden;
+	padding:0.8rem 0;
+	border-radius:8px;
+	overflow: hidden;
+	width:70%;  !important;
+	left:12% !important; 
+    color:#fff;
+	opacity:0.8;
+	filter: alpha(opacity=80);
+	-moz-opacity: 0.8;
+	font-size:16px;
+	padding:8px 5px 8px 10px
+
+
+
+}
+
+
+.box h2,.box1 h2{
+	font-size:1rem;
+	font-weight:normal;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 0.7rem;
+	
+}
+.box .txt {
+	font-size:0.875rem;
+	font-weight:normal;
+	color: #fff;
+	text-align: center;
+	
+}
+
+.box1 .txt1 {
+	font-size:1rem;
+	font-weight:normal;
+	color: #fff;
+	text-align: center;
+
+}
+.box .btn-box {
+	border-top:#b7b7b7 solid 1px;
+	padding:0.7rem 0 0;
+	text-align: center;
+	margin-top: 1.2rem;
+}
+.box1 .btn-box1 {
+	border-top:#b7b7b7 solid 1px;
+	padding:0.7rem 0 0;
+	text-align: center;
+	margin-top: 1.2rem;
+}
+.box .btn-box a {
+	font-weight: normal;
+	padding:0.5rem 0;
+	border-radius:8px;
+	width: 42%;
+	line-height:150% !important;
+	display: inline-block;
+	cursor: pointer;
+}
+.box1 .btn-box1 a {
+	font-weight: normal;
+	padding:0.5rem 0;
+	border-radius:8px;
+	width: 42%;
+	line-height:150% !important;
+	display: inline-block;
+	cursor: pointer;
+}
+.box1 .btn-box1 a.cancel {
+	background:none;
+	border:#d2a54e solid 1px;
+	color: #d2a54e;	
+	margin-right:3%;
+}
+.box1 .btn-box1 a.submit {
+	background:#d2a54e;
+	border:#d2a54e solid 1px;
+	color: #fff;
+}
+#tab2 p * {
+	font-size:0.9rem !important;
+}

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.RoadControlInfoEntity">
+	<resultMap id="RoadControlInfoResult"
+		type="com.djb.highway.road.entity.RoadControlInfoEntity">
+		<id column="rci_id" property="rci_id" jdbcType="INTEGER" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<result column="h_name" property="h_name" jdbcType="VARCHAR" />
+		<result column="start_stake_id" property="start_stake_id"
+			jdbcType="VARCHAR" />
+		<result column="end_stake_id" property="end_stake_id" jdbcType="VARCHAR" />
+		<result column="control_scope" property="control_scope"
+			jdbcType="VARCHAR" />
+		<result column="control_direction" property="control_direction"
+			jdbcType="VARCHAR" />
+		<result column="control_mode" property="control_mode" jdbcType="VARCHAR" />
+		<result column="start_time" property="start_time" jdbcType="TIMESTAMP" />
+		<result column="plan_end_time" property="plan_end_time"
+			jdbcType="TIMESTAMP" />
+		<result column="real_end_time" property="real_end_time"
+			jdbcType="TIMESTAMP" />
+		<result column="rci_status" property="rci_status" jdbcType="CHAR" />
+		<result column="rci_type" property="rci_type" jdbcType="CHAR" />
+		<result column="rci_type_pic_path" property="rci_type_pic_path"
+			jdbcType="VARCHAR" />
+		<result column="start_plaz_id" property="start_plaz_id"
+			jdbcType="INTEGER" />
+		<result column="start_plaz_code" property="start_plaz_code"
+			jdbcType="VARCHAR" />
+		<result column="end_plaz_id" property="end_plaz_id" jdbcType="INTEGER" />
+		<result column="end_plaz_code" property="end_plaz_code"
+			jdbcType="VARCHAR" />
+		<result column="plaz_list" property="plaz_list" jdbcType="VARCHAR" />
+		<result column="sa_list" property="sa_list" jdbcType="VARCHAR" />
+		<result column="passing_round_pic_url" property="passing_round_pic_url"
+			jdbcType="VARCHAR" />
+		<result column="passing_round_desc" property="passing_round_desc"
+			jdbcType="VARCHAR" />
+		<result column="rci_content" property="rci_content" jdbcType="VARCHAR" />
+		<result column="deploy_time" property="deploy_time" jdbcType="TIMESTAMP" />
+		<result column="longitude_a" property="longitude_a" jdbcType="VARCHAR" />
+		<result column="latitude_a" property="latitude_a" jdbcType="VARCHAR" />
+		<result column="longitude_b" property="longitude_b" jdbcType="VARCHAR" />
+		<result column="latitude_b" property="latitude_b" jdbcType="VARCHAR" />
+		<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<sql id="RoadControlInfo_Column_List">
+		rci_id, h_id, h_code, h_name, start_stake_id, end_stake_id,
+		control_scope,
+		control_direction,
+		control_mode, start_time,
+		plan_end_time, real_end_time, rci_status, rci_type,
+		rci_type_pic_path,
+		start_plaz_id, start_plaz_code, end_plaz_id, end_plaz_code, plaz_list,
+		sa_list,
+		passing_round_pic_url,
+		passing_round_desc, rci_content,
+		deploy_time, longitude_a, latitude_a, longitude_b,
+		latitude_b,create_time
+	</sql>
+
+	<sql id="orderByRoadControlInfoClause">
+		ORDER BY deploy_time desc,h_code, rci_id
+	</sql>
+
+	<sql id="RoadControlInfoWhereClause">
+		<if test="rci_id !=null">and rci_id =#{rci_id} </if>
+		<if test="h_id !=null">and h_id =#{h_id} </if>
+		<if test="h_code !=null">and h_code =#{h_code} </if>
+		<if test="h_name !=null">and h_name =#{h_name} </if>
+		<if test="start_stake_id !=null">and start_stake_id =#{start_stake_id} </if>
+		<if test="end_stake_id !=null">and end_stake_id =#{end_stake_id} </if>
+		<if test="control_scope !=null">and control_scope =#{control_scope} </if>
+		<if test="control_direction !=null">and control_direction =#{control_direction} </if>
+		<if test="control_mode !=null">and control_mode =#{control_mode} </if>
+		<if test="start_time !=null">and start_time =#{start_time} </if>
+		<if test="plan_end_time !=null">and plan_end_time =#{plan_end_time} </if>
+		<if test="real_end_time !=null">and real_end_time =#{real_end_time} </if>
+		<if test="rci_status !=null">and rci_status =#{rci_status} </if>
+		<if test="rci_type !=null">and rci_type =#{rci_type} </if>
+		<if test="rci_type_pic_path !=null">and rci_type_pic_path =#{rci_type_pic_path} </if>
+		<if test="start_plaz_id !=null">and start_plaz_id =#{start_plaz_id} </if>
+		<if test="start_plaz_code !=null">and start_plaz_code =#{start_plaz_code} </if>
+		<if test="end_plaz_id !=null">and end_plaz_id =#{end_plaz_id} </if>
+		<if test="end_plaz_code !=null">and end_plaz_code =#{end_plaz_code} </if>
+		<if test="plaz_list !=null">and plaz_list =#{plaz_list} </if>
+		<if test="sa_list !=null">and sa_list =#{sa_list} </if>
+		<if test="passing_round_pic_url !=null">and passing_round_pic_url =#{passing_round_pic_url} </if>
+		<if test="passing_round_desc !=null">and passing_round_desc =#{passing_round_desc} </if>
+		<if test="rci_content !=null">and rci_content =#{rci_content} </if>
+		<!-- <if test="deploy_time !=null">and deploy_time =#{deploy_time} </if> -->
+		<if test="h_codeArgs !=null">
+			and h_code in
+			<foreach item="item" index="index" collection="h_codeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="start_stake_id != null and end_stake_id != null">
+			and ((stake_id + 0 between #{start_stake_id} and
+			#{end_stake_id}) or
+			(stake_id + 0 between #{end_stake_id} and
+			#{start_stake_id}))
+		</if>
+		<if test="roadControlIdArgs !=null">
+			and rci_id in
+			<foreach item="item" index="index" collection="roadControlIdArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		and control_direction in ('1','2','3')
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity"
+		resultMap="RoadControlInfoResult">
+		select
+		<include refid="RoadControlInfo_Column_List" />
+		from road_control_info
+		where 1=1
+		<include refid="RoadControlInfoWhereClause" />
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.road.entity.RoadControlInfoEntity">
+		select
+		<include refid="RoadControlInfo_Column_List" />
+		from road_control_info
+		<include refid="orderByRoadControlInfoClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity"
+		resultMap="RoadControlInfoResult">
+		select
+		<include refid="RoadControlInfo_Column_List" />
+		from road_control_info
+		where 1=1
+		<include refid="RoadControlInfoWhereClause" />
+		<if test="create_time !=null">and create_time >= #{create_time} </if>
+		<include refid="orderByRoadControlInfoClause" />
+	</select>
+	<select id="findPageListByCondition" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity"
+		resultMap="RoadControlInfoResult">
+		select
+		<include refid="RoadControlInfo_Column_List" />
+		from road_control_info
+		where 1=1
+		<include refid="RoadControlInfoWhereClause" />
+		<include refid="orderByRoadControlInfoClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+
+	<delete id="delete" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity">
+		delete from road_control_info
+		where rci_id = #{rci_id,jdbcType=INTEGER}
+	</delete>
+
+
+	<insert id="insert" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity">
+		insert into road_control_info
+		(rci_id, h_id, h_code,
+		h_name, start_stake_id, end_stake_id,
+		control_scope, control_direction, control_mode,
+		start_time,
+		plan_end_time, real_end_time,
+		rci_status, rci_type, rci_type_pic_path,
+		start_plaz_id, start_plaz_code, end_plaz_id,
+		end_plaz_code, plaz_list,
+		sa_list,
+		passing_round_pic_url, passing_round_desc,
+		rci_content,
+		deploy_time, longitude_a,
+		latitude_a, longitude_b, latitude_b,create_time
+		)
+		values
+		(#{rci_id,jdbcType=INTEGER}, #{h_id,jdbcType=INTEGER},
+		#{h_code,jdbcType=VARCHAR},
+		#{h_name,jdbcType=VARCHAR},
+		#{start_stake_id,jdbcType=VARCHAR}, #{end_stake_id,jdbcType=VARCHAR},
+		#{control_scope,jdbcType=VARCHAR},
+		#{control_direction,jdbcType=VARCHAR},
+		#{control_mode,jdbcType=VARCHAR},
+		#{start_time,jdbcType=TIMESTAMP},
+		#{plan_end_time,jdbcType=TIMESTAMP},
+		#{real_end_time,jdbcType=TIMESTAMP},
+		#{rci_status,jdbcType=CHAR},
+		#{rci_type,jdbcType=CHAR}, #{rci_type_pic_path,jdbcType=VARCHAR},
+		#{start_plaz_id,jdbcType=INTEGER},
+		#{start_plaz_code,jdbcType=VARCHAR}, #{end_plaz_id,jdbcType=INTEGER},
+		#{end_plaz_code,jdbcType=VARCHAR}, #{plaz_list,jdbcType=VARCHAR},
+		#{sa_list,jdbcType=VARCHAR},
+		#{passing_round_pic_url,jdbcType=VARCHAR},
+		#{passing_round_desc,jdbcType=VARCHAR},
+		#{rci_content,jdbcType=VARCHAR}, #{deploy_time,jdbcType=TIMESTAMP},
+		#{longitude_a,jdbcType=VARCHAR},
+		#{latitude_a,jdbcType=VARCHAR},
+		#{longitude_b,jdbcType=VARCHAR}, #{latitude_b,jdbcType=VARCHAR},#{create_time,jdbcType=TIMESTAMP},
+		)
+	</insert>
+
+	<update id="update" parameterType="com.djb.highway.road.entity.RoadControlInfoEntity">
+		update road_control_info
+		<set>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER},
+			</if>
+			<if test="h_code != null">
+				h_code = #{h_code,jdbcType=VARCHAR},
+			</if>
+			<if test="h_name != null">
+				h_name = #{h_name,jdbcType=VARCHAR},
+			</if>
+			<if test="start_stake_id != null">
+				start_stake_id = #{start_stake_id,jdbcType=VARCHAR},
+			</if>
+			<if test="end_stake_id != null">
+				end_stake_id = #{end_stake_id,jdbcType=VARCHAR},
+			</if>
+			<if test="control_scope != null">
+				control_scope = #{control_scope,jdbcType=VARCHAR},
+			</if>
+			<if test="control_direction != null">
+				control_direction =
+				#{control_direction,jdbcType=VARCHAR},
+			</if>
+			<if test="control_mode != null">
+				control_mode = #{control_mode,jdbcType=VARCHAR},
+			</if>
+			<if test="start_time != null">
+				start_time = #{start_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="plan_end_time != null">
+				plan_end_time = #{plan_end_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="real_end_time != null">
+				real_end_time = #{real_end_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="rci_status != null">
+				rci_status = #{rci_status,jdbcType=CHAR},
+			</if>
+			<if test="rci_type != null">
+				rci_type = #{rci_type,jdbcType=CHAR},
+			</if>
+			<if test="rci_type_pic_path != null">
+				rci_type_pic_path =
+				#{rci_type_pic_path,jdbcType=VARCHAR},
+			</if>
+			<if test="start_plaz_id != null">
+				start_plaz_id = #{start_plaz_id,jdbcType=INTEGER},
+			</if>
+			<if test="start_plaz_code != null">
+				start_plaz_code = #{start_plaz_code,jdbcType=VARCHAR},
+			</if>
+			<if test="end_plaz_id != null">
+				end_plaz_id = #{end_plaz_id,jdbcType=INTEGER},
+			</if>
+			<if test="end_plaz_code != null">
+				end_plaz_code = #{end_plaz_code,jdbcType=VARCHAR},
+			</if>
+			<if test="plaz_list != null">
+				plaz_list = #{plaz_list,jdbcType=VARCHAR},
+			</if>
+			<if test="sa_list != null">
+				sa_list = #{sa_list,jdbcType=VARCHAR},
+			</if>
+			<if test="passing_round_pic_url != null">
+				passing_round_pic_url =
+				#{passing_round_pic_url,jdbcType=VARCHAR},
+			</if>
+			<if test="passing_round_desc != null">
+				passing_round_desc =
+				#{passing_round_desc,jdbcType=VARCHAR},
+			</if>
+			<if test="rci_content != null">
+				rci_content = #{rci_content,jdbcType=VARCHAR},
+			</if>
+			<if test="deploy_time != null">
+				deploy_time = #{deploy_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="longitude_a != null">
+				longitude_a = #{longitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_a != null">
+				latitude_a = #{latitude_a,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude_b != null">
+				longitude_b = #{longitude_b,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude_b != null">
+				latitude_b = #{latitude_b,jdbcType=VARCHAR}
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where rci_id = #{rci_id,jdbcType=INTEGER}
+	</update>
+</mapper>

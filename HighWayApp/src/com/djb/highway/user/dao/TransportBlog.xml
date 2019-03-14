@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.TransportBlogEntity">
+	<resultMap id="TransportBlogResult"
+		type="com.djb.highway.user.entity.TransportBlogEntity">
+		<id column="blog_id" property="blog_id" jdbcType="INTEGER" />
+		<result column="blog_content" property="blog_content" jdbcType="VARCHAR" />
+		<result column="blog_group" property="blog_group" jdbcType="INTEGER" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insert_time" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+	</resultMap>
+	<sql id="TransportBlog_Column_List">
+		tb.blog_id, tb.blog_content,
+		tb.blog_group,tb.insert_time,tb.update_time
+	</sql>
+	<sql id="TransportBlogWhereClause">
+		<if test="blog_id!=null">and tb.blog_id=#{blog_id} </if>
+		<if test="blog_content!=null">and tb.blog_content=#{blog_content} </if>
+		<if test="blog_group!=null">and tb.blog_group=#{blog_group} </if>
+		<if test="insert_time!=null">and tb.insert_time=#{insert_time} </if>
+		<if test="update_time!=null">and tb.update_time=#{update_time} </if>
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.TransportBlogEntity"
+		resultMap="TransportBlogResult">
+		select
+
+		<include refid="TransportBlog_Column_List" />
+		from transport_blog tb
+		where 1=1
+		<include refid="TransportBlogWhereClause" />
+	</select>
+
+
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.TransportBlogEntity"
+		resultType="com.djb.highway.user.entity.TransportBlogEntity">
+		select
+		<include refid="TransportBlog_Column_List" />
+		from transport_blog tb
+		where 1=1
+		<include refid="TransportBlogWhereClause" />
+	</select>
+
+
+</mapper>

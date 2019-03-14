@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.UserEntity">
+
+	<resultMap id="UserResult" type="com.djb.highway.user.entity.UserEntity">
+		<id column="u_id" jdbcType="INTEGER" property="u_id" />
+		<result column="u_code" jdbcType="VARCHAR" property="u_code" />
+		<result column="u_name" jdbcType="VARCHAR" property="u_name" />
+		<result column="u_password" jdbcType="VARCHAR" property="u_password" />
+		<result column="u_type" jdbcType="VARCHAR" property="u_type" />
+		<result column="u_tel" jdbcType="VARCHAR" property="u_tel" />
+		<result column="u_mail" jdbcType="VARCHAR" property="u_mail" />
+		<result column="u_memo" jdbcType="VARCHAR" property="u_memo" />
+		<result column="u_reg_time" jdbcType="TIMESTAMP" property="u_reg_time" />
+		<result column="u_answer" jdbcType="VARCHAR" property="u_answer" />
+		<result column="u_question" jdbcType="INTEGER" property="u_question" />
+		<collection property="userDeployPicEntitys" column="u_id"
+			ofType="com.djb.highway.user.entity.UserDeployPicEntity" resultMap="UserDeployPicResult" />
+		<collection property="oftenUsedRoadEntitys" column="u_id"
+			ofType="com.djb.highway.user.entity.OftenUsedRoadEntity" resultMap="OftenUsedRoadResult" />
+	</resultMap>
+
+	<resultMap id="UserDeployPicResult"
+		type="com.djb.highway.user.entity.UserDeployPicEntity">
+		<id column="udp_id" property="udp_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="section_id" property="section_id" jdbcType="BIGINT" />
+		<result column="udp_pic_path" property="udp_pic_path" jdbcType="VARCHAR" />
+		<result column="deploy_msg" property="deploy_msg" jdbcType="VARCHAR" />
+		<result column="commend_count" property="commend_count"
+			jdbcType="INTEGER" />
+		<result column="udp_deploy_time" property="udp_deploy_time"
+			jdbcType="TIMESTAMP" />
+		<result column="udp_longitude" property="udp_longitude"
+			jdbcType="INTEGER" />
+		<result column="udp_latitude" property="udp_latitude" jdbcType="INTEGER" />
+		<result column="udp_share_type" property="udp_share_type"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="OftenUsedRoadResult"
+		type="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		<id column="our_id" property="our_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="our_ts_id_start" property="our_ts_id_start"
+			jdbcType="INTEGER" />
+		<result column="our_ts_id_end" property="our_ts_id_end"
+			jdbcType="INTEGER" />
+		<result column="our_direction" property="our_direction"
+			jdbcType="CHAR" />
+		<result column="our_memo" property="our_memo" jdbcType="VARCHAR" />
+		<result column="our_reg_time" property="our_reg_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="User_Column_List">
+		u.u_id, u.u_code, u.u_name, u.u_password, u.u_type,
+		u.u_tel, u.u_mail,
+		u_memo, u_reg_time,u_answer,u_question
+	</sql>
+
+	<sql id="OftenUsedRoad_Column_List">
+		our.our_id, our.u_id, our.h_id, our.our_ts_id_start,
+		our.our_ts_id_end,
+		our.our_direction, our.our_memo, our.our_reg_time
+	</sql>
+
+	<sql id="UserDeployPic_Column_List">
+		udp.udp_id, udp.u_id, udp.section_id, udp.udp_pic_path,
+		udp.deploy_msg,
+		udp.commend_count,
+		udp.udp_deploy_time,
+		udp.udp_longitude,
+		udp.udp_latitude,udp.udp_share_type
+	</sql>
+
+	<sql id="orderByUserClause">
+		ORDER BY u.u_id DESC
+	</sql>
+
+	<sql id="orderByUserDeployPicClause">
+		ORDER BY udp.udp_deploy_time DESC
+	</sql>
+
+	<sql id="orderByOftenUsedRoadClause">
+		ORDER BY our.our_reg_time
+	</sql>
+
+	<sql id="userWhereClause">
+		<if test="u_id!=null">and u.u_id=#{u_id} </if>
+		<if test="u_code!=null">and u.u_code=#{u_code} </if>
+		<if test="u_name!=null">and u.u_name=#{u_name} </if>
+		<if test="u_password!=null">and u.u_password=#{u_password} </if>
+		<if test="u_type!=null">and u.u_type=#{u_type} </if>
+		<if test="u_tel!=null">and u.u_tel=#{u_tel} </if>
+		<if test="u_mail!=null">and u.u_mail=#{u_mail} </if>
+		<if test="u_memo!=null">and u.u_memo=#{u_memo} </if>
+		<if test="u_reg_time!=null">and u.u_reg_time=#{u_reg_time} </if>
+		<if test="u_answer!=null">and u.u_answer=#{u_answer} </if>
+		<if test="u_question!=null">and u.u_question=#{u_question} </if>
+	</sql>
+
+	<select id="getObject" parameterType="com.djb.highway.user.entity.UserEntity"
+		resultMap="UserResult">
+		select
+		<include refid="User_Column_List" />
+		from user u
+		where 1=1
+		<if test="u_id!=null">and u.u_id=#{u_id} </if>
+		<if test="u_code!=null">and u.u_code=#{u_code} </if>
+		<include refid="orderByUserClause" />
+	</select>
+
+	<select id="getOftenUsedRoadObject" parameterType="com.djb.highway.user.entity.UserEntity"
+		resultMap="UserResult">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="OftenUsedRoad_Column_List" />
+		from user u, often_used_road our
+		where 1=1
+		and u.u_id=our.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByOftenUsedRoadClause" />
+	</select>
+
+	<select id="getUserDeployPicObject" parameterType="com.djb.highway.user.entity.UserEntity"
+		resultMap="UserResult">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and u.u_id=udp.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByUserDeployPicClause" />
+	</select>
+
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.UserEntity"
+		resultMap="UserResult">
+		select
+		<include refid="User_Column_List" />
+		from user u
+		where 1=1
+		<include refid="userWhereClause" />
+		<include refid="orderByUserClause" />
+	</select>
+
+	<insert id="insert" parameterType="com.djb.highway.user.entity.UserEntity">
+		insert into user (u_id,
+		u_code, u_name,
+		u_password, u_type, u_tel,
+		u_mail, u_memo,
+		u_reg_time,u_answer,u_question
+		)
+		values (#{u_id,jdbcType=INTEGER},
+		#{u_code,jdbcType=VARCHAR},
+		#{u_name,jdbcType=VARCHAR},
+		#{u_password,jdbcType=VARCHAR},
+		#{u_type,jdbcType=VARCHAR},
+		#{u_tel,jdbcType=VARCHAR},
+		#{u_mail,jdbcType=VARCHAR},
+		#{u_memo,jdbcType=VARCHAR},
+		#{u_reg_time,jdbcType=TIMESTAMP},#{u_answer,jdbcType=VARCHAR},
+		#{u_question,jdbcType=INTEGER}
+		)
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.UserEntity">
+		insert into user (u_id,
+		u_code, u_name,
+		u_password, u_type, u_tel,
+		u_mail, u_memo,
+		u_reg_time,u_answer,u_question
+		)
+		values (#{u_id,jdbcType=INTEGER},
+		#{u_code,jdbcType=VARCHAR},
+		#{u_name,jdbcType=VARCHAR},
+		#{u_password,jdbcType=VARCHAR},
+		#{u_type,jdbcType=VARCHAR},
+		#{u_tel,jdbcType=VARCHAR},
+		#{u_mail,jdbcType=VARCHAR},
+		#{u_memo,jdbcType=VARCHAR},
+		#{u_reg_time,jdbcType=TIMESTAMP},#{u_answer,jdbcType=VARCHAR},
+		#{u_question,jdbcType=INTEGER}
+		)
+	</insert>
+
+
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.UserEntity">
+		DELETE FROM user WHERE
+		u_id=#{u_id}
+	</delete>
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.UserEntity">
+		DELETE FROM user WHERE
+		u_id=#{u_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.UserEntity">
+		UPDATE user
+		<set>
+			<if test="u_id != null">
+				u_id = #{u_id,jdbcType=INTEGER},
+			</if>
+			<if test="u_code != null">
+				u_code = #{u_code,jdbcType=VARCHAR},
+			</if>
+			<if test="u_name != null">
+				u_name = #{u_name,jdbcType=VARCHAR},
+			</if>
+			<if test="u_password != null">
+				u_password = #{u_password,jdbcType=VARCHAR},
+			</if>
+			<if test="u_type != null">
+				u_type = #{u_type,jdbcType=VARCHAR},
+			</if>
+			<if test="u_tel != null">
+				u_tel = #{u_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="u_mail != null">
+				u_mail = #{u_mail,jdbcType=VARCHAR},
+			</if>
+			<if test="u_memo != null">
+				u_memo = #{u_memo,jdbcType=VARCHAR},
+			</if>
+			<if test="u_reg_time != null">
+				u_reg_time = #{u_reg_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="u_answer!= null">
+				u_answer = #{u_answer,jdbcType=VARCHAR},
+			</if>
+			<if test="u_question != null">
+				u_question = #{u_question,jdbcType=INTEGER}
+			</if>
+		</set>
+		where 1=1
+		<if test="u_code != null">and u_code = #{u_code}</if>
+
+	</update>
+
+
+	<select id="findList" resultType="com.djb.highway.user.entity.UserEntity">
+		select
+		<include refid="User_Column_List" />
+		from user u
+		<include refid="orderByUserClause" />
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.UserEntity"
+		parameterType="com.djb.highway.user.entity.UserEntity">
+		select
+		<include refid="User_Column_List" />
+		from user u
+		<include refid="orderByUserClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findPagedList_count" resultType="int">
+		SELECT count(*)
+		from
+		user
+	</select>
+
+
+	<select id="findOftenUsedRoadList" resultType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="OftenUsedRoad_Column_List" />
+		from user u, often_used_road our
+		where 1=1
+		and u.u_id=our.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByOftenUsedRoadClause" />
+	</select>
+
+	<select id="findOftenUsedRoadPagedList" resultType="com.djb.highway.user.entity.OftenUsedRoadEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="OftenUsedRoad_Column_List" />
+		from user u, often_used_road our
+		where 1=1
+		and u.u_id=our.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByOftenUsedRoadClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findOftenUsedRoadPagedList_count" resultType="int">
+		SELECT count(*)
+		from user u, often_used_road our
+		where 1=1
+		and
+		u.u_id=our.u_id
+		<include refid="userWhereClause" />
+	</select>
+
+
+	<select id="findUserDeployPicList" resultType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and u.u_id=udp.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByUserDeployPicClause" />
+	</select>
+
+	<select id="findUserDeployPicPagedList" resultType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and u.u_id=udp.u_id
+		<include refid="userWhereClause" />
+		<include refid="orderByUserDeployPicClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findUserDeployPicPagedList_count" resultType="int">
+		SELECT count(*)
+		from user u, user_deploy_pic udp
+		where 1=1
+		and
+		u.u_id=udp.u_id
+		<include refid="userWhereClause" />
+	</select>
+
+	<select id="countUsreNumber" resultType="int">
+		SELECT count(*)
+		from user
+	</select>
+
+</mapper>

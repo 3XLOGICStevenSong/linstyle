@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.user.entity.UserDeployPicEntity">
+	<resultMap id="UserDeployPicResult"
+		type="com.djb.highway.user.entity.UserDeployPicEntity">
+		<id column="udp_id" property="udp_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="section_id" property="section_id" jdbcType="BIGINT" />
+		<result column="udp_pic_path" property="udp_pic_path" jdbcType="VARCHAR" />
+		<result column="udp_status" property="udp_status" jdbcType="INTEGER" />
+		<result column="deploy_msg" property="deploy_msg" jdbcType="VARCHAR" />
+		<result column="commend_count" property="commend_count"
+			jdbcType="INTEGER" />
+		<result column="commend_ucode" property="commend_ucode"
+			jdbcType="VARCHAR" />
+		<result column="udp_deploy_time" property="udp_deploy_time"
+			jdbcType="TIMESTAMP" />
+		<result column="udp_longitude" property="udp_longitude"
+			jdbcType="INTEGER" />
+		<result column="udp_latitude" property="udp_latitude" jdbcType="INTEGER" />
+		<result column="udp_share_type" property="udp_share_type"
+			jdbcType="VARCHAR" />
+		<result column="plaz_code_start" property="plaz_code_start"
+			jdbcType="VARCHAR" />
+		<result column="plaz_code_end" property="plaz_code_end"
+			jdbcType="VARCHAR" />
+		<result column="link_code" property="link_code" jdbcType="VARCHAR" />
+		<result column="section_name" property="section_name" jdbcType="VARCHAR" />
+		<result column="h_id" property="h_id" jdbcType="INTEGER" />
+		<result column="start_stake_id" property="start_stake_id"
+			jdbcType="VARCHAR" />
+		<result column="end_stake_id" property="end_stake_id" jdbcType="VARCHAR" />
+	      <result column="h_code" property="h_code" jdbcType="VARCHAR" />
+		<association property="userEntity"
+			javaType="com.djb.highway.user.entity.UserEntity" resultMap="userResult" />
+		<collection property="userReviewEntitys" column="udp_id"
+			ofType="com.djb.highway.user.entity.UserReviewEntity" resultMap="UserReviewResult" />
+		<collection property="userSupportEntitys"
+			ofType="com.djb.highway.user.entity.UserSupportEntity" resultMap="UserSupportResult" />
+	</resultMap>
+
+
+	<resultMap id="UserSupportResult" type="com.djb.highway.user.entity.UserSupportEntity">
+		<id column="us_id" property="us_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="udp_id" property="udp_id" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="UserReviewResult" type="com.djb.highway.user.entity.UserReviewEntity">
+		<id column="ur_id" property="ur_id" jdbcType="INTEGER" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+		<result column="udp_id" property="udp_id" jdbcType="INTEGER" />
+		<result column="ur_status" property="ur_status" jdbcType="INTEGER" />
+		<result column="ur_content" property="ur_content" jdbcType="VARCHAR" />
+		<result column="reply_u_id" property="reply_u_id" jdbcType="INTEGER" />
+		<result column="ur_deploy_time" property="ur_deploy_time"
+			jdbcType="TIMESTAMP" />
+		<association property="userEntity"
+			javaType="com.djb.highway.user.entity.UserEntity" resultMap="userResult" />
+	</resultMap>
+
+	<resultMap id="userResult" type="com.djb.highway.user.entity.UserEntity">
+		<id property="u_id" column="u_id" />
+		<result property="u_name" column="u_name" />
+		<result property="u_code" column="u_code" />
+	</resultMap>
+
+	<sql id="User_Column_List">
+		u.u_id, u.u_code, u.u_name
+	</sql>
+
+	<sql id="UserDeployPic_Column_List">
+		udp.udp_id, udp.u_id, udp.section_id, udp.udp_pic_path,
+		udp.udp_status, udp.deploy_msg,
+		udp.commend_count,udp.commend_ucode,
+		udp.udp_deploy_time, udp.udp_longitude,
+		udp.udp_latitude,udp.udp_share_type,
+		udp.plaz_code_start,udp.plaz_code_end,udp.link_code,
+		udp.section_name,udp.h_id,udp.start_stake_id,udp.end_stake_id,h_code
+	</sql>
+
+	<sql id="UserReview_Column_List">
+		ur.ur_id, ur.u_id, ur.udp_id, ur.ur_status, ur.ur_content,
+		ur.ur_deploy_time,ur.reply_u_id
+	</sql>
+
+	<sql id="UserSupport_Column_List">
+		us.us_id, us.u_id, us.udp_id,us.u_name
+	</sql>
+
+	<sql id="orderByUserDeployPicClause">
+		ORDER BY udp.udp_deploy_time DESC
+	</sql>
+
+	<sql id="orderByUserReviewClause">
+		ORDER BY ur.ur_deploy_time DESC
+	</sql>
+
+	<sql id="orderByUserDeployforHomeClause">
+		ORDER BY udp.udp_deploy_time
+		DESC,udp.h_id,udp.start_stake_id
+	</sql>
+
+	<sql id="UserDeployPicWhereClause">
+		<if test="udp_id!=null">and udp.udp_id=#{udp_id} </if>
+		<if test="u_id!=null">and udp.u_id=#{u_id} </if>
+		<if test="section_id!=null">and udp.section_id=#{section_id} </if>
+		<if test="udp_pic_path!=null">and udp.udp_pic_path=#{udp_pic_path} </if>
+		<if test="udp_status!=null">and udp.udp_status=#{udp_status} </if>
+		<if test="deploy_msg!=null">and udp.deploy_msg=#{deploy_msg} </if>
+		<if test="commend_count!=null">and udp.commend_count=#{commend_count} </if>
+		<if test="commend_ucode!=null">and udp.commend_ucode=#{commend_ucode} </if>
+		<if test="udp_deploy_time!=null">and udp.udp_deploy_time=#{udp_deploy_time} </if>
+		<if test="udp_longitude!=null">and udp.udp_longitude=#{udp_longitude} </if>
+		<if test="udp_latitude!=null">and udp.udp_latitude=#{udp_latitude} </if>
+		<if test="udp_share_type!=null">and udp.udp_share_type=#{udp_share_type} </if>
+		<if test="plaz_code_start!=null">and udp.plaz_code_start=#{plaz_code_start} </if>
+		<if test="plaz_code_end!=null">and udp.plaz_code_end=#{plaz_code_end} </if>
+		<if test="link_code!=null">and udp.link_code=#{link_code} </if>
+		<if test="section_name!=null">and udp.section_name=#{section_name} </if>
+		<if test="h_id!=null">and udp.h_id=#{h_id} </if>
+		<if test="start_stake_id!=null">and udp.start_stake_id=#{start_stake_id} </if>
+		<if test="end_stake_id!=null">and udp.end_stake_id=#{end_stake_id} </if>
+		<if test="h_code!=null">and udp.h_code=#{h_code} </if>
+		<if test="plazaCodeArgs !=null">
+			and udp.plaz_code_start in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			and plaz_code_end in
+			<foreach item="item" index="index" collection="plazaCodeArgs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+
+
+	</sql>
+	<!-- <select id="getObject" parameterType="com.djb.highway.user.entity.UserDeployPicEntity" 
+		resultMap="UserDeployPicResult"> select <include refid="User_Column_List" 
+		/> , <include refid="UserDeployPic_Column_List" /> , <include refid="UserReview_Column_List" 
+		/> from user u, user_deploy_pic udp, user_review ur where 1=1 and udp.udp_id=ur.udp_id 
+		and u.u_id=ur.u_id <include refid="UserDeployPicWhereClause" /> <include 
+		refid="orderByUserReviewClause" /> </select> -->
+	<select id="findListByCondition" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+		<include refid="orderByUserDeployPicClause" />
+	</select>
+
+	<select id="findPageListByCondition" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+		<include refid="orderByUserDeployPicClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findList" resultType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		<!-- <include refid="orderByUserDeployPicClause" /> -->
+		ORDER BY udp.udp_deploy_time DESC,udp.h_id,udp.start_stake_id
+		limit
+		0,10
+	</select>
+
+	<select id="findPagedList" resultType="com.djb.highway.user.entity.UserDeployPicEntity"
+		parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and udp.u_id=u.u_id
+		<include refid="orderByUserDeployPicClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+
+	<select id="findUserSupportList" resultType="int"
+		parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		DISTINCT us.u_id
+		from user_deploy_pic udp, user_support us
+		where
+		1=1
+		and
+		udp.udp_id=us.udp_id
+		<include refid="UserDeployPicWhereClause" />
+	</select>
+
+	<select id="getObjectForUpdate" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+	</select>
+
+
+	<select id="getUserDeployPicListByTimeStamp" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+		<if test="udp_version_time!=null">and udp.udp_deploy_time > #{udp_version_time} </if>
+		<include refid="orderByUserDeployPicClause" />
+	</select>
+
+	<select id="getMaxTimeStampObject" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		MAX(udp.udp_deploy_time) AS udp_deploy_time,
+		udp.udp_id,
+		udp.u_id, udp.section_id,
+		udp.udp_pic_path,
+		udp.udp_status,
+		udp.deploy_msg,
+		udp.commend_count,udp.commend_ucode,
+		udp.udp_longitude,
+		udp.udp_latitude,udp.udp_share_type,
+		udp.plaz_code_start,udp.plaz_code_end,udp.link_code,udp.section_name
+
+		FROM
+		user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+	</select>
+
+
+	<select id="findList_count" resultType="int"
+		parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		SELECT count(*)
+		from user_deploy_pic udp
+		where 1=1
+		<include refid="UserDeployPicWhereClause" />
+		<if test="udp_version_time!=null">and udp.udp_deploy_time > #{udp_version_time} </if>
+	</select>
+
+	<select id="findMoreUserDeployPicList" resultType="com.djb.highway.user.entity.UserDeployPicEntity">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and udp.u_id=u.u_id and udp.udp_status=1
+		<if test="linkCodes !=null">
+			and udp.link_code in
+			<foreach item="item" index="index" collection="linkCodes"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="linkCodes == null">
+			<include refid="UserDeployPicWhereClause" />
+		</if>
+		<include refid="orderByUserDeployPicClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+	<select id="findMoreUserDeployPicHIdList" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="User_Column_List" />
+		,
+		<include refid="UserDeployPic_Column_List" />
+		from user u, user_deploy_pic udp
+		where 1=1
+		and udp.u_id=u.u_id and udp.udp_status=1
+		<if test="startStakeId != null and endStakeId!= null">
+			and ((start_stake_id + 0 between #{startStakeId} and
+			#{endStakeId}) or (end_stake_id + 0 between #{startStakeId} and
+			#{endStakeId}))
+		</if>
+		<include refid="UserDeployPicWhereClause" />
+		ORDER BY udp.udp_deploy_time DESC,udp.start_stake_id
+		limit
+		#{startRow},#{pageSize}
+	</select>
+	<insert id="insert" parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		insert into user_deploy_pic
+		(udp_id, u_id, section_id,
+		udp_pic_path, udp_status, deploy_msg,
+		commend_count, commend_ucode,
+		udp_deploy_time, udp_longitude,
+		udp_latitude,udp_share_type,
+		plaz_code_start,plaz_code_end,link_code,section_name,h_id,start_stake_id,
+		end_stake_id,h_code
+		)
+		values
+		(#{udp_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{section_id,jdbcType=BIGINT},
+		#{udp_pic_path,jdbcType=VARCHAR},#{udp_status,jdbcType=INTEGER},
+		#{deploy_msg,jdbcType=VARCHAR}, #{commend_count,jdbcType=INTEGER},
+		#{commend_ucode,jdbcType=VARCHAR},
+		#{udp_deploy_time,jdbcType=TIMESTAMP},
+		#{udp_longitude,jdbcType=INTEGER}, #{udp_latitude,jdbcType=INTEGER},
+		#{udp_share_type,jdbcType=VARCHAR},
+		#{plaz_code_start,jdbcType=VARCHAR},#{plaz_code_end,jdbcType=VARCHAR},
+		#{link_code,jdbcType=VARCHAR},#{section_name,jdbcType=VARCHAR},#{h_id,jdbcType=INTEGER},
+		#{start_stake_id,jdbcType=VARCHAR},#{end_stake_id,jdbcType=VARCHAR},#{h_code,jdbcType=VARCHAR}
+		)
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		insert into
+		user_deploy_pic (udp_id, u_id, section_id,
+		udp_pic_path, udp_status,
+		deploy_msg,
+		commend_count, commend_ucode,
+		udp_deploy_time,
+		udp_longitude,
+		udp_latitude,udp_share_type,plaz_code_start,plaz_code_end,link_code,section_name,
+		h_id,start_stake_id,
+		end_stake_id,h_code
+		)
+		values
+		(#{udp_id,jdbcType=INTEGER},
+		#{u_id,jdbcType=INTEGER},
+		#{section_id,jdbcType=BIGINT},
+		#{udp_pic_path,jdbcType=VARCHAR},
+		#{udp_status,jdbcType=INTEGER},
+		#{deploy_msg,jdbcType=VARCHAR},
+		#{commend_count,jdbcType=INTEGER},
+		#{commend_ucode,jdbcType=VARCHAR},
+		#{udp_deploy_time,jdbcType=TIMESTAMP},
+		#{udp_longitude,jdbcType=INTEGER}, #{udp_latitude,jdbcType=INTEGER},
+		#{udp_share_type,jdbcType=VARCHAR},#{plaz_code_start,jdbcType=VARCHAR},
+		#{plaz_code_end,jdbcType=VARCHAR},#{link_code,jdbcType=VARCHAR},#{section_name,jdbcType=VARCHAR}
+		#{h_id,jdbcType=INTEGER},
+		#{start_stake_id,jdbcType=VARCHAR},#{end_stake_id,jdbcType=VARCHAR},#{h_code,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		DELETE FROM user_deploy_pic
+		WHERE
+		udp_id=#{udp_id}
+	</delete>
+
+	<delete id="deleteBatch" parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		DELETE FROM
+		user_deploy_pic WHERE
+		udp_id=#{udp_id}
+	</delete>
+
+	<update id="update" parameterType="com.djb.highway.user.entity.UserDeployPicEntity">
+		update user_deploy_pic
+		<set>
+			<if test="u_id != null">
+				u_id = #{u_id,jdbcType=INTEGER},
+			</if>
+			<if test="section_id != null">
+				section_id = #{section_id,jdbcType=BIGINT},
+			</if>
+			<if test="udp_pic_path != null">
+				udp_pic_path = #{udp_pic_path,jdbcType=VARCHAR},
+			</if>
+			<if test="udp_status != null">
+				udp_status = #{udp_status,jdbcType=INTEGER},
+			</if>
+			<if test="deploy_msg != null">
+				deploy_msg = #{deploy_msg,jdbcType=VARCHAR},
+			</if>
+			<if test="commend_count != null">
+				commend_count = #{commend_count,jdbcType=INTEGER},
+			</if>
+			<if test="commend_ucode != null">
+				commend_ucode = #{commend_ucode,jdbcType=VARCHAR},
+			</if>
+			<if test="udp_deploy_time != null">
+				udp_deploy_time = #{udp_deploy_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="udp_longitude != null">
+				udp_longitude = #{udp_longitude,jdbcType=INTEGER},
+			</if>
+			<if test="udp_latitude != null">
+				udp_latitude = #{udp_latitude,jdbcType=INTEGER}
+			</if>
+
+			<if test="udp_share_type != null">
+				udp_share_type = #{udp_share_type,jdbcType=VARCHAR}
+			</if>
+			<if test="plaz_code_start != null">
+				plaz_code_start = #{plaz_code_start,jdbcType=VARCHAR}
+			</if>
+			<if test="plaz_code_end != null">
+				plaz_code_end = #{plaz_code_end,jdbcType=VARCHAR}
+			</if>
+			<if test="link_code != null">
+				link_code = #{link_code,jdbcType=VARCHAR}
+			</if>
+			<if test="section_name != null">
+				section_name = #{section_name,jdbcType=VARCHAR}
+			</if>
+			<if test="h_id != null">
+				h_id = #{h_id,jdbcType=INTEGER}
+			</if>
+			<if test="start_stake_id != null">
+				start_stake_id = #{start_stake_id,jdbcType=VARCHAR}
+			</if>
+			<if test="end_stake_id != null">
+				end_stake_id = #{end_stake_id,jdbcType=VARCHAR}
+			</if>
+			<if test="h_code != null">
+				h_code = #{h_code,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where
+		udp_id=#{udp_id}
+	</update>
+
+	<select id="getUserDeployPicPointList" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where
+		1=1
+		and udp.udp_status=1
+		<if test="h_code != null">
+			and h_code = #{h_code,jdbcType=VARCHAR}
+		</if>
+		<if test="udp_longitude != null and  udp_latitude!=null">
+			and (udp_longitude + 0 between
+			(#{udp_longitude}-1)
+			and(#{udp_longitude}+1))
+			and
+			(udp_latitude +
+			0
+			between
+			(#{udp_latitude}-1)
+			and(#{udp_latitude}+1))
+			and
+			((sqrt(
+			(
+			((#{udp_longitude}-udp_longitude)*PI()*12656*cos(((#{udp_latitude}+udp_latitude)/2)*PI()/180)/180)
+			*
+			((#{udp_longitude}-udp_longitude)*PI()*12656*cos(((#{udp_latitude}+udp_latitude)/2)*PI()/180)/180)
+			)
+			+
+			(
+			((#{udp_latitude}-udp_latitude)*PI()*12656/180)
+			*
+			((#{udp_latitude}-udp_latitude)*PI()*12656/180)
+			)
+			)) + 0 between 0 and
+			80)
+
+		</if>
+
+	</select>
+	<select id="findListbyPage" parameterType="com.djb.highway.user.entity.UserDeployPicEntity"
+		resultMap="UserDeployPicResult">
+		select
+		<include refid="UserDeployPic_Column_List" />
+		from user_deploy_pic udp
+		where 1=1
+		and udp.udp_status=1
+		<include refid="orderByUserDeployforHomeClause" />
+		limit #{startRow},#{pageSize}
+	</select>
+	<!-- <select id="findUserReviewPagedList" resultType="com.djb.highway.user.entity.UserReviewEntity"> 
+		select <include refid="User_Column_List" /> , <include refid="UserDeployPic_Column_List" 
+		/> , <include refid="UserReview_Column_List" /> from user u, user_deploy_pic 
+		udp, user_review ur where 1=1 and udp.udp_id=ur.udp_id and u.u_id=ur.u_id 
+		<include refid="UserDeployPicWhereClause" /> <include refid="orderByUserReviewClause" 
+		/> limit #{startRow},#{pageSize} </select> <select id="findUserReviewPagedList_count" 
+		resultType="int"> SELECT count(*) from user u, user_deploy_pic udp, user_review 
+		ur where 1=1 and udp.udp_id=ur.udp_id and u.u_id=ur.u_id <include refid="UserDeployPicWhereClause" 
+		/> </select> <select id="findMoreUserDeployPicListBySectionId" resultType="com.djb.highway.user.entity.UserDeployPicEntity"> 
+		select <include refid="User_Column_List" /> , <include refid="UserDeployPic_Column_List" 
+		/> from user u, user_deploy_pic udp where 1=1 and udp.u_id=u.u_id and udp.section_id 
+		= #{section_id} <include refid="orderByUserDeployPicClause" /> limit #{startRow},#{pageSize} 
+		</select> <select id="findMoreUserDeployPicList_count" resultType="int"> 
+		SELECT count(*) from user u, user_deploy_pic udp where 1=1 and udp.u_id=u.u_id 
+		and udp.section_id in ( SELECT s.section_id FROM tm_section s, section_desc 
+		sd where s.section_id=sd.section_id <if test="roadNames !=null"> and sd.road_name 
+		in <foreach item="item" index="index" collection="roadNames" open="(" separator="," 
+		close=")"> #{item} </foreach> </if> ) </select> <select id="findPagedList_count" 
+		resultType="int"> SELECT count(*) from user u, user_deploy_pic udp where 
+		1=1 and udp.u_id=u.u_id </select> <select id="findUserReviewList" resultType="com.djb.highway.user.entity.UserReviewEntity"> 
+		select <include refid="User_Column_List" /> , <include refid="UserDeployPic_Column_List" 
+		/> , <include refid="UserReview_Column_List" /> from user u, user_deploy_pic 
+		udp, user_review ur where 1=1 and udp.udp_id=ur.udp_id and u.u_id=ur.u_id 
+		<include refid="UserDeployPicWhereClause" /> <include refid="orderByUserReviewClause" 
+		/> </select> -->
+
+	<!-- <select id="findMoreUserDeployPicPagedList" resultType="com.djb.highway.user.entity.UserDeployPicEntity" 
+		parameterType="com.djb.highway.user.entity.UserDeployPicEntity"> select <include 
+		refid="User_Column_List" /> , <include refid="UserDeployPic_Column_List" 
+		/> from user u, user_deploy_pic udp where 1=1 and udp.u_id=u.u_id and udp.section_id 
+		in ( SELECT s.section_id FROM tm_section s, section_desc sd where s.section_id=sd.section_id 
+		<if test="roadNames !=null"> and sd.road_name in <foreach item="item" index="index" 
+		collection="roadNames" open="(" separator="," close=")"> #{item} </foreach> 
+		</if> ) <include refid="orderByUserDeployPicClause" /> limit #{startRow},#{pageSize} 
+		</select> -->
+
+</mapper>

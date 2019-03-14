@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djb.highway.road.entity.InOutSchematicEntity">
+	<resultMap id="InOutSchematicResult"
+		type="com.djb.highway.road.entity.InOutSchematicEntity">
+		<id column="s_id" property="s_id" jdbcType="INTEGER" />
+		<result column="plaza_id" property="plaza_id" jdbcType="INTEGER" />
+		<result column="direction_content" property="direction_content"
+			jdbcType="VARCHAR" />
+		<result column="pic_path" property="pic_path" jdbcType="VARCHAR" />
+		<result column="plaz_code" property="plaz_code" jdbcType="VARCHAR" />
+
+	</resultMap>
+	<sql id="InOutSchematic_Column_List">
+		s.s_id, s.plaza_id,
+		s.direction_content,s.pic_path,s.plaz_code
+	</sql>
+	<sql id="InOutSchematicWhereClause">
+		<if test="s_id!=null">and s.s_id=#{s_id} </if>
+		<if test="plaza_id!=null">and s.plaza_id=#{plaza_id} </if>
+		<if test="direction_content!=null">and s.direction_content=#{direction_content} </if>
+		<if test="pic_path!=null">and s.pic_path=#{pic_path} </if>
+		<if test="plaz_code!=null">and s.plaz_code=#{plaz_code} </if>
+
+	</sql>
+
+
+	<select id="getObject" parameterType="com.djb.highway.road.entity.InOutSchematicEntity"
+		resultMap="InOutSchematicResult">
+		select
+
+		<include refid="InOutSchematic_Column_List" />
+		from schematic s
+		where 1=1
+		<include refid="InOutSchematicWhereClause" />
+	</select>
+
+
+
+	<select id="findListByCondition" parameterType="com.djb.highway.road.entity.InOutSchematicEntity"
+		resultType="com.djb.highway.road.entity.InOutSchematicEntity">
+		select
+		<include refid="InOutSchematic_Column_List" />
+		from schematic s
+		where 1=1
+		<include refid="InOutSchematicWhereClause" />
+	</select>
+
+
+</mapper>
