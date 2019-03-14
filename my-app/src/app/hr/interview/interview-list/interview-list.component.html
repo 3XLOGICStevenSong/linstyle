@@ -1,0 +1,171 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <div class="t_list">
+      <div class="r_btn">
+        <button type="button" class="btn btn-success" (click)="launchPaperInput()">录入面试记录</button>
+      </div>
+      <h4>
+        <strong>面试记录一览</strong>
+      </h4>
+
+      <div class="space clearfix">
+
+        <div class="col-1" style="width:50px;top:10px;">职位：
+        </div>
+        <div class="col-6" style="width:150px;">
+          <select class="form-control" id="titleSel" required [(ngModel)]=titleVal (change)="changeTitle($event.target.value)">
+            <option *ngFor="let title of titles" [value]="title">{{title}}</option>
+          </select>
+        </div>
+
+        <div class="col-1" style="width:50px;top:10px;">状态：
+        </div>
+        <div class="col-6" style="width:100px;">
+          <select class="form-control" id="interResultSel" required [(ngModel)]=interResultVal>
+            <option *ngFor="let interResult of interResults" [value]="interResult">{{interResult}}</option>
+          </select>
+        </div>
+
+        <div class="col-1" style="width:100px;top:0px;">面试者姓名：
+        </div>
+        <div class="col-6" style="width:110px;top:0px;">
+          <input type="text" class="form-control" placeholder="面试者姓名" style="width:100px;top:0px;" [(ngModel)]=interviewerInput>
+        </div>
+
+        <div class="col-1" style="width:100px;top:0px;">面试官姓名：
+        </div>
+        <div class="col-6" style="width:110px;top:0px;">
+          <input type="text" class="form-control" placeholder="面试官姓名" style="width:100px;top:0px;" [(ngModel)]=employeeInput>
+        </div>
+
+        <div class="col-6" style="top:0;left:40px;">
+          <button type="button" class="btn btn-primary" style="top:0;left:0;" (click)="searchBtnOnClicked()">检&nbsp;索</button>
+        </div>
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="info">
+            <th>序号</th>
+            <th>姓名</th>
+            <th>简历</th>
+            <th>面试职位</th>
+            <th>面试时间</th>
+            <th>面试官</th>
+            <th>状态</th>
+            <th>推荐人</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let interview of interviewList;let idx=index">
+            <td (click)="goto(interview.interId)">{{idx+1}}</td>
+            <td (click)="goto(interview.interId)">{{interview.interName}}</td>
+            <td>
+              <a (click)="onDown(interview.resumeUrl)">{{interview.resumeName}}</a>
+            </td>
+            <td>
+              <a (click)="goRecruitDetail(interview.recruitId)">{{interview.title}}</a>
+            </td>
+            <td (click)="goto(interview.interId)">{{interview.interDate}}</td>
+            <td (click)="goto(interview.interId)">{{interview.employeeNames}}</td>
+            <td (click)="goto(interview.interId)">{{interview.interResult}}</td>
+            <td (click)="goto(interview.interId)">{{interview.recommendName}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!--页码开始-->
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li>
+            <a (click)="prePage()" aria-label="Previous" style="border-right:0">
+              <span aria-hidden="true" style="border-right:0">&laquo;</span>
+            </a>
+          </li>
+          <li *ngFor="let count of pageList">
+            <div *ngIf="count==selectNum" class="actives" (click)="pageSearch(count)">
+              <a>{{count}}
+                <span class="sr-only">(current)</span>
+              </a>
+            </div>
+            <div *ngIf="count!=selectNum" class="enactive" (click)="pageSearch(count)">
+              <a>{{count}}
+                <span class="sr-only">(current)</span>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a (click)="nextPage()" aria-label="Previous">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li>
+            <input [(ngModel)]=pageNum (input)="pageNumError()" type="text" class="form-control col-15" placeholder="页码" style="margin-left:10px;min-width:45px;text-align:center">
+          </li>
+          <li>
+            <button type="button" class="btn btn-default" style="margin-left:10px" (click)="pageForward()">跳转</button>
+          </li>
+          <div id="comPass" style="display: none" class="alert alert-danger">
+            页数不能超过总页数
+          </div>
+        </ul>
+      </nav>
+      <!--页码结束-->
+
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onClick="deleteTr()">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 对话框结束 -->
+
+<!-- 考卷上传开始 -->
+<div class="modal fade" id="paperInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">录入答题记录</h4>
+      </div>
+
+      <!-- 拉取笔试者的考卷 -->
+      <div class="modal-body">
+        <input type="text" class="form-control" style="width:360px" placeholder="请输入考卷名称">
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" style="width:360px" placeholder="请输入考卷说明">
+      </div>
+      <div class="modal-body">
+        <input type="file">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onClick="deleteTr()">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 考卷上传结束 -->

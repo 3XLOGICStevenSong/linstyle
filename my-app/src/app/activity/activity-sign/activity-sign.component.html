@@ -1,0 +1,38 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <div class="t_list">
+      <div class="r_btn">
+        <button type="button" class="btn btn-success"(click)="exportExcel()">导&nbsp;出</button>
+      </div>
+      <h4><strong>报名一览——{{activity.activeTitle}}</strong></h4>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="info">
+            <th>序号</th>
+            <th>身份</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>身份证号</th>
+            <th>联系方式</th>
+            <th>家庭住址</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let activityRegister  of activityRegisterList ;let index=index">
+            <td>{{index+1}}</td>
+            <td *ngIf="activityRegister.familyFlag =='0'">员工</td>
+            <td *ngIf="activityRegister.familyFlag =='1'">家属（{{activityRegister.familyName}}）</td>
+            <td>{{activityRegister.name}}</td>
+            <td  *ngIf="activityRegister.sex =='0'">男</td>
+            <td  *ngIf="activityRegister.sex =='1'">女</td>
+            <td>{{activityRegister.idNum}}</td>
+            <td>{{activityRegister.tel}}</td>
+            <td>{{activityRegister.address}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->

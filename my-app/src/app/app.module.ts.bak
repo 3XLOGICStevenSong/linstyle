@@ -1,0 +1,108 @@
+// 系统组件
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FileUploadModule } from 'ng2-file-upload';
+// 共通自定义组件
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app/app.component';
+import { HomeComponent } from './home/home.component';
+import { HeadComponent } from './head/head.component';
+import { MenuComponent } from './menu/menu.component';
+import { RootComponent } from './root/root.component';
+import { RootService } from './root/root.service';
+//import { ActivityComponent } from './activity/activity.component';
+import { RootRoutingModule } from './root/root-routing.module';
+import { PasswordComponent } from './setting/password/password.component';
+import { SettingTimeComponent } from './message/setting-time/setting-time.component';
+import { StationMessageComponent } from './message/station-message/station-message.component';
+// import { TestComponent } from './test/test.component';
+// import { UploadComponent } from './upload/upload.component';
+// import { Upload_1Component } from './upload_1/upload_1.component';
+//import { RecruitListComponent } from './hr/recruit/recruit-list/recruit-list.component';
+//import { RecruitInputComponent } from './hr/recruit/recruit-input/recruit-input.component';
+//import { RecruitDetailComponent } from './hr/recruit/recruit-detail/recruit-detail.component';
+//import { RecruitUpdataComponent } from './hr/recruit/recruit-updata/recruit-updata.component';
+import { NoticeTypeComponent } from './notice/notice-type/notice-type.component'; 
+import { PaperListComponent } from './hr/paper/paper-list.component'; 
+import { ActivityComponent } from './activity/activity.component';
+// 权限管理
+//import { RoleComponent } from './setting/role/role.component';
+//import { RoleInfoComponent } from './setting/info/info.component';
+//import { RoleConfigComponent } from './setting/info/config.component';
+
+//协议管理				
+import { AgreementTypeListComponent } from './hr/agreement/agreementType-list/agreementType-list.component';									
+import { AgreementDetailComponent } from './hr/agreement/agreement-detail/agreement-detail.component';									
+import { AgreementSearchComponent } from './hr/agreement/agreement-search/agreement-search.component';									
+import { AgreementAddComponent } from './hr/agreement/agreement-add/agreement-add.component';
+
+//公司通知
+import { NotificationListComponent } from './message/notification/notification-list/notification-list.component';
+import { NotificationPublishComponent } from './message/notification/notification-publish/notification-publish.component';
+import { NotificationSetTypeComponent} from './message/notification/notification-setType/notification-setType.component';
+import { NotificationDetailComponent } from './message/notification/notification-detail/notification-detail.component';
+
+
+@NgModule({
+  declarations: [
+    //根组件
+    AppComponent,
+    //首页
+    HomeComponent,
+    //头部
+    HeadComponent,
+    //菜单
+    MenuComponent,
+    //Root
+    RootComponent,
+    //活动组件
+    ActivityComponent,
+    //密码
+    PasswordComponent,
+    //站内时间设置
+     SettingTimeComponent,
+     //站内消息
+    StationMessageComponent,
+    
+   // UploadComponent,
+    //TestComponent,
+   // Upload_1Component,
+   // RecruitListComponent,
+   // RecruitInputComponent,
+    NoticeTypeComponent,
+   // RecruitDetailComponent,
+    //RoleComponent,
+    //RoleInfoComponent,
+    //RoleConfigComponent,
+    //RecruitUpdataComponent,
+    PaperListComponent,
+    //协议管理
+    //AgreementTypeListComponent,
+    //AgreementDetailComponent,
+    //AgreementSearchComponent,
+   // AgreementAddComponent,
+    //公司通知
+    //NotificationListComponent,
+    //NotificationPublishComponent,
+    //NotificationSetTypeComponent,
+    //NotificationDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    CommonModule,
+    FileUploadModule,
+    HttpModule,
+    RootRoutingModule
+  ],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, RootService],
+  bootstrap: [AppComponent]
+})
+
+export class AppModule { }

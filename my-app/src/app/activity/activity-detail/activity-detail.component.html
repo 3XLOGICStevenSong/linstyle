@@ -1,0 +1,163 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <div *ngIf=btnFlag class="r_btn">
+      <button type="button" class="btn btn-success"  routerLink="/activity/edit/{{activity.activeId}}">编辑活动</button>
+    </div>
+    <h4><strong>活动详情</strong></h4>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>活动类型</strong></label><b>：</b></div>
+      <div class="col-16">{{activity.typeName}}</div>
+      <div class="col-10"><label class="p_space"><strong>活动状态</strong></label><b>：</b></div>
+      <div class="col-16">
+        <span *ngIf="activity.activeStatus==0">火热报名中</span>
+        <span *ngIf="activity.activeStatus==1">报名结束</span>
+        <span *ngIf="activity.activeStatus==2">活动结束</span>
+      </div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>活动开始日期</strong></label><b>：</b></div>
+      <div class="col-16">{{activity.activeStartTime}}</div>
+      <div class="col-10"><label class="p_space"><strong>活动结束日期</strong></label><b>：</b></div>
+      <div class="col-16">{{activity.activeEndTime}}</div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>报名开始日期</strong></label><b>：</b></div>
+      <div class="col-16">{{activity.signStartTime}}</div>
+      <div class="col-10"><label class="p_space"><strong>报名结束日期</strong></label><b>：</b></div>
+      <div class="col-16">{{activity.signEndTime}}</div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>标题</strong></label><b>：</b></div>
+      <div class="col-20">{{activity.activeTitle}}</div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>内容</strong></label><b>：</b></div>
+      <div class="col-20">{{activity.activeContent}}</div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-10"><label class="p_space"><strong>附件</strong></label><b>：</b></div>
+      <div class="col-20"><span *ngFor="let activityFile  of activityFileList ;let index=index">
+        <a href="{{activityFile.fileUrl}}" (click)="downloadFile(activityFile.fileUrl)">{{activityFile.fileName}}</a><span *ngIf="index !=activityFileList.length-1">|</span></span>
+      </div>
+    </div>
+    <!--员工报名信息填写开始-->
+
+    <div class="fill">
+      <h4><strong>报名</strong></h4>
+      <div class="fill_main" *ngFor="let activityRegister  of activityRegisterList ;let index=index">
+        <div class="space clearfix" id="{{index+1}}">
+          <div class="col-18">
+            <label class="r_space">姓名</label><b>:</b>
+          </div>
+          <div class="col-8">
+            <input type="text" [(ngModel)]=activityRegister.name name="name" required class="form-control col-3">
+
+          </div>
+          <div id="name{{index}}" style="display: none" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请输入姓名
+          </div>
+        </div>
+        <div class="space clearfix">
+          <div class="col-18">
+            <label class="r_space">性别</label><b>:</b>
+          </div>
+          <div class="col-18">
+            <label class="checkbox-inline">
+                  <input type="radio"  [(ngModel)]=activityRegister.sex   name="sex{{index}}" value="0"   >  男</label>
+          </div>
+          <div class="col-18">
+            <label class="checkbox-inline">
+                 <input type="radio"   [(ngModel)]=activityRegister.sex  name="sex{{index}}" value="1"  >女</label>
+          </div>
+          <div class="col-10" *ngIf="activityRegister.familyFlag=='1'">
+            <label class="checkbox-inline">
+               <input type="checkbox" [(ngModel)]=activityRegister.familyFlag  name="familyFlag" value="activityRegister.familyFlag" checked disabled="disabled">家属</label>
+          </div>
+        </div>
+        <div class="space clearfix">
+          <div class="col-18"><label class="r_space">身份证号</label><b>:</b></div>
+
+          <div class="col-8">
+            <input type="text" [(ngModel)]=activityRegister.idNum name="idNum" required class="form-control col-3">
+
+          </div>
+          <div id="idNum{{index}}" style="display: none" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请输入身份证号
+          </div>
+        </div>
+        <div class="space clearfix">
+          <div class="col-18"><label class="r_space">联系方式</label><b>:</b></div>
+          <div class="col-8">
+            <input type="text" [(ngModel)]=activityRegister.tel name="tel" required class="form-control col-3">
+          </div>
+          <div id="tel{{index}}" style="display: none" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请输入联系方式
+          </div>
+        </div>
+        <div class="space clearfix">
+          <div class="col-18">
+            <label class="r_space">家庭住址</label><b>:</b>
+          </div>
+          <div class="col-3">
+            <input type="text" required name="address" [(ngModel)]=activityRegister.address class="form-control col-4">
+          </div>
+          <div id="address{{index}}" style="display: none" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请输入联系方式
+          </div>
+        </div>
+        <div class="space clearfix" *ngIf="activityRegister.familyFlag=='1'">
+          <div class="col-5">
+            <!--拉取的数据-->
+            <button *ngIf="activityRegister.arId!=''" type="button" class="btn btn-default" style="top:0" (click)="deleteInfo(activityRegister)">删除</button>
+            <!--添加的数据-->
+            <button *ngIf="activityRegister.arId==''" type="button" class="btn btn-default" style="top:0" (click)="deleteAddInfo(activityRegister,index)">删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--员工报名信息填写结束-->
+
+    <div class="space clearfix">
+      <div class="col-2">
+        <button type="button" class="btn btn-primary" (click)="addItem(activityRegisterList)">添加人员</button></div>
+    </div>
+    <div class="space clearfix">
+      <div class="col-2">
+        <button type="button" class="btn btn-success greenbtn" (click)="sign(activityRegisterList)">报&nbsp;名</button>
+        <button type="button" class="btn btn-success greenbtn1" (click)="unsign(activityRegisterList)">不报名</button>
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control col-4" value="请填写不报名原因"></div>
+    </div>
+    <div class="space clearfix" *ngIf=btnFlag>
+      <div class="col-2">
+        <button type="button" class="btn btn-primary" routerLink="/activity/sign/{{activity.activeId}}">报名一览</button></div>
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->
+
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary deleteFlag">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 对话框结束 -->

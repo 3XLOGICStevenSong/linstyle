@@ -1,0 +1,44 @@
+ <!--右侧内容开始-->
+ <div class="content">
+    <div class="main">
+      <h4><strong>通知详情</strong></h4>
+      <div class="space clearfix">
+        <div class="col-18"><label class="r_space"><strong>通知类型</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.typeName}}</div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-18"><label class="r_space"><strong>标题</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.title}}</div>
+      </div>
+      <div class="space clearfix"> 
+        <div class="col-18"><label class="r_space"><strong>内容</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.content}}</div>       
+      </div>
+      <div class="space clearfix"> 
+        <div class="col-18"><label class="r_space"><strong>附件</strong></label><b>：</b></div>
+        <!-- <div class="col-3"><a href={{nFile.fileUrl}}>{{nFile.fileName}}</a> -->
+          <tbody>
+            <tr *ngFor="let nFile of nFileList;let index=index">
+                <td><a href={{nFile.fileUrl}}>{{nFile.fileName}}</a></td>
+            </tr>
+          </tbody> 
+      </div>
+      <div class="space clearfix"> 
+        <div class="col-18"><label class="r_space"><strong>审核状态</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.acceptFlgStr}}</div>
+      </div>
+      <div class="space clearfix"> 
+        <div class="col-18"><label class="r_space"><strong>登录者</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.creater}} {{noticeDetail.createTime}}</div>
+      </div>
+      <div class="space" clearfix> 
+        <div class="col-18"><label class="r_space"><strong>更新者</strong></label><b>：</b></div>
+        <div class="col-3">{{noticeDetail.updater}} {{noticeDetail.updateTime}}</div>           
+      </div>
+     <div class="space clearfix" *ngIf=modifyBtn>
+       <div class="col-5">
+       <button type="button" class="btn btn-primary" (click)="forwardNotificationDetail()">修&nbsp;改</button></div>
+     </div>
+  </div>        
+</div>
+  <!--右侧内容结束-->    

@@ -1,0 +1,93 @@
+<!--右侧内容开始-->
+<div class="content">
+  <form #publishNoticeForm="ngForm">
+    <div class="main">
+      <h4><strong>发布通知</strong></h4>
+      <div class="space clearfix">
+        <div class="col-18">
+          <label class="r_space">通知类型</label><b>:</b>
+        </div>
+        <div class="col-2">
+            <select name="typeName" class="form-control" [(ngModel)]=typeVal>
+              <option  *ngFor="let type of noticeTypeList" value={{type.typeId}} >{{type.typeName}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-18">
+          <label class="r_space">开始时间</label><b>:</b>
+        </div>
+        <div class="col-2">
+          <input class="form-control laydate-icon" [minDate]="minDate" [(ngModel)]=startDateVal required #startDateCheck="ngModel"  name="startDateVal" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker>
+          <span class="validate">*</span>
+        </div>
+        <div class="col-18">
+          <label class="r_space">结束时间</label><b>:</b>
+        </div>
+        <div class="col-2">
+          <input class="form-control laydate-icon"  [minDate]="minDate" [(ngModel)]=endDateVal required #endDateValCheck="ngModel"  name="endDateVal" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker>
+          <span class="validate">*</span>
+        </div>
+      </div>
+      <div [hidden]="startDateCheck.valid || startDateCheck.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入开始时间
+      </div> 
+      <div [hidden]="endDateValCheck.valid || endDateValCheck.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入结束时间
+      </div> 
+
+      <div class="space clearfix">
+        <div class="col-18">
+          <label class="r_space">标题</label><b>:</b>
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control col-4" [(ngModel)]=titleVal  required #titleValChecl="ngModel"  name="titleVal" placeholder="请输入标题">
+          <span class="validate">*</span>
+        </div>
+      </div>
+      <div [hidden]="titleValChecl.valid || titleValChecl.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入标题
+      </div>
+      <div class="space clearfix">
+        <div class="col-18">
+          <label class="r_space">详情</label><b>:</b>
+        </div>
+        <div class="col-3">
+          <textarea class="form-control col-4" style="resize:none;height:200px" [(ngModel)]=detailVal required  #content="ngModel" name="detailVal" placeholder="请输入详情"></textarea>
+          <span class="validate">*</span>
+        </div>
+      </div>
+      <div [hidden]="content.valid || content.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入详情
+      </div>
+      <div class="space clearfix">
+        <div class="col-18">
+          <label class="r_space">附件</label><b>:</b>
+        </div>
+        <div class="col-3">
+          <div class="uploader white">
+            <input type="text" class="filename col-3" name="fileName" readonly [(ngModel)]=fileName>
+            <input type="button" name="file" class="button" value="参照">
+            <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectChange()" multiple class="col-3" size="30">
+          </div>                           
+        </div>
+      </div>
+      <div class="space clearfix" style="padding-left:80px">
+        <div class="col-3">
+          <label class="checkbox-inline">
+            <input id = "checkboxId" type="checkbox" (click)="smallChange($event)" >置顶
+          </label>
+        </div>
+        <!--div class="col-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="option2">推送到手机
+          </label>
+        </div-->
+        <div class="col-5">
+          <button  type="button" class="btn btn-primary" (click)="publishNotification()">{{flag}}</button>
+        </div>
+      </div>    
+    </div>
+  </form>
+</div>
+  <!--右侧内容结束-->      

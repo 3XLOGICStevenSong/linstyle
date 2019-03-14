@@ -1,0 +1,129 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main register">
+    <form #statusForm="ngForm">
+      <h4><strong>修改员工状态</strong></h4>
+      <div class="space clearfix">
+        <div class="col-12">
+          <label>员工卡号：</label>
+          <span class="form-control" style="display:inline-block;border:0;box-shadow:none">{{model.cardNo}}</span>
+        </div>
+        <div class="col-12">
+          <label>姓名：</label>
+          <input [(ngModel)]=model.name name="name" required #name1="ngModel" type="text" class="form-control col-13">
+          <div [hidden]="name1.valid || name1.pristine" class="alert alert-danger">
+            请输入姓名
+          </div>
+          <span class="valid">*</span>
+        </div>
+        <div class="col-12">
+          <label>姓名拼写：</label>
+          <input type="text" [(ngModel)]=model.chineseAbbr name="chineseAbbr" class="form-control col-13">
+        </div>
+        <div class="col-12">
+          <label>在职状态：</label>
+          <select class="form-control col-13" [(ngModel)]=model.jobStatus name="jobStatus">
+                <option  *ngFor="let workStatus  of workStatusList ;let index=index"  [value]="workStatus.typeCode">{{workStatus.typeName}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>部门名称：</label>
+          <select name="" name="depId" class="form-control col-13" [(ngModel)]=model.depId>
+                <option  *ngFor="let depart of depList" [value]="depart.depId">{{depart.depName}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>员工类型：</label>
+          <select name="employeeType" class="form-control col-13" [(ngModel)]=model.employeeType>
+                  <option  *ngFor="let workType  of workTypeList" [value]="workType.typeCode">{{workType.typeName}}</option>
+                  </select>
+          <span class="valid">*</span>
+        </div>
+        <div class="col-12">
+          <label>入社日期：</label>
+          <input type="text" class="form-control col-13 laydate-icon " [(ngModel)]=model.entryDate required #entryDate1="ngModel" name="entryDate"
+            data-date-format="yyyy-mm-dd" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker />
+          <span class="valid">*</span>
+          <div [hidden]="entryDate1.valid || entryDate1.pristine" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请输入入社日期
+          </div>
+
+        </div>
+        <div class="col-12">
+          <label>退社日期：</label>
+          <input type="text" class="form-control col-13 laydate-icon " [(ngModel)]=model.leaveDate name="leaveDate" data-date-format="yyyy-mm-dd"
+            [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker />
+
+        </div>
+        <div class="col-12">
+          <label>面试记录：</label>
+          <span>{{model.name}}-{{model.title}}</span>
+        </div>
+        <div class="col-12">
+          <label></label>
+          <button type="button" class="btn btn-default">查看面试记录</button>
+          <button type="button" class="btn btn-default reconect" (click)="getRecruitInterviewInfo()">重新关联面试记录</button>
+          <button type="button" class="btn btn-primary" (click)="updateEmployeeInfo(model)">保存</button>
+          <button type="reset" class="btn btn-default">重置</button>
+          <!--<button type="button" class="btn btn-default"(click)=" statusForm.reset()">重置</button>-->
+
+        </div>
+      </div>
+    </form>
+
+      <form>
+      <div class="Interviewlist" style="display:none">
+        <h4><strong>关联面试记录</strong></h4>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr class="info">
+              <th></th>
+              <th>姓名</th>
+              <th>简历</th>
+              <th>面试职位</th>
+              <th>面试时间</th>
+              <th>面试官</th>
+              <th>状态</th>
+              <th>推荐人</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let interview of interList;let index=index">
+              <td><input type="radio" name="interId" value="" (change)="interId=interview.interId" [checked]="interId===interview.interId">
+              </td>
+              <td>{{interview.interName}}</td>
+              <td><a href="">{{interview.resumeName}}</a></td>
+              <td><a href="#none">{{interview.title}}</a></td>
+              <td>{{interview.interDate}}</td>
+              <td>{{interview.employeeNames}}</td>
+              <td *ngIf="interview.status=='0'">淘汰</td>
+              <td *ngIf="interview.status=='1'">通过</td>
+              <td>{{interview.recommendName}} </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--页码开始
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">3 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">4 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
+            <li><input type="text" class="form-control col-15" placeholder="页码" style="margin-left:10px"></li>
+            <li><button type="button" class="btn btn-default" style="top:0;left:10px">跳转</button></li>
+          </ul>
+        </nav>
+ 页码结束-->
+        <div class="space clearfix btnArea">
+          <button type="button" class="btn btn-primary relation" (click)="relateRecruit(model.cardNo,model.interId)">关联</button>
+          <button type="reset" class="btn btn-default cancel">取消</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!--右侧内容结束-->

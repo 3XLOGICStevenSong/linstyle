@@ -1,0 +1,63 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main agreement">
+        <h4><strong>协议人员查询</strong></h4>
+        <form action="" method="get">
+            <div class="space clearfix">
+                <div class="col-30">
+                    <label>协议名称：</label>
+                    <select name="typeName" class="form-control agreeType" required [(ngModel)]=typeVal>
+                        <option *ngFor="let type of typeList" value={{type.aiId}} >{{type.aiName}}</option>
+                        <option value="0">全部</option>
+                    </select>
+                    <span class="valid">*</span>
+                </div>
+                <div class="col-30">
+                    <label>协议状态：</label>
+                    <select name="agreeStatus" class="form-control agreeState" [(ngModel)]=statusVal>
+                        <option value="0">未结束</option>
+                        <option value="1">已结束</option>
+                        <option value="2">全部</option>
+                    </select>
+                    <span class="valid">*</span>
+                </div>
+                <div class="col-30">
+                    <button type="button" *ngIf=searchFlag class="btn btn-primary searchAgreement" style="margin-left:10px" (click)="searchResult()">查看</button>
+                    <button type="button" *ngIf=signUPFlag class="btn btn-success signUp" style="margin-left:10px" (click)="forwardAgreementAdd()">报名</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="agreement_info">
+            <h4><strong>参加人员一览（ 共计{{this.account}}记录）</strong></h4>
+            <table class="table table-bordered table-hover">
+                <colgroup>
+                    <col width="10%">
+                    <col width="auto">
+                    <col width="20%">
+                    <col width="200px">
+                    <col width="200px">
+                </colgroup>
+                <thead>
+                    <tr class="info">
+                        <th>序号</th>
+                        <th>协议名称</th>
+                        <th>员工号</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detail of protocolList;let index=index">
+                            <td>{{index+1}}</td>
+                            <td>{{detail.aiName}}</td>
+                            <td>{{detail.codeNo}}</td>
+                            <td><a href="javascript:void(0)" (click)="forwardAgreementDetail(detail)">{{detail.employeeName}}</a></td>
+                            <td>{{detail.status}}</td>
+                        </tr>               
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--右侧内容结束-->

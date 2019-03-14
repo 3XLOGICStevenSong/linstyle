@@ -1,0 +1,155 @@
+/*只显示时*/
+
+/*title靠右 “：”居中*/
+.infotitleright{
+	text-align: right;
+	display: inline-block;
+}
+/*左侧title宽度*/
+.lefttitle{
+	width: 85px;
+}
+/*左侧title宽度（long）*/
+.lefttitlelong{
+	width: 150px;
+}
+/*右侧title宽度*/
+.righttitle{
+	width: 100px;
+}
+/*单选选项的 左间距*/
+#radio_marginleft{
+/*	display: inline-block;*/
+	margin-left: 20px;
+	width: 60px;
+}
+/*工作经验 每个公司之间的间距*/
+.workexpermarginbtn {
+	margin-bottom: 20px;
+}
+/*技术能力 圆点框的宽度*/
+.circlewidth {
+	width: 40px;
+}
+/*技术能力 年数宽度*/
+.yearwidth {
+	width: 50px;
+}
+/*业务经验 圆点框的宽度*/
+#circlewidth2 {
+	width: 40px;
+}
+
+
+
+/*编辑状态时*/
+
+/*头像*/
+.headpic{
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	/* background: url("assets/images/resumehead.jpg") top right no-repeat; */
+	background-size: 100px 100px;
+	width: 100px;
+	height: 100px;
+}
+
+.headnopic{
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	/* background: url("assets/images/resumenohead.jpg") top right no-repeat; */
+	background-size: 100px 100px;
+	width: 100px;
+	height: 100px;
+}
+
+/*右侧title宽度*/
+.editrighttitle{
+	display: inline-block;
+	width: 100px;
+}
+/*单选框title*/
+.editradiotitle{
+	display: inline-block;
+	width: 100px;
+}
+/*多选框宽度*/
+#editcheckboxwidth{
+	/*display: inline-block;*/
+	width: 100px; 
+	height: 25px;
+}
+/*技术，管理，业务经验每个部分的宽度*/
+.threepart{
+	float: left;
+	width: 30%;
+/*	background-color: green;*/
+	margin-right: 20px;
+}
+/*业务特长和技术特长 左间距*/
+.bustec_marginleft{
+	margin-left: 30px;
+}
+/*业务特长和技术特长编辑模式 左间距*/
+.editbustec_marginleft{
+	margin-left: 35px;
+}
+/*业务特长和技术特长 多行输入框宽度和高度*/
+.bustec_width_height{
+	display: inline-block;
+	width: 90%;
+	height: 100px;
+	margin-bottom: 40px;
+}
+/*技术能力 title 居中*/
+.tectitmid{
+	text-align: center;
+	font-size: 17px;
+}
+/*任职资格 外部*/
+.tectit{
+	float: left;
+	width: 62%;
+}
+/*工作期限输入框宽度*/
+.inputwidth{
+	width: 100px;
+}
+/*多行输入框宽度*/
+.textareawidth {
+	width: 100px;
+}
+/*管理经验管理月份数输入框宽度*/
+.manainputwidth{
+	width: 50px;
+}
+/*编辑时工作经验和业务特长的高度*/
+.workexperheight{
+	height:120px;
+}
+/*业务特长 下间距*/
+.busmarbtm{
+	margin-bottom: 65px;
+}
+/*经验年数，资格居左显示*/
+.showleft{
+	text-align: left;
+}
+/* 单选框位置 */
+.inputPlace{
+	height: 10px;
+	margin-top: 7px;
+}
+
+
+
+
+
+
+
+
+
+
+

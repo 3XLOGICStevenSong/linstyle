@@ -1,0 +1,40 @@
+<div class="left_nav clearfix">
+  <!--nav 代码 开始 -->
+  <ul class="menu menu_psw clearfix">
+    <li *ngFor="let parentMenu of menuList" class="{{parentMenu.url==urlSelect ?'active':''}} mList">
+      <a><!--{{urlSelect}} <i class="glyphicon glyphicon-user"></i>-->
+        <div [ngSwitch]="parentMenu.id">
+          <template [ngSwitchCase]="1" ><i  class="glyphicon glyphicon-user"></i></template>
+          <template [ngSwitchCase]="13"><i class="glyphicon glyphicon-bullhorn"></i></template>
+          <template [ngSwitchCase]="17"><i class="glyphicon glyphicon-plane"></i></template>
+          <template [ngSwitchCase]="21"><i class="glyphicon glyphicon-cog"></i></template>
+          <template [ngSwitchCase]="25"><i  class="glyphicon glyphicon-cog"></i></template>
+        </div>
+
+        <!--template [ngSwitchCase]="公司通知"><i class="glyphicon glyphicon-bullhorn"></i>  </template>
+        <template [ngSwitchCase]="公司活动"><i class="glyphicon glyphicon-plane"></i>  </template>
+        <template [ngSwitchCase]="系统设置"><i class="glyphicon glyphicon-cog"></i>  </template>
+        <template [ngSwitchCase]="站内消息"><i  class="glyphicon glyphicon-cog"></i>  </template-->
+
+        <p>{{parentMenu.name}}</p><i class="right_icon"></i>
+      </a>
+
+      <ul class="submenu">
+        <li *ngFor="let child of parentMenu.children ;let index=index">
+          <div *ngIf="child.showGroup=='1'">
+            <div class="border_bottom" [ngStyle]="{'transition-delay':'50ms'}" (click)="changeSelect(parentMenu.url)">
+              <a routerLink="{{child.url}}">{{child.name}}</a>
+            </div>
+          </div>
+          <div *ngIf="child.showGroup=='0'">
+            <div [ngStyle]="{'transition-delay':'50ms'}">
+              <a routerLink="{{child.url}}" (click)="changeSelect(parentMenu.url)" routerLinkActive="active">{{child.name}}</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!--nav 代码 结束 -->
+</div>
+<!--左侧导航结束-->

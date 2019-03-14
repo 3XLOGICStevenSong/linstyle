@@ -1,0 +1,25 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <h4><strong>站内消息一览</strong></h4>
+    <table class="table table-bordered table-hover">
+      <thead style="white-space:nowrap">
+        <tr class="info">
+          <th>序号</th>
+          <th>类型</th>
+          <th>消息内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messageList;let index=index"  [ngClass]="message.messageType=='1'?'active':''">
+          <td>{{index+1}}</td>
+          <td *ngIf="message.messageType=='0'" style="white-space:nowrap">试用期到期</td>
+          <td *ngIf="message.messageType=='0'">{{message.cardName}}试用期将在{{message.expDate}}到期</td>
+          <td *ngIf="message.messageType=='1'" style="white-space:nowrap">合同到期</td>
+          <td *ngIf="message.messageType=='1'">{{message.cardName}}的合同将在{{message.expDate}}到期</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--右侧内容结束-->

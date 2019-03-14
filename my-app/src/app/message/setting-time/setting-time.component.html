@@ -1,0 +1,51 @@
+<!--右侧内容开始-->
+<div class="content">
+  
+  <form #timeForm="ngForm">
+    <div class="main">
+      <h4><strong>设置提醒时间</strong></h4>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">试用期到期前</label><b>:</b>
+        </div>
+        <div class="col-2 stationModify">
+          <input type="number" min="0" step="1" [(ngModel)]=tryTime id="tryTime1" required name="tryTime1" #tryTime1="ngModel" readonly
+            class="form-control col-7 clearstyle">&nbsp;天
+        </div>
+        <div [hidden]="tryTime1.valid || tryTime1.pristine" class="alert alert-danger" style="clear:both">
+          请输入试用期到期时间
+        </div>   
+        <!--<div *ngIf="tryTime1.errors.min">
+          试用期到期时间不能小于0
+        </div>-->
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">合同到期前</label><b>:</b>
+        </div>
+        <div class="col-2 stationModify">
+          <input type="number" min="0" step="1" [(ngModel)]=contactTime id="contactTime1" required name="contactTime1" #contactTime1="ngModel"
+            readonly class="form-control col-7 clearstyle">&nbsp;天
+        </div>
+        <div [hidden]="contactTime1.valid || contactTime1.pristine" class="alert alert-danger" style="clear:both">
+          请输入合同到期时间
+        </div>
+        <!--div *ngIf="contactTime1.errors.min">
+          合同期到期时间不能小于0
+        </div-->
+      </div>
+      <div class="space clearfix ">
+        <div class="col-5">
+          <button type="button" class="btn btn-primary modifyBtn" style="margin-right:10px">修&nbsp;改</button>
+          <button type="button" (click)="updateTime()" class="btn btn-success stationSave" style="margin-right:10px;display:none">保&nbsp;存</button>
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-7">
+          *默认提示时间是前15天
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!--右侧内容结束-->

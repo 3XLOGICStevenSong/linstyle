@@ -1,0 +1,19 @@
+/*搜索输入框 - 年龄，工作年限，管理经验*/
+.searchinputwidth{
+	width: 60px;
+}
+/*作业范围  每个选项的宽度 和 右间距*/
+.worksection{
+	display: inline-block;
+	width: 18%;
+	padding-left: 20px;
+}
+/*右上角按钮的宽度*/
+.btnwidth{
+	display: inline-block;
+	width: 80px;
+}
+/*一般，精通，无 选项栏的宽度*/
+.tecabiliwidth{
+	width: 280px;
+}

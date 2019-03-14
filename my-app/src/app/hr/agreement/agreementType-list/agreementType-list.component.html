@@ -1,0 +1,149 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main agreement type">
+        <h4><strong>协议一览</strong></h4>
+        <div class="space clearfix">
+            <form action="" method="post">
+                <h4><strong>赴日协议一览</strong></h4>
+                <table class="table table-bordered table-hover aboard" style="height:30px">
+                    <colgroup>
+                        <col width="200px">
+                        <col width="240px">
+                        <col width="auto">
+                        <col width="120px">
+                        <col width="200px">
+                    </colgroup>
+                    <thead>
+                        <tr class="info">
+                            <th>协议名称</th>
+                            <th>协议期限(年)</th>
+                            <th>核算方式</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let agreementJpType of japanProList;let index=index">
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" name="" value={{agreementJpType.aiName}}></td>
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" name="" value={{agreementJpType.aiPeriod}}></td>
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" name="" value={{agreementJpType.paymentType}}></td>
+                            <td><span *ngIf="agreementJpType.status==2">暂停使用</span><span *ngIf="agreementJpType.status==1">使用中</span></td>
+                            <td>
+                                <button (click)="startAgreementTypeStatus(agreementJpType)" type="button" class="btn btn-success startUse" *ngIf="agreementJpType.status==2">开始使用</button>
+                                <button (click)="stopAgreementTypeStatus(agreementJpType)" type="button" class="btn btn-primary stopUse" *ngIf="agreementJpType.status==1">暂停使用</button>
+                                <button (click)="deleteAgreementType(agreementJpType)" type="button" class="btn btn-danger delBtn">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btnArea">
+                    <button type="button" class="btn btn-primary aboardAdd" (click)="insertAgreementHtml('赴日协议一览',1)">添加协议</button>
+                </div>
+            </form>
+
+            <form action="" method="post">
+                <h4><strong>其他协议一览</strong></h4>
+                <table class="table table-bordered table-hover other" style="height:30px">
+                    <colgroup>
+                        <col width="200px">
+                        <col width="120px">
+                        <col width="120px">
+                        <col width="auto">
+                        <col width="120px">
+                        <col width="200px">
+                    </colgroup>
+                    <thead>
+                        <tr class="info">
+                            <th>协议名称</th>
+                            <th>协议期限(年)</th>
+                            <th>协议金额(元)</th>
+                            <th>核算方式</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let agreementOtherType of otherProList;let index=index">
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" value={{agreementOtherType.aiName}}></td>
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" value={{agreementOtherType.aiPeriod}}></td>
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" value="5000"></td>
+                            <td><input type="text" class="form-control clearStyle" readonly="readonly" value={{agreementOtherType.paymentType}}></td>
+                            <td><span *ngIf="agreementOtherType.status==2">暂停使用</span><span *ngIf="agreementOtherType.status==1">使用中</span></td>
+                            <td>
+                                <button (click)="startAgreementTypeStatus(agreementOtherType)" type="button" class="btn btn-success startUse" *ngIf="agreementOtherType.status==2">开始使用</button>
+                                <button (click)="stopAgreementTypeStatus(agreementOtherType)" type="button" class="btn btn-primary stopUse" *ngIf="agreementOtherType.status==1">暂停使用</button>
+                                <button (click)="deleteAgreementType(agreementOtherType)" type="button" class="btn btn-danger delBtn">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btnArea">
+                    <button type="button" class="btn btn-primary otherAdd" (click)="insertAgreementHtml('其他协议一览',0)">添加协议</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--右侧内容结束-->
+
+<!-- 添加协议对话框开始 -->
+<div id="modelForm" style="display:none">
+    <div class="modelBg"></div>
+    <div id="modelContent">
+        <h2 class="title"></h2>
+        <div class="model">
+            <div class="item">
+                <label for="typeName">协议名称:</label>
+                <input id="typeName" type="text" [(ngModel)]=typeName />
+            </div>
+            <div class="item">
+                <label for="typeYear">协议期限(年):</label>
+                <input id="typeYear" type="text" [(ngModel)]=typeYear/>
+            </div>
+            <div class="item" *ngIf="flag==0">
+                <label for="typePrice">协议金额(元):</label>
+                <input id="typePrice" type="text"  [(ngModel)]=typePrice/>
+            </div>
+            <div class="item">
+                <label for="typeMethod">核算方式:</label>
+                <select name="" class="form-control col-60" [(ngModel)]=typeMethod>
+                        <option value="0">半年折算</option>
+                        <option value="1">一年折算</option>
+                        <option value="2">到期核算</option>
+                </select>
+            </div>
+            <div class="item">
+                    <label for="typeStatus">状态:</label>
+                    <select name="" class="form-control col-60" [(ngModel)]=typeStatus>
+                            <option value="1">使用中</option>
+                            <option value="2">暂停使用</option>
+                    </select>
+            </div>
+        </div>
+        <div class="modelBtn">
+            <button type="button" class="btn btn-success" (click)="insertAgreementInfo()">保存</button>
+            <button type="button" class="btn btn-danger cancelBtn">取消</button>
+        </div>
+    </div>
+</div>
+<!-- 添加协议对话框结束 -->
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                你确定要删除吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary delSuccess">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 对话框结束 -->

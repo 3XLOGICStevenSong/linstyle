@@ -1,0 +1,98 @@
+    <div id="wrap">
+       <!--头部-->
+       <head-top></head-top>
+            <!--主页内容开始-->
+        <div class="container">
+          <div class="home_menu">
+            <div class="row clearfix">
+              <div class="col-md-4" (click)="forwardRoot('notification/info')">
+                <div class="home_notice clearfix">
+                  <ul>
+                   <li *ngFor="let notice of noticeList"><a routerLink="/notification/detail/{{notice.noticeId}}"><strong>【{{notice.typeName}}】</strong>{{notice.title}}</a></li>
+                  </ul>
+                  <span class="notice_icon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                  <span class="notice_more"><a (click)="forwardRoot('notification/info')">more</a><i class="glyphicon glyphicon-triangle-right"></i></span>
+                </div>
+              </div>
+              <div class="col-md-4" (click)="forwardRoot('activity/info')">
+                <div class="home_activity">
+                  <div class="activity_text">公司活动</div>
+                  <div class="activity_icon">
+                  <i class="glyphicon glyphicon-plane"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2" (click)="forwardRoot('personnel/employee')">
+                <div class="home_person">
+                  <div class="person_icon"><i class="glyphicon glyphicon-user"></i></div>
+                  <div class="person_text">人事管理</div>
+                </div>
+              </div>
+              <div class="col-md-2" (click)="forwardRoot('message/info')">
+                <div class="home_station">
+                  <span class="station_count" *ngIf="count>0">{{count}}</span>
+                  <div class="station_icon"><i class="glyphicon glyphicon-envelope"></i></div>
+                  <div class="station_text">站内消息</div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-md-4">
+                <div class="home_daily">
+                  <div class="daily_icon"><i class="glyphicon glyphicon-time"></i></div>
+                  <div class="daily_text">日报管理<font class="not_opened">（未开通）</font></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="home_attendance">
+                  <div class="attendance_icon"><i class="glyphicon glyphicon-calendar"></i></div>
+                  <div class="attendance_text">考勤管理<font class="not_opened">（未开通）</font></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="home_quality">
+                  <div class="quality_icon"><i class="glyphicon glyphicon-check"></i></div>
+                  <div class="quality_text">质量管理<font class="not_opened">（未开通）</font></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="home_schedule">
+                  <div class="schedule_icon"><i class="glyphicon glyphicon-stats"></i></div>
+                  <div class="schedule_text">项目进度生成<font class="not_opened">（未开通）</font></div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-md-4">
+                <div class="home_train">
+                  <div class="train_text">培训管理<font class="not_opened">（未开通）</font></div>
+                  <div class="train_icon">
+                  <i class="glyphicon glyphicon-blackboard"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="home_room">
+                  <div class="room_text">会议室预约<font class="not_opened">（未开通）</font></div>
+                  <div class="room_icon">
+                  <i class="glyphicon glyphicon-comment"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="home_asset">
+                  <div class="asset_icon"><i class="glyphicon glyphicon-folder-open"></i></div>
+                  <div class="asset_text">组织资产<font class="not_opened">（未开通）</font></div>
+                </div>
+              </div>
+              <div class="col-md-2" (click)="forwardRoot('setting/role/info')">
+                <div class="home_systerm">
+                  <div class="systerm_icon"><i class="glyphicon glyphicon-cog"></i></div>
+                  <div class="systerm_text">系统设置</div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <!--主页内容结束-->      
+ </div> 

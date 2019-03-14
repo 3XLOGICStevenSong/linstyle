@@ -1,0 +1,63 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main register maintain">
+    <form #activityForms="ngForm">
+      <h4><strong>活动类型</strong></h4>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="info">
+            <th>序号</th>
+            <th>活动类型</th>
+            <th colspan="2">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let type of typeList;let index=index">
+            <td>{{index+1}}</td>
+            <td><input #typeName required class="form-control col-13" type="text" name="maintain" (change)="changeInput(typeName.value,index+1,typeList)"
+                value={{type.typeName}}>
+              <div id="{{index+1}}" style="display: none" class="alert alert-danger">
+                请输入活动类型
+              </div>
+            </td>
+            <td>
+              <!--拉取的数据-->
+              <button *ngIf="type.typeId!=''" type="button" class="btn btn-success" (click)="saveInfo(type.typeId, typeName.value,index+1)">保存</button>
+              <button *ngIf="type.typeId!=''" type="button" class="btn btn-danger" (click)="deleteInfo(type,index)">删除</button>
+              <!--添加的数据-->
+              <button *ngIf="type.typeId==''" type="button" class="btn btn-success" (click)="createType(typeName.value,index+1)">保存</button>
+              <button *ngIf="type.typeId==''" type="button" class="btn btn-danger" (click)="deleteAddInfo(index)">删除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btnArea">
+        <button type="button" class="btn btn-add col-6 " (click)="addItem()">追加</button>
+      </div>
+  </form>
+</div>
+</div>
+
+<!--右侧内容结束-->
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary deleteFlag">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 对话框结束 -->

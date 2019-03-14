@@ -1,0 +1,552 @@
+<!--右侧内容开始-->
+<div class="content">
+    <form #interviewDetailForm="ngForm">
+        <div class="main">
+            <div class="r_btn">
+                <!-- <button type="button" class="btn btn-success" onClick="launchPaperInput()">重发短信通知</button>
+            <button type="button" class="btn btn-success" onClick="launchPaperInput()">重发邮件通知</button> -->
+            </div>
+            <h4>
+                <strong id="pageTitle">路人甲-Java架构师</strong>
+            </h4>
+            <!--基本信息-->
+            <div class="info">
+                <strong class="person">
+                    <em class="glyphicon glyphicon-list-alt"></em>&nbsp;&nbsp;个人基本信息</strong>
+                <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+                <!--基本信息空表提示开始-->
+                <div class="space clearfix personPrompt">
+                    <div class="prompt">
+                        <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善面试者信息，让面试资料更完整！</div>
+                </div>
+                <!--基本信息空表提示结束-->
+                <!--基本信息详情开始-->
+                <div class="space clearfix personDetail">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">姓名：</font>
+                            <font id="interName">{{interDetailModel.interName}}</font>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">性别：</font>
+                            <font id="interSex" *ngIf="interDetailModel.interSex === '0'">男</font>
+                            <font id="interSex" *ngIf="interDetailModel.interSex === '1'">女</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">面试时间：</font>
+                            <font id="interDate">{{interDetailModel.interDateStr}}</font>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">工作状况：</font>
+                            <font id="interState" *ngIf="interDetailModel.condition === '0'">在职</font>
+                            <font id="interState" *ngIf="interDetailModel.condition === '1'">离职</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">联系电话：</font>
+                            <font id="interTel">{{interDetailModel.interTel}}</font>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">电子邮箱：</font>
+                            <font id="interEmail">{{interDetailModel.email}}</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">简历：</font>
+                            <a id="interResume" (click)="onDown(interDetailModel.resumeUrl)">{{interDetailModel.resumeName}}</a>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">推荐人：</font>
+                            <font id="interRec">{{interDetailModel.recommendName}}</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">现住址：</font>
+                            <font id="interAdr">{{interDetailModel.interAddress}}</font>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">具有何种技术：</font>
+                            <font id="interGood">{{interDetailModel.goodsSkills}}</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">面试职位：</font>
+                            <font id="interAdr">{{interDetailModel.title}}</font>
+                        </div>
+                    </div>
+
+                </div>
+                <!--基本信息详情结束-->
+                <!--基本信息录入开始-->
+                <div class="update_input personInput">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>姓名</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.interName required #nameCheck="ngModel" name="nameName">
+                            <span class="validate">*</span>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>性别</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="sexChange1()">
+                                <input type="radio" name="sex" value="option1" (change)="interDetailModel.interSex='0'" [checked]="interDetailModel.interSex==='0' || interDetailModel.interSex===''">&nbsp;&nbsp;男
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="sexChange2()">
+                                <input type="radio" name="sex" value="option2" (change)="interDetailModel.interSex='1'" [checked]="interDetailModel.interSex==='1'">&nbsp;&nbsp;女
+                            </div>
+                        </div>
+                    </div>
+                    <div [hidden]="nameCheck.valid || nameCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入姓名
+                    </div>
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>面试时间</label>
+                            <input class="form-control col-13  laydate-icon" [(ngModel)]=interDetailModel.interDate required #interDateCheck="ngModel"
+                                name="interDateName" data-date-format="yyyy-mm-dd" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker>
+                            <span class="validate">*</span>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>工作状态</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="stateChange1()">
+                                <input type="radio" name="marry" value="option1" (change)="interDetailModel.condition='0'" [checked]="interDetailModel.condition==='0'">&nbsp;&nbsp;在职
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="stateChange2()">
+                                <input type="radio" name="marry" value="option2" (change)="interDetailModel.condition='1'" [checked]="interDetailModel.condition==='1' || interDetailModel.condition===''">&nbsp;&nbsp;离职
+                            </div>
+                        </div>
+                    </div>
+                    <div [hidden]="interDateCheck.valid || interDateCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请选择面试时间
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>联系电话</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.interTel required #interTelCheck="ngModel" name="interTelName">
+                            <span class="validate">*</span>
+                        </div>
+                        <div class="col-12">
+                            <label>电子邮箱</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.email name="emailName">
+                        </div>
+                    </div>
+                    <div [hidden]="interTelCheck.valid || interTelCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入联系电话
+                    </div>
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>简历</label>
+                            <!-- <a>上传简历</a> -->
+
+                            <!-- <input type="text" style="width:260px" class="filename" name="fileName" readonly [(ngModel)]=fileName>
+                                <input type="button" name="file" class="button" value="参照"> -->
+                            <!-- <a>上传简历</a>
+                            <span *ngIf="fileName!=null && fileName!=''"> {{fileName}}</span> -->
+
+                            <input name="resumeSub" type="file" style="line-height:0;display:inline;" ng2FileSelect [uploader]="uploader" (click)="refreshInput()"
+                                (change)="selectChange()" size="30">
+
+                        </div>
+                        <div class="col-12">
+                            <label>推荐人</label>
+                            <button style="height:18px;font-size:12px;line-height:16px;" (click)="selRec()">选择推荐人</button>
+                            <span>{{interDetailModel.recommendName}}</span>
+                            <!-- <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.recommendName name="recName"> -->
+                        </div>
+                    </div>
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>现住址</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.interAddress name="adrName">
+                        </div>
+                        <div class="col-12">
+                            <label>具有何种技术</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.goodsSkills name="skillName">
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>面试职位</label>
+                            <select class="form-control col-13" required [(ngModel)]=interDetailModel.recruitId (change)="changeRecruit($event.target.value)"
+                                #titleCheck="ngModel" name="titleName">
+                                <option *ngFor="let pInfo of positionList" [value]="pInfo.recruitId">{{pInfo.title}}</option>
+                            </select>
+                            <span class="validate">*</span>
+                        </div>
+                    </div>
+
+                    <div [hidden]="titleCheck.valid || titleCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请选择面试职位
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-success greenbtn saveBtn" (click)="selectedFileOnChanged($event)">保&nbsp;存</button>
+                            <button type="button" class="btn btn-default greenbtn1 cancelBtn" (click)="cancelBtn()">取&nbsp;消</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--基本信息录入结束-->
+            </div>
+            <!--毕业信息-->
+            <div class="info">
+                <strong class="person">
+                    <em class="glyphicon glyphicon-education"></em>&nbsp;&nbsp;领导经验与对日经验</strong>
+                <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+                <!--毕业信息空表提示开始-->
+                <div class="space clearfix personPrompt">
+                    <div class="prompt">
+                        <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善面试者信息，让面试资料更完整！</div>
+                </div>
+                <!--毕业信息空表提示结束-->
+                <!--毕业信息信息详情开始-->
+                <div class="space clearfix personDetail">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">是否带过团队：</font>
+                            <font id="interTeam" *ngIf="interDetailModel.teamFlag==='1'">带过</font>
+                            <font id="interTeam" *ngIf="interDetailModel.teamFlag==='0'">没带过</font>
+                        </div>
+                        <div class="col-12" *ngIf="interDetailModel.teamFlag==='1'">
+                            <font class="p_text">带过最多人数：</font>
+                            <font id="interTeamNum" *ngIf="interDetailModel.teamSize && interDetailModel.teamSize!=''">{{interDetailModel.teamSize}}人</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">是否接受赴日：</font>
+                            <font id="interJap" *ngIf="interDetailModel.acceptJapan==='1'">接受</font>
+                            <font id="interJap" *ngIf="interDetailModel.acceptJapan==='0'">不接受</font>
+                        </div>
+                        <div class="col-12" *ngIf="interDetailModel.acceptJapan==='1'">
+                            <font class="p_text">接受赴日年限：</font>
+                            <font id="interJapYear" *ngIf="interDetailModel.japanTimes && interDetailModel.japanTimes!=''">{{interDetailModel.japanTimes}}月</font>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">对日开发工作经验：</font>
+                            <font id="interJapJob" *ngIf="interDetailModel.japanExp && interDetailModel.japanExp!=''">{{interDetailModel.japanExp}}月</font>
+                        </div>
+                    </div>
+                </div>
+                <!--毕业信息详情结束-->
+                <!--毕业信息录入开始-->
+                <div class="update_input personInput">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>是否带过团队</label>
+                            </div>
+                            <div class="col-10" (click)="teamChange1()" id="radio_marginleft">
+                                <input type="radio" name="team" value="option1" (change)="interDetailModel.teamFlag='1'" [checked]="interDetailModel.teamFlag==='1'">&nbsp;带过
+                            </div>
+                            <div class="col-10" (click)="teamChange2()" id="radio_marginleft">
+                                <input type="radio" name="team" value="option1" (change)="interDetailModel.teamFlag='0'" [checked]="interDetailModel.teamFlag==='0' || interDetailModel.teamFlag===''">&nbsp;没带过
+                            </div>
+                        </div>
+
+                        <div class="col-12" *ngIf="interDetailModel.teamFlag==='1'">
+                            <label>带过最多人数</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.teamSize name="teamSizeName">&nbsp;&nbsp;人
+                        </div>
+
+                    </div>
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>是否接受赴日</label>
+                            </div>
+                            <div class="col-10" (click)="jpChange1()" id="radio_marginleft">
+                                <input type="radio" name="team1" value="option2" (change)="interDetailModel.acceptJapan='1'" [checked]="interDetailModel.acceptJapan==='1'">&nbsp;接受
+                            </div>
+                            <div class="col-10" (click)="jpChange2()" id="radio_marginleft">
+                                <input type="radio" name="team1" value="option2" (change)="interDetailModel.acceptJapan='0'" [checked]="interDetailModel.acceptJapan==='0' || interDetailModel.acceptJapan===''">&nbsp;拒绝
+                            </div>
+                        </div>
+
+                        <div class="col-12" *ngIf="interDetailModel.acceptJapan==='1'">
+                            <label>接受赴日期限</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.japanTimes name="japanTimeName">&nbsp;&nbsp;月
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>对日开发工作年限</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.japanExp name="japanExpName">&nbsp;&nbsp;月
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-success greenbtn saveBtn" (click)="saveBtn_1()">保&nbsp;存</button>
+                            <button type="button" class="btn btn-default greenbtn1 cancelBtn" (click)="cancelBtn()">取&nbsp;消</button>
+                        </div>
+                    </div>
+                </div>
+                <!--毕业信息录入结束-->
+            </div>
+            <!--协力信息-->
+            <div class="info">
+                <strong class="person">
+                    <em class="glyphicon glyphicon-briefcase"></em>&nbsp;&nbsp;协力信息</strong>
+                <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+                <!--入职信息空表提示开始-->
+                <div class="space clearfix personPrompt">
+                    <div class="prompt">
+                        <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善面试者信息，让面试资料更完整！</div>
+                </div>
+                <!--入职信息空表提示开始-->
+                <!--入职信息信息详情开始-->
+                <div class="space clearfix personDetail">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">是否协力：</font>
+                            <font id="interUnite" *ngIf="interDetailModel.assistanceFlag==='0'">否</font>
+                            <font id="interUnite" *ngIf="interDetailModel.assistanceFlag==='1'">是</font>
+                        </div>
+                        <div class="col-12">
+                            <font class="p_text">协力公司：</font>
+                            <font id="interCor">{{interDetailModel.assistanceCompany}}</font>
+                        </div>
+
+                    </div>
+                </div>
+                <!--入职信息详情结束-->
+                <!--入职信息录入开始-->
+                <div class="update_input personInput">
+                    <div class="space clearfix">
+
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>是否协力</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="accChange1()">
+                                <input type="radio" name="acc" value="option2" (change)="interDetailModel.assistanceFlag='1'" [checked]="interDetailModel.assistanceFlag==='1'">是
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="accChange2()">
+                                <input type="radio" name="acc" value="option2" (change)="interDetailModel.assistanceFlag='0'" [checked]="interDetailModel.assistanceFlag==='0' || interDetailModel.assistanceFlag===''">否
+                            </div>
+                        </div>
+
+                        <div class="col-12" *ngIf="interDetailModel.assistanceFlag==='1'">
+                            <label>协力公司</label>
+                            <input type="text" class="form-control col-13" [(ngModel)]=interDetailModel.assistanceCompany name="corCompanyName">
+                        </div>
+
+                    </div>
+                    <div class="space clearfix">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-success greenbtn saveBtn" (click)="saveBtn_1()">保&nbsp;存</button>
+                            <button type="button" class="btn btn-default greenbtn1 cancelBtn" (click)="cancelBtn()">取&nbsp;消</button>
+                        </div>
+                    </div>
+                </div>
+                <!--入职信息录入结束-->
+            </div>
+            <!--面试信息-->
+            <div class="info">
+                <strong class="person">
+                    <em class="glyphicon glyphicon-credit-card"></em>&nbsp;&nbsp;面试信息</strong>
+                <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+                <!--面试结果提示开始-->
+                <div class="space clearfix personPrompt">
+                    <div class="prompt">
+                        <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善面试者信息，让面试资料更完整！</div>
+                </div>
+                <!--面试结果提示结束-->
+                <!--面试结果详情开始-->
+                <div class="space clearfix personDetail">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <font class="p_text">面试结果：</font>
+                            <font id="interResult" *ngIf="interDetailModel.interResult==='1'">通过</font>
+                            <font id="interResult" *ngIf="interDetailModel.interResult==='0'">淘汰</font>
+                        </div>
+                    </div>
+                    <!-- 考卷得分 -->
+                    <div id="paperAdd">
+                        <div class="space clearfix" *ngFor="let paper of interDetailModel.scoreInfos">
+                            <div class="col-12">
+                                <font class="p_text">考卷得分：</font>
+                                <font id="interPaper" *ngIf="paper.score && paper.score!=''">{{paper.paperName}} {{paper.score}}分</font>
+                                <font id="interPaper" *ngIf="!paper.score || paper.score==''">{{paper.paperName}} 得分未记入</font>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 面试官评价 -->
+                    <div id="interAdd">
+                        <div class="space clearfix" *ngFor="let emp of interDetailModel.recruitEmployees">
+                            <div class="col-12">
+                                <font class="p_text">面试官：</font>
+                                <font id="interInterviewer">{{emp.employeeName}}</font>
+                            </div>
+                            <div class="col-12">
+                                <font class="p_text">面试评价：</font>
+                                <font id="interCommend">{{emp.content}}</font>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--面试结果详情结束-->
+                <!--面试结果录入开始-->
+                <div class="update_input personInput">
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>面试结果</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="resultChange1()">
+                                <input type="radio" name="sex1" value="option2" (change)="interDetailModel.interResult='1'" [checked]="interDetailModel.interResult==='1'">&nbsp;通过
+                            </div>
+                            <div class="col-10" id="radio_marginleft" (click)="resultChange2()">
+                                <input type="radio" name="sex1" value="option2" (change)="interDetailModel.interResult='0'" [checked]="interDetailModel.interResult==='0'">&nbsp;淘汰
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pScoreDiv">
+                        <div class="space clearfix" *ngFor="let paperp of interDetailModel.scoreInfos">
+                            <div class="col-12">
+                                <label>面试考卷</label>
+                                <span>{{paperp.paperName}}</span>
+                            </div>
+                            <div class="col-12">
+                                <label>分数</label>
+                                <input type="text" class="form-control col-13" [value]=paperp.score name="scoreName" style="width: 50px; text-align: center;"
+                                />&nbsp;&nbsp;分
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="eContentDiv">
+                        <div class="space clearfix" *ngFor="let emp of interDetailModel.recruitEmployees">
+                            <div class="col-12">
+                                <label>面试官</label>
+                                <span>{{emp.employeeName}}</span>
+                            </div>
+                            <div class="col-12">
+                                <label>面试评价</label>
+                                <input type="text" name="empComName" *ngIf="emp.cardNo!=selfCardNo" disabled [value]="emp.content" class="form-control col-13">
+                                <input type="text" name="empComName" *ngIf="emp.cardNo==selfCardNo" [value]="emp.content" class="form-control col-13">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-success greenbtn saveBtn" (click)="saveBtn_4()">保&nbsp;存</button>
+                            <button type="button" class="btn btn-default greenbtn1 cancelBtn" (click)="cancelBtn()">取&nbsp;消</button>
+                        </div>
+                    </div>
+                </div>
+                <!--面试结果录入结束-->
+            </div>
+        </div>
+    </form>
+</div>
+<!--右侧内容结束-->
+
+<!--选择部长对话框开始-->
+<div class="modal fade depModal_checkbox" style="overflow:hidden" id="depModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog_width" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">公司员工列表</h4>
+            </div>
+            <div class="modal-searchheader">
+                <input type="text" class="form-control col-13" placeholder="输入员工号或姓名 快速查找" value="" [(ngModel)]=searchKey>
+                <button type="button" class="btn btn-success" (click)="empSearch()">搜索</button>
+            </div>
+
+            <div class="modal-body more_project modal_list" style="padding-bottom:0">
+                    <div class="radios clearfix radios_4" style="height:34px;overflow:hidden">
+                        <table class="table table-bordered table-hover" style="width:740px;">
+                            <thead>
+                                <tr class="info">
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>员工号</th>
+                                    <th>姓名</th>
+                                    <th>所属部门</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="input_4" *ngFor="let employee of employeeList;let idx=index">
+                                    <td>
+                                        <label>
+                                            <input type="checkbox" name="depname" value="" [(ngModel)]="employee.chose">
+                                        </label>
+                                    </td>
+                                    <td class="employeeId">{{idx+1}}</td>
+                                    <td>{{employee.cardNo}}</td>
+                                    <td class="name">{{employee.name}}</td>
+                                    <td>{{employee.depName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <div class="modal-body more_project modal_list" style="padding-top:0">
+                <div class="radios clearfix radios_4" style="height:300px;overflow:auto">
+                    <table class="table table-bordered table-hover" style="margin-top:-35px;">
+                        <thead>
+                            <tr class="info">
+                                <th></th>
+                                <th>序号</th>
+                                <th>员工号</th>
+                                <th>姓名</th>
+                                <th>所属部门</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="input_4" *ngFor="let employee of employeeList;let idx=index">
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="depname" value="" [(ngModel)]="employee.chose">
+                                    </label>
+                                </td>
+                                <td class="employeeId">{{idx+1}}</td>
+                                <td>{{employee.cardNo}}</td>
+                                <td class="name">{{employee.name}}</td>
+                                <td>{{employee.depName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-primary depchk_4" (click)="empUploadBtn()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+

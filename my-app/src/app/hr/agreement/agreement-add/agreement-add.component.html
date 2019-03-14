@@ -1,0 +1,213 @@
+<!--右侧内容开始-->
+<div class="content">
+        <div class="main agreement add">
+            <form  #agreeAddForm="ngForm" action="" method="post">
+                <h4><strong>协议人员添加</strong></h4>
+                <div class="space clearfix">
+                    <div>
+                        <label>协议名称：</label>
+                        <select #typeId name="" class="form-control col-60"  (change)="selectAgreementType(typeId.value)">
+                            <option *ngFor="let type of typeList" value={{type.aiId}}>{{type.aiName}} </option>
+                        </select>
+                        <span class="validate">*</span>
+                    </div>
+                    <div>
+                        <label>协议期限：</label>
+                        <input name = "aiPeriod" class="form-control col-60 clearStyle" style="display:inline-block;text-align: left" [(ngModel)]=aiPeriodVal/>
+                        <span>&nbsp;&nbsp;年</span>
+                    </div>
+                    <div class="other">
+                        <label>协议金额：</label>
+                        <input name = "cAgreementTotal" class="form-control col-60 clearStyle" style="display:inline-block;text-align: left" [(ngModel)]=cAgreementTotalVal/>  
+                        <span>&nbsp;&nbsp;元(人民币)</span>
+                    </div>
+                    <div class="abroad">
+                        <label>协议人员：</label>
+                        <input type="test" class="form-control col-60 abroadName"  #nameCheck="ngModel" name="employeeName" [(ngModel)]=employeeName placeholder="请输入正确格式的员工号"/>
+                        <button type="button" class="btn btn-primary" style="margin-left:10px"  (click)="agrAbroadModalShow()">选择</button>
+                        <span class="validate">*</span>
+                        <span id="remaind" class="empty">没有未结束的协议</span>
+                    </div>
+                    <div class="abroad">
+                        <label>补助金额：</label>
+                        <select #subsidy class="form-control col-60">
+                            <option value="3000">3000</option>
+                            <option value="3500">3500</option>
+                            <option value="4000">4000</option>
+                            <option value="4500">4500</option>
+                            <option value="5000">5000</option>
+                            <option value="5500">5500</option>
+                            <option value="6000">6000</option>
+                        </select>
+                        <span>&nbsp;&nbsp;日元 / 天</span>
+                    </div>
+                    <div>
+                        <label>报名日期：</label>
+                        <input class="form-control col-60 laydate-icon" [minDate]="minDate" [(ngModel)]=signDate  required #signDate1="ngModel"  name="signDate" [bsConfig]="bsConfig" placeholder="选择日期"  bsDatepicker/>
+                        <span class="validate">*</span>
+                    </div>
+                    <div [hidden]="signDate1.valid || signDate1.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入报名日期
+                    </div>
+                    <div class="abroad">
+                        <label>赴日日期：</label>
+                        <input class="form-control col-60 laydate-icon" [minDate]="minDate" [(ngModel)]=goDate  required #goDate1="ngModel"  name="goDate" [bsConfig]="bsConfig" placeholder="选择日期"  bsDatepicker/>
+                        <span class="validate">*</span>
+                        <label>回国日期：</label>
+                        <input class="form-control col-60 laydate-icon" [minDate]="minDate" [(ngModel)]=backDate  required #backDate1="ngModel"  name="backDate" [bsConfig]="bsConfig" placeholder="选择日期"  bsDatepicker/>
+                        <span class="validate">*</span>
+                    </div>
+                    <div [hidden]="goDate1.valid || goDate1.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入赴日日期
+                    </div>
+                    <div [hidden]="backDate1.valid || backDate1.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入回国日期
+                    </div>
+                    <div>
+                        <label>协议开始日期：</label>
+                        <input class="form-control col-60 laydate-icon" [minDate]="minDate" [(ngModel)]=startDate  required #startDateCheck="ngModel"  name="startDate" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker/>
+                        <span class="validate">*</span>
+                        <label>协议结束日期：</label>
+                        <input class="form-control col-60 laydate-icon" [minDate]="minDate" [(ngModel)]=endDate  required #endDateCheck="ngModel"  name="endDate" [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker/>
+                        <span class="validate">*</span>
+                    </div>
+                    <div [hidden]="startDateCheck.valid || startDateCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入协议开始日期
+                    </div>
+                    <div [hidden]="endDateCheck.valid || endDateCheck.pristine" class="alert alert-danger">
+                        <i class='glyphicon glyphicon-exclamation-sign'></i>请输入协议结束日期
+                    </div>
+                    <div class="abroadSubmit">
+                        <button type="button" class="btn btn-primary" style="margin-left:10px" (click)="agreementModalShow()">添加人员</button>
+                        <button type="button" class="btn btn-success abrBtn" style="margin-left:10px" (click)="commitAgreement(subsidy.value)">提&nbsp;交</button>
+                    </div>
+                    <div class="addUserList" style="display:none">
+                        <label>参加人员：<br/> <p class="total">(共<span>0</span>人)</p></label>
+                        <div class="index">
+                            <ul class="users clearfix"></ul>
+                        </div>
+                        <div class="btnArea">
+                            <button type="button" class="btn btn-success otherAdd" style="margin-left:10px" (click)="commitAgreement(subsidy.value)">提&nbsp;交</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="abroadHistory">
+                <h4><strong>未结束的协议列表</strong></h4>
+                <table class="table table-bordered table-hover" style="height:30px">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="auto">
+                        <col width="200px">
+                        <col width="200px">
+                    </colgroup>
+                    <thead>
+                        <tr class="info">
+                            <th>序号</th>
+                            <th>协议名称</th>
+                            <th>协议开始日期</th>
+                            <th>协议结束日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let agreementInfo of agreementList ;let index = index">
+                            <td>{{index+1}}</td>
+                            <td>{{agreementInfo.aiName}}</td>
+                            <td>{{agreementInfo.startDate}}</td>
+                            <td>{{agreementInfo.endDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--右侧内容结束-->
+
+    <!--选择其他协议人员对话框开始-->
+    <div class="modal fade" style="color:black;overflow:hidden" id="agreementModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog dialog_width" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="margin-left:15px;margin-top:10px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)= "onCloseOther()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">公司员工列表</h4>
+                </div>
+                <div class="modal-searchheader">
+                    <input #searchOther type="text" class="form-control col-13" placeholder="输入员工号或姓名 快速查找" value="">
+                    <button type="button" class="btn btn-success" (click)="secarchEmployeeForOther(searchOther.value)">搜索</button>
+                </div>
+                <div class="modal-body more_project modal_list">
+                    <div class="OtherUserList clearfix" style="height:300px;overflow:auto;">
+                        <table class="table table-bordered table-hover list">
+                            <thead>
+                                <tr class="info">
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>员工号</th>
+                                    <th>姓名</th>
+                                    <th>所属部门</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let employee of employeeList;let index=index">
+                                    <td><label><input type="checkbox" name="multiEmployee" value="" [(ngModel)]="employee.status"></label></td>
+                                    <td>{{index+1}}</td>
+                                    <td class="code">{{employee.cardNo}}</td>
+                                    <td class="name">{{employee.name}}</td>
+                                    <td>{{employee.depName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <button type="button" class="btn btn-primary" (click)="confirmEmployeeForOther()">添加</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)= "onCloseOther()">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--选择赴日人员对话框开始-->
+    <div class="modal fade" style="color:black; overflow:hidden" id="agrAbroadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog dialog_width" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="margin-left:15px;margin-top:10px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)= "onCloseJP()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">公司员工列表</h4>
+                </div>
+                <div class="modal-searchheader">
+                    <input #search type="text" class="form-control col-13" placeholder="输入员工号或姓名 快速查找" value="">
+                    <button type="button" class="btn btn-success" (click)="secarchEmployee(search.value)">搜索</button>
+                </div>
+                <div class="modal-body more_project modal_list">
+                    <div class="UserList clearfix" style="height:300px;overflow:auto;">
+                        <table class="table table-bordered table-hover list">
+                            <thead>
+                                <tr class="info">
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>员工号</th>
+                                    <th>姓名</th>
+                                    <th>所属部门</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let employee of employeeList;let index=index" >
+                                    <td><label><input type="radio"  name="employeeName" [value] ="employee.employeeId" [(ngModel)]=flag></label></td>
+                                    <td>{{index+1}}</td>
+                                    <td class="code">{{employee.cardNo}}</td>
+                                    <td class="name">{{employee.name}}</td>
+                                    <td>{{employee.depName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <button type="button" class="btn btn-primary agrAbroadChk" (click) = "confirmJPEmployee()">添加</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)= "onCloseJP()">关闭</button>
+                </div>
+            </div>
+        </div>
+</div>

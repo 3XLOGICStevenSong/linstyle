@@ -1,0 +1,83 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <h4><strong>角色信息一览</strong></h4>
+    <div class="r_btn">
+      <button (click)="roleOnClicked()" type="button" class="btn btn-success">角色授予</button>
+    </div>
+    <div class="role_height">
+      <table class="table table-bordered table-hover" style="height:30px">
+<thead>
+  <tr class="info">
+    <th>角色名称</th>
+    <th>角色描述</th>
+    <th>拥有者</th>
+    <th colspan="2">修改角色</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let role of roleList">
+    <td>{{role.roleName}}</td>
+    <td>
+      <button (click)="describeOnClicked(role.roleId)" type="button" class="btn btn-primary describeBtn" style="top:0;">描述</button>
+</td>
+<td>
+  <button (click)="ownerOnClicked(role.roleId)" type="button" class="btn btn-primary seeBtn" style="top:0;">查看</button>
+</td>
+<td>
+  <button *ngIf="role.roleId!=1" (click)="changeOnClicked(role.roleId)" type="button" class="btn btn-primary" style="top:0;">修改</button>
+</td>
+<td>
+  <button *ngIf="role.roleId!=1" (click)="deleteOnClicked(role.roleId)" type="button" class="btn btn-default" style="top:0;">删除</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--角色描述开始-->
+<div *ngIf="showDes" class="describe">
+  <h4><strong>角色描述</strong>（编号：{{curRoleId}}）</h4>
+  <div class="closeTable">
+    <button (click)="closeDesOnClicked()" type="button" class="btn btn-default closeBtn">关闭</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="success">
+        <th>功能名称</th>
+        <th>功能描述</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let des of desList">
+        <td>{{des.resourceName}}</td>
+        <td>{{des.memo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--角色描述结束-->
+<!--角色拥有者查看开始-->
+<div *ngIf="showOwner" class="see">
+  <h4><strong>拥有人员</strong></h4>
+  <div class="closeTable">
+    <button (click)="closeOwnerOnClicked()" type="button" class="btn btn-default closeBtn">关闭</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="success">
+        <th>员工名称</th>
+        <th>所属部门</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let owner of ownerList">
+        <td>{{owner.name}}</td>
+        <td>{{owner.depName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--角色拥有者查看结束-->
+</div>
+</div>
+<!--右侧内容结束-->

@@ -1,0 +1,43 @@
+<!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+                <div class="r_btn">
+                  <button type="button" class="btn btn-success" (click)="recruitEdit()">编辑</button>
+                  <button type="button" class="btn btn-success" onClick="launchPaperInput()">录入面试简历</button>
+                  <button type="button" class="btn btn-success" onClick="launchPaperInput()">面试简历一览</button>
+                </div>
+                
+            <h4><strong>招聘信息详情</strong></h4>
+            <div class="space clearfix">
+              <div class="col-1"><label class="r_space"><strong>语种</strong></label></div>
+              <div class="col-3">{{this.language}}</div>
+            </div>
+            <div class="space clearfix">
+              <div class="col-1"><label class="r_space"><strong>标题</strong></label></div>
+              <div class="col-3">{{this.title}}</div>
+            </div>
+            <div class="space clearfix">
+
+              <div class="col-1"><label class="r_space"><strong>内容</strong></label></div>
+              <div class="col-3">
+              <!-- 岗位职责:<br/> -->
+                {{this.content}}
+                </div>
+            </div>
+
+            <div class="space clearfix">
+              <div class="col-1"><label class="r_space"><strong>面试考卷</strong></label></div>
+              <div class="col-3">
+                <a class="relatedContent" href={{paper.paperUrl}} *ngFor="let paper of paperList">{{paper.paperName}}</a>
+              </div>
+            </div>
+            <div class="space clearfix">
+              <div class="col-1"><label class="r_space"><strong>面试官</strong></label></div>
+              <div class="col-3">
+                <span class="relatedContent" href="#" *ngFor="let emp of interviewerList">{{emp.employeeName}}</span>
+              </div>
+            </div>
+
+        </div>        
+      </div>
+        <!--右侧内容结束-->    

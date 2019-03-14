@@ -1,0 +1,88 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main">
+        <div class="t_list">
+            <div class="r_btn">
+                <button type="button" class="btn btn-success" (click)="search()">高级检索</button>
+            </div>
+            <h4>
+                <strong>员工/协力简历一览</strong>
+            </h4>
+            <div class="space clearfix">
+                <div class="col-1" style="width:80px">所在部门：</div>
+                <div class="col-6" style="width:110px">
+                    <select class="form-control" required [(ngModel)]=resumeSearchInfo.depName>
+                        <option value="">请选择</option>
+                        <option *ngFor="let dep of depList" [value]="dep">{{dep}}</option>
+                    </select>
+                </div>
+
+                <div class="col-1">在职状态：
+                </div>
+                <div class="col-6" style="width:150px">
+                    <select class="form-control" required [(ngModel)]=resumeSearchInfo.jobStatus>
+                        <option value="">请选择</option>
+                        <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+                    </select>
+                </div>
+
+                <div class="col-1" style="width: 50px;">
+                    语言：
+                </div>
+                <div class="col-6" style="width:70px">
+                    <select class="form-control">
+                        <option>日语</option>
+                    </select>
+                </div>
+
+                <div class="col-1" style="width:65px;">
+                    员工号：
+                </div>
+                <div class="col-1">
+                    <input type="text" class="form-control" [(ngModel)]=resumeSearchInfo.cardNo style="width:60px" placeholder="数字">
+                </div>
+                <div class="col-1" style="width:50px">
+                    姓名：
+                </div>
+                <div class="col-2" style="width:120px">
+                    <input type="text" class="form-control" [(ngModel)]=resumeSearchInfo.name placeholder="请输入姓名" style="width:100px">
+                </div>
+                <div class="col-6" style="width:70px">
+                    <button type="button" class="btn btn-primary" style="top:0;" (click)="getSearchAll()">检&nbsp;索</button>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="info">
+                        <th>序号</th>
+                        <th>员工号</th>
+                        <th>姓名</th>
+                        <th>部门</th>
+                        <th>语言</th>
+                        <th>工作年限</th>
+                        <th>最高学历</th>
+                        <th>未更新天数</th>
+                        <th>上次更新时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rInfo of resumeList;let idx=index">
+                        <td>{{idx+1}}</td>
+                        <td>{{rInfo.cardNo}}</td>
+                        <td>{{rInfo.name}}</td>
+                        <td>{{rInfo.depName}}</td>
+                        <td>日语</td>
+                        <td *ngIf="rInfo.workYear && rInfo.workYear>0">{{rInfo.workYear}}年</td>
+                        <td *ngIf="!rInfo.workYear"></td>
+                        <td>{{rInfo.education}}</td>
+                        <td *ngIf="rInfo.notUpdateDate && rInfo.notUpdateDate>0">{{rInfo.notUpdateDate}}天</td>
+                        <td *ngIf="!rInfo.notUpdateDate"></td>
+                        <td>{{rInfo.updateTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--右侧内容结束-->

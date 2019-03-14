@@ -1,0 +1,300 @@
+<!--右侧内容开始-->
+<div class="content">
+    <form #recruitInputForm="ngForm">
+        <div class="main">
+            <div class="t_list">
+                <!-- <div class="r_btn">
+                  <button type="button" class="btn btn-success" onClick="launchPaperInput()">发布招聘信息</button>
+                </div> -->
+                <h4>
+                    <strong id="pageTitle">发布招聘信息</strong>
+                </h4>
+                <!-- 正文开始 -->
+
+                <div class="space clearfix">
+                    <div class="col-1">
+                        <label>语种：</label>
+                    </div>
+                    <div class="col-2">
+
+                        <select class="form-control" id="url" name="lanSelect" required [(ngModel)]=lanVal>
+                            <option *ngFor="let lan of lans" [value]="lan">{{lan}}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="space clearfix">
+                    <div class="col-1">
+                        <label>标题:</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control col-4" [(ngModel)]=titleVal required #titleCheck="ngModel" name="titleVal">
+                        <span class="validate">*</span>
+                    </div>
+                </div>
+
+                <div [hidden]="titleCheck.valid || titleCheck.pristine" class="alert alert-danger">
+                    <i class='glyphicon glyphicon-exclamation-sign'></i>请输入标题
+                </div>
+
+                <div class="space clearfix" id="recruitcontent">
+                    <div class="col-1">
+                        <label>内容:</label>
+                    </div>
+                    <div class="col-3">
+                        <textarea class="form-control col-4" name="contentName" style="resize:none;height:200px" [(ngModel)]=contentVal required
+                            #contentCheck="ngModel" name="contentVal"></textarea>
+                        <span class="validate">*</span>
+                    </div>
+                </div>
+
+                <div [hidden]="contentCheck.valid || contentCheck.pristine" class="alert alert-danger">
+                    <i class='glyphicon glyphicon-exclamation-sign'></i>请输入内容
+                </div>
+
+                <!-- 添加，删除刷新部分 开始 -->
+                <!-- <div id="refreshPart"> -->
+
+                <div id="paperback" style="margin-bottom: 30px;">
+                    <!-- 考卷 一个部分 开始 -->
+                    <div class="space clearfix" id="teaid">
+                        <div class="col-1">
+                            <label>考卷:</label>
+                        </div>
+
+                        <div class="col-3">
+                            <!--(click)="selApp()"-->
+                            <button class="btn btn-success choseBtn" style="top:0px;margin-right: 30px;">选择</button>
+                        </div>
+
+                        <!-- <div *ngIf="!paperFirst"> 
+              <button class="btn btn-success" style="left:0;top: 0;" (click)="addPaper()">追加考卷</button>
+             </div>               -->
+                    </div>
+
+                    <!-- 考卷 一个部分 结束 -->
+                </div>
+
+                <div id="paperback_1" style="display:none">
+                    <!-- 考卷 一个部分 开始 -->
+
+                    <div class="space clearfix" id="teaid">
+                        <div class="col-1">
+                            <label>考卷:</label>
+                        </div>
+
+                        <div class="col-3">
+                            <button class="btn btn-success choseBtn" style="top:0px;margin-right: 30px;">选择</button>
+                        </div>
+                        <div>
+                            <span class="remove_btn minusBtn delPaper" style="margin-left:10px">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </span>
+                            <!-- <button class="btn btn-success delPaper" style="left:273px;top: 0;" (click)="delPaper()">减少</button> -->
+                        </div>
+                    </div>
+                    <!-- 考卷 一个部分 结束 -->
+                </div>
+
+                <div id="empback">
+                    <!-- 添加面试官  一个部分 开始 -->
+                    <div class="space clearfix" id="teaid">
+                        <div class="col-1">
+                            <label>面试官:</label>
+                        </div>
+
+                        <div class="col-3">
+                            <button id="choseEmpBtn" class="btn btn-success choseBtn_emp" style="top:0px;margin-right: 30px;">选择</button>
+                            <span class="validate">*</span>
+                        </div>
+
+                        <!-- <div *ngIf="!empFirst">
+                        <button class="btn btn-success" style="top:0;left:0;" (click)="addTea()">追加面试官</button>
+                    </div> -->
+                    </div>
+
+                    <!-- 添加面试官 一个部分 结束 -->
+                </div>
+
+                <div [hidden]="empCheck" id="empWarn" class="alert alert-danger">
+                    <i class='glyphicon glyphicon-exclamation-sign'></i>请选择面试官
+                </div>
+
+                <div id="empback_1" style="display:none">
+                    <!-- 添加面试官  一个部分 开始 -->
+                    <div class="space clearfix" id="teaid">
+                        <div class="col-1">
+                            <label>面试官:</label>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success choseEmpBtn" style="top:0px;margin-right: 30px;">选择</button>
+                        </div>
+                        <!--  style="height: 34px;" -->
+                        <div>
+                            <span class="remove_btn minusBtn delTea" style="margin-left:10px">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- 添加面试官 一个部分 结束 -->
+                </div>
+                <!--  </div> -->
+
+                <!-- 添加，删除刷新部分 结束 -->
+                <div class="col-5">
+                    <button type="button" class="btn btn-primary submitBtn" (click)="submitInfo()">发布信息</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- </div> -->
+<!--右侧内容结束-->
+
+<!--选择考卷对话框开始-->
+<div class="modal fade paperModal_checkbox" style="overflow:hidden" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">考卷列表</h4>
+            </div>
+            <div class="modal-body more_project modal_list">
+                <!-- 标题栏 -->
+                <div class="radios clearfix" style="height:34px;overflow:hidden;width:360px;">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th></th>
+                                <th>序号</th>
+                                <th>考卷名称</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let paper of paperList;let idx=index">
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="depname" value="" [(ngModel)]="paper.chose">
+                                    </label>
+                                </td>
+                                <td>{{idx+1}}</td>
+                                <td>{{paper.paperName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="radios clearfix" style="height:300px;overflow:auto">
+                    <table class="table table-bordered table-hover" style="margin-top:-35px;">
+                        <thead>
+                            <tr class="info">
+                                <th></th>
+                                <th>序号</th>
+                                <th>考卷名称</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let paper of paperList;let idx=index">
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="depname" value="" [(ngModel)]="paper.chose">
+                                    </label>
+                                </td>
+                                <td>{{idx+1}}</td>
+                                <td>{{paper.paperName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-primary papchk_2" (click)="paperUploadBtn()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--选择部长对话框开始-->
+<div class="modal fade depModal_checkbox" style="overflow:hidden" id="depModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog_width" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">公司员工列表</h4>
+            </div>
+            <div class="modal-searchheader">
+                <input type="text" class="form-control col-13" placeholder="输入员工号或姓名 快速查找" value="" [(ngModel)]=searchKey>
+                <button type="button" class="btn btn-success" (click)="empSearch()">搜索</button>
+            </div>
+
+            <div class="modal-body more_project modal_list" style="padding-bottom:0">
+                    <div class="radios clearfix radios_4" style="height:34px;overflow:hidden">
+                        <table class="table table-bordered table-hover" style="width:740px;">
+                            <thead>
+                                <tr class="info">
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>员工号</th>
+                                    <th>姓名</th>
+                                    <th>所属部门</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="input_4" *ngFor="let employee of employeeList;let idx=index">
+                                    <td>
+                                        <label>
+                                            <input type="checkbox" name="depname" value="" [(ngModel)]="employee.chose">
+                                        </label>
+                                    </td>
+                                    <td class="employeeId">{{idx+1}}</td>
+                                    <td>{{employee.cardNo}}</td>
+                                    <td class="name">{{employee.name}}</td>
+                                    <td>{{employee.depName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <div class="modal-body more_project modal_list" style="padding-top:0">
+                <div class="radios clearfix radios_4" style="height:300px;overflow:auto">
+                    <table class="table table-bordered table-hover" style="margin-top:-35px;">
+                        <thead>
+                            <tr class="info">
+                                <th></th>
+                                <th>序号</th>
+                                <th>员工号</th>
+                                <th>姓名</th>
+                                <th>所属部门</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="input_4" *ngFor="let employee of employeeList;let idx=index">
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="depname" value="" [(ngModel)]="employee.chose">
+                                    </label>
+                                </td>
+                                <td class="employeeId">{{idx+1}}</td>
+                                <td>{{employee.cardNo}}</td>
+                                <td class="name">{{employee.name}}</td>
+                                <td>{{employee.depName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-primary depchk_4" (click)="empUploadBtn()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

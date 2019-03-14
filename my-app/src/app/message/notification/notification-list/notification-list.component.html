@@ -1,0 +1,111 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main">
+        <div class="t_list">
+            <div class="r_btn">
+                <button *ngIf=createTypeFlag type="button" class="btn btn-success" style="margin-right:10px" (click)="forwardNotificationType()">编辑分类</button>
+                <button *ngIf=createFlag type="button" class="btn btn-success" (click)="forwardNotificationPublish()">发布通知</button>
+            </div>
+            <h4><strong>通知一览</strong></h4>
+            <div class="space clearfix" *ngIf=searchFlag>
+                <div class="col-18">通知类型：
+                </div>
+                <div class="col-16">
+                    <select   name="typeName" class="form-control" required [(ngModel)]=typeVal>
+                        <option value="0" >全部</option>
+                        <option *ngFor="let type of noticeTypeList" value={{type.typeId}} >{{type.typeName}}</option>
+                    </select>
+                </div>
+                <div class="col-18">
+                    开始时间：
+                </div>
+                <div class="col-19">
+                    <input #startDate  class="form-control laydate-icon" onclick="laydate()" [(ngModel)]=startDateVal >
+                </div>
+                <div class="col-18">
+                    结束时间：
+                </div>
+                <div class="col-19">
+                    <input #endDate class="form-control laydate-icon" onclick="laydate()" [(ngModel)]=endDateVal >
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary" style="top:0;" (click)="searchNoticeList(startDate.value,endDate.value)">检&nbsp;索</button>
+                </div>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="info">
+                        <th>序号</th>
+                        <th>通知类型</th>
+                        <th>标题</th>
+                        <th>附件</th>
+                        <th>开始日期</th>
+                        <th>结束日期</th>
+                        <th class="option" *ngIf=createFlag>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let notice of noticeList;let index=index">
+                        <td>{{index+1}}</td>
+                        <td>{{notice.typeName}}</td>
+                        <td (click)="forwardNotificationDetail(notice)"><font color="blue">{{notice.title}}</font></td>
+                        <td>{{notice.appendixName}}</td>
+                        <td>{{notice.startDate}}</td>
+                        <td>{{notice.endDate}}</td>
+                        <td class="option" *ngIf=createFlag><button  *ngIf="notice.btnStatus==1" type="button" class="btn btn-default" style="top:0;" (click)="deleteNotice(notice,index)">删除</button><button  *ngIf="notice.btnStatus==2" type="button" class="btn btn-default" style="top:0;" onClick="launchModal(this)">审核</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--分割线-->
+        <h4 *ngIf=createFlag ><strong>未审核通知一览</strong></h4>
+        <table *ngIf=createFlag class="table table-bordered table-hover">
+            <thead>
+                <tr class="info">
+                    <th>序号</th>
+                    <th>通知类型</th>
+                    <th>标题</th>
+                    <th>状态</th>
+                    <th>登录时间</th>
+                    <th>登录人</th>
+                    <th>更新时间</th>
+                    <th>更新人</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let notice of acceptList; let index=index">
+                    <td>{{index+1}}</td>
+                    <td>{{notice.typeName}}</td>
+                    <td (click)="forwardNotificationDetail(notice)"><font color="blue">{{notice.title}}</font></td>
+                    <td>{{notice.acceptFlgStr}}</td>
+                    <td>{{notice.createTime}}</td>
+                    <td>{{notice.creater}}</td>
+                    <td>{{notice.updateTime}}</td>
+                    <td>{{notice.updater}}</td>
+                    <td><button *ngIf="notice.btnStatus==1" type="button" class="btn btn-default" style="top:0;" (click)="deleteAcceptNotice(notice,index)">删除</button><button *ngIf="notice.btnStatus==2" type="button" class="btn btn-default" style="top:0;" (click)="agreeNotification(notice)">审核</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--右侧内容结束-->
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                你确定要删除吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary delSuccess" >确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 对话框结束 -->

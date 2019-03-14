@@ -1,0 +1,21 @@
+<!--头部开始-->
+<div class="top clearfix">
+    <span class="logo_img"></span>
+    <!--下拉菜单开始-->
+    <ul class="down_menu" style="display: none">
+      <!--routerLink="/personnel/employee/info"-->
+      <li><a  (click)="info()" >个人信息</a></li> 
+      <!--routerLink="/setting/password"-->
+      <li><a  (click)="psw()" >修改密码</a></li>
+    </ul> 
+    <!--下拉菜结束-->
+    <span class="drop_down"><i class="caret"></i></span>
+    <span class="user">{{depName}}&nbsp;&nbsp;{{userName}}({{loginCode }})</span>
+    <div class="top_right"> 
+      <a class="home"  (click)="home()"><i></i></a>
+      <a class="out"  (click)="loginOut()"><i></i></a>
+    </div>  
+</div>
+<!--头部结束-->
+
+       

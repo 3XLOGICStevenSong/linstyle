@@ -1,0 +1,103 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main register department">
+    <form action="" method="post">
+      <h4><strong>部门信息管理</strong></h4>
+      <div class="space clearfix">
+        <div class="col-12">
+          <label>部门名称：</label>
+          <select name="depId" class="form-control col-13" [(ngModel)]=model.depId>
+            <option  *ngFor="let depart of departList" [value]="depart.depId">{{depart.depName}}</option>
+          </select>
+          <button type="button" class="btn btn-primary" (click)="searchDepartmentInfo()">检索</button>
+        </div>
+      </div>
+    </form>
+
+
+    <h4><strong>部长</strong></h4>
+    <div class="space clearfix">
+      <label><input class="Minister form-control" name="managerName" readonly="readonly"  [(ngModel)]=model.managerName></label>
+      <button *ngIf=btnFlag type="button" class="btn btn-default changeMis" (click)="editManager()">编辑</button>
+    </div>
+
+    <div class="department_list">
+      <h4><strong>部门员工列表</strong></h4>
+      <table class="table table-bordered table-hover" style="height:30px">
+        <thead>
+          <tr class="info sort_info">
+            <th>序号</th>
+            <th>员工号</th>
+            <th>姓名</th>
+            <th *ngIf="model.sortBy==0" (click)="sortBy('1')">职级
+              <button  type="button"><i class="glyphicon glyphicon-triangle-top"></i></button>
+            </th>
+            <th *ngIf="model.sortBy==1" (click)="sortBy('0')">职级
+              <button  type="button"><i class="glyphicon glyphicon-triangle-bottom" ></i></button>
+            </th>
+            <th>在职状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employeeList;let index=index">
+            <td>{{index+1}}</td>
+            <td>{{employee.cardNo}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.rank}}</td>
+            <td>{{employee.jobStatus}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->
+
+
+<!--选择部长对话框开始-->
+<div class="modal fade" id="depModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog dialog_width" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">公司员工列表</h4>
+      </div>
+      <div class="modal-searchheader">
+        <input type="text" class="form-control col-13" [(ngModel)]=searchName placeholder="输入员工号或姓名 快速查找" [value]="searchName">
+        <button type="button" class="btn btn-success" (click)="searchEmployee(searchName)">搜索</button>
+      </div>
+      <div class="modal-body more_project modal_list">
+        <div class="radios clearfix">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr class="info">
+                <th></th>
+                <th>序号</th>
+                <th>员工号</th>
+                <th>姓名</th>
+                <th>所属部门</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employeeAll of employeeAllList;let index=index">
+                <td><label><input type="radio"  (change)="selectInfo(employeeAll)"  name="depname" value="employeeAll.cardNo"></label></td>
+                <td>{{index+1}}</td>
+                <td>{{employeeAll.cardNo}}</td>
+                <td class="name">{{employeeAll.name}}</td>
+                <td>{{employeeAll.depName}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="comPass" style="display: none" class="alert alert-danger">
+            <i class='glyphicon glyphicon-exclamation-sign'></i>请选择员工
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer clearfix">
+        <button type="button" class="btn btn-primary" (click)="submitInfo()">提交</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

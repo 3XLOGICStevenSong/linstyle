@@ -1,0 +1,83 @@
+.displaynone{display:none;}
+/*协议查询*/
+.agreement .space label{padding:0 0 0 10px;margin:0;width:27%;color: #666;font-weight:normal;}
+.agreement .space .col-30{display:inline-block;position:relative;margin:0 0 10px;width:33%;}
+.agreement .space .col-30 select{display:inline-block;width:60%;vertical-align: middle}
+.agreement .space .col-30 .valid{display:none;position:absolute;right:15%;top:25%;color: #f00;font-size:16px;}
+.agreement .space .pwTip {clear:both;padding:0 10px;color:#5cadec;}
+.agreement .search_info .btnArea{padding-right:6%;text-align: right;margin:0;margin-bottom:30px;}
+.agreement .btn{position:static;}
+
+
+.agreement_info {margin:20px 0 0;color:#333;}
+.agreement_info h4 {padding:0;border:0;}
+.agreement_info h4 strong{font-size: 14px;}
+.agreement_info a{text-decoration:underline}
+
+/*个人协议详情*/
+.agreement.detail .space {margin-bottom: 20px}
+.agreement.detail .space h2{margin:0;}
+.agreement.detail .space label{padding:0 0 0 10px;margin:0;width:22%;color: #666;font-weight:normal;}
+.agreement.detail .space .col-11{display:inline-block;position:relative;margin:0 0 10px;width:33%;}
+.agreement.detail .space .col-11 input{display:inline-block;width:70%;vertical-align: middle}
+.agreement.detail .space .UserName {font-size: 16px;}
+.agreement.detail .space .aboard th{padding:0 10px;vertical-align: middle}
+.agreement.detail .space .aboard td{padding:5px 10px;vertical-align: middle}
+.agreement.detail .space .aboard td input{width:100%;max-width: 100%}
+.agreement.detail .space .aboard td input.clearStyle{border:0;background:none;text-align: center;box-shadow:none }
+
+.agreement.detail .space.total {padding:0;padding-top:30px;}
+.agreement.detail .space.total label{padding:0;margin:0 0 15px;width:15%;}
+.agreement.detail .space.total span{color:#333;}
+
+.agreement.detail .space.btnArea button{margin:0 15px 0 0;}
+
+.agreement.detail .search_info .btnArea{padding-right:6%;text-align: right;margin:0;margin-bottom:30px;}
+.agreement.detail .btn{position:static;}
+
+/*协议一览*/
+.agreement.type .space label{width:15%;padding:0 10px;margin:0 0 15px;color: #666;font-weight:normal;text-align-last:initial}
+.agreement.type .space h4{border:0;padding:0;}
+.agreement.type .space h4 strong{font-size: 14px;}
+.agreement.type .space form{margin:0 0 50px;}
+.agreement.type .space .btnArea{margin:15px 0 0;}
+.agreement.type .space td {color:#337ab7;}
+.agreement.type .space td input{width:100%;}
+.agreement.type .space td input.clearStyle{border:0;background:none;text-align: center;box-shadow:none }
+.agreement.type .space td.stoped{background:#e9e9e9;color:#999;}
+
+/*协议人员报名*/
+.agreement.add .space label{width:12%;padding:0 10px;margin:0 0 15px;color: #666;font-weight:normal;text-align-last:initial}
+.agreement.add .col-60{width:30%;}
+.agreement.add .total{color:#f00;}
+.agreement.add .btnArea{margin:30px 0 0;}
+.agreement.add .abroadSubmit .btn-primary{display:none;}
+.agreement.add .space .clearStyle{border:0;background:none;text-align: center;box-shadow:none }
+
+.abroadHistory {display:none;margin:30px 0 0;color:#333;}
+.empty{display:none;color:#f00;}
+
+.addUserList {padding:10px 0;margin:20px 0 0;color:#333;}
+.addUserList .index{display:inline-block;width:80%;vertical-align: top}
+.addUserList label{display:inline-block;width:9%;margin:0 0 15px;font-weight: normal}
+.addUserList .users {margin:0;padding:0;}
+.addUserList .users li{position:relative;float: left;width:14%;margin:0 20px 20px 0;background:#f7f7f7;border:1px solid #ddd;text-align:center;cursor:pointer;list-style: none}
+.addUserList .users li p{margin:0;}
+.addUserList .users li p.userStatus{color:#f00;}
+.addUserList .users li .del_icon{position:absolute;top:-10px;right:-10px;width:20px;height:20px;line-height:19px;text-align:center;border:1px solid #ddd;border-radius: 50%;background:#f1f1f1;color:#555;cursor: pointer}
+.addUserList .users li .del_icon:hover{color:#fff;background:#f00;border:1px solid #fff;}
+
+#agreementModal .dialog_width{}
+#agreementModal .btn{position:static;}
+#agreementModal .modal-footer label{float:left;}
+#agreementModal .modal-footer label input{margin:0 10px 0 0;vertical-align: middle}
+#agreementModal .modal-searchheader{margin:15px 0 0;text-align: center}
+#agreementModal .modal-searchheader btn{margin:0 0 0 10px;}
+
+
+#agrAbroadModal .dialog_width{}
+#agrAbroadModal .btn{position:static;}
+#agrAbroadModal .modal-footer label{float:left;}
+#agrAbroadModal .modal-footer label input{margin:0 10px 0 0;vertical-align: middle}
+#agrAbroadModal .modal-searchheader{margin:15px 0 0;text-align: center}
+#agrAbroadModal .modal-searchheader btn{margin:0 0 0 10px;}

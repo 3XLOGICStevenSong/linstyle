@@ -1,0 +1,64 @@
+<!--右侧内容开始-->
+    <div class="content">
+      <div class="main">
+           <h4><strong>通知类型</strong></h4>                        
+           <table class="table table-bordered table-hover">
+             <thead>
+                <tr class="info">
+                    <th>序号</th>
+                    <th>通知类型</th>
+                    <th colspan="2">操作</th>
+                </tr>
+                <tr style="display:none" id="module">
+                    <td></td>
+                    <td><input type="text" class="form-control col-7" value=""></td>
+                    <td><button type="button" class="btn btn-primary" style="top:0;">保存</button></td>
+                    <td><button type="button" class="btn btn-default" style="top:0;" (click)="delType(typeModel.typeId)">删除</button></td>
+                </tr>
+              </thead>
+              <tbody>
+<!--                  <tr>
+                    <td>1</td>
+                    <td><input type="text" class="form-control col-7" value="公司制度"></td>
+                    <td><button type="button" class="btn btn-primary" style="top:0;">保存</button></td>
+                    <td><button type="button" class="btn btn-default" style="top:0;" (click)="launchModal(this)">删除</button></td>
+                </tr> -->
+
+                <tr *ngFor="let typeModel of typeList">
+                  <td>{{typeModel.typeId}}</td>
+                  <td><input type="text" class="form-control col-7" value={{typeModel.typeName}}></td>
+                  <td><button type="button" class="btn btn-primary" style="top:0;" (click)="saveType(typeModel)">保存</button></td>
+                  <td><button type="button" class="btn btn-default" style="top:0;" (click)="delType(typeModel.typeId)">删除</button>
+                  </td>
+                </tr>
+
+              </tbody>
+           </table>
+           <div class="space clearfix">
+             <div class="col-5">
+               <button type="button" class="btn btn-primary" style="margin-right:10px" (click)="btnAddRow()">追&nbsp;加</button>                   
+             </div>
+         </div>                                         
+    </div>        
+  </div>
+    <!--右侧内容结束--> 
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onClick="deleteTr()">确定</button>  
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>      
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- 对话框结束 -->      

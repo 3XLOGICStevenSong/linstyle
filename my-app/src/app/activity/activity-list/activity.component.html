@@ -1,0 +1,106 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <div *ngIf=btnFlag class="r_btn">
+      <button type="button" class="btn btn-success" (click)="editType()" style="margin-right:10px">编辑分类</button>
+      <button type="button" class="btn btn-success" (click)="publishActivity()">发布活动</button>
+    </div>
+    <h4><strong>活动一览</strong></h4>
+    <div class="space clearfix">
+      <div class="col-18">活动类型：
+      </div>
+      <div class="col-10">
+        <select class="form-control" [(ngModel)]=model.typeCode name="typeCode">
+           <option   [value]="all">全部</option>
+           <option  *ngFor="let activityType of activityTypeList ;let index=index"  [value]="activityType.typeCode">{{activityType.typeName}}</option>
+        </select>
+      </div>
+      <div class="col-18">活动状态：
+      </div>
+      <div class="col-15">
+        <select class="form-control" name="activeStatus" [(ngModel)]=model.activeStatus>
+          <option [value]="all">全部</option>
+           <!-- <option *ngFor="let activityStarus of activityStatusList ;let index=index"  [value]="activityStarus"><span *ngIf="activityStarus==0">火热报名中</span>
+            <span *ngIf="activityStarus==1">报名结束</span>
+            <span *ngIf="activityStarus==2">活动结束</span>
+            </option>-->
+             <option [value]="0">火热报名中</option>
+            <option  [value]="1">报名结束</option>
+            <option  [value]="2">活动结束</option>
+          </select>
+      </div>
+      <div class="col-10">
+        活动开始日期：
+      </div>
+      <div class="col-6">
+        <input class="form-control col-3 laydate-icon" name="startDate" data-date-format="yyyy-mm-dd" [bsConfig]="bsConfig" placeholder="选择日期"
+          bsDatepicker [(ngModel)]=startDate>
+      </div>
+      <div class="col-10">
+        活动结束日期：
+      </div>
+      <div class="col-6">
+        <input class="form-control col-3 laydate-icon" name="endDate" data-date-format="yyyy-mm-dd" [bsConfig]="bsConfig" placeholder="选择日期"
+          bsDatepicker [(ngModel)]=endDate>
+      </div>
+      <div class="col-10">
+        <button type="button" class="btn btn-primary" style="top:0;left:10px" (click)="searchActivity(model)">检&nbsp;索</button>
+      </div>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="info">
+          <th>序号</th>
+          <th>活动类型</th>
+          <th>标题</th>
+          <th>附件</th>
+          <th>活动状态</th>
+          <th>开始日期</th>
+          <th>结束日期</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activity of activityList;let index=index">
+          <td>{{index+1}}</td>
+          <td>{{activity.typeName}}</td>
+          <td><a routerLink="/activity/detail/{{activity.activeId}}">{{activity.activeTitle}}</a></td>
+          <td><span *ngFor="let activityFile of activity.activityFileList;let index1=index">{{activityFile.fileName}}<span *ngIf="index1 !=activity.activityFileList.length-1">|</span></span>
+          </td>
+          <td *ngIf="activity.activeStatus=='0'">火热报名中</td>
+          <td *ngIf="activity.activeStatus=='1'">报名结束</td>
+          <td *ngIf="activity.activeStatus=='2'">活动结束</td>
+          <td>{{activity.activeStartTime}}</td>
+          <td>{{activity.activeEndTime}}</td>
+          <td *ngIf="activity.signFlag=='1'">已报名</td>
+          <td *ngIf="activity.signFlag=='0'">未报名</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--页码开始-->
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li><a href="javascript:void();"(click)="prePage(model)" aria-label="Previous" style="border-right:0"><span aria-hidden="true" style="border-right:0">&laquo;</span></a></li>
+        <li *ngFor="let count of pageList"><div  *ngIf="count==selectNum"class="actives" (click)="pageSearch(count,model)"><a>{{count}} <span class="sr-only">(current)</span></a></div>
+        <div *ngIf="count!=selectNum" class="enactive" (click)="pageSearch(count,model)"><a>{{count}} <span class="sr-only">(current)</span></a></div></li>
+        <li><a href="javascript:void();" (click)="nextPage(model)" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
+        <li><input [(ngModel)]=pageNum (input)="pageNumError()" type="text" class="form-control col-15" placeholder="页码" style="margin-left:10px"></li>
+        <li><button type="button" class="btn btn-default" style="margin-left:10px" (click)="pageForward(model)">跳转</button></li>
+        <div id="comPass" style="display: none" class="alert alert-danger">
+          页数不能超过总页数
+        </div>
+      </ul>
+    </nav>
+<!--  <style>
+      .actives {float:left;padding:4px 12px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;border-left:1px solid #ddd;background:#337ab7;color:#fff}
+      .actives a{color:#fff}
+      .enactive {float:left;padding:4px 12px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;border-left:1px solid #ddd;}
+      
+      .enactive a{color:#337ab7}
+    </style>-->
+    <!--页码结束-->
+
+  </div>
+
+</div>
+<!--右侧内容结束-->

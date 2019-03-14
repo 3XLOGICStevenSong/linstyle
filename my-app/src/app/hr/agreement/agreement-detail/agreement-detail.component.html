@@ -1,0 +1,208 @@
+ <!--右侧内容开始-->
+ <div class="content">
+  <div class="main agreement detail">
+      <h4><strong>个人协议详情</strong>
+        <span *ngIf=userRole ><strong>--- ( {{this.employeeName}} {{this.codeNo}} )( {{this.jobStatus}} ) </strong></span>
+      </h4> 
+      
+      <form action="" method="get">
+      <div class="space clearfix" *ngIf=userRole>
+          <div class="col-12">
+              <input  #search type="text" class="form-control col-13" placeholder="查询其他人员 (姓名/员工号)" name="" value="">
+              <button type="button" (click)="searchDetail(search.value)" class="btn btn-primary searchAgreement" style="margin-left:10px">搜索</button>
+          </div>
+      </div>
+      </form>
+
+      <div class="space clearfix">
+          <h4><strong>赴日协议</strong></h4>
+          <div style="overflow:auto;">
+              <table class="table table-bordered table-hover aboard" style="width:2050px">
+                  <colgroup>
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="80px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="80px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="auto">
+                      <col width="auto">
+                  </colgroup>
+                  <thead>
+                      <tr class="info">
+                          <th>协议名称</th>
+                          <th>赴日日期</th>
+                          <th>回国日期</th>
+                          <th>协议开始日期</th>
+                          <th>协议结束日期</th>
+                          <th>赴日天数</th>
+                          <th>补助金额<br/>(日元/天)</th>
+                          <th>协议期限<br/>(年)</th>
+                          <th>协议剩余天数</th>
+                          <th>核算方式</th>
+                          <th>到期奖励金<br/>(日元)</th>
+                          <th>到期奖励金<br/>(人民币)</th>
+                          <th>实际缴纳费用<br/>(日元)</th>
+                          <th>实际缴纳费用<br/>(人民币)</th>
+                          <th>协议状态</th>
+                          <th class="EditArea">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                        <tr *ngFor="let detail of japanProList" >
+                            <td class="agreeName">{{detail.aiName}}</td>
+                            <td class="abroadDatef"><input class="form-control clearStyle laydate-icon" #goAbroadDate [(ngModel)]="detail.goAbroadDate" readonly="readonly" /></td>
+                            <td class="abroadDatet"><input class="form-control clearStyle laydate-icon" #backAbroadDate [(ngModel)]="detail.backAbroadDate" readonly="readonly" /></td>
+                            <td class="agreeDatef"><input  class="form-control clearStyle laydate-icon" #startDate [(ngModel)]="detail.startDate" readonly="readonly" /></td>
+                            <td class="agreeDatet"><input  class="form-control clearStyle laydate-icon" #endDate [(ngModel)]="detail.endDate" readonly="readonly" /></td>
+                            <td class="broadTotal" style="text-align:right" >{{detail.businessDays}}</td>
+                            <td class="tipPrice" style="text-align:right" >{{detail.subTotal}}</td>
+                            <!-- <td class="broadTotal"><input  type="text" class="form-control clearStyle" [(ngModel)]="detail.businessDays" readonly="readonly" /></td> -->
+                            <!-- <td class="tipPrice"><input  style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="detail.subTotal" readonly="readonly" /></td> -->
+                            <!-- <td class="agreeDays"><input   type="text" class="form-control clearStyle" [(ngModel)]="detail.aiPeriod" readonly="readonly" /></td>
+                            <td class="agreeResidueDays"><input type="text" class="form-control clearStyle" [(ngModel)]="detail.remainingDays" readonly="readonly" /></td> -->
+                            <td class="agreeDays" style="text-align:right" >{{detail.aiPeriod}}</td>
+                            <td class="agreeResidueDays" style="text-align:right" >{{detail.remainingDays}}</td>
+                            <td class="agreeFunction">{{detail.paymentType}}</td>
+                            <td class="reward_jp"><input style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="detail.jRewardTotal" readonly="readonly" /></td>
+                            <td class="reward_cn"><input style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="detail.cRewardTotal" readonly="readonly" /></td>
+                            <td class="realPrice_jp"><input style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="detail.jPaymentTotal" readonly="readonly" /></td>
+                            <td class="realPrice_cn"><input style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="detail.cPaymentTotal" readonly="readonly" /></td>
+                            <td class="agreeStatus" *ngIf="detail.status==0">未结束</td>
+                            <td class="agreeStatus" *ngIf="detail.status==1">已结束</td>
+                            <td class="EditArea" *ngIf="detail.status==0&&userRole">
+                                <button type="button" class="btn btn-primary agreeEdit" (click)="editAgreementDetail($event)">编辑</button>
+                                <button type="button" (click)="saveJPAgreementDetail(detail,$event,goAbroadDate.value,backAbroadDate.value,startDate.value,endDate.value)" class="btn btn-success agreeSave" style="display:none">保存</button>
+                                <button type="button" (click)="cancelEditDetail($event)" class="btn btn-danger cancelSave" style="display:none">取消</button> 
+                            </td>
+                        </tr>
+                    </tbody> 
+              </table>
+          </div>
+      </div>
+      <div class="space clearfix">
+          <h4><strong>其他协议</strong></h4>
+          <div style="overflow:auto;">
+              <table class="table table-bordered table-hover aboard" style="width:1420px">
+                  <colgroup>
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="150px">
+                      <col width="120px">
+                      <col width="80px">
+                      <col width="100px">
+                      <col width="120px">
+                      <col width="120px">
+                      <col width="auto">
+                      <col width="auto">
+                  </colgroup>
+                  <thead>
+                      <tr class="info">
+                          <th>协议名称</th>
+                          <th>报名日期</th>
+                          <th>协议开始日期</th>
+                          <th>协议结束日期</th>
+                          <th>协议金额<br/>(人民币)</th>
+                          <th>协议期限<br/>(年)</th>
+                          <th>协议剩余天数</th>
+                          <th>核算方式</th>
+                          <th>实际缴纳费用<br/>(人民币)</th>
+                          <th>协议状态</th>
+                          <th class="EditArea" >操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor = "let otherDetail of  otherProList" >
+                          <td class="agreeName">{{otherDetail.aiName}}</td>
+                          <td class="aagreeDate"><input class="form-control clearStyle laydate-icon" #signDate [(ngModel)]="otherDetail.signDate" readonly="readonly" /></td>
+                          <td class="agreeDatef"><input class="form-control clearStyle laydate-icon" #startDate [(ngModel)]="otherDetail.startDate" readonly="readonly" /></td>
+                          <td class="agreeDatet"><input class="form-control clearStyle laydate-icon" #endDate [(ngModel)]="otherDetail.endDate" readonly="readonly" /></td>
+                          <!-- <td class="agreePrice"><input type="text" class="form-control clearStyle" [(ngModel)]="otherDetail.cAgreementTotal" readonly="readonly" /></td>
+                          <td class="agreeDays"><input type="text" class="form-control clearStyle" [(ngModel)]="otherDetail.aiPeriod" readonly="readonly" /></td>
+                          <td class="agreeResidueDays"><input type="text" class="form-control clearStyle" [(ngModel)]="otherDetail.remainingDays" readonly="readonly" /></td> -->
+                          <td class="agreePrice" style="text-align:right">{{otherDetail.cAgreementTotal}}</td>
+                          <td class="agreeDays" style="text-align:right">{{otherDetail.aiPeriod}}</td>
+                          <td class="agreeResidueDays" style="text-align:right">{{otherDetail.remainingDays}}</td>
+                          <td class="agreeFunction">{{otherDetail.paymentType}}</td>
+                          <td class="realPrice_cn"><input style="text-align:right" type="text" class="form-control clearStyle" [(ngModel)]="otherDetail.cPaymentTotal" readonly="readonly" /></td>
+                          <td class="agreeStatus" *ngIf="otherDetail.status==0">未结束</td>
+                          <td class="agreeStatus" *ngIf="otherDetail.status==1">已结束</td>
+                          <td class="EditArea" *ngIf="otherDetail.status==0&&userRole">
+                              <button type="button" class="btn btn-primary agreeEdit" (click)="editAgreementDetail($event)" >编辑</button>
+                              <button type="button" (click)="saveOtherAgreementDetail(otherDetail,$event,signDate.value,startDate.value,endDate.value)"  class="btn btn-success agreeSave"style="display:none">保存</button>
+                              <button type="button" (click)="cancelEditDetail()" class="btn btn-danger cancelSave" style="display:none">取消</button> 
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <div class="space clearfix total">
+          <div>
+              <label style="width: 12%">奖励金合计：</label>
+              <p style="float:right; padding-right:75%"><span class="reward">{{rewardStr}}</span> 元(人民币)</p>
+          </div>
+          <div>
+              <label style="width: 12%">离职缴费合计：</label>
+              <p style="float:right; padding-right:75%" ><span class="payment">{{paymentStr}}</span> 元(人民币)</p>
+          </div>
+          <div id="finishTime" *ngIf="leaveDate!=null">
+              <label>结束日期：</label>
+              <span><span class="endtime">{{leaveDate}}</span></span>
+          </div>
+      </div>
+      <div id="twoAgreeBtn" *ngIf="leaveDate==null&&userRole">
+          <button (click)="forwardAgreementAdd()" type="button" class="btn btn-primary addNewagree">添加协议</button>
+          <button (click)= "end1Agreement()" type="button" class="btn btn-default">结束全部协议</button>
+      </div>
+  </div>        
+</div>
+<!--右侧内容结束-->      
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">提示</h4>
+          </div>
+          <div class="modal-body">
+              当前有协议处于编辑状态，请完成编辑后再继续下一步操作
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="hideMyModal()" >确定</button>    
+          </div>
+      </div>
+  </div>
+</div> 
+<!-- 对话框结束 -->
+<!-- 对话框开始 -->
+<div class="modal fade" style="color:black" id="myConfriomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                确认要结束全部协议？确认后将不能再恢复。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click) = "end2Agreement()" >确定</button> 
+                <button type="button" class="btn btn-primary" (click) = "cancelMyConfriomModal()"  >取消</button>    
+            </div>
+        </div>
+    </div>
+  </div> 
+  <!-- 对话框结束 -->

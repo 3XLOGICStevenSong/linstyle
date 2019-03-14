@@ -1,0 +1,106 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main register">
+    <form action="" method="post">
+      <h4><strong>员工状态管理</strong></h4>
+      <div class="r_btn">
+        <button type="button" class="btn btn-success" style="margin-right:10px" (click)="jobStatusInfo()">在职状态维护</button>
+        <button type="button" class="btn btn-primary" style="margin-right:10px" (click)="registerUser()"><i class="glyphicon glyphicon-plus"></i>注册新员工</button>
+        <button type="button" class="btn btn-warning retractBtn">收起&nbsp;<i class="glyphicon glyphicon-chevron-up"></i></button>
+        <button type="button" class="btn btn-warning openBtn" style="display:none">展开&nbsp;<i class="glyphicon glyphicon-chevron-down"></i></button>
+      </div>
+      <div class="space clearfix search_info">
+        <div class="col-12">
+          <label>员工卡号：</label>
+          <input type="text" [(ngModel)]=model.cardNo name="cardNo" class="form-control col-13">
+        </div>
+        <div class="col-12">
+          <label>姓名：</label>
+          <input type="text" [(ngModel)]=model.name name="name" class="form-control col-13">
+        </div>
+        <div class="col-12">
+          <label>姓名拼写：</label>
+          <input type="text" [(ngModel)]=model.chineseAbbr name="chineseAbbr" class="form-control col-13">
+        </div>
+        <div class="col-12">
+          <label>在职状态：</label>
+          <select name="" class="form-control col-13" [(ngModel)]=model.jobStatus name="jobStatus">
+            <option    [value]="all">全部</option>
+                <option  *ngFor="let workStatus  of workStatusList ;let index=index"  [value]="workStatus.typeCode">{{workStatus.typeName}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>部门名称：</label>
+          <select name="depId" class="form-control col-13" [(ngModel)]=model.depId>
+            <option    [value]="all">全部</option>
+                <option  *ngFor="let depart of depList" [value]="depart.depId">{{depart.depName}}</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>员工类型：</label>
+          <select name="employeeType" class="form-control col-13" [(ngModel)]=model.employeeType>
+            <option    [value]="all">全部</option>
+                  <option  *ngFor="let workType  of workTypeList"[value]="workType.typeCode">{{workType.typeName}}</option>
+                  </select>
+
+        </div>
+        <div class="col-12">
+          <label>入社日期：</label>
+          <input type="text" class="form-control col-13 laydate-icon  " [(ngModel)]=model.entryDate name="entryDate" data-date-format="yyyy-mm-dd"
+            [bsConfig]="bsConfig" placeholder="选择日期" bsDatepicker />
+
+        </div>
+        <div class="col-12 btnArea">
+          <button type="button" class="btn btn-primary" style="margin-right:10px" (click)="searchEmployeeInfo(model)">检索</button>
+          <button type="reset" class="btn btn-default" style="margin-right:10px">重置</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="user_list" *ngIf="employeeInfoList!=undefined">
+      <h4><strong>员工列表</strong></h4>
+      <table class="table table-bordered table-hover" style="height:30px">
+        <thead>
+          <tr class="info">
+            <th>序号</th>
+            <th>员工号</th>
+            <th>姓名</th>
+            <th>姓名拼写</th>
+            <th>在职状态</th>
+            <th>部门名称</th>
+            <th>入社日期</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let info of employeeInfoList;let index=index">
+            <td>{{index+1}}</td>
+            <td>{{info.cardNo}}</td>
+            <td>{{info.name}}</td>
+            <td>{{info.chineseAbbr}}</td>
+            <td>{{info.typeName}}</td>
+            <td>{{info.depName}}</td>
+            <td>{{info.entryDate}}</td>
+            <td><button type="button" routerLink="/personnel/employee/state/update/{{info.cardNo}}" class="btn btn-default">编辑</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--页码开始
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">2 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">3 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">4 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
+        <li><input type="text" class="form-control col-15" placeholder="页码" style="margin-left:10px"></li>
+        <li><button type="button" class="btn btn-default" style="top:0;left:10px">跳转</button></li>
+      </ul>
+    </nav>
+    页码结束-->
+  </div>
+</div>
+<!--右侧内容结束-->

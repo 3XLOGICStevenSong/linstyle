@@ -1,0 +1,101 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <div class="t_list">
+      <div class="r_btn">
+        <button type="button" class="btn btn-success" (click)="recruitInput()">发布招聘信息</button>
+      </div>
+      <h4>
+        <strong>招聘职位一览</strong>
+      </h4>
+
+      <div class="space clearfix">
+        <div class="col-1" style="width:50px;top:10px;">语种：
+        </div>
+        <div class="col-6" style="width:120px;">
+
+          <select class="form-control" id="url" required [(ngModel)]=lanVal>
+            <option *ngFor="let lan of lans" [value]="lan">{{lan}}</option>
+          </select>
+
+        </div>
+
+        <div class="col-1" style="width:50px;top:0px;margin-left: 20px;">标题：
+        </div>
+
+        <div class="col-6" style="width:200px;top:0px;">
+          <input type="text" class="form-control" placeholder="请输入标题" style="width:200px;top:0px;" [(ngModel)]=titleVal>
+        </div>
+
+        <div class="col-1" style="width:80px;top:0px;margin-left: 20px;">检索期间：
+        </div>
+
+        <div class="col-6" style="width:250px;top:0px;">
+          <input type="text" style="width:250px;" class="form-control col-17 laydate-icon layDateEnd " data-date-format="yyyy-mm-dd" name="activeTime" [bsConfig]="bsConfig"
+            placeholder="选择日期" bsDaterangepicker required #activeStartTime1="ngModel" [(ngModel)]="selTime" />
+        </div>
+
+        <div style="margin-left:30px;">
+          <button type="button" style="margin-left:30px;" class="btn btn-primary" (click)="searchOnClicked()">检&nbsp;索</button>
+        </div>
+      </div>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="info">
+            <th>序号</th>
+            <th>语种</th>
+            <th>标题</th>
+            <th>发布时间</th>
+            <th colspan="3">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let position of positionList;let idx=index">
+            <td class="tdmid">{{idx+1}}</td>
+            <td class="tdmid">{{position.language}}</td>
+
+            <td (click)="goto(position.recruitId)" style="color: #337ab7;" class="tdmid">{{position.title}}</td>
+            <td class="tdmid">{{position.createInfoTime}}</td>
+
+            <td>
+              <button type="button" class="btn btn-default" style="top:0;" (click)="onEdit(position.recruitId)">编辑</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default" style="top:0;" (click)="onDel(position.recruitId)">删除</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default" style="top:0;">查看面试简历</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<!--右侧内容结束-->
+
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary delOk" (click)="deleteTr()">确定</button>
+        <button type="button" class="btn btn-default delCancel" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 对话框结束 -->

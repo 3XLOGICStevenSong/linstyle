@@ -1,0 +1,452 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main">
+        <div class="r_btn">
+            <button type="button" class="btn btn-success btnwidth" onClick="launchInput(this)">检索</button>
+            <button type="button" class="btn btn-success btnwidth" onClick="launchInput(this)">重置</button>
+            <button type="button" class="btn btn-success btnwidth" onClick="launchInput(this)">Excel导出</button>
+        </div>
+        <h4>
+            <strong>简历-高级检索</strong>
+        </h4>
+        <!--基本信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-list-alt"></em>&nbsp;&nbsp;个人信息</strong>
+            <!-- <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button> -->
+            <!--基本信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+
+                <!--基本信息空表提示结束-->
+                <!--基本信息详情开始-->
+                <div class="space clearfix personDetail" id="persoInfo">
+                    <div class="space clearfix">
+                        <!-- <div class="col-11"><font class="p_text">工号：</font>DJB652</div> -->
+                        <div class="col-11">
+                            <font class="p_text">年龄：</font>
+                            <input type="text" name="" class="searchinputwidth">&nbsp;&nbsp;至&nbsp;&nbsp;
+                            <input type="text" name="" class="searchinputwidth">
+                        </div>
+                        <div class="col-11">
+                            <font class="p_text">工作年限：</font>
+                            <input type="text" name="" class="searchinputwidth">&nbsp;&nbsp;年及以上
+                        </div>
+                        <div class="col-11">
+                            <font class="p_text">管理经验：</font>
+                            <input type="text" name="" class="searchinputwidth">&nbsp;&nbsp;年及以上
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <div class="col-11">
+                            <font class="p_text">最高学历：</font>
+                            <select>
+                                <option>高等学校卒</option>
+                                <option selected>大学卒</option>
+                                <option>大学院卒</option>
+                                <option>短期大学卒</option>
+                                <option>高等専门学校卒</option>
+                                <option>専修学校等卒</option>
+                                <option>中学校卒</option>
+                            </select>
+                        </div>
+
+                        <div class="col-11">
+                            <font class="p_text">日语能力：</font>
+                            <select>
+                                <option>无</option>
+                                <option>一级相当</option>
+                                <option>二级相当</option>
+                                <option>三级相当</option>
+                                <option>四级相当</option>
+                            </select>
+                        </div>
+
+                        <div class="col-11">
+                            <font class="p_text">英语能力：</font>
+                            <select>
+                                <option>无</option>
+                                <option>大学英语四级相当</option>
+                                <option>大学英语六级相当</option>
+                                <option>专业四级相当</option>
+                                <option>专业六级相当</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--基本信息详情结束-->
+                <!--基本信息录入开始-->
+                <div class="update_input personInput">
+
+                </div>
+                <!--基本信息录入结束-->
+            </div>
+        </div>
+        <!--毕业信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-education"></em>&nbsp;&nbsp;作业范围</strong>
+            <button type="button" class="btn btn-warning update updateBtn_1">展&nbsp;开</button>
+            <!--毕业信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+
+            </div>
+            <!--毕业信息空表提示结束-->
+            <!--毕业信息信息详情开始-->
+            <div class="space clearfix personDetail">
+
+
+            </div>
+            <!--毕业信息详情结束-->
+            <!--毕业信息录入开始-->
+            <div class="update_input personInput">
+                <div class="space clearfix">
+
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">要件定义
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">基本设计
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">详细设计
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">生产
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">单体测试
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">结合测试
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">综合测试
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">操作测试
+                    </div>
+                    <div class="worksection">
+                        <input type="checkbox" value="option1">培训
+                    </div>
+
+                </div>
+
+            </div>
+            <!--毕业信息录入结束-->
+        </div>
+        <!--协力信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-briefcase"></em>&nbsp;&nbsp;技术</strong>
+            <button type="button" class="btn btn-warning update updateBtn_1">展&nbsp;开</button>
+            <!--入职信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+
+            </div>
+            <!--入职信息空表提示开始-->
+            <!--入职信息信息详情开始-->
+            <div class="space clearfix personDetail">
+
+            </div>
+            <!--入职信息详情结束-->
+            <!--入职信息录入开始-->
+            <div class="update_input personInput">
+
+                <div class="space clearfix">
+                    <!-- 1技术的检索条件 -->
+                    <div style="width: 100%;text-align: center;">OS/DB</div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <td>Unix</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Linux</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>Windows</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Mac</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Oracle</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Sybase</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>DB2</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>SQL Server</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Access</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Postgre SQL</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>MySQL</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Adbase</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="space clearfix">
+                    <!-- 2技术的检索条件 -->
+                    <div style="width: 100%;text-align: center;">语言／工具</div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <td>C/C++</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>VC/ VC++</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>VB/VBA </td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Power Builder</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Delphi</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Develop 2000</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>COBOL</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Shell</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Assembler</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>ASP</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>ERP</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Eclipse</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>JSP</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>EJB</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>Servlet</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Jbuilder</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>JavaBean</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Struts</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>XML/ XSL</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Perl</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Corba</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Java Script</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>PHP/ HTML</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Java</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>Weblogic</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>Web sphere</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>Tomcat</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Apache</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>UML</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>ADO.Net</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>ASP.Net</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>VB.Net</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>C#.Net</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad11">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad11">&nbsp;&nbsp;无</td>
+                            <td>VC++ .Net</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad12">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad12">&nbsp;&nbsp;无</td>
+                            <td>网络架构</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad13">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad13">&nbsp;&nbsp;无</td>
+                            <td>Ajax</td>
+                            <td class="tecabiliwidth">
+                                <input type="radio" name="rad14">&nbsp;&nbsp;一般&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;精通&nbsp;&nbsp;
+                                <input type="radio" name="rad14">&nbsp;&nbsp;无</td>
+                        </tr>
+                        <tr>
+                            <td>其它</td>
+                            <td colspan="7" style="text-align: left;">
+                                <input type="text" name="" style="width: 100%;">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--入职信息录入结束-->
+        </div>
+
+        <!--   </div> -->
+    </div>
+    <!--右侧内容结束-->

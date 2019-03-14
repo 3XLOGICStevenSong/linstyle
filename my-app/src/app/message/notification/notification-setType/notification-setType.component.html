@@ -1,0 +1,48 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <h4><strong>通知类型</strong></h4>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="info">
+          <th>序号</th>
+          <th>通知类型</th>
+          <th colspan="2">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let type of noticeTypeList;let index=index">
+          <td>{{index+1}}</td>
+          <td><input #nameTxt type="text" class="form-control col-7" value={{type.typeName}}></td>
+          <td><button type="button" class="btn btn-primary" value={{type.typeId}} style="top:0;" (click)="updateNoticeType(type,nameTxt.value)">保存</button></td>
+          <td><button type="button" class="btn btn-default" value={{type.typeId}} style="top:0;" (click)="deleteNoticeType(index,type,nameTxt.value,$event)">删除</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="space clearfix">
+      <div class="col-5">
+        <button type="button" class="btn btn-primary" style="margin-right:10px" id="btnAgreeAddRow" (click)="addNoticeType(noticeTypeList)">追&nbsp;加</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->
+<!-- 对话框开始 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary delSuccess" >确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 对话框结束 -->

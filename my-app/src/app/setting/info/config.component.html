@@ -1,0 +1,93 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <h4><strong>角色授予</strong></h4>
+    <div class="space clearfix">
+      <div class="col-11">
+        <input required [(ngModel)]="searchCardNo" type="text" class="form-control col-3" placeholder="请输入员工号/姓名">
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-primary" style="top:0;" (click)="searchOnClicked()">检&nbsp;索</button>
+</div>
+</div>
+<table *ngIf="roleList.length>0" class="table table-bordered table-hover" style="height:30px">
+<thead>
+  <tr class="info">
+    <th></th>
+    <th>角色名称</th>
+    <th>角色描述</th>
+    <th>拥有者</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let role of roleList">
+    <td><input type="checkbox" id={{role.roleId}} value="option1" (click)="roleOnClicked(role,$event)" ng-checked="role.checkStatus"
+        [(ngModel)]="role.checkStatus"></td>
+    <td>{{role.roleName}}</td>
+    <td>
+      <button (click)="describeOnClicked(role.roleId)" type="button" class="btn btn-primary describeBtn" style="top:0;">描述</button>
+</td>
+<td>
+  <button (click)="ownerOnClicked(role.roleId)" type="button" class="btn btn-primary seeBtn" style="top:0;">查看</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="space clearfix">
+  <div class="col-10">
+    <button *ngIf="roleList.length>0" (click)="updateOnClicked()" type="button" class="btn btn-primary">更新角色</button>
+  </div>
+  <div class="col-1">
+    <button *ngIf="roleList.length>0" (click)="resetOnClicked()" type="button" class="btn btn-primary">重置</button>
+  </div>
+  <div class="col-1">
+    <button (click)="returnOnClicked()" type="button" class="btn btn-default">返回</button>
+  </div>
+</div>
+<!--角色描述开始-->
+<div *ngIf="showDes" class="describe">
+  <h4><strong>角色描述</strong>（编号：{{curRoleId}}）</h4>
+  <div class="closeTable">
+    <button (click)="closeDesOnClicked()" type="button" class="btn btn-default closeBtn">关闭</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="success">
+        <th>功能名称</th>
+        <th>功能描述</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let des of desList">
+        <td>{{des.resourceName}}</td>
+        <td>{{des.memo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--角色描述结束-->
+<!--角色拥有者查看开始-->
+<div *ngIf="showOwner" class="see">
+  <h4><strong>拥有人员</strong></h4>
+  <div class="closeTable">
+    <button (click)="closeOwnerOnClicked()" type="button" class="btn btn-default closeBtn">关闭</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="success">
+        <th>员工名称</th>
+        <th>所属部门</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let owner of ownerList">
+        <td>{{owner.name}}</td>
+        <td>{{owner.depName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--角色拥有者查看结束-->
+</div>
+</div>
+<!--右侧内容结束-->

@@ -1,0 +1,58 @@
+.displaynone{display:none;}
+ul,li{margin:0;padding:0;list-style: none}
+/*新员工注册 - 修改员工状态*/
+.register .space label{width:20%;padding:0 10px;color: #666;font-weight:normal;text-align: justify;
+    text-align-last: justify;
+    font-weight: 100;}
+.register .space .col-12{position:relative;margin:0 0 10px;}
+.register .space .col-12 select{vertical-align: middle}
+.register .space .col-12 .valid{position:absolute;right:12%;top:25%;color: #f00;font-size:16px;}
+.register .space .pwTip {clear:both;padding:0 10px;color:#5cadec;}
+.register .search_info .btnArea{padding-right:6%;text-align: right;margin:0;margin-bottom:30px;}
+.register .btnArea {text-align: right;margin:0;margin-bottom:30px;}
+.register .btnArea .btn{position:static;}
+
+/*员工状态管理*/
+.register .search_info{margin-top:20px;padding: 20px 10px;border: 1px solid #ff9600;}
+.register .user_list {margin:30px 0 0;}
+.register .user_list td .btn{position:static;margin:0;}
+.register .r_btn .btn{position:static;margin:0;}
+.register .space .btn{position:static;}
+
+/*部门信息管理*/
+.department .space .btn{position:static;margin:0 0 0 10px;}
+.department .department_list{margin:30px 0 0;}
+#depModal .radios label{display:block;cursor:pointer;}
+#depModal .btn{position:static;}
+
+/*员工在职状态维护*/
+.maintain .maintain_list .btn{position:static;}
+#myModal{color: #333;}
+
+/*员工在职状态维护*/
+.stationEdit h4{border:0;}
+.stationEdit .btn{position:static;}
+.stationEdit .space{border-top:1px solid #d1d1d1;}
+.stationEdit .space ul {margin:50px 0 0;}
+.stationEdit .space ul h2{margin:0;color:#5cadec;font-size:16px;}
+.stationEdit .space ul li .index{position: relative;display:inline-block;padding:0 15%;}
+.stationEdit .space ul li .circle{position: absolute;width:20px;height:20px;border:2px solid #5cadec;border-radius: 50%;background:#fff;}
+.stationEdit .space ul li:last-child .index{border:0;}
+.stationEdit .space ul .rt_text{padding-right:50%;text-align: right}
+.stationEdit .space ul .rt_text .circle{top:0;right:-10px;}
+.stationEdit .space ul .rt_text .index{border-right:1px solid #ccc;}
+.stationEdit .space ul .lt_text{padding-left:50%;text-align: left}
+.stationEdit .space ul .lt_text .circle{top:0;left:-11px;}
+.stationEdit .space ul .lt_text .index{position: relative;left:-1px;border-left:1px solid #ccc;}
+
+
+#addHistory .btn{position:static;}
+#addHistory .modal_list label{width:20%;}
+#addHistory .modal_list .clearfix{margin:0 0 10px;}
+#addHistory .dialog_width{width:500px;}
+
+
+#depModal .modal-searchheader {
+    margin: 15px 0 0;
+    text-align: center;
+}

@@ -1,0 +1,129 @@
+<!--右侧内容开始-->
+<div class="content">
+  <form #publishForm="ngForm">
+    <div class="main">
+      <h4><strong>发布活动</strong></h4>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">活动类型</label><b>：</b>
+        </div>
+        <div class="col-2">
+          <select name="" name="typeCode" class="form-control" [(ngModel)]=model.typeCode>
+                <option  *ngFor="let type of typeList" [value]="type.typeCode">{{type.typeName}}</option>
+          </select>
+        </div>
+        <div class="col-10">
+          <label class="p_space">活动状态</label><b>：</b>
+        </div>
+        <div class="col-2">
+          <select class="form-control" name="activeStatus" [(ngModel)]=model.activeStatus>
+                  <option [value]="0">火热报名中</option>
+                  <option [value]="1">报名结束</option>
+                  <option [value]="2">活动结束</option>
+                </select>
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">活动日期</label><b>：</b>
+        </div>
+        <div class="col-22">
+          <input type="text" class="form-control col-17 laydate-icon layDateEnd " data-date-format="yyyy-mm-dd" name="activeTime" [bsConfig]="bsConfig"
+            placeholder="选择日期" [minDate]="minDate"  bsDaterangepicker required #activeStartTime1="ngModel" [(ngModel)]="model.activeTime" (ngModelChange)="setMaxDate()"
+          />
+          <span class="validate">*</span>
+        </div>
+        <div [hidden]="activeStartTime1.valid || activeStartTime1.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入活动日期
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">报名日期</label><b>：</b>
+        </div>
+        <div class="col-22">
+          <input class="form-control col-17 laydate-icon" name="signTime" data-date-format="yyyy-mm-dd" [bsConfig]="bsConfig" placeholder="选择日期"
+            bsDaterangepicker required #signTime1="ngModel" [maxDate]="maxDate"  [(ngModel)]=model.signTime>
+          <span class="validate">*</span>
+        </div>
+        <div [hidden]="signTime1.valid || signTime1.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入报名日期
+        </div>
+        <div id="comPass" style="display: none" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>报名日期不能大于活动开始日期
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">报名填写信息</label><b>：</b>
+        </div>
+        <div class="col-10">
+          <label class="checkbox-inline">
+               <input type="checkbox"  name="name" [(ngModel)]=model.name value="0">姓名</label>
+        </div>
+        <div class="col-10">
+          <label class="checkbox-inline">
+               <input type="checkbox" name="sex" [(ngModel)]=model.sex  value="1">性别</label>
+        </div>
+        <div class="col-10">
+          <label class="checkbox-inline">
+               <input type="checkbox" name="card" [(ngModel)]=model.card value="2">身份证号</label>
+        </div>
+        <div class="col-10">
+          <label class="checkbox-inline">
+               <input type="checkbox" name="tel" [(ngModel)]=model.tel value="3">联系方式</label>
+        </div>
+        <div class="col-10">
+          <label class="checkbox-inline">
+               <input type="checkbox" name="address" [(ngModel)]=model.address value="4">家庭住址</label>
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">活动标题</label><b>：</b>
+        </div>
+        <div class="col-17">
+          <input type="text" [(ngModel)]=model.activeTitle name="activeTitle" required #activeTitle1="ngModel" class="form-control col-4">
+          <span class="validate">*</span>
+        </div>
+        <div [hidden]="activeTitle1.valid || activeTitle1.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入活动标题
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">活动内容</label><b>：</b>
+        </div>
+        <div class="col-17">
+          <textarea class="form-control col-4" name="activeContent" required #activeContent1="ngModel" [(ngModel)]=model.activeContent
+            style="resize:none;height:200px"></textarea>
+          <span class="validate">*</span>
+        </div>
+        <div [hidden]="activeContent1.valid || activeContent1.pristine" class="alert alert-danger">
+          <i class='glyphicon glyphicon-exclamation-sign'></i>请输入内容
+        </div>
+      </div>
+      <div class="space clearfix">
+        <div class="col-10">
+          <label class="p_space">附件</label><b>：</b>
+        </div>
+        <div class="col-17">
+
+          <div class="uploader white">
+            <input type="text" class="filenames col-3" name="fileName" readonly [(ngModel)]=fileName>
+            <input type="button" name="file" class="button" value="参照"  >
+            <input type="file"  ng2FileSelect [uploader]="uploader" (click)="fileClear()" (change)="selectChange()" multiple class="col-3" size="30">          
+          </div>
+        </div>
+      </div>
+      <div class="space clearfix" style="padding-left:110px">
+        <!--<div class="col-17">
+             <label class="checkbox-inline">
+             <input type="checkbox" value="option1">推送到手机</label></div>-->
+        <div class="col-5">
+          <button type="button" class="btn btn-primary" (click)="publishActivity()">发布活动</button></div>
+      </div>
+    </div>
+  </form>
+</div>
+<!--右侧内容结束-->

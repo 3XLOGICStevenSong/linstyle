@@ -1,0 +1,2245 @@
+<!--右侧内容开始-->
+<div class="content">
+    <div class="main">
+        <div class="r_btn">
+            <button type="button" class="btn btn-success outputexcel" onClick="launchInput(this)">导出Excel</button>
+        </div>
+        <h4>
+            <strong>我的日文简历</strong>
+        </h4>
+
+        <!--基本信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-list-alt"></em>&nbsp;&nbsp;个人基本信息</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--基本信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善个人基本信息，让简历更完整！</div>
+            </div>
+            <!--基本信息空表提示结束-->
+            <!--基本信息详情开始-->
+            <div class="space clearfix personDetail">
+                <div class="headpic">
+
+                </div>
+                <div class="space clearfix" style="height:25px;">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">フリガナ：</font>shangwenjie</div>
+                    <div class="col-12" style="width: 250px;">
+                        <font class="p_text infotitleright righttitle">氏名：</font>尚雯婕</div>
+                </div>
+                <div class="space clearfix" style="height:25px;">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">性别：</font>男</div>
+                    <div class="col-12" style="width: 250px;">
+                        <font class="p_text infotitleright righttitle">生年月日：</font>1991/10/10</div>
+                </div>
+                <div class="space clearfix" style="height:25px;">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">婚姻状况：</font>独身</div>
+                    <div class="col-12" style="width: 250px;">
+                        <font class="p_text infotitleright righttitle">初来日年月日：</font>2013/6/1</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">現住所：</font>辽宁省大连市甘井子区七贤路学子街3号</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">通算在日期間：</font>10年10月</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">郵便番号：</font>116031</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">Email：</font>6756757676@qq.com</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">電話番号：</font>0411-86553238</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">携帯番号：</font>13485747783</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">最寄駅：</font>高新园区</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">通勤時間：</font>1时15分</div>
+                </div>
+
+            </div>
+            <!--基本信息详情结束-->
+            <!--基本信息录入开始-->
+
+            <div class="update_input personInput">
+                <div class="headnopic">
+
+                </div>
+                <form action="" method="POST">
+                    <div class="space clearfix" style="height:30px;">
+                        <div class="col-12">
+                            <label>フリガナ</label>
+                            <input type="text" class="form-control  col-13">
+                        </div>
+                        <div class="col-12" style="width: 270px;">
+                            <label style="width: 90px;">氏名</label>
+                            <input type="text" class="form-control col-13" style="width: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- 第一列结束 第二列开始 -->
+                    <div class="space clearfix" style="height:30px;">
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>性别</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft">
+                                <input name="sex" value="option1" checked>&nbsp;&nbsp;男
+                            </div>
+                            <div class="col-10" id="radio_marginleft">
+                                <input type="radio" name="sex" value="option2">&nbsp;&nbsp;女
+                            </div>
+                        </div>
+
+                        <div class="col-12" style="width: 270px;">
+                            <label style="width: 90px;">生年月日</label>
+                            <input type="text" class="form-control col-13" placeholder="YYYYMMDD" style="width: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- 第二列结束 第三列开始 -->
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <div class="col-8" style="width: 100px;">
+                                <label>婚姻状况</label>
+                            </div>
+                            <div class="col-10" id="radio_marginleft">
+                                <input type="radio" name="marry" value="option1" checked>&nbsp;&nbsp;独身
+                            </div>
+                            <div class="col-10" id="radio_marginleft">
+                                <input type="radio" name="marry" value="option2">&nbsp;&nbsp;已婚
+                            </div>
+                        </div>
+
+                        <div class="col-12" style="width: 270px;">
+                            <label style="width: 90px;">初来日年月日</label>
+                            <input type="text" class="form-control col-13" placeholder="YYYYMMDD" style="width: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- 第3列结束 第4列开始 -->
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>現住所</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+
+                        <div class="col-12">
+                            <label style="width: 90px;">通算在日期間</label>
+                            <input type="text" class="form-control" style="width: 110px;">&nbsp;&nbsp;年&nbsp;&nbsp;
+                            <input type="text" class="form-control" style="width: 110px;">&nbsp;&nbsp;月
+                        </div>
+                    </div>
+
+                    <!-- 第4列结束 第5列开始 -->
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>郵便番号</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+
+                        <div class="col-12">
+                            <label style="width: 90px;">Email</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+                    </div>
+
+                    <!-- 第5列结束 第6列开始 -->
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>電話番号</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+
+                        <div class="col-12">
+                            <label style="width: 90px;">携帯番号</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+                    </div>
+
+                    <!-- 第6列结束 第7列开始 -->
+
+                    <div class="space clearfix">
+                        <div class="col-12">
+                            <label>最寄駅</label>
+                            <input type="text" class="form-control" name="" style="width: 120px;">&nbsp;&nbsp;路车&nbsp;&nbsp;
+                            <input type="text" class="form-control" style="width: 120px;" placeholder="离家最近的站点">
+                        </div>
+
+                        <div class="col-12">
+                            <label style="width: 90px;">通勤時間</label>
+                            <input type="text" class="form-control col-13">
+                        </div>
+                    </div>
+
+                    <!-- 下面是保存按钮 -->
+                    <div class="space clearfix">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                            <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!--基本信息录入结束-->
+        </div>
+        <!--卒業信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-education"></em>&nbsp;&nbsp;最終学歴</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--卒業信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善最高学歴信息，让简历更完整！</div>
+            </div>
+            <!--卒業信息空表提示结束-->
+            <!--卒業信息信息详情开始-->
+            <div class="space clearfix personDetail">
+                <div>中国：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">卒業年月：</font>2017/7</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">学校名：</font>大连工业大学</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">専攻学科：</font>计算机软件</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">学：</font>本科</div>
+                </div>
+
+                <div>日本：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">卒業年月：</font>2017/7</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">学校名：</font>日本工业大学</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">専攻学科：</font>计算机软件</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">学歴：</font>本科</div>
+                </div>
+            </div>
+            <!--卒業信息详情结束-->
+            <!--卒業信息录入开始-->
+            <div class="update_input personInput">
+                <div>中国：</div>
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>卒業年月</label>
+                        <input type="text" class="form-control col-13" placeholder="输入格式为 YYYYMMDD">
+                    </div>
+
+                    <div class="col-12">
+                        <label>学校名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>専攻学科</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+                    <div class="col-12">
+                        <label>学歴</label>
+                        <select>
+                            <option>高等学校卒</option>
+                            <option selected>大学卒</option>
+                            <option>大学院卒</option>
+                            <option>短期大学卒</option>
+                            <option>高等専门学校卒</option>
+                            <option>専修学校等卒</option>
+                            <option>中学校卒</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 日本最高学歴 -->
+                <div>日本：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>卒業年月</label>
+                        <input type="text" class="form-control col-13" placeholder="输入格式为 YYYYMMDD">
+                    </div>
+
+                    <div class="col-12">
+                        <label>学校名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>専攻学科</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+                    <div class="col-12">
+                        <label>学歴</label>
+                        <select>
+                            <option>高等学校卒</option>
+                            <option selected>大学卒</option>
+                            <option>大学院卒</option>
+                            <option>短期大学卒</option>
+                            <option>高等専门学校卒</option>
+                            <option>専修学校等卒</option>
+                            <option>中学校卒</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 保存按钮 -->
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--最高学歴录入结束-->
+        </div>
+        <!--言語能力信息-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-briefcase"></em>&nbsp;&nbsp;言語能力</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--言語能力空表提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善言語能力信息，让简历更完整！</div>
+            </div>
+            <!--入职信息空表提示开始-->
+            <!--入职信息信息详情开始-->
+            <div class="space clearfix personDetail">
+                <div>日本语：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>言語の免許</label>&nbsp;&nbsp;&nbsp;&nbsp;N2证书</div>
+                </div>
+                <div class="space clearfix">
+                    <div>
+                        <label>閲読会話能力</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control " value="">日常会話</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="">作業会話</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="" checked>仕様書読解</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="" checked>仕様書作成</label>
+                    </div>
+                </div>
+
+                <div>英语：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>言語の免許</label>&nbsp;&nbsp;&nbsp;&nbsp;四级证书</div>
+                </div>
+
+                <div class="space clearfix">
+                    <div>
+                        <label>閲読会話能力</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="">日常会話</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="" checked>作業会話</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="">仕様書読解</label>
+                        <label id="editcheckboxwidth">
+                            <input disabled type="checkbox" class="form-control" value="" checked>仕様書作成</label>
+                    </div>
+                </div>
+
+                <div>その他语种及证书：无</div>
+                <!-- <div class="space clearfix">
+              <div>无</div>
+            </div> -->
+            </div>
+            <!--入职信息详情结束-->
+            <!--入职信息录入开始-->
+            <div class="update_input personInput">
+                <div>日本语：</div>
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>言語の免許</label>
+                        <select>
+                            <option>无</option>
+                            <option>N1</option>
+                            <option>N2</option>
+                            <option>N3</option>
+                            <option>N4</option>
+                            <option>N5</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="space clearfix">
+
+                    <div>
+                        <label>閲読会話能力</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">日常会話</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">作業会話</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">仕様書読解</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">仕様書作成</label>
+                    </div>
+
+                </div>
+
+                <!-- 日本最高学歴 -->
+                <div>英语：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <label>言語の免許</label>
+                        <select>
+                            <option>大学英语四级相当</option>
+                            <option>大学英语六级相当</option>
+                            <option>専攻学科英语四级相当</option>
+                            <option>専攻学科英语六级相当</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="space clearfix">
+                    <div>
+                        <label>閲読会話能力</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control">日常会話</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">作業会話</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">仕様書読解</label>
+                        <label id="editcheckboxwidth">
+                            <input type="checkbox" class="form-control" value="">仕様書作成</label>
+                    </div>
+
+                </div>
+                <div>その他语种及证书：</div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <input type="text" class="form-control col-13">
+                    </div>
+                </div>
+
+                <!-- 下面是言語能力的保存按钮 -->
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--言語能力录入结束-->
+        </div>
+
+        <!--職歴-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-credit-card"></em>&nbsp;&nbsp;職歴</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--社保信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善職歴信息，让简历更完整！</div>
+            </div>
+            <!--職歴提示结束-->
+            <!--職歴信息详情开始-->
+            <div class="space clearfix personDetail">
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">国家：</font>中国</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">期間：</font>2010/7-2014/7</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">会社名：</font>大连东软信息技術有限公司</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle ">職種：</font>iOS软件工程师</div>
+                </div>
+
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">国家：</font>中国</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle">期間：</font>2010/7-2014/7</div>
+                </div>
+                <div class="space clearfix">
+                    <div class="col-12">
+                        <font class="p_text infotitleright lefttitle">会社名：</font>大连东软信息技術有限公司</div>
+                    <div class="col-12">
+                        <font class="p_text infotitleright righttitle ">職種：</font>iOS软件工程师</div>
+                </div>
+
+            </div>
+            <!--職歴结束-->
+
+            <!--職歴录入开始-->
+            <div class="update_input personInput">
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <label>国家</label>
+                        <select>
+                            <option>中国</option>
+                            <option>日本</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label>期間</label>
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="width: 120px;" placeholder="YYYYMMDD">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+
+                    <div class="col-12 workexpermarginbtn">
+                        <label>会社名</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                    <div class="col-12">
+                        <label>職種</label>
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <!-- <div class="space clearfix">
+             <div class="col-2">                     
+               <button type="button" class="btn btn-success greenbtn btn-warning addbtn">添&nbsp;加</button>
+               <button type="button" class="btn btn-default greenbtn1 btn-danger">减&nbsp;少</button>
+             </div>
+           </div> -->
+
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--職歴录入结束-->
+        </div>
+
+        <!--備考-->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-credit-card"></em>&nbsp;&nbsp;備考</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--社保信息空表提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善職歴信息，让简历更完整！</div>
+            </div>
+            <!--職歴提示结束-->
+            <!--職歴信息详情开始-->
+            <div class="space clearfix personDetail">
+                <div class="space clearfix">
+                    <div class="col-12">无</div>
+                </div>
+            </div>
+            <!--職歴结束-->
+
+            <!--職歴录入开始-->
+            <div class="update_input personInput">
+
+                <div class="space clearfix">
+
+                    <div class="col-12">
+                        <input type="text" class="form-control col-13">
+                    </div>
+
+                </div>
+
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--職歴录入结束-->
+        </div>
+
+        <!-- 技術/管理/業務経験 -->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-credit-card"></em>&nbsp;&nbsp;技術/管理/業務経験</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--技術/管理/業務経験提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善技術/管理/業務経験信息，让简历更完整！</div>
+            </div>
+            <!--技術/管理/業務経験提示结束-->
+
+            <!--技術/管理/業務経験详情开始-->
+            <div class="space clearfix personDetail">
+                <div class="space clearfix">
+                    <!-- 第一行内容（1.管理経験，2.職歴 3.得意業務 + 得意技術） -->
+                    <div class="threepart">
+
+                        <!-- 表头 -->
+                        <div>
+                            管理経験：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[50月]
+                        </div>
+
+                        <!-- 这是管理経験的table -->
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr class="success">
+                                <td>人数</td>
+                                <td>管理</td>
+                                <td>その他</td>
+                            </tr>
+                            <tr>
+                                <td>5人以下</td>
+                                <td>30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6～10人</td>
+                                <td>20</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11～15人</td>
+                                <td>30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>16人以上</td>
+                                <td>30</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="threepart">
+                        <!-- 这是職歴的table -->
+                        <!-- 表头 -->
+                        <div>
+                            職歴: (O有経験)
+                        </div>
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr class="success">
+                                <td colspan="10">職歴</td>
+                            </tr>
+                            <tr style="height:110px;">
+                                <td>要件定義</td>
+                                <td>基本設計</td>
+                                <td>詳細設計</td>
+                                <td>製造</td>
+                                <td>単体試験</td>
+                                <td>結合試験</td>
+                                <td>総合試験</td>
+                                <td>運用試験</td>
+                                <td>教育</td>
+                                <td>その他</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <div class="threepart bustec_marginleft">
+                        <!-- 这是得意業務 -->
+                        <div>得意業務</div>
+                        <textarea class="bustec_width_height" disabled>医疗 保险</textarea>
+                        <div>得意技術</div>
+                        <textarea class="bustec_width_height" disabled>JAVA iOS 安卓</textarea>
+                    </div>
+                </div>
+
+                <div class="space clearfix">
+                    <!-- 第2行内容（4.技術能力） -->
+                    <div class="tectitmid">技術情报(●:精通しているしている ○:実務経験がある)</div>
+
+                </div>
+
+                <!-- 経験年数表格 -->
+                <div class="space clearfix">
+                    <div class="threepart">
+
+                        <!-- 这是経験年数的table -->
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr class="success">
+                                <td colspan="2">経験年数</td>
+                                <td>8年</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">OS/DB</td>
+                            </tr>
+
+                            <tr>
+                                <td>Unix</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Linux</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Mac</td>
+                                <td class="circlewidth">●</td>
+                                <td>5年</td>
+                            </tr>
+                            <tr>
+                                <td>Oracle</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Sybase</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DB2</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>SQLServer</td>
+                                <td class="circlewidth">○</td>
+                                <td>8年</td>
+                            </tr>
+                            <tr>
+                                <td>Access</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>PostgreSQL</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>MySQL</td>
+                                <td class="circlewidth">○</td>
+                                <td>3年</td>
+                            </tr>
+                            <tr>
+                                <td>Adbase</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>その他</td>
+                                <td class="circlewidth"></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 技術能力左边结束，下面的代码时取得資格 -->
+                    <div class="tectit">
+                        <!-- 取得資格 -->
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr class="success">
+                                <td>取得資格</td>
+                                <td colspan="8">XXXXXXXXXX</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="9">言語/ツール等</td>
+                            </tr>
+
+                            <tr>
+                                <td>C++</td>
+                                <td class="circlewidth">○</td>
+                                <td class="yearwidth">3年</td>
+                                <td>JSP</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Weblogic</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>VC/VC++</td>
+                                <td class="circlewidth">●</td>
+                                <td class="yearwidth">10年</td>
+                                <td>EJB</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Websphere</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>VB/VBA</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Servlet</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Tomcat</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>PowerBuilder</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Jbuilder</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Apache</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>Delphi</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>JavaBean</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>UML</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>Develop2000</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Struts</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>ADO.Net</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>COBOL</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>XML/XSL</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>ASP.Net</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>Shell</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Perl</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>VB.Net</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>Assembler</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Corda</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>C#.Net</td>
+                                <td class="circlewidth">○</td>
+                                <td class="yearwidth">3年</td>
+                            </tr>
+                            <tr>
+                                <td>ASP</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>JavaScript</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>VC++.Net</td>
+                                <td class="circlewidth">○</td>
+                                <td class="yearwidth">3年</td>
+                            </tr>
+                            <tr>
+                                <td>ERP</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>PHP/HTML</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>ネットワーク構築</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>Eclipse</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                                <td>Java</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth">20年</td>
+                                <td>Ajax</td>
+                                <td class="circlewidth"></td>
+                                <td class="yearwidth"></td>
+                            </tr>
+                            <tr>
+                                <td>その他</td>
+                                <td colspan="8"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--職歴结束-->
+
+            <!--職歴录入开始-->
+            <div class="update_input personInput">
+
+                <div class="space clearfix">
+
+                    <div class="space clearfix">
+                        <!-- 第一行内容（1.管理経験，2.職歴 3.得意業務 + 得意技術） -->
+                        <div class="threepart">
+
+                            <!-- 表头 -->
+                            <div>
+                                管理経験：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[50月]
+                            </div>
+
+                            <!-- 这是管理経験的table -->
+                            <table class="table table-striped table-bordered table-hover">
+                                <tr class="success">
+                                    <td>人数</td>
+                                    <td>管理</td>
+                                    <td>その他</td>
+                                </tr>
+                                <tr>
+                                    <td>5人以下</td>
+                                    <td>
+                                        <input class="manainputwidth" />月</td>
+                                    <td>
+                                        <input class="manainputwidth" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6～10人</td>
+                                    <td>
+                                        <input class="manainputwidth" />月</td>
+                                    <td>
+                                        <input class="manainputwidth" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11～15人</td>
+                                    <td>
+                                        <input class="manainputwidth" />月</td>
+                                    <td>
+                                        <input class="manainputwidth" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>16人以上</td>
+                                    <td>
+                                        <input class="manainputwidth" />月</td>
+                                    <td>
+                                        <input class="manainputwidth" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="threepart">
+                            <!-- 这是職歴的table -->
+                            <!-- 表头 -->
+                            <div>
+                                職歴: (O有経験)
+                            </div>
+                            <table class="table table-striped table-bordered table-hover">
+                                <tr class="success">
+                                    <td colspan="10">職歴</td>
+                                </tr>
+                                <tr style="height:130px;">
+                                    <td>要件定義</td>
+                                    <td>基本設計</td>
+                                    <td>詳細設計</td>
+                                    <td>製造</td>
+                                    <td>単体試験 </td>
+                                    <td>結合試験 </td>
+                                    <td>総合試験</td>
+                                    <td>運用試験</td>
+                                    <td>教育</td>
+                                    <td>その他</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="">
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="threepart bustec_marginleft ">
+                            <!-- 这是得意業務 -->
+                            <div>得意業務</div>
+                            <textarea class="bustec_width_height busmarbtm"></textarea>
+                            <div>得意技術</div>
+                            <textarea class="bustec_width_height "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="space clearfix">
+                        <!-- 第2行内容（4.技術能力标题） -->
+                        <div class="tectitmid">技術情报(●:精通しているしている ○:実務経験がある)</div>
+
+                    </div>
+
+                    <div class="space clearfix">
+                        <!-- 第2行内容（経験年数输入表格） -->
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <td>経験年数</td>
+                                <td colspan="5" class="showleft">
+                                    <input />年</td>
+                            </tr>
+
+                            <tr>
+                                <td>資格</td>
+                                <td colspan="5" class="showleft">
+                                    <textarea style="width: 100%"></textarea>
+                                </td>
+                            </tr>
+
+                            <tr class="success">
+                                <td colspan="6">OS/DB</td>
+                            </tr>
+
+                            <tr>
+                                <td>Unix</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Linux</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Windows</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Mac</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Oracle</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Sybase</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>DB2</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>SQLServer</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Access</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>PostgreSQL</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>MySQL</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Adbase</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" class="success">言語/ツール等</td>
+                            </tr>
+
+                            <tr>
+                                <td>C/C++</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>VC/VC++</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>VB/VBA</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>PowerBuilder</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Delphi</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Develop2000</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>COBOL</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Shell</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Assembler</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>ASP</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>ERP</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Eclipse</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>JSP</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>EJB</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Servlet</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>JBuilder</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>JavaBean</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Struts</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>XML/XSL</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Perl</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Corba</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>JavaScript</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>PHP/HTML</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Java</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Weblogic</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Websphere</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Tomcat</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Apache</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>UML</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>ADO.Net</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>ASP.Net</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>VB.Net</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>C#.Net</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>VC++.Net</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>ネットワーク構築</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                                <td>Ajax</td>
+                                <td>
+                                    <input/>月</td>
+                                <td>
+                                    <select>
+                                        <option>无</option>
+                                        <option>実務経験がある</option>
+                                        <option>精通している</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>その他</td>
+                                <td colspan="5">
+                                    <textarea style="width: 100%;"></textarea>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <!-- 技術能力表格结束 -->
+
+                </div>
+
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--職歴录入结束-->
+        </div>
+
+        <!-- 業務経験 -->
+        <div class="info">
+            <strong class="person">
+                <em class="glyphicon glyphicon-credit-card"></em>&nbsp;&nbsp;業務経験</strong>
+            <button type="button" class="btn btn-warning update updateBtn">更&nbsp;新</button>
+            <!--業務経験提示开始-->
+            <div class="space clearfix personPrompt">
+                <div class="prompt">
+                    <em class="glyphicon glyphicon-exclamation-sign"></em>&nbsp;&nbsp;请完善業務経験信息，让简历更完整！</div>
+            </div>
+            <!--業務経験提示结束-->
+            <!--業務経験信息详情开始-->
+            <div class="space clearfix personDetail">
+
+                <div class="space clearfix">
+                    <table class="table table-striped table-bordered table-hover">
+                        <!--                         <tr class="success">
+                    <td colspan="13">業務経験</td>
+                  </tr> -->
+
+                        <tr class="success">
+                            <td>作業期間（YYYYMM）</td>
+                            <td>業種</td>
+                            <td>業務経歴
+                                <br/>（主な開発実績）</td>
+                            <td>開発環境
+                                <br/>(OS名／DB名)</td>
+                            <td>開発言語／ツール</td>
+                            <td id="circlewidth2">管理</td>
+                            <td id="circlewidth2">調査分析</td>
+                            <td id="circlewidth2">基本設計</td>
+                            <td id="circlewidth2">機能設計</td>
+                            <td id="circlewidth2">詳細設計</td>
+                            <td id="circlewidth2">PG／UT</td>
+                            <td id="circlewidth2">IT/PT</td>
+                            <td id="circlewidth2">運用保守</td>
+                        </tr>
+
+                        <tr>
+                            <td>2014/10-2015/12</td>
+                            <td>公共</td>
+                            <td>XXXXXXXXX</td>
+                            <td>Windows/SQLServer</td>
+                            <td>Java</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                        <tr>
+                            <td>2014/10-2015/12</td>
+                            <td>公共</td>
+                            <td>XXXXXXXXX</td>
+                            <td>Windows/SQLServer</td>
+                            <td>Java</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                        <tr>
+                            <td>2014/10-2015/12</td>
+                            <td>公共</td>
+                            <td>XXXXXX</td>
+                            <td>Windows/SQLServer</td>
+                            <td>Java</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                        <tr>
+                            <td>2014/10-2015/12</td>
+                            <td>公共</td>
+                            <td>XXXXXX</td>
+                            <td>Windows/SQLServer</td>
+                            <td>Java</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+            <!--業務経験结束-->
+
+            <!--業務経験录入开始-->
+            <div class="update_input personInput">
+
+                <!-- 業務経験 内容开始 -->
+                <div class="space clearfix">
+                    <table class="table table-striped table-bordered table-hover">
+                        <!--                         <tr class="success">
+                    <td colspan="13">業務経験</td>
+                  </tr> -->
+
+                        <tr class="success">
+                            <td>作業期間（YYYYMM）</td>
+                            <td>業種</td>
+                            <td>業務経歴
+                                <br/>（主な開発実績）</td>
+                            <td>開発環境
+                                <br/>(OS名／DB名)</td>
+                            <td>開発言語／ツール</td>
+                            <td style="width: 40px;">管理</td>
+                            <td id="circlewidth2">調査分析</td>
+                            <td id="circlewidth2">基本設計</td>
+                            <td id="circlewidth2">機能設計</td>
+                            <td id="circlewidth2">詳細設計</td>
+                            <td id="circlewidth2">PG／UT</td>
+                            <td id="circlewidth2">IT/PT</td>
+                            <td id="circlewidth2">運用保守</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input class="inputwidth" />
+                                <div>~</div>
+                                <input class="inputwidth" />
+                            </td>
+
+                            <td>
+                                <select>
+                                    <option value="水産・農林業">水産・農林業</option>
+                                    <option value="ゴム製品">ゴム製品</option>
+                                    <option value="ガラス土石製品">ガラス土石製品</option>
+                                    <option value="鉄鋼">鉄鋼</option>
+                                    <option value="非鉄金属">非鉄金属</option>
+                                    <option value="金属製品">金属製品</option>
+                                    <option value="機械">機械</option>
+                                    <option value="電気機器">電気機器</option>
+                                    <option value="輸送用機器">輸送用機器</option>
+                                    <option value="精密機器">精密機器</option>
+                                    <option value="その他製品">その他製品</option>
+                                    <option value="鉱業">鉱業</option>
+                                    <option value="電気・ガス業">電気・ガス業</option>
+                                    <option value="陸運業">陸運業</option>
+                                    <option value="海運業">海運業</option>
+                                    <option value="空運業">空運業</option>
+                                    <option value="倉庫運輸関連">倉庫運輸関連</option>
+                                    <option value="情報・通信業">情報・通信業</option>
+                                    <option value="卸売業">卸売業</option>
+                                    <option value="小売業">小売業</option>
+                                    <option value="銀行業">銀行業</option>
+                                    <option value="証券商品先物">証券商品先物</option>
+                                    <option value="建設業">建設業</option>
+                                    <option value="保険業">保険業</option>
+                                    <option value="その他金融業">その他金融業</option>
+                                    <option value="不動産業">不動産業</option>
+                                    <option value="サービス業">サービス業</option>
+                                    <option selected="" value="公共">公共</option>
+                                    <option value="食料品">食料品</option>
+                                    <option value="繊維製品">繊維製品</option>
+                                    <option value="パルプ・紙">パルプ・紙</option>
+                                    <option value="化学">化学</option>
+                                    <option value="医薬品">医薬品</option>
+                                    <option value="石油石炭製品">石油石炭製品</option>
+                                </select>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input class="inputwidth" />
+                                <div>~</div>
+                                <input class="inputwidth" />
+                            </td>
+
+                            <td>
+                                <select>
+                                    <option value="水産・農林業">水産・農林業</option>
+                                    <option value="ゴム製品">ゴム製品</option>
+                                    <option value="ガラス土石製品">ガラス土石製品</option>
+                                    <option value="鉄鋼">鉄鋼</option>
+                                    <option value="非鉄金属">非鉄金属</option>
+                                    <option value="金属製品">金属製品</option>
+                                    <option value="機械">機械</option>
+                                    <option value="電気機器">電気機器</option>
+                                    <option value="輸送用機器">輸送用機器</option>
+                                    <option value="精密機器">精密機器</option>
+                                    <option value="その他製品">その他製品</option>
+                                    <option value="鉱業">鉱業</option>
+                                    <option value="電気・ガス業">電気・ガス業</option>
+                                    <option value="陸運業">陸運業</option>
+                                    <option value="海運業">海運業</option>
+                                    <option value="空運業">空運業</option>
+                                    <option value="倉庫運輸関連">倉庫運輸関連</option>
+                                    <option value="情報・通信業">情報・通信業</option>
+                                    <option value="卸売業">卸売業</option>
+                                    <option value="小売業">小売業</option>
+                                    <option value="銀行業">銀行業</option>
+                                    <option value="証券商品先物">証券商品先物</option>
+                                    <option value="建設業">建設業</option>
+                                    <option value="保険業">保険業</option>
+                                    <option value="その他金融業">その他金融業</option>
+                                    <option value="不動産業">不動産業</option>
+                                    <option value="サービス業">サービス業</option>
+                                    <option selected="" value="公共">公共</option>
+                                    <option value="食料品">食料品</option>
+                                    <option value="繊維製品">繊維製品</option>
+                                    <option value="パルプ・紙">パルプ・紙</option>
+                                    <option value="化学">化学</option>
+                                    <option value="医薬品">医薬品</option>
+                                    <option value="石油石炭製品">石油石炭製品</option>
+                                </select>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2"></td>
+                            <td id="circlewidth2"></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input class="inputwidth" />
+                                <div>~</div>
+                                <input class="inputwidth" />
+                            </td>
+
+                            <td>
+                                <select>
+                                    <option value="水産・農林業">水産・農林業</option>
+                                    <option value="ゴム製品">ゴム製品</option>
+                                    <option value="ガラス土石製品">ガラス土石製品</option>
+                                    <option value="鉄鋼">鉄鋼</option>
+                                    <option value="非鉄金属">非鉄金属</option>
+                                    <option value="金属製品">金属製品</option>
+                                    <option value="機械">機械</option>
+                                    <option value="電気機器">電気機器</option>
+                                    <option value="輸送用機器">輸送用機器</option>
+                                    <option value="精密機器">精密機器</option>
+                                    <option value="その他製品">その他製品</option>
+                                    <option value="鉱業">鉱業</option>
+                                    <option value="電気・ガス業">電気・ガス業</option>
+                                    <option value="陸運業">陸運業</option>
+                                    <option value="海運業">海運業</option>
+                                    <option value="空運業">空運業</option>
+                                    <option value="倉庫運輸関連">倉庫運輸関連</option>
+                                    <option value="情報・通信業">情報・通信業</option>
+                                    <option value="卸売業">卸売業</option>
+                                    <option value="小売業">小売業</option>
+                                    <option value="銀行業">銀行業</option>
+                                    <option value="証券商品先物">証券商品先物</option>
+                                    <option value="建設業">建設業</option>
+                                    <option value="保険業">保険業</option>
+                                    <option value="その他金融業">その他金融業</option>
+                                    <option value="不動産業">不動産業</option>
+                                    <option value="サービス業">サービス業</option>
+                                    <option selected="" value="公共">公共</option>
+                                    <option value="食料品">食料品</option>
+                                    <option value="繊維製品">繊維製品</option>
+                                    <option value="パルプ・紙">パルプ・紙</option>
+                                    <option value="化学">化学</option>
+                                    <option value="医薬品">医薬品</option>
+                                    <option value="石油石炭製品">石油石炭製品</option>
+                                </select>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input class="inputwidth" />
+                                <div>~</div>
+                                <input class="inputwidth" />
+                            </td>
+
+                            <td>
+                                <select>
+                                    <option value="水産・農林業">水産・農林業</option>
+                                    <option value="ゴム製品">ゴム製品</option>
+                                    <option value="ガラス土石製品">ガラス土石製品</option>
+                                    <option value="鉄鋼">鉄鋼</option>
+                                    <option value="非鉄金属">非鉄金属</option>
+                                    <option value="金属製品">金属製品</option>
+                                    <option value="機械">機械</option>
+                                    <option value="電気機器">電気機器</option>
+                                    <option value="輸送用機器">輸送用機器</option>
+                                    <option value="精密機器">精密機器</option>
+                                    <option value="その他製品">その他製品</option>
+                                    <option value="鉱業">鉱業</option>
+                                    <option value="電気・ガス業">電気・ガス業</option>
+                                    <option value="陸運業">陸運業</option>
+                                    <option value="海運業">海運業</option>
+                                    <option value="空運業">空運業</option>
+                                    <option value="倉庫運輸関連">倉庫運輸関連</option>
+                                    <option value="情報・通信業">情報・通信業</option>
+                                    <option value="卸売業">卸売業</option>
+                                    <option value="小売業">小売業</option>
+                                    <option value="銀行業">銀行業</option>
+                                    <option value="証券商品先物">証券商品先物</option>
+                                    <option value="建設業">建設業</option>
+                                    <option value="保険業">保険業</option>
+                                    <option value="その他金融業">その他金融業</option>
+                                    <option value="不動産業">不動産業</option>
+                                    <option value="サービス業">サービス業</option>
+                                    <option selected="" value="公共">公共</option>
+                                    <option value="食料品">食料品</option>
+                                    <option value="繊維製品">繊維製品</option>
+                                    <option value="パルプ・紙">パルプ・紙</option>
+                                    <option value="化学">化学</option>
+                                    <option value="医薬品">医薬品</option>
+                                    <option value="石油石炭製品">石油石炭製品</option>
+
+                                </select>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td>
+                                <textarea class="textareawidth"></textarea>
+                            </td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                            <td id="circlewidth2">●</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+                <!-- 業務経験 内容结束 -->
+
+
+                <div class="space clearfix">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success greenbtn saveBtn">保&nbsp;存</button>
+                        <button type="button" class="btn btn-default greenbtn1 cancelBtn">取&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+            <!--業務経験录入结束-->
+        </div>
+
+
+
+    </div>
+</div>
+<!--右侧内容结束-->

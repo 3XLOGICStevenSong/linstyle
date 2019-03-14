@@ -1,0 +1,316 @@
+        <!--右侧内容开始-->
+        <div class="content">
+          <div class="main">
+            <div class="t_list">
+                <!-- <div class="r_btn">
+                  <button type="button" class="btn btn-success" onClick="launchPaperInput()">发布招聘信息</button>
+                </div> -->
+                <h4><strong>编辑招聘信息</strong></h4>
+                <!-- 正文开始 -->
+
+            <div class="space clearfix">
+              <div class="col-1"><label>语种：</label>
+              </div>
+              <div class="col-2">
+
+                <select class="form-control" id="url" required [(ngModel)]=language>
+                  <option *ngFor="let lan of lans" [value]="lan">{{lan}}</option>
+                </select>
+
+              </div>
+           </div>
+
+           <div class="space clearfix">
+             <div class="col-1">
+              <label>标题:</label>
+             </div>
+             <div class="col-3">
+               <input type="text" class="form-control col-4" [(ngModel)]=title>
+             </div>
+           </div>
+
+           <div class="space clearfix" id="recruitcontent">
+             <div class="col-1">
+              <label>内容:</label>
+             </div>
+             <div class="col-3">
+               <textarea  class="form-control col-4" style="resize:none;height:200px" [(ngModel)]=content></textarea>
+             </div>
+           </div>
+<!-- 添加，删除刷新部分 开始 -->
+           <!-- <div id="refreshPart"> -->
+
+           <div id = "paperback" style="margin-bottom: 30px;">
+<!-- 考卷 一个部分 开始 -->
+           <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>考卷:</label>
+             </div>
+
+             <div class="col-3" style="width: 200px;">
+              <button id="choseBtn" class="btn btn-success" style="top:0px;" (click)="selTea()">选择</button>
+             </div>
+
+             <div> 
+              <button class="btn btn-success" style="left:205px;top: 0;" (click)="addPaper()">增加</button>
+              <button class="btn btn-success delTea" style="left: 215px;top: 0;">减少</button>
+             </div>              
+            </div>
+
+<!-- 考卷 一个部分 结束 -->
+          </div>
+
+          <div id="paperback_1" style="display:none" >
+<!-- 考卷 一个部分 开始 -->
+
+            <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>考卷:</label>
+             </div>
+
+             <div class="col-3" style="width: 200px;">
+              <button id="choseBtn" class="btn btn-success" style="top:0px;" (click)="selTea()">选择</button>
+             </div>
+
+             <div> 
+                <button class="btn btn-success delPaper" style="left:273px;top: 0;" (click)="delPaper()">减少</button>
+             </div>              
+            </div>        
+<!-- 考卷 一个部分 结束 -->
+          </div>
+
+ <!-- style="display:none" -->
+  <div id="paperback_2"  style="margin-bottom: 30px;" style="display:none">
+<!-- 考卷 一个部分 开始 -->
+
+            <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>考卷:</label>
+             </div>
+
+             <div class="col-3" id="chosePaper" style="width: 200px;">
+
+             </div>
+
+             <div> 
+              <button class="btn btn-success" style="left:205px;top: 0;" (click)="addPaper()">增加</button>
+              <button class="btn btn-success delTea" style="left: 215px;top: 0;">减少</button>
+             </div>               
+            </div>        
+<!-- 考卷 一个部分 结束 -->
+  </div>
+
+            <div id="paperback_3" style="display:none">
+<!-- 考卷 一个部分 开始 -->
+
+            <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>考卷:</label>
+             </div>
+
+             <div class="col-3" id="chosePaper" style="width: 200px;" id="ppName">
+ 
+             </div>
+
+             <div> 
+              <button class="btn btn-success" style="left:205px;top: 0;" (click)="addPaper()">增加</button>
+              <button class="btn btn-success delTea" style="left: 215px;top: 0;">减少</button>
+             </div>             
+            </div>        
+<!-- 考卷 一个部分 结束 -->
+          </div>
+
+<div id = "empback">
+<!-- 添加面试官  一个部分 开始 -->
+           <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>面试官:</label>
+             </div>
+
+             <div class="col-3">
+              <button id="choseBtn" class="btn btn-success" style="top:0px;" (click)="selTea()">选择</button>
+             </div>
+
+             <div style="height: 34px;"> 
+                  <button class="btn btn-success" style="top:-35px;left:405px;" (click)="addTea()">增加</button>
+                  <button class="btn btn-success delTea" style="left: 415px;top:-35px;">减少</button>
+             </div>              
+            </div>
+
+
+<!-- 添加面试官 一个部分 结束 -->
+</div>
+
+<div  id="empback_1" style="display:none" >
+<!-- 添加面试官  一个部分 开始 -->
+           <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>面试官:</label>
+             </div>
+
+             <div class="col-3">
+              <button id="choseBtn" class="btn btn-success" style="top:0px;" (click)="selTea()">选择</button>
+             </div>
+
+             <div style="height: 34px;"> 
+                  <button class="btn btn-success delTea" style="top:-35px;left:473px;" (click)="delTea()">减少</button>
+                  <!-- <button class="btn btn-success delTea" style="left: 415px;top:-35px;">减少</button> -->
+             </div>              
+            </div>
+<!-- 添加面试官 一个部分 结束 -->
+</div>
+
+            <div id="empback_2" style="display:none">
+<!-- 考卷 一个部分 开始 -->
+
+            <div class="space clearfix" id = "teaid" >
+            <div class="col-1">
+              <label>面试官:</label>
+             </div>
+
+             <div class="col-3" style="width: 200px;" id="empName">
+              zhangsan
+             </div>
+
+             <div> 
+              <button class="btn btn-success" style="left:205px;top: 0;" (click)="addPaper()">增加</button>
+              <button class="btn btn-success delTea" style="left: 215px;top: 0;">减少</button>
+             </div>             
+            </div>        
+<!-- 考卷 一个部分 结束 -->
+          </div>
+
+           <!--  </div> -->
+
+<!-- 添加，删除刷新部分 结束 -->
+
+          <div class="col-5">
+              <button type="button" class="btn btn-primary" (click)="submitInfo()">编辑完成</button>
+             </div>
+
+               </div>
+               
+             </div>                                
+        </div>        
+      <!-- </div> -->
+        <!--右侧内容结束--> 
+
+<!-- 选择考卷开始 -->
+<div class="modal fade" id="paperInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<div style="margin-top:300px;width: 500px;height:300px; margin-left:300px; background-color: white;">
+  <table class="table table-bordered table-hover" >
+     <thead>
+        <tr class="info">
+            <th>&nbsp</th>
+            <th>序号</th>
+            <th>员工号</th>
+            <th>姓名</th>
+            <th>所属部门</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><input type="checkbox" id="tea1" value="张三"/></td>
+            <td>1</td>
+            <td>DJB100</td>
+            <td>张三</td>
+            <td>二部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea2" value="李四" /></td>
+            <td>2</td>
+            <td>DJB101</td>
+            <td>李四</td>
+            <td>三部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea3" value="王五"/></td>
+            <td>3</td>
+            <td>DJB100</td>
+            <td>王五</td>
+            <td>二部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea4" value="赵六" /></td>
+            <td>4</td>
+            <td>DJB101</td>
+            <td>赵六</td>
+            <td>三部</td>
+            
+        </tr>
+
+      </tbody>
+
+   </table> 
+
+   <div style="margin-left: 200px;">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="chose()">确定</button>  
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>      
+      </div>
+
+</div>
+<!-- 选择考卷结束 -->
+
+<!-- 选择员工弹出框开始 -->
+<div class="modal fade" id="paperInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<div style="margin-top:300px;width: 500px;height:300px; margin-left:300px; background-color: white;">
+  <table class="table table-bordered table-hover" >
+     <thead>
+        <tr class="info">
+            <th>&nbsp</th>
+            <th>序号</th>
+            <th>员工号</th>
+            <th>姓名</th>
+            <th>所属部门</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><input type="checkbox" id="tea1" value="张三"/></td>
+            <td>1</td>
+            <td>DJB100</td>
+            <td>张三</td>
+            <td>二部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea2" value="李四" /></td>
+            <td>2</td>
+            <td>DJB101</td>
+            <td>李四</td>
+            <td>三部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea3" value="王五"/></td>
+            <td>3</td>
+            <td>DJB100</td>
+            <td>王五</td>
+            <td>二部</td>
+            
+        </tr>
+        <tr>
+            <td><input type="checkbox"  id="tea4" value="赵六" /></td>
+            <td>4</td>
+            <td>DJB101</td>
+            <td>赵六</td>
+            <td>三部</td>
+            
+        </tr>
+
+      </tbody>
+
+   </table> 
+
+   <div style="margin-left: 200px;">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="chose()">确定</button>  
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>      
+      </div>
+
+</div>
+<!-- 选择员工弹出框结束 -->

@@ -1,0 +1,32 @@
+<!--右侧内容开始-->
+<div class="content">
+  <div class="main">
+    <h4><strong>{{title}}</strong></h4>
+    <div class="content_wrap">
+      <div class="zTreeDemoBackground left">
+        <ul id="treeDemo" class="ztree" ng-model="checked"></ul>
+      </div>
+      
+    </div>
+    <div class="space clearfix">
+      <div class="col-18">
+        定义角色：
+      </div>
+      <div class="col-2">
+        <input required [(ngModel)]="roleName" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="space clearfix">
+      <div *ngIf="curRoleId == -1" class="col-10">
+        <button (click)="addOnClicked()" type="button" class="btn btn-primary">添加角色</button>
+      </div>
+      <div *ngIf="curRoleId != -1" class="col-1">
+        <button (click)="updateOnClicked()" type="button" class="btn btn-primary">修改</button>
+      </div>
+      <div *ngIf="curRoleId != -1" class="col-1">
+        <button (click)="cancelOnClicked()" type="button" class="btn btn-default">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--右侧内容结束-->
